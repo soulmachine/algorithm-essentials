@@ -1,0 +1,10 @@
+{
+    "gitbook": "2.x.x",
+    "plugins": ["mathjax"],
+    "links": {
+        "sidebar": {
+            "Contact us / Support": "https://www.github.com/soulmachine"
+        }
+    },
+    "pluginsConfig": {}
+}
