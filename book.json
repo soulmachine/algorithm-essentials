@@ -1,10 +1,12 @@
 {
     "gitbook": "2.x.x",
-    "plugins": ["mathjax"],
-    "links": {
-        "sidebar": {
-            "Contact us / Support": "https://www.github.com/soulmachine"
+    "plugins": ["mathjax", "superscript", "github", "disqus", "codesnippet"],
+    "pluginsConfig": {
+        "github": {
+            "url": "https://www.github.com/soulmachine/algorithm-essentials"
+        },
+        "disqus": {
+            "shortName": "soulmachine"
         }
-    },
-    "pluginsConfig": {}
+    }
 }

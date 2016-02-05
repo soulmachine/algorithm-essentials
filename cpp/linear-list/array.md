@@ -20,59 +20,17 @@ Your function should return length = 2, and `A` is now `[1,2]`.
 
 ### 代码1
 
-```cpp
-// LeetCode, Remove Duplicates from Sorted Array
-// 时间复杂度O(n)，空间复杂度O(1)
-class Solution {
-public:
-    int removeDuplicates(vector<int>& nums) {
-        if (nums.empty()) return 0;
-
-        int index = 0;
-        for (int i = 1; i < nums.size(); i++) {
-            if (nums[index] != nums[i])
-                nums[++index] = nums[i];
-        }
-        return index + 1;
-    }
-};
-```
+{% codesnippet "./code/remove-duplicates-from-sorted-array-1.cpp", language="cpp" %}{% endcodesnippet %}
 
 
 ### 代码2
 
-```cpp
-// 使用STL，时间复杂度O(n)，空间复杂度O(1)
-class Solution {
-public:
-    int removeDuplicates(vector<int>& nums) {
-        return distance(nums.begin(), unique(nums.begin(), nums.end()));
-    }
-};
-```
+{% codesnippet "./code/remove-duplicates-from-sorted-array-2.cpp", language="cpp" %}{% endcodesnippet %}
 
 
 ### 代码3
 
-```cpp
-// 使用STL，时间复杂度O(n)，空间复杂度O(1)
-class Solution {
-public:
-    int removeDuplicates(vector<int>& nums) {
-        return distance(nums.begin(), removeDuplicates(nums.begin(), nums.end(), nums.begin()));
-    }
-
-    template<typename InIt, typename OutIt>
-    OutIt removeDuplicates(InIt first, InIt last, OutIt output) {
-        while (first != last) {
-            *output++ = *first;
-            first = upper_bound(first, last, *first);
-        }
-
-        return output;
-    }
-};
-```
+{% codesnippet "./code/remove-duplicates-from-sorted-array-3.cpp", language="cpp" %}{% endcodesnippet %}
 
 
 ### 相关题目
