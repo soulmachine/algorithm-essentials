@@ -54,50 +54,14 @@ For example, given sorted array `A = [1,1,1,2,2,3]`, your function should return
 
 ### 代码1
 
-```cpp
-// LeetCode, Remove Duplicates from Sorted Array II
-// 时间复杂度O(n)，空间复杂度O(1)
-// @author hex108 (https://github.com/hex108)
-class Solution {
-public:
-    int removeDuplicates(vector<int>& nums) {
-        if (nums.size() <= 2) return nums.size();
-
-        int index = 2;
-        for (int i = 2; i < nums.size(); i++){
-            if (nums[i] != nums[index - 2])
-                nums[index++] = nums[i];
-        }
-
-        return index;
-    }
-};
-```
+{% codesnippet "./code/remove-duplicates-from-sorted-array-ii-1.cpp", language="cpp" %}{% endcodesnippet %}
 
 
 ### 代码2
 
 下面是一个更简洁的版本。上面的代码略长，不过扩展性好一些，例如将\fn{occur < 2}改为\fn{occur < 3}，就变成了允许重复最多3次。
 
-```cpp
-// LeetCode, Remove Duplicates from Sorted Array II
-// @author 虞航仲 (http://weibo.com/u/1666779725)
-// 时间复杂度O(n)，空间复杂度O(1)
-class Solution {
-public:
-    int removeDuplicates(vector<int>& nums) {
-        const int n = nums.size();
-        int index = 0;
-        for (int i = 0; i < n; ++i) {
-            if (i > 0 && i < n - 1 && nums[i] == nums[i - 1] && nums[i] == nums[i + 1])
-                continue;
-
-            nums[index++] = nums[i];
-        }
-        return index;
-    }
-};
-```
+{% codesnippet "./code/remove-duplicates-from-sorted-array-ii-2.cpp", language="cpp" %}{% endcodesnippet %}
 
 
 ### 相关题目
