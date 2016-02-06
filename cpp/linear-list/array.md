@@ -20,17 +20,24 @@ Your function should return length = 2, and `A` is now `[1,2]`.
 
 ### 代码1
 
-{% codesnippet "./code/remove-duplicates-from-sorted-array-1.cpp", language="cpp" %}{% endcodesnippet %}
+
+{% if book.cpp %}
+  {% codesnippet "./code/remove-duplicates-from-sorted-array-1.cpp", language="cpp" %}{% endcodesnippet %}
+{% endif %}
 
 
 ### 代码2
 
-{% codesnippet "./code/remove-duplicates-from-sorted-array-2.cpp", language="cpp" %}{% endcodesnippet %}
+{% if book.cpp %}
+  {% codesnippet "./code/remove-duplicates-from-sorted-array-2.cpp", language="cpp" %}{% endcodesnippet %}
+{% endif %}
 
 
 ### 代码3
 
-{% codesnippet "./code/remove-duplicates-from-sorted-array-3.cpp", language="cpp" %}{% endcodesnippet %}
+{% if book.cpp %}
+  {% codesnippet "./code/remove-duplicates-from-sorted-array-3.cpp", language="cpp" %}{% endcodesnippet %}
+{% endif %}
 
 
 ### 相关题目
@@ -54,14 +61,18 @@ For example, given sorted array `A = [1,1,1,2,2,3]`, your function should return
 
 ### 代码1
 
-{% codesnippet "./code/remove-duplicates-from-sorted-array-ii-1.cpp", language="cpp" %}{% endcodesnippet %}
+{% if book.cpp %}
+  {% codesnippet "./code/remove-duplicates-from-sorted-array-ii-1.cpp", language="cpp" %}{% endcodesnippet %}
+{% endif %}
 
 
 ### 代码2
 
 下面是一个更简洁的版本。上面的代码略长，不过扩展性好一些，例如将\fn{occur < 2}改为\fn{occur < 3}，就变成了允许重复最多3次。
 
-{% codesnippet "./code/remove-duplicates-from-sorted-array-ii-2.cpp", language="cpp" %}{% endcodesnippet %}
+{% if book.cpp %}
+  {% codesnippet "./code/remove-duplicates-from-sorted-array-ii-2.cpp", language="cpp" %}{% endcodesnippet %}
+{% endif %}
 
 
 ### 相关题目

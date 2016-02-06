@@ -1,5 +1,6 @@
 * [Java](java)
 * [C++](cpp)
+<!--
 * [C#](cs)
 * [Python](py)
 * [Ruby](rb)
@@ -8,3 +9,4 @@
 * [Scala](scala)
 * [Go](go)
 * [Clojure](clj)
+-->

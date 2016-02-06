@@ -1,4 +1,4 @@
-# Summary
+# 算法精粹
 
 * [介绍](README.md)
 * [线性表](linear-list/README.md)
@@ -22,4 +22,3 @@
 * [贪心法](greedy/README.md)
 * [动态规划](dp/README.md)
 * [图](graph/README.md)
-
