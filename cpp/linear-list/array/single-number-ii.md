@@ -21,7 +21,7 @@ Your algorithm should have a linear runtime complexity. Could you implement it w
 
 
 ```cpp
-// LeetCode, Single Number II
+// Single Number II
 // 方法1，时间复杂度O(n)，空间复杂度O(1)
 class Solution {
 public:
@@ -49,7 +49,7 @@ public:
 
 
 ```cpp
-// LeetCode, Single Number II
+// Single Number II
 // 方法2，时间复杂度O(n)，空间复杂度O(1)
 class Solution {
 public:

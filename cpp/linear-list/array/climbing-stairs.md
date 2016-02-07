@@ -27,7 +27,7 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 ### 迭代
 
 ```cpp
-// LeetCode, Climbing Stairs
+// Climbing Stairs
 // 迭代，时间复杂度O(n)，空间复杂度O(1)
 class Solution {
 public:

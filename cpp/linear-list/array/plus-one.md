@@ -15,7 +15,7 @@ Given a number represented as an array of digits, plus one to the number.
 
 
 ```cpp
-// LeetCode, Plus One
+// Plus One
 // 时间复杂度O(n)，空间复杂度O(1)
 class Solution {
 public:
@@ -45,7 +45,7 @@ private:
 
 
 ```cpp
-// LeetCode, Plus One
+// Plus One
 // 时间复杂度O(n)，空间复杂度O(1)
 class Solution {
 public:
