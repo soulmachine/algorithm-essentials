@@ -1,4 +1,4 @@
-# 算法精粹
+# 内容目录
 
 * [介绍](README.md)
 * [线性表](linear-list/README.md)
@@ -43,6 +43,21 @@
         * [Reorder List](linear-list/linked-list/reorder-list.md)
         * [LRU Cache](linear-list/linked-list/lru-cache.md)
 * [字符串](string/README.md)
+    * [Valid Palindrome](string/valid-palindrome.md)
+    * [Implement strStr()](string/strstr.md)
+    * [String to Integer (atoi)](string/atoi.md)
+    * [Add Binary](string/add-binary.md)
+    * [Longest Palindromic Substring](string/longest-palindromic-substring.md)
+    * [Regular Expression Matching](string/regular-expression-matching.md)
+    * [Wildcard Matching](string/wildcard-matching.md)
+    * [Longest Common Prefix](string/longest-common-prefix.md)
+    * [Valid Number](string/valid-number.md)
+    * [Integer to Roman](string/integer-to-roman.md)
+    * [Roman to Integer](string/roman-to-integer.md)
+    * [Count and Say](string/count-and-say.md)
+    * [Anagrams](string/anagrams.md)
+    * [Simplify Path](string/simplify-path.md)
+    * [Length of Last Word](string/length-of-last-word.md)
 * [栈和队列](stack-and-queue/README.md)
     * [栈](stack-and-queue/stack.md)
     * [队列](stack-and-queue/queue.md)

@@ -12,7 +12,7 @@ Output: `7 -> 0 -> 8`
 
 ### 分析
 
-跟 [Add Binary](add-binary.md）很类似
+跟 [Add Binary](../../string/add-binary.md) 很类似
 
 
 ### 代码
@@ -24,4 +24,4 @@ Output: `7 -> 0 -> 8`
 
 ### 相关题目
 
-* [Add Binary](add-binary.md)
+* [Add Binary](../../string/add-binary.md)
