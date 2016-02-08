@@ -42,9 +42,9 @@ Note:
 
 方法1，最简单的方法，利用数学公式，对从 $$0\sim2^n-1$$的所有整数，转化为格雷码。
 
-方法2，`n`比特的格雷码，可以递归地从`n-1`比特的格雷码生成。如图\S \ref{fig:gray-code-construction}所示。
+方法2，`n`比特的格雷码，可以递归地从`n-1`比特的格雷码生成。如下图所示。
 
-![Gray code](../../images/gray-code-construction.png "The first few steps of the reflect-and-prefix method.")
+![The first few steps of the reflect-and-prefix method.](../../images/gray-code-construction.png)
 
 
 ### 数学公式

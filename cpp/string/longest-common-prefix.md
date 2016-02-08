@@ -21,7 +21,7 @@ Write a function to find the longest common prefix string amongst an array of st
 ### 横向扫描
 
 ```cpp
-// LeetCode, Longest Common Prefix
+// Longest Common Prefix
 // 横向扫描，每个字符串与第0个字符串，从左到右比较，直到遇到一个不匹配，
 // 然后继续下一个字符串
 // 时间复杂度O(n1+n2+...)

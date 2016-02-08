@@ -1,6 +1,6 @@
 {
     "gitbook": "2.x.x",
-    "plugins": ["mathjax", "superscript", "github", "codesnippet"],
+    "plugins": ["mathjax", "superscript", "github", "codesnippet", "image-captions"],
     "pluginsConfig": {
         "github": {
             "url": "https://www.github.com/soulmachine/algorithm-essentials"
