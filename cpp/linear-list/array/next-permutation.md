@@ -21,12 +21,9 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 
 ### 分析
 
-算法过程如图~\ref{fig:permutation}所示（来自<http://fisherlei.blogspot.com/2012/12/leetcode-next-permutation.html>）。
+算法过程如下图所示（来自<http://fisherlei.blogspot.com/2012/12/leetcode-next-permutation.html>）。
 
-\begin{center}
-\includegraphics[width=360pt]{next-permutation.png}\\
-\figcaption{下一个排列算法流程}\label{fig:permutation}
-\end{center}
+![下一个排列算法流程](../../images/next-permutation.png)
 
 
 ### 代码
