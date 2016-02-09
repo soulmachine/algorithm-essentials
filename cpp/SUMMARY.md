@@ -121,6 +121,8 @@
     * [Surrounded Regions](bfs/surrounded-regions.md)
 * [深度优先搜索](dfs/README.md)
 * [分治法](divide-and-conquer/README.md)
+    * [Pow(x,n)](divide-and-conquer/pow.md)
+    * [Sqrt(x)](divide-and-conquer/sqrt.md)
 * [贪心法](greedy/README.md)
 * [动态规划](dp/README.md)
 * [图](graph/README.md)
