@@ -1,5 +1,7 @@
 # 算法精粹——举一反三，抛弃题海战术
 
+本书的目标读者是准备去硅谷找工作的码农，也适用于在国内找工作的码农，以及刚接触ACM算法竞赛的新手。
+
 市场上讲解算法的书已经汗牛充栋，我为什么还要写这本书呢？主要原因是我对目前市场上的大部分算法书都不太满意。 本书有如下特色：
 
 1. 每道题都有在线OJ支持。本书的所有题目，都可以在 [www.algohub.org](http://www.algohub.org) 上找到。这样的一大好处是，读者可以边看书，边实现自己的代码，然后提交到网站上验证自己的想法是否正确。
@@ -20,4 +22,3 @@ Github: <https://www.github.com/soulmachine/algorithm-essentials>
 
 ## License
 Book License: [CC BY-SA 3.0 License](http://creativecommons.org/licenses/by-sa/3.0/)
-
