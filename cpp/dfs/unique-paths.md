@@ -84,4 +84,4 @@ public:
 ### 相关题目
 
 * [Unique Paths II](unique-paths-ii.md)
-* [Minimum Path Sum](minimum-path-sum.md)
+* [Minimum Path Sum](../dp/minimum-path-sum.md)

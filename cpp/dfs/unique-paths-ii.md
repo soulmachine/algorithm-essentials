@@ -48,4 +48,4 @@ Note: `m` and `n` will be at most 100.
 ### 相关题目
 
 * [Unique Paths](unique-paths.md)
-* [Minimum Path Sum](minimum-path-sum.md)
+* [Minimum Path Sum](../dp/minimum-path-sum.md)

@@ -24,4 +24,4 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 ### 相关题目
 
 * [Best Time to Buy and Sell Stock](best-time-to-buy-and-sell-stock.md)
-* [Best Time to Buy and Sell Stock III](best-time-to-buy-and-sell-stock-iii.md)
+* [Best Time to Buy and Sell Stock III](../dp/best-time-to-buy-and-sell-stock-iii.md)
