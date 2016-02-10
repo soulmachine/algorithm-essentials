@@ -21,9 +21,7 @@ Note: You may not engage in multiple transactions at the same time (ie, you must
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/best-time-to-buy-and-sell-stock-iii.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/best-time-to-buy-and-sell-stock-iii."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

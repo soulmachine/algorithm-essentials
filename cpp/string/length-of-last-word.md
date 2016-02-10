@@ -21,13 +21,9 @@ return 5.
 
 ### 用 STL
 
-{% if book.cpp %}
-  {% codesnippet "./code/length-of-last-word-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/length-of-last-word-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 顺序扫描
 
-{% if book.cpp %}
-  {% codesnippet "./code/length-of-last-word-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/length-of-last-word-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

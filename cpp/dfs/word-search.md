@@ -32,6 +32,4 @@ word = `"ABCB"`, -> returns `false`.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/word-search.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/word-search."+book.suffix, language=book.suffix %}{% endcodesnippet %}

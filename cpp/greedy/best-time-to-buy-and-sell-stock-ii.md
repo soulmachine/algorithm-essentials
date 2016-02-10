@@ -16,9 +16,7 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/best-time-to-buy-and-sell-stock-ii.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/best-time-to-buy-and-sell-stock-ii."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

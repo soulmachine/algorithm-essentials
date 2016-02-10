@@ -17,9 +17,7 @@ The Sudoku board could be partially filled, where empty cells are filled with th
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/valid-sudoku.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/valid-sudoku."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

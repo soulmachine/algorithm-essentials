@@ -68,34 +68,24 @@ f[n][i][j]} =  (f[k][i][j] && f[n-k][i+k][j+k])
 
 ### 递归
 
-{% if book.cpp %}
-  {% codesnippet "./code/scramble-string-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/scramble-string-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 动规
 
-{% if book.cpp %}
-  {% codesnippet "./code/scramble-string-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/scramble-string-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 递归+剪枝
 
-{% if book.cpp %}
-  {% codesnippet "./code/scramble-string-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/scramble-string-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 备忘录法1
 
-{% if book.cpp %}
-  {% codesnippet "./code/scramble-string-4.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/scramble-string-4."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 备忘录法2
 
-{% if book.cpp %}
-  {% codesnippet "./code/scramble-string-5.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/scramble-string-5."+book.suffix, language=book.suffix %}{% endcodesnippet %}

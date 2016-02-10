@@ -28,9 +28,7 @@ For example,
 
 本题不需要判重，因为状态装换图是一颗有层次的树。
 
-{% if book.cpp %}
-  {% codesnippet "./code/permutations-ii.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/permutations-ii."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

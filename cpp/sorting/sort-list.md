@@ -13,9 +13,7 @@ Sort a linked list in `O(n log n)` time using constant space complexity.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/sort-list.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/sort-list."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

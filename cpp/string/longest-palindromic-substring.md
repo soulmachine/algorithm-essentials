@@ -35,20 +35,14 @@ $$
 
 ### 备忘录法
 
-{% if book.cpp %}
-  {% codesnippet "./code/longest-palindromic-substring-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/longest-palindromic-substring-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 动规
 
-{% if book.cpp %}
-  {% codesnippet "./code/longest-palindromic-substring-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/longest-palindromic-substring-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### Manacher’s Algorithm
 
-{% if book.cpp %}
-  {% codesnippet "./code/longest-palindromic-substring-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/longest-palindromic-substring-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}

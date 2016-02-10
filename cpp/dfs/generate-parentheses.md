@@ -21,18 +21,14 @@ For example, given `n = 3`, a solution set is:
 
 ### 代码1
 
-{% if book.cpp %}
-  {% codesnippet "./code/generate-parentheses-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/generate-parentheses-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码2
 
 另一种递归写法，更加简洁。
 
-{% if book.cpp %}
-  {% codesnippet "./code/generate-parentheses-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/generate-parentheses-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

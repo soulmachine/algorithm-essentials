@@ -16,9 +16,7 @@ If you were only permitted to complete at    most one transaction (ie, buy one a
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/best-time-to-buy-and-sell-stock.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/best-time-to-buy-and-sell-stock."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

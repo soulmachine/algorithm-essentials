@@ -15,16 +15,12 @@ Now, instead outputting board configurations, return the total number of distinc
 
 ### 代码1
 
-{% if book.cpp %}
-  {% codesnippet "./code/n-queens-ii-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/n-queens-ii-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码2
 
-{% if book.cpp %}
-  {% codesnippet "./code/n-queens-ii-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/n-queens-ii-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

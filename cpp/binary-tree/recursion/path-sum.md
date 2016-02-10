@@ -32,9 +32,7 @@ return true, as there exist a root-to-leaf path `5->4->11->2` which sum is 22.
 ### 代码
 
 
-{% if book.cpp %}
-  {% codesnippet "./code/path-sum.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/path-sum."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

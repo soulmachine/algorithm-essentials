@@ -24,20 +24,14 @@ f[i][j] = (s1[i - 1] == s3 [i + j - 1] && f[i - 1][j])
 
 ### 递归
 
-{% if book.cpp %}
-  {% codesnippet "./code/interleaving-string-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/interleaving-string-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 动规
 
-{% if book.cpp %}
-  {% codesnippet "./code/interleaving-string-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/interleaving-string-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 动规+滚动数组
 
-{% if book.cpp %}
-  {% codesnippet "./code/interleaving-string-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/interleaving-string-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}

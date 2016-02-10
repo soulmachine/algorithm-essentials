@@ -18,15 +18,11 @@ Your algorithm should use only constant space. You may **not** modify the values
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/swap-nodes-in-pairs-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/swap-nodes-in-pairs-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 下面这种写法更简洁，但题目规定了不准这样做。
 
-{% if book.cpp %}
-  {% codesnippet "./code/swap-nodes-in-pairs-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/swap-nodes-in-pairs-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

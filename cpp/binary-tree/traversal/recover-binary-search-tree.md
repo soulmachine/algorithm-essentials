@@ -19,9 +19,7 @@ Note: A solution using `O(n)` space is pretty straight forward. Could you devise
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/recover-binary-search-tree.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/recover-binary-search-tree."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

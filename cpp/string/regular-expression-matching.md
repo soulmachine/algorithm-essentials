@@ -36,9 +36,7 @@ isMatch("aab", "c*a*b") → true
 
 ### 递归版
 
-{% if book.cpp %}
-  {% codesnippet "./code/regular-expression-matching.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/regular-expression-matching."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

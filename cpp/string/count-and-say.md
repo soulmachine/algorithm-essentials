@@ -27,6 +27,4 @@ Note: The sequence of integers will be represented as a string.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/count-and-say.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/count-and-say."+book.suffix, language=book.suffix %}{% endcodesnippet %}

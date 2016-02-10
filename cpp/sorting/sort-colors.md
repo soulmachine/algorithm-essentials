@@ -30,30 +30,22 @@ Could you come up with an one-pass algorithm using only constant space?
 
 ### 代码1
 
-{% if book.cpp %}
-  {% codesnippet "./code/sort-colors-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/sort-colors-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码2
 
-{% if book.cpp %}
-  {% codesnippet "./code/sort-colors-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/sort-colors-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码3
 
-{% if book.cpp %}
-  {% codesnippet "./code/sort-colors-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/sort-colors-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码4
 
-{% if book.cpp %}
-  {% codesnippet "./code/sort-colors-4.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/sort-colors-4."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

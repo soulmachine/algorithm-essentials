@@ -15,16 +15,12 @@ Returns a pointer to the first occurrence of needle in haystack, or null if need
 
 ### 暴力匹配
 
-{% if book.cpp %}
-  {% codesnippet "./code/strstr-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/strstr-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### KMP
 
-{% if book.cpp %}
-  {% codesnippet "./code/strstr-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/strstr-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

@@ -32,16 +32,12 @@ Note:
 
 ### 单队列
 
-{% if book.cpp %}
-  {% codesnippet "./code/word-ladder-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/word-ladder-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 双队列
 
-{% if book.cpp %}
-  {% codesnippet "./code/word-ladder-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/word-ladder-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

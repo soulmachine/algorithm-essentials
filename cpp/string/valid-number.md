@@ -27,13 +27,9 @@ Note: It is intended for the problem statement to be ambiguous. You should gathe
 
 ### 有限自动机
 
-{% if book.cpp %}
-  {% codesnippet "./code/valid-number-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/valid-number-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 使用strtod()
 
-{% if book.cpp %}
-  {% codesnippet "./code/valid-number-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/valid-number-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

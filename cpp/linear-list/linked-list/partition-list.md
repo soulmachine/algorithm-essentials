@@ -18,6 +18,4 @@ Given `1->4->3->2->5->2` and `x = 3`, return `1->2->2->4->3->5`.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/partition-list.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/partition-list."+book.suffix, language=book.suffix %}{% endcodesnippet %}

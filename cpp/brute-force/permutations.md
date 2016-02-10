@@ -17,9 +17,7 @@ For example,
 
 #### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/permutations-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/permutations-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 重新实现next_permutation()
@@ -28,9 +26,7 @@ For example,
 
 函数 `next_permutation()`的具体实现见这节 [Next Permutation](../linear-list/array/next-permutation.md)。
 
-{% if book.cpp %}
-  {% codesnippet "./code/permutations-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/permutations-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 递归
@@ -44,9 +40,7 @@ For example,
 
 #### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/permutations-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/permutations-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

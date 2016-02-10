@@ -22,13 +22,9 @@ Some examples:
 
 ### 递归版
 
-{% if book.cpp %}
-  {% codesnippet "./code/evaluate-reverse-polish-notation-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/evaluate-reverse-polish-notation-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 迭代版
 
-{% if book.cpp %}
-  {% codesnippet "./code/evaluate-reverse-polish-notation-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/evaluate-reverse-polish-notation-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

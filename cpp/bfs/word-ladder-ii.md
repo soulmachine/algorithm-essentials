@@ -42,25 +42,19 @@ Note:
 
 ### 单队列
 
-{% if book.cpp %}
-  {% codesnippet "./code/word-ladder-ii-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/word-ladder-ii-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 双队列
 
-{% if book.cpp %}
-  {% codesnippet "./code/word-ladder-ii-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/word-ladder-ii-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 图的广搜
 
 本题还可以看做是图上的广搜。给定了字典 `dict`，可以基于它画出一个无向图，表示单词之间可以互相转换。本题的本质就是已知起点和终点，在图上找出所有最短路径。
 
-{% if book.cpp %}
-  {% codesnippet "./code/word-ladder-ii-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/word-ladder-ii-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

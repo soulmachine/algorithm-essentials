@@ -35,9 +35,7 @@ return
 ### 代码
 
 
-{% if book.cpp %}
-  {% codesnippet "./code/path-sum-ii.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/path-sum-ii."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

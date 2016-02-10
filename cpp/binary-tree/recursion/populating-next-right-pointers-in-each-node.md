@@ -51,9 +51,7 @@ After calling your function, the tree should look like:
 ### 代码
 
 
-{% if book.cpp %}
-  {% codesnippet "./code/populating-next-right-pointers-in-each-node.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/populating-next-right-pointers-in-each-node."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

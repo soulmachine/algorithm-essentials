@@ -17,16 +17,12 @@ Given a singly linked list where elements are sorted in ascending order, convert
 
 分治法，类似于 Convert Sorted Array to Binary Search Tree，自顶向下，复杂度 `O(nlogn)`。
 
-{% if book.cpp %}
-  {% codesnippet "./code/convert-sorted-list-to-binary-search-tree-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/convert-sorted-list-to-binary-search-tree-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 自底向上
 
-{% if book.cpp %}
-  {% codesnippet "./code/convert-sorted-list-to-binary-search-tree-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/convert-sorted-list-to-binary-search-tree-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

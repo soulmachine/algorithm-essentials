@@ -24,9 +24,7 @@ For example, given height = `[2,1,5,6,2,3]`, return 10.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/largest-rectangle-in-histogram.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/largest-rectangle-in-histogram."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

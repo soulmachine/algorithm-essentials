@@ -18,9 +18,7 @@ Can you solve it without using extra space?
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/linked-list-cycle.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/linked-list-cycle."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

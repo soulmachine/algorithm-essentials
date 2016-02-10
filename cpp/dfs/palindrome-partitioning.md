@@ -26,25 +26,19 @@ Return
 
 ### 深搜1
 
-{% if book.cpp %}
-  {% codesnippet "./code/palindrome-partitioning-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/palindrome-partitioning-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 深搜2
 
 另一种写法，更加简洁。这种写法也在 Combination Sum, Combination Sum II 中出现过。
 
-{% if book.cpp %}
-  {% codesnippet "./code/palindrome-partitioning-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/palindrome-partitioning-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 动规
 
-{% if book.cpp %}
-  {% codesnippet "./code/palindrome-partitioning-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/palindrome-partitioning-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

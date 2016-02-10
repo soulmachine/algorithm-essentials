@@ -17,23 +17,17 @@ Another example is `")()())"`, where the longest valid parentheses substring is 
 
 ### 使用栈
 
-{% if book.cpp %}
-  {% codesnippet "./code/longest-valid-parentheses-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/longest-valid-parentheses-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### Dynamic Programming, One Pass
 
-{% if book.cpp %}
-  {% codesnippet "./code/longest-valid-parentheses-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/longest-valid-parentheses-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 两遍扫描
 
-{% if book.cpp %}
-  {% codesnippet "./code/longest-valid-parentheses-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/longest-valid-parentheses-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

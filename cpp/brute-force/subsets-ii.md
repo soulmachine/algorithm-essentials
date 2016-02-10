@@ -34,21 +34,15 @@ If `S = [1,2,2]`, a solution is:
 
 #### 增量构造法
 
-{% if book.cpp %}
-  {% codesnippet "./code/subsets-ii-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/subsets-ii-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
-{% if book.cpp %}
-  {% codesnippet "./code/subsets-ii-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/subsets-ii-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 #### 位向量法
 
-{% if book.cpp %}
-  {% codesnippet "./code/subsets-ii-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/subsets-ii-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 迭代
@@ -56,16 +50,12 @@ If `S = [1,2,2]`, a solution is:
 
 #### 增量构造法
 
-{% if book.cpp %}
-  {% codesnippet "./code/subsets-ii-4.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/subsets-ii-4."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 #### 二进制法
 
-{% if book.cpp %}
-  {% codesnippet "./code/subsets-ii-5.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/subsets-ii-5."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

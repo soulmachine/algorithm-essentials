@@ -25,9 +25,7 @@ Here are few examples.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/search-insert-position.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/search-insert-position."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

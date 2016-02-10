@@ -19,9 +19,7 @@ Your algorithm should run in `O(n)` time and uses constant space.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/first-missing-positive.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/first-missing-positive."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

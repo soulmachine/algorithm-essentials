@@ -21,23 +21,17 @@ f[i][j]=min(f[i-1][j], f[i][j-1])+grid[i][j]
 
 ### 备忘录法
 
-{% if book.cpp %}
-  {% codesnippet "./code/minimum-path-sum-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/minimum-path-sum-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 动规
 
-{% if book.cpp %}
-  {% codesnippet "./code/minimum-path-sum-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/minimum-path-sum-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 动规+滚动数组
 
-{% if book.cpp %}
-  {% codesnippet "./code/minimum-path-sum-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/minimum-path-sum-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

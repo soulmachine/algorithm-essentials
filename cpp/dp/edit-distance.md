@@ -26,13 +26,9 @@ You have the following 3 operations permitted on a word:
 
 ### 动规
 
-{% if book.cpp %}
-  {% codesnippet "./code/edit-distance-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/edit-distance-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 动规+滚动数组
 
-{% if book.cpp %}
-  {% codesnippet "./code/edit-distance-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/edit-distance-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

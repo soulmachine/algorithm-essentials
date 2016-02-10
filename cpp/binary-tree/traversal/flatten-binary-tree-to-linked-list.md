@@ -38,13 +38,9 @@ The flattened tree should look like:
 
 ### 递归版1
 
-{% if book.cpp %}
-  {% codesnippet "./code/flatten-binary-tree-to-linked-list-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/flatten-binary-tree-to-linked-list-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 递归版2
 
-{% if book.cpp %}
-  {% codesnippet "./code/flatten-binary-tree-to-linked-list-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/flatten-binary-tree-to-linked-list-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

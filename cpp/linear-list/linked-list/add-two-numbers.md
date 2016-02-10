@@ -17,9 +17,7 @@ Output: `7 -> 0 -> 8`
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/add-two-numbers.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/add-two-numbers."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

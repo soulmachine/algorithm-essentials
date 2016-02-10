@@ -37,6 +37,4 @@ There are two sorted arrays `A` and `B` of size `m` and `n` respectively. Find t
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/median-of-two-sorted-arrays.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/median-of-two-sorted-arrays."+book.suffix, language=book.suffix %}{% endcodesnippet %}

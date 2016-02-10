@@ -32,9 +32,7 @@ A solution set is:
 
 ### 左右夹逼
 
-{% if book.cpp %}
-  {% codesnippet "./code/4sum-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/4sum-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### map做缓存
@@ -82,16 +80,12 @@ public:
 
 ### multimap
 
-{% if book.cpp %}
-  {% codesnippet "./code/4sum-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/4sum-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 方法4
 
-{% if book.cpp %}
-  {% codesnippet "./code/4sum-4.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/4sum-4."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

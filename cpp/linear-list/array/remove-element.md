@@ -15,13 +15,9 @@ The order of elements can be changed. It doesn't matter what you leave beyond th
 
 ### 代码1
 
-{% if book.cpp %}
-  {% codesnippet "./code/remove-element-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/remove-element-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码2
 
-{% if book.cpp %}
-  {% codesnippet "./code/remove-element-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/remove-element-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

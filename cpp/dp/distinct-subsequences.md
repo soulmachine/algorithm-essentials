@@ -20,6 +20,4 @@ Return 3.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/distinct-subsequences.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/distinct-subsequences."+book.suffix, language=book.suffix %}{% endcodesnippet %}

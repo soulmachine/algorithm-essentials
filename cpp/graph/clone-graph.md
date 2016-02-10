@@ -37,13 +37,9 @@ Visually, the graph looks like the following:
 
 ### DFS
 
-{% if book.cpp %}
-  {% codesnippet "./code/clone-graph-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/clone-graph-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### BFS
 
-{% if book.cpp %}
-  {% codesnippet "./code/clone-graph-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/clone-graph-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

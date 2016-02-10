@@ -21,6 +21,4 @@ Given `{1,2,3,4}`, reorder it to `{1,4,2,3}`.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/reorder-list.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/reorder-list."+book.suffix, language=book.suffix %}{% endcodesnippet %}

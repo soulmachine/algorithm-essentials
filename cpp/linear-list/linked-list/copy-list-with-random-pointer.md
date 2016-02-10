@@ -15,6 +15,4 @@ Return a deep copy of the list.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/copy-list-with-random-pointer.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/copy-list-with-random-pointer."+book.suffix, language=book.suffix %}{% endcodesnippet %}

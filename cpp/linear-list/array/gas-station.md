@@ -22,7 +22,4 @@ The solution is guaranteed to be unique.
 
 ### 代码
 
-
-{% if book.cpp %}
-  {% codesnippet "./code/gas-station.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/gas-station."+book.suffix, language=book.suffix %}{% endcodesnippet %}

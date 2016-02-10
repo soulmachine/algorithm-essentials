@@ -22,6 +22,4 @@ Note:
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/remove-nth-node-from-end-of-list.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/remove-nth-node-from-end-of-list."+book.suffix, language=book.suffix %}{% endcodesnippet %}

@@ -29,9 +29,7 @@ Return `6`.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/binary-tree-maximum-path-sum.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/binary-tree-maximum-path-sum."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 注意，最后return的时候，只返回一个方向上的值，为什么？这是因为在递归中，只能向父节点返回，不可能存在L->root->R的路径，只可能是L->root或R->root。

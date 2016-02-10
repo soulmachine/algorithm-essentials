@@ -75,9 +75,7 @@ $$
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/unique-binary-search-trees.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/unique-binary-search-trees."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

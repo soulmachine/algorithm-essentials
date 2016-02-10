@@ -14,9 +14,7 @@ The maximum depth is the number of nodes along the longest path from the root no
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/maximum-depth-of-binary-tree.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/maximum-depth-of-binary-tree."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

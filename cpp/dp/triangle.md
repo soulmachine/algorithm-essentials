@@ -32,6 +32,4 @@ $$
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/triangle.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/triangle."+book.suffix, language=book.suffix %}{% endcodesnippet %}

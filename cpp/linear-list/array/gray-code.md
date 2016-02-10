@@ -49,14 +49,9 @@ Note:
 
 ### 数学公式
 
-{% if book.cpp %}
-  {% codesnippet "./code/gray-code-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
-
+{% codesnippet "./code/gray-code-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### Reflect-and-prefix method
 
-{% if book.cpp %}
-  {% codesnippet "./code/gray-code-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/gray-code-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

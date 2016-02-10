@@ -29,9 +29,7 @@ If no valid conversion could be performed, a zero value is returned. If the corr
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/atoi.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/atoi."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

@@ -27,9 +27,7 @@ The number of ways decoding `"12"` is 2.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/decode-ways.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/decode-ways."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

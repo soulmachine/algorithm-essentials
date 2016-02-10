@@ -23,9 +23,7 @@ A solution is `["cats and dog", "cat sand dog"]`.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/word-break-ii.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/word-break-ii."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

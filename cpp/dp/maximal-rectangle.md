@@ -13,6 +13,4 @@ Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle con
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/maximal-rectangle.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/maximal-rectangle."+book.suffix, language=book.suffix %}{% endcodesnippet %}

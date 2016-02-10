@@ -24,14 +24,9 @@ Could you do this in-place?
 
 ### 代码1
 
-{% if book.cpp %}
-  {% codesnippet "./code/rotate-image-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/rotate-image-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码2
 
-
-{% if book.cpp %}
-  {% codesnippet "./code/rotate-image-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/rotate-image-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

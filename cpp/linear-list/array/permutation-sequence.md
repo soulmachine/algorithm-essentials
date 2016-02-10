@@ -50,9 +50,7 @@ $$
 
 ### 使用next_permutation()
 
-{% if book.cpp %}
-  {% codesnippet "./code/permutation-sequence-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/permutation-sequence-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 康托编码

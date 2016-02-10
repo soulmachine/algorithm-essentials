@@ -17,9 +17,7 @@ The sum that is closest to the target is 2. (`-1 + 2 + 1 = 2`).
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/3sum-closest.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/3sum-closest."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

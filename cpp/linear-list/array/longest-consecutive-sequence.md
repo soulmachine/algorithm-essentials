@@ -23,9 +23,7 @@ Your algorithm should run in `O(n)` complexity.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/longest-consecutive-sequence-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/longest-consecutive-sequence-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 分析2
@@ -36,6 +34,4 @@ Your algorithm should run in `O(n)` complexity.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/longest-consecutive-sequence-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/longest-consecutive-sequence-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}

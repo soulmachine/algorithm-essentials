@@ -17,6 +17,4 @@ Anagram（回文构词法）是指打乱字母顺序从而得到新的单词，�
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/anagrams.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/anagrams."+book.suffix, language=book.suffix %}{% endcodesnippet %}

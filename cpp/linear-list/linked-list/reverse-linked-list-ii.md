@@ -22,6 +22,4 @@ $$1 \leq m \leq  n \leq $$ length of list.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/reverse-linked-list-ii.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/reverse-linked-list-ii."+book.suffix, language=book.suffix %}{% endcodesnippet %}

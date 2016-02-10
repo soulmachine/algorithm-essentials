@@ -27,6 +27,4 @@ Design and implement a data structure for Least Recently Used (LRU) cache. It sh
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/lru-cache.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/lru-cache."+book.suffix, language=book.suffix %}{% endcodesnippet %}

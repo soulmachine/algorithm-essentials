@@ -18,6 +18,4 @@ return `["255.255.11.135", "255.255.111.35"]`. (Order does not matter)
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/restore-ip-addresses.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/restore-ip-addresses."+book.suffix, language=book.suffix %}{% endcodesnippet %}

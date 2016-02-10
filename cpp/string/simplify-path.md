@@ -28,6 +28,4 @@ Corner Cases:
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/simplify-path.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/simplify-path."+book.suffix, language=book.suffix %}{% endcodesnippet %}

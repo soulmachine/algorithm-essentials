@@ -31,25 +31,19 @@ Given `[0,1,0,2,1,0,1,3,2,1,2,1]`, return 6.
 
 ### 代码1
 
-{% if book.cpp %}
-  {% codesnippet "./code/trapping-rain-water-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/trapping-rain-water-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码2
 
-{% if book.cpp %}
-  {% codesnippet "./code/trapping-rain-water-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/trapping-rain-water-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码3
 
 第三种解法，用一个栈辅助，小于栈顶的元素压入，大于等于栈顶就把栈里所有小于或等于当前值的元素全部出栈处理掉。
 
-{% if book.cpp %}
-  {% codesnippet "./code/trapping-rain-water-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/trapping-rain-water-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

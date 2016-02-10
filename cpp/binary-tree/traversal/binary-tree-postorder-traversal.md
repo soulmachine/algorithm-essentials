@@ -28,16 +28,12 @@ Note: Recursive solution is trivial, could you do it iteratively?
 
 ### 栈
 
-{% if book.cpp %}
-  {% codesnippet "./code/binary-tree-postorder-traversal-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/binary-tree-postorder-traversal-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### Morris后序遍历
 
-{% if book.cpp %}
-  {% codesnippet "./code/binary-tree-postorder-traversal-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/binary-tree-postorder-traversal-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

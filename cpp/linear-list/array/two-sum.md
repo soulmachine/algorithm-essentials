@@ -25,9 +25,7 @@ Output: `index1=1, index2=2`
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/two-sum.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/two-sum."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

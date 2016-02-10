@@ -18,24 +18,17 @@ Your function should return length = 2, and `A` is now `[1,2]`.
 
 ### 代码1
 
-
-{% if book.cpp %}
-  {% codesnippet "./code/remove-duplicates-from-sorted-array-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/remove-duplicates-from-sorted-array-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码2
 
-{% if book.cpp %}
-  {% codesnippet "./code/remove-duplicates-from-sorted-array-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/remove-duplicates-from-sorted-array-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码3
 
-{% if book.cpp %}
-  {% codesnippet "./code/remove-duplicates-from-sorted-array-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/remove-duplicates-from-sorted-array-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

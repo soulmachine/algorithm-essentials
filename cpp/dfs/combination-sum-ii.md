@@ -31,9 +31,7 @@ A solution set is:
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/combination-sum-ii.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/combination-sum-ii."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

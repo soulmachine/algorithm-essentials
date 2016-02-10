@@ -13,9 +13,7 @@ Sort a linked list using insertion sort.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/insertion-sort-list.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/insertion-sort-list."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

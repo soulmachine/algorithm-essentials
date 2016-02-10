@@ -22,16 +22,12 @@ If `n = 4` and `k = 2`, a solution is:
 
 ### 递归
 
-{% if book.cpp %}
-  {% codesnippet "./code/combinations-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/combinations-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 迭代
 
-{% if book.cpp %}
-  {% codesnippet "./code/combinations-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/combinations-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

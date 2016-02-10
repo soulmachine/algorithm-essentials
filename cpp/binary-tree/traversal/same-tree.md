@@ -15,16 +15,12 @@ Two binary trees are considered equal if they are structurally identical and the
 
 ### 递归版
 
-{% if book.cpp %}
-  {% codesnippet "./code/same-tree-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/same-tree-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 迭代版
 
-{% if book.cpp %}
-  {% codesnippet "./code/same-tree-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/same-tree-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

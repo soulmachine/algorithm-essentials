@@ -17,17 +17,13 @@ Your algorithm should have a linear runtime complexity. Could you implement it w
 ### 代码1
 
 
-{% if book.cpp %}
-  {% codesnippet "./code/single-number-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/single-number-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码2
 
 
-{% if book.cpp %}
-  {% codesnippet "./code/single-number-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/single-number-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

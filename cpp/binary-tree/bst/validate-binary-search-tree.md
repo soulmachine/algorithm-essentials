@@ -20,9 +20,7 @@ Assume a BST is defined as follows:
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/validate-binary-search-tree.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/validate-binary-search-tree."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

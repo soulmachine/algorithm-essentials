@@ -13,9 +13,7 @@ Given an array where elements are sorted in ascending order, convert it to a hei
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/convert-sorted-array-to-binary-search-tree.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/convert-sorted-array-to-binary-search-tree."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

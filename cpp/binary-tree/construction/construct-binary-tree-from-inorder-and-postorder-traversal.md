@@ -16,9 +16,7 @@ You may assume that duplicates do not exist in the tree.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/construct-binary-tree-from-inorder-and-postorder-traversal.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/construct-binary-tree-from-inorder-and-postorder-traversal."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

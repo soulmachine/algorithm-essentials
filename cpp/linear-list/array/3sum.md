@@ -30,9 +30,7 @@ A solution set is:
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/3sum.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/3sum."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

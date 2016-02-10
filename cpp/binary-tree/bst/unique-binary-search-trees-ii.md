@@ -25,9 +25,7 @@ Given `n = 3`, your program should return all 5 unique BST's shown below.
 ### 代码
 
 
-{% if book.cpp %}
-  {% codesnippet "./code/unique-binary-search-trees-ii.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/unique-binary-search-trees-ii."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

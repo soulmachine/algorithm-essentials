@@ -25,16 +25,12 @@ $$
 
 ### 深搜
 
-{% if book.cpp %}
-  {% codesnippet "./code/word-break-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/word-break-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 动规
 
-{% if book.cpp %}
-  {% codesnippet "./code/word-break-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/word-break-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

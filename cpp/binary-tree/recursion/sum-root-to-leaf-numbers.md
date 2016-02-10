@@ -29,6 +29,4 @@ Return the sum = `12 + 13 = 25`.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/sum-root-to-leaf-numbers.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/sum-root-to-leaf-numbers."+book.suffix, language=book.suffix %}{% endcodesnippet %}

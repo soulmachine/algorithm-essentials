@@ -28,6 +28,4 @@ Given `target = 3`, return true.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/search-a-2d-matrix.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/search-a-2d-matrix."+book.suffix, language=book.suffix %}{% endcodesnippet %}

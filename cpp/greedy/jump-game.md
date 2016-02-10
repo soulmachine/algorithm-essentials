@@ -33,23 +33,17 @@ $$
 
 ### 代码1
 
-{% if book.cpp %}
-  {% codesnippet "./code/jump-game-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/jump-game-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码2
 
-{% if book.cpp %}
-  {% codesnippet "./code/jump-game-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/jump-game-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码3
 
-{% if book.cpp %}
-  {% codesnippet "./code/jump-game-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/jump-game-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

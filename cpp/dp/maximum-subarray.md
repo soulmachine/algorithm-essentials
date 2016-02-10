@@ -44,16 +44,12 @@ $$
 
 ### 动规
 
-{% if book.cpp %}
-  {% codesnippet "./code/maximum-subarray-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/maximum-subarray-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 思路5
 
-{% if book.cpp %}
-  {% codesnippet "./code/maximum-subarray-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/maximum-subarray-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

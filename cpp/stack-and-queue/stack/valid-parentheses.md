@@ -15,9 +15,7 @@ The brackets must close in the correct order, `"()"` and `"()[]{}"` are all vali
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/valid-parentheses.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/valid-parentheses."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

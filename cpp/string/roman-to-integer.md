@@ -17,9 +17,7 @@ Input is guaranteed to be within the range from 1 to 3999.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/roman-to-integer.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/roman-to-integer."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

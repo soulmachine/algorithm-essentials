@@ -52,9 +52,7 @@ public:
 
 ### 代码2
 
-{% if book.cpp %}
-  {% codesnippet "./code/jump-game-ii-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/jump-game-ii-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

@@ -23,9 +23,7 @@ For the purpose of this problem, we define empty string as valid palindrome.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/valid-palindrome.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/valid-palindrome."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

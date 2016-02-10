@@ -23,14 +23,9 @@ Could you devise a constant space solution?
 
 ### 代码1
 
-{% if book.cpp %}
-  {% codesnippet "./code/set-matrix-zeroes-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/set-matrix-zeroes-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 代码2
 
-
-{% if book.cpp %}
-  {% codesnippet "./code/set-matrix-zeroes-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/set-matrix-zeroes-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

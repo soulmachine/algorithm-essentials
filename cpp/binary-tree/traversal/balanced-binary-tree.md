@@ -15,6 +15,4 @@ For this problem, a height-balanced binary tree is defined as a binary tree in w
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/balanced-binary-tree-.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/balanced-binary-tree."+book.suffix, language=book.suffix %}{% endcodesnippet %}

@@ -48,9 +48,7 @@ public:
 
 ### 数学公式
 
-{% if book.cpp %}
-  {% codesnippet "./code/climbing-stairs-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/climbing-stairs-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

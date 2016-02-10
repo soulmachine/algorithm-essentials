@@ -20,15 +20,10 @@ What is the minimum candies you must give?
 
 ### 迭代版
 
-{% if book.cpp %}
-  {% codesnippet "./code/candy-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/candy-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 
 ### 递归版
 
-{% if book.cpp %}
-  {% codesnippet "./code/candy-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
-```
+{% codesnippet "./code/candy-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

@@ -34,16 +34,12 @@ return its bottom-up level order traversal as:
 
 ### 递归版
 
-{% if book.cpp %}
-  {% codesnippet "./code/binary-tree-level-order-traversal-ii-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/binary-tree-level-order-traversal-ii-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 迭代版
 
-{% if book.cpp %}
-  {% codesnippet "./code/binary-tree-level-order-traversal-ii-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/binary-tree-level-order-traversal-ii-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

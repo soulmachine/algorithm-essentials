@@ -17,6 +17,4 @@ Given `1->2->3->4->5->nullptr` and `k = 2`, return `4->5->1->2->3->nullptr`.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/rotate-list.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/rotate-list."+book.suffix, language=book.suffix %}{% endcodesnippet %}

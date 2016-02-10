@@ -13,9 +13,7 @@ Merge k sorted linked lists and return it as one sorted list. Analyze and descri
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/merge-k-sorted-lists.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/merge-k-sorted-lists."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

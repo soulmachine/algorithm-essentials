@@ -24,13 +24,9 @@ Although the above answer is in lexicographical order, your answer could be in a
 
 ### 递归
 
-{% if book.cpp %}
-  {% codesnippet "./code/letter-combinations-of-a-phone-number-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/letter-combinations-of-a-phone-number-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 迭代
 
-{% if book.cpp %}
-  {% codesnippet "./code/letter-combinations-of-a-phone-number-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/letter-combinations-of-a-phone-number-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}

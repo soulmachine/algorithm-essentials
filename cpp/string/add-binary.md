@@ -22,9 +22,7 @@ Return `100`.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/add-binary.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/add-binary."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

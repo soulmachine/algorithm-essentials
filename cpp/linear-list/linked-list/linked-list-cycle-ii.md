@@ -34,9 +34,7 @@ $$
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/linked-list-cycle-ii.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/linked-list-cycle-ii."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

@@ -13,9 +13,7 @@ Implement `pow(x, n)`.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/pow.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/pow."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 ### 相关题目
 

@@ -13,9 +13,7 @@ Merge two sorted linked lists and return it as a new list. The new list should b
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/merge-two-sorted-lists.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/merge-two-sorted-lists."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

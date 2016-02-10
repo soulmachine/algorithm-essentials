@@ -13,9 +13,7 @@ Write a function to find the longest common prefix string amongst an array of st
 
 ### 纵向扫描
 
-{% if book.cpp %}
-  {% codesnippet "./code/longest-common-prefix-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/longest-common-prefix-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 横向扫描

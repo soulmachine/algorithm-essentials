@@ -22,16 +22,12 @@ return `[3, 4]`.
 
 ### 使用STL
 
-{% if book.cpp %}
-  {% codesnippet "./code/search-for-a-range-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/search-for-a-range-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 重新实现 lower_bound 和 upper_bound
 
-{% if book.cpp %}
-  {% codesnippet "./code/search-for-a-range-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/search-for-a-range-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

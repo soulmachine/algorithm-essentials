@@ -39,9 +39,7 @@ P[i][j] = str[i] == str[j] && P[i+1][j-1]
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/palindrome-partitioning-ii.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/palindrome-partitioning-ii."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

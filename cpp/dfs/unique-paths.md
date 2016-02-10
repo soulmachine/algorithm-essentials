@@ -16,18 +16,14 @@ How many possible unique paths are there?
 
 ### 深搜
 
-{% if book.cpp %}
-  {% codesnippet "./code/unique-paths-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/unique-paths-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 备忘录法
 
 给前面的深搜，加个缓存，就可以过大集合了。即备忘录法。
 
-{% if book.cpp %}
-  {% codesnippet "./code/unique-paths-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/unique-paths-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 动规
@@ -40,9 +36,7 @@ How many possible unique paths are there?
 f[i][j]=f[i-1][j]+f[i][j-1]
 ```
 
-{% if book.cpp %}
-  {% codesnippet "./code/unique-paths-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/unique-paths-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 数学公式

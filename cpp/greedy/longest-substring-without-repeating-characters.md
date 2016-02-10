@@ -17,6 +17,4 @@ Given a string, find the length of the longest substring without repeating chara
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/longest-substring-without-repeating-characters.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/longest-substring-without-repeating-characters."+book.suffix, language=book.suffix %}{% endcodesnippet %}

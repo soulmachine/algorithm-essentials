@@ -34,18 +34,14 @@ For example, If `S = [1,2,3]`, a solution is:
 
 每个元素，都有两种选择，选或者不选。
 
-{% if book.cpp %}
-  {% codesnippet "./code/subsets-1.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/subsets-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 #### 位向量法
 
 开一个位向量`bool selected[n]`，每个元素可以选或者不选。
 
-{% if book.cpp %}
-  {% codesnippet "./code/subsets-2.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/subsets-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 迭代
@@ -53,9 +49,7 @@ For example, If `S = [1,2,3]`, a solution is:
 
 #### 增量构造法
 
-{% if book.cpp %}
-  {% codesnippet "./code/subsets-3.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/subsets-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 #### 二进制法
@@ -66,9 +60,7 @@ For example, If `S = [1,2,3]`, a solution is:
 
 二进制法，也可以看做是位向量法，只不过更加优化。
 
-{% if book.cpp %}
-  {% codesnippet "./code/subsets-4.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/subsets-4."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

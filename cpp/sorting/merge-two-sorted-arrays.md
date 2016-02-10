@@ -16,9 +16,7 @@ You may assume that A has enough space to hold additional elements from B. The n
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/merge-two-sorted-arrays.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/merge-two-sorted-arrays."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

@@ -21,9 +21,7 @@ You may assume that there will be only one unique solution.
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/sudoku-solver.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/sudoku-solver."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

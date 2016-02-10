@@ -28,9 +28,7 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 
 ### 代码
 
-{% if book.cpp %}
-  {% codesnippet "./code/next-permutation.cpp", language="cpp" %}{% endcodesnippet %}
-{% endif %}
+{% codesnippet "./code/next-permutation."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目
