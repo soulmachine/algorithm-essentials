@@ -10,6 +10,11 @@
 4. 本书支持多种主流编程语言。目前支持 Java, C++, C#, Python, Ruby, JavaScript, Swift, Scala, Clojure, 将来还会支持更多编程语言。
 
 
+# 在线阅读
+
+<https://www.gitbook.com/book/soulmachine/algorithm-essentials/>
+
+
 {% include "./SUMMARY.md" %}
 
 
