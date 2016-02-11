@@ -19,6 +19,7 @@ QQ 群： 237669375
 
 Github: <https://www.github.com/soulmachine/algorithm-essentials>
 
+微博： [@灵魂机器](http://weibo.com/soulmachine)
 
 ## License
 Book License: [CC BY-SA 3.0 License](http://creativecommons.org/licenses/by-sa/3.0/)
