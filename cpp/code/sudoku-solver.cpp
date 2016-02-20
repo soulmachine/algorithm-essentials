@@ -2,13 +2,17 @@
 // 时间复杂度O(9^4)，空间复杂度O(1)
 class Solution {
 public:
-    bool solveSudoku(vector<vector<char> > &board) {
+    void solveSudoku(vector<vector<char> > &board) {
+        _solveSudoku(board);
+    }
+private:
+    bool _solveSudoku(vector<vector<char> > &board) {
         for (int i = 0; i < 9; ++i)
             for (int j = 0; j < 9; ++j) {
                 if (board[i][j] == '.') {
                     for (int k = 0; k < 9; ++k) {
                         board[i][j] = '1' + k;
-                        if (isValid(board, i, j) && solveSudoku(board))
+                        if (isValid(board, i, j) && _solveSudoku(board))
                             return true;
                         board[i][j] = '.';
                     }
@@ -17,7 +21,6 @@ public:
             }
         return true;
     }
-private:
     // 检查 (x, y) 是否合法
     bool isValid(const vector<vector<char> > &board, int x, int y) {
         int i, j;

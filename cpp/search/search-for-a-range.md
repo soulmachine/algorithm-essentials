@@ -20,14 +20,9 @@ return `[3, 4]`.
 已经排好了序，用二分查找。
 
 
-### 使用STL
-
-{% codesnippet "./code/search-for-a-range-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
-
 ### 重新实现 lower_bound 和 upper_bound
 
-{% codesnippet "./code/search-for-a-range-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% codesnippet "./code/search-for-a-range."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

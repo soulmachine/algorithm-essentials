@@ -17,10 +17,14 @@ Some examples:
 
 ### 分析
 
-无
+逆波兰表达式是典型的递归结构，所以可以用递归来求解，也可以用栈来求解。
 
 
 ### 递归版
+
+{% if book.java %}
+递归的写法，C++版可以AC，但Java版会爆栈`StackOverflowError`，所以Java 只能用栈来解决。
+{% endif %}
 
 {% codesnippet "./code/evaluate-reverse-polish-notation-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 

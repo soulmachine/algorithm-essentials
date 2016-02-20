@@ -12,10 +12,12 @@ public:
                 s.pop();
                 int x = stoi(s.top());
                 s.pop();
-                if (token[0] == '+')       x += y;
-                else if (token[0] == '-')  x -= y;
-                else if (token[0] == '*')  x *= y;
-                else                       x /= y;
+                switch(token[0]) {
+                    case '+' : x += y; break;
+                    case '-' : x -= y; break;
+                    case '*' : x *= y; break;
+                    default:   x /= y;
+                }
                 s.push(to_string(x));
             }
         }

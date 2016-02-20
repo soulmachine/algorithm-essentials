@@ -3,10 +3,8 @@
 class Solution {
 public:
     double findMedianSortedArrays(const vector<int>& A, const vector<int>& B) {
-        const int m = A.size();
-        const int n = B.size();
-        int total = m + n;
-        if (total & 0x1)
+        const int total = A.size() + B.size();
+        if (total %2 == 1)
             return find_kth(A.begin(), m, B.begin(), n, total / 2 + 1);
         else
             return (find_kth(A.begin(), m, B.begin(), n, total / 2)

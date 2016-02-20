@@ -30,7 +30,7 @@ public:
             return;  // 剪枝
 
         int num = 0;
-        for (size_t i = start; i < start + 3; i++) {
+        for (size_t i = start; i < start + 3 && i < s.size(); i++) {
             num = num * 10 + (s[i] - '0');
 
             if (num < 0 || num > 255) continue;  // 剪枝

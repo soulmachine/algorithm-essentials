@@ -3,15 +3,18 @@
 class Solution {
 public:
     int evalRPN(vector<string> &tokens) {
+        if (tokens.empty()) return 0;
         int x, y;
         auto token = tokens.back();  tokens.pop_back();
         if (is_operator(token))  {
             y = evalRPN(tokens);
             x = evalRPN(tokens);
-            if (token[0] == '+')       x += y;
-            else if (token[0] == '-')  x -= y;
-            else if (token[0] == '*')  x *= y;
-            else                       x /= y;
+            switch(token[0]) {
+                case '+' : x += y; break;
+                case '-' : x -= y; break;
+                case '*' : x *= y; break;
+                default:   x /= y;
+            }
         } else  {
             size_t i;
             x = stoi(token, &i);

@@ -43,11 +43,6 @@ Could you come up with an one-pass algorithm using only constant space?
 {% codesnippet "./code/sort-colors-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
-### 代码4
-
-{% codesnippet "./code/sort-colors-4."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
-
 ### 相关题目
 
 * [First Missing Positive](first-missing-positive.md)

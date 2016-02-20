@@ -9,7 +9,7 @@ public:
         auto left_cur = &left_dummy;
         auto right_cur = &right_dummy;
 
-        for (ListNode *cur = head; cur; cur = cur->next) {
+        for (ListNode *cur = head; cur != nullptr; cur = cur->next) {
             if (cur->val < x) {
                 left_cur->next = cur;
                 left_cur = cur;

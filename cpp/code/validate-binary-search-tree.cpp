@@ -3,10 +3,10 @@
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        return isValidBST(root, INT_MIN, INT_MAX);
+        return isValidBST(root, LONG_MIN, LONG_MAX);
     }
 
-    bool isValidBST(TreeNode* root, int lower, int upper) {
+    bool isValidBST(TreeNode* root, long long lower, long long upper) {
         if (root == nullptr) return true;
 
         return root->val > lower && root->val < upper

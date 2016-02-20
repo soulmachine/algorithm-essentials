@@ -1,71 +1,49 @@
 // Word Ladder II
 // 时间复杂度O(n)，空间复杂度O(n)
-struct state_t {
-    string word;
-    int level;
-
-    state_t() { word = ""; level = 0; }
-    state_t(const string& word, int level) {
-        this->word = word;
-        this->level = level;
-    }
-
-    bool operator==(const state_t &other) const {
-        return this->word == other.word;
-    }
-};
-
-namespace std {
-    template<> struct hash<state_t> {
-    public:
-        size_t operator()(const state_t& s) const {
-            return str_hash(s.word);
-        }
-    private:
-        std::hash<std::string> str_hash;
-    };
-}
-
-
 class Solution {
 public:
     vector<vector<string> > findLadders(const string& start,
         const string& end, const unordered_set<string> &dict) {
-        queue<state_t> q;
-        unordered_set<state_t> visited; // 判重
-        unordered_map<state_t, vector<state_t> > father; // DAG
+        queue<string> q;
+        unordered_map<string, int> visited; // 判重
+        unordered_map<string, vector<string> > father; // DAG
 
-        auto state_is_valid = [&](const state_t& s) {
-            return dict.find(s.word) != dict.end() || s.word == end;
+        auto state_is_valid = [&](const string& s) {
+            return dict.find(s) != dict.end() || s == end;
         };
-        auto state_is_target = [&](const state_t &s) {return s.word == end; };
-        auto state_extend = [&](const state_t &s) {
-            unordered_set<state_t> result;
+        auto state_is_target = [&](const string &s) {return s == end; };
+        auto state_extend = [&](const string &s) {
+            unordered_set<string> result;
+            const int new_depth = visited[s] + 1;
 
-            for (size_t i = 0; i < s.word.size(); ++i) {
-                state_t new_state(s.word, s.level + 1);
+            for (size_t i = 0; i < s.size(); ++i) {
+                string new_state = s;
                 for (char c = 'a'; c <= 'z'; c++) {
                     // 防止同字母替换
-                    if (c == new_state.word[i]) continue;
+                    if (c == new_state[i]) continue;
 
-                    swap(c, new_state.word[i]);
+                    swap(c, new_state[i]);
 
                     if (state_is_valid(new_state)) {
                         auto visited_iter = visited.find(new_state);
 
                         if (visited_iter != visited.end()) {
-                            if (visited_iter->level < new_state.level) {
+                            const int depth = visited_iter->second;
+                            if (depth < new_depth) {
                                 // do nothing
-                            } else if (visited_iter->level == new_state.level) {
+                            }
+                            else if (depth == new_depth) {
                                 result.insert(new_state);
-                            } else { // not possible
+                            }
+                            else { // not possible
                                 throw std::logic_error("not possible to get here");
                             }
-                        } else {
+                        }
+                        else {
                             result.insert(new_state);
                         }
                     }
-                    swap(c, new_state.word[i]); // 恢复该单词
+                    swap(c, new_state[i]); // 恢复该单词
                 }
             }
 
@@ -73,9 +51,8 @@ public:
         };
 
         vector<vector<string>> result;
-        state_t start_state(start, 0);
-        q.push(start_state);
-        visited.insert(start_state);
+        q.push(start);
+        visited[start] = 0;
         while (!q.empty()) {
             // 千万不能用 const auto&，pop() 会删除元素，
             // 引用就变成了悬空引用
@@ -84,11 +61,11 @@ public:
 
             // 如果当前路径长度已经超过当前最短路径长度，
             // 可以中止对该路径的处理，因为我们要找的是最短路径
-            if (!result.empty() && state.level + 1 > result[0].size()) break;
+            if (!result.empty() && visited[state] + 1 > result[0].size()) break;
 
             if (state_is_target(state)) {
                 vector<string> path;
-                gen_path(father, start_state, state, path, result);
+                gen_path(father, start, state, path, result);
                 continue;
             }
             // 必须挪到下面，比如同一层A和B两个节点均指向了目标节点，
@@ -100,8 +77,8 @@ public:
             for (const auto& new_state : new_states) {
                 if (visited.find(new_state) == visited.end()) {
                     q.push(new_state);
+                    visited[new_state] = visited[state] + 1;
                 }
-                visited.insert(new_state);
                 father[new_state].push_back(state);
             }
         }
@@ -109,28 +86,26 @@ public:
         return result;
     }
 private:
-    void gen_path(unordered_map<state_t, vector<state_t> > &father,
-        const state_t &start, const state_t &state, vector<string> &path,
+    void gen_path(unordered_map<string, vector<string> > &father,
+        const string &start, const string &state, vector<string> &path,
         vector<vector<string> > &result) {
-        path.push_back(state.word);
+        path.push_back(state);
         if (state == start) {
             if (!result.empty()) {
                 if (path.size() < result[0].size()) {
                     result.clear();
-                    result.push_back(path);
-                    reverse(result.back().begin(), result.back().end());
-                } else if (path.size() == result[0].size()) {
-                    result.push_back(path);
-                    reverse(result.back().begin(), result.back().end());
-                } else { // not possible
+                }
+                else if (path.size() == result[0].size()) {
+                    // do nothing
+                }
+                else { // not possible
                     throw std::logic_error("not possible to get here ");
                 }
-            } else {
-                result.push_back(path);
-                reverse(result.back().begin(), result.back().end());
             }
-
-        } else {
+            result.push_back(path);
+            reverse(result.back().begin(), result.back().end());
+        }
+        else {
             for (const auto& f : father[state]) {
                 gen_path(father, start, f, path, result);
             }

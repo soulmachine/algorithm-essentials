@@ -6,22 +6,22 @@ public:
         if(node == nullptr) return nullptr;
         // key is original node，value is copied node
         unordered_map<const UndirectedGraphNode *,
-                            UndirectedGraphNode *> copied;
-        clone(node, copied);
-        return copied[node];
+                            UndirectedGraphNode *> visited;
+        clone(node, visited);
+        return visited[node];
     }
 private:
     // DFS
     static UndirectedGraphNode* clone(const UndirectedGraphNode *node,
             unordered_map<const UndirectedGraphNode *,
-            UndirectedGraphNode *> &copied) {
+            UndirectedGraphNode *> &visited) {
         // a copy already exists
-        if (copied.find(node) != copied.end()) return copied[node];
+        if (visited.find(node) != visited.end()) return visited[node];
 
         UndirectedGraphNode *new_node = new UndirectedGraphNode(node->label);
-        copied[node] = new_node;
+        visited[node] = new_node;
         for (auto nbr : node->neighbors)
-            new_node->neighbors.push_back(clone(nbr, copied));
+            new_node->neighbors.push_back(clone(nbr, visited));
         return new_node;
     }
 };

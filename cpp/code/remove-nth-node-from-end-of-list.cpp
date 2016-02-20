@@ -9,7 +9,7 @@ public:
         for (int i = 0; i < n; i++)  // q先走n步
             q = q->next;
 
-        while(q->next) { // 一起走
+        while(q->next != nullptr) { // 一起走
             p = p->next;
             q = q->next;
         }

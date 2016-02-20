@@ -5,7 +5,7 @@ class Solution {
 public:
     int longestValidParentheses(const string& s) {
         vector<int> f(s.size(), 0);
-        int ret = 0;
+        int result = 0;
         for (int i = s.size() - 2; i >= 0; --i) {
             int match = i + f[i + 1] + 1;
             // case: "((...))"
@@ -14,8 +14,8 @@ public:
                 // if a valid sequence exist afterwards "((...))()"
                 if (match + 1 < s.size()) f[i] += f[match + 1];
             }
-            ret = max(ret, f[i]);
+            result = max(result, f[i]);
         }
-        return ret;
+        return result;
     }
 };

@@ -29,17 +29,17 @@ private:
 
         for (int j = 0; j < N; ++j) {  // 扩展状态，一列一列的试
             const bool ok = !columns[j] &&
-                    !main_diag[row - j + N] &&
+                    !main_diag[row - j + N - 1] &&
                     !anti_diag[row + j];
             if (!ok) continue;  // 剪枝：如果合法，继续递归
             // 执行扩展动作
             C[row] = j;
-            columns[j] = main_diag[row - j + N] =
+            columns[j] = main_diag[row - j + N - 1] =
                     anti_diag[row + j] = true;
             dfs(C, row + 1);
             // 撤销动作
             // C[row] = -1;
-            columns[j] = main_diag[row - j + N] =
+            columns[j] = main_diag[row - j + N - 1] =
                     anti_diag[row + j] = false;
         }
     }

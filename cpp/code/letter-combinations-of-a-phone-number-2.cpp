@@ -12,15 +12,15 @@ public:
             const size_t n = result.size();
             const size_t m = keyboard[d - '0'].size();
 
-            result.resize(n * m);
-            for (size_t i = 0; i < m; ++i)
-                copy(result.begin(), result.begin() + n, result.begin() + n * i);
+            // resize to n * m
+            for (size_t i = 1; i < m; ++i) {
+                for (size_t j = 0; j < n; ++j) {
+                    result.push_back(result[j]);
+                }
+            }
 
-            for (size_t i = 0; i < m; ++i) {
-                auto begin = result.begin();
-                for_each(begin + n * i, begin + n * (i+1), [&](string &s) {
-                    s += keyboard[d - '0'][i];
-                });
+            for (size_t i = 0; i < result.size(); ++i) {
+                result[i] = result[i] + keyboard[d - '0'][i/n];
             }
         }
         return result;

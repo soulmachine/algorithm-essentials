@@ -4,7 +4,7 @@
 class Solution {
 public:
     int longestValidParentheses(const string& s) {
-        int answer = 0, depth = 0, start = -1;
+        int result = 0, depth = 0, start = -1;
         for (int i = 0; i < s.size(); ++i) {
             if (s[i] == '(') {
                 ++depth;
@@ -14,7 +14,7 @@ public:
                     start = i;
                     depth = 0;
                 } else if (depth == 0) {
-                    answer = max(answer, i - start);
+                    result = max(result, i - start);
                 }
             } 
         }
@@ -30,10 +30,10 @@ public:
                     start = i;
                     depth = 0;
                 } else if (depth == 0) {
-                    answer = max(answer, start - i);
+                    result = max(result, start - i);
                 }
             } 
         }
-        return answer;
+        return result;
     }
 };

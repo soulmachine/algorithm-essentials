@@ -1,5 +1,5 @@
 // Convert Sorted Array to Binary Search Tree
-// 分治法，时间复杂度O(n)，空间复杂度O(logn)
+// 二分法，时间复杂度O(n)，空间复杂度O(logn)
 class Solution {
 public:
     TreeNode* sortedArrayToBST (vector<int>& num) {

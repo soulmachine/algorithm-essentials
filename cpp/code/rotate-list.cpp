@@ -7,7 +7,7 @@ public:
 
         int len = 1;
         ListNode* p = head;
-        while (p->next) { // 求长度
+        while (p->next != nullptr) { // 求长度
             len++;
             p = p->next;
         }

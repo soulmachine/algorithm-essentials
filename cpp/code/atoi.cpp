@@ -6,8 +6,9 @@ public:
         int num = 0;
         int sign = 1;
         const int n = str.length();
-        int i = 0;
+        if (n == 0) return 0;
 
+        int i = 0;
         while (str[i] == ' ' && i < n) i++;
 
         if (str[i] == '+') {

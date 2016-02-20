@@ -6,7 +6,7 @@
 Validate if a given string is numeric.
 
 Some examples:
-\begin{Code}
+
 ```
 "0" => true
 " 0.1 " => true
@@ -27,9 +27,4 @@ Note: It is intended for the problem statement to be ambiguous. You should gathe
 
 ### 有限自动机
 
-{% codesnippet "./code/valid-number-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
-
-### 使用strtod()
-
-{% codesnippet "./code/valid-number-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% codesnippet "./code/valid-number."+book.suffix, language=book.suffix %}{% endcodesnippet %}

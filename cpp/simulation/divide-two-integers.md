@@ -12,12 +12,9 @@ Divide two integers without using multiplication, division and mod operator.
 
 最简单的方法，是不断减去被除数。在这个基础上，可以做一点优化，每次把被除数翻倍，从而加速。
 
-
-### 代码1
-
-{% codesnippet "./code/divide-two-integers-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+注意，写代码的时候，禁止使用 long.
 
 
-### 代码2
+### 代码
 
-{% codesnippet "./code/divide-two-integers-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% codesnippet "./code/divide-two-integers."+book.suffix, language=book.suffix %}{% endcodesnippet %}

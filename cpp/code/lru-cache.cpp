@@ -38,7 +38,7 @@ public:
         }
     }
 private:
-    list<CacheNode> cacheList;
+    list<CacheNode> cacheList; // doubly linked list
     unordered_map<int, list<CacheNode>::iterator> cacheMap;
     int capacity;
 };

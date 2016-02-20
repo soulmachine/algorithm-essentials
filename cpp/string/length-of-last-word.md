@@ -16,14 +16,9 @@ return 5.
 
 ### 分析
 
-细节实现题。
+模拟。先从右到左找到第一个字母，然后从右到左找到第一个非字母，二者的距离就是最后一个word的长度。
 
 
-### 用 STL
+### 代码
 
-{% codesnippet "./code/length-of-last-word-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
-
-### 顺序扫描
-
-{% codesnippet "./code/length-of-last-word-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% codesnippet "./code/length-of-last-word."+book.suffix, language=book.suffix %}{% endcodesnippet %}

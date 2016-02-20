@@ -7,9 +7,11 @@ public:
     string longestCommonPrefix(vector<string> &strs) {
         if (strs.empty()) return "";
 
-        for (int idx = 0; idx < strs[0].size(); ++idx) { // 纵向扫描
+        for (int j = 0; j < strs[0].size(); ++j) { // 纵向扫描
             for (int i = 1; i < strs.size(); ++i) {
-                if (strs[i][idx] != strs[0][idx]) return strs[0].substr(0,idx);
+            	// 不会越界，请参考string::[]的文档
+                if (strs[i][j] != strs[0][j])
+                	return strs[0].substr(0,j);
             }
         }
         return strs[0];

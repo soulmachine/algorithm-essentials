@@ -47,28 +47,21 @@ Given `n = 3`, there are a total of 5 unique BST's.
     2      1
 ```
 
-$$
-\begin{eqnarray}
-f(2) &=& f(0) * f(1)   \text{ ，1为根的情况} \nonumber \\
-     &+& f(1) * f(0)   \text{ ，2为根的情况} \nonumber
-\end{eqnarray}
-$$
+$$f(2) = f(0) * f(1)   \text{ , when 1 as root}$$
+
+$$+ f(1) * f(0)   \text{ , when 2 as root}$$
 
 再看一看3个元素的数组，可以发现BST的取值方式如下：
 
-$$
-\begin{eqnarray}
-f(3) &=& f(0) * f(2)   \text{ ，1为根的情况} \nonumber \\
-     &+& f(1) * f(1)   \text{ ，2为根的情况} \nonumber \\
-     &+& f(2) * f(0)   \text{ ，3为根的情况} \nonumber
-\end{eqnarray}
-$$
+$$f(3) = f(0) * f(2)   \text{ , when 1 as root}$$
+
+$$+ f(1) * f(1)   \text{ , when 2 as root}$$
+
+$$+ f(2) * f(0)   \text{ , when 3 as root}$$
 
 所以，由此观察，可以得出`f`的递推公式为
 
-$$
-f(i) = \sum_{k=1}^{i} f(k-1) \times f(i-k)
-$$
+$$f(i) = \sum_{k=1}^{i} f(k-1) \times f(i-k)$$
 
 至此，问题划归为一维动态规划。
 

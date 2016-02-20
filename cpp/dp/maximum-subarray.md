@@ -21,12 +21,9 @@ the contiguous subarray `[4,−1,2,1]` has the largest `sum = 6`.
 
 设状态为`f[j]`，表示以`S[j]`结尾的最大连续子序列和，则状态转移方程如下：
 
-$$
-\begin{eqnarray}
-f[j] &=& \max\left\{f[j-1]+S[j],S[j]\right\}, \text{ 其中 }1 \leq j \leq n \nonumber \\
-target &=& \max\left\{f[j]\right\}, \text{ 其中 }1 \leq j \leq n \nonumber
-\end{eqnarray}
-$$
+$$f[j] = \max\left\{f[j-1]+S[j],S[j]\right\}, 1 \leq j \leq n$$
+
+$$target = \max\left\{f[j]\right\}, 1 \leq j \leq n$$
 
 解释如下：
 

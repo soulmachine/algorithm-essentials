@@ -16,11 +16,9 @@ Return true because `"leetcode"` can be segmented as `"leet code"`.
 
 ### 分析
 
-设状态为`f(i)`，表示`s[0,i]`是否可以分词，则状态转移方程为
+设状态为`f(i)`，表示`s[0,i)`是否可以分词，则状态转移方程为
 
-$$
-f(i) = any\_of(f(j) \&\& s[j+1,i] \in dict),  0 \leq j < i
-$$
+`f(i) = any_of(f(j) && s[j,i] in dict), 0 <= j < i`
 
 
 ### 深搜

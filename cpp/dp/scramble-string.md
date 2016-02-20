@@ -81,11 +81,6 @@ f[n][i][j]} =  (f[k][i][j] && f[n-k][i+k][j+k])
 {% codesnippet "./code/scramble-string-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
-### 备忘录法1
+### 备忘录法
 
 {% codesnippet "./code/scramble-string-4."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
-
-### 备忘录法2
-
-{% codesnippet "./code/scramble-string-5."+book.suffix, language=book.suffix %}{% endcodesnippet %}

@@ -14,16 +14,10 @@ Your algorithm should have a linear runtime complexity. Could you implement it w
 异或，不仅能处理两次的情况，只要出现偶数次，都可以清零。
 
 
-### 代码1
+### 代码
 
 
-{% codesnippet "./code/single-number-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
-
-### 代码2
-
-
-{% codesnippet "./code/single-number-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% codesnippet "./code/single-number."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

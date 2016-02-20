@@ -13,11 +13,6 @@ The order of elements can be changed. It doesn't matter what you leave beyond th
 无
 
 
-### 代码1
+### 代码
 
-{% codesnippet "./code/remove-element-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
-
-### 代码2
-
-{% codesnippet "./code/remove-element-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% codesnippet "./code/remove-element."+book.suffix, language=book.suffix %}{% endcodesnippet %}

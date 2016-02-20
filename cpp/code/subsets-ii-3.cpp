@@ -2,39 +2,51 @@
 // 位向量法，时间复杂度O(2^n)，空间复杂度O(n)
 class Solution {
 public:
-    vector<vector<int> > subsetsWithDup(vector<int> &S) {
+    vector<vector<int> > subsetsWithDup(vector<int> &nums) {
         vector<vector<int> > result; // 必须排序
-        sort(S.begin(), S.end());
-        vector<int> count(S.back() - S.front() + 1, 0);
-        // 计算所有元素的个数
-        for (auto i : S) {
-            count[i - S[0]]++;
+        sort(nums.begin(), nums.end());
+        // 记录每个元素的出现次数
+        unordered_map<int, int> count_map;
+        for (int i : nums) {
+            if (count_map.find(i) != count_map.end())
+                count_map[i]++;
+            else
+                count_map[i] = 1;
         }
+        // 将map里的pair拷贝到一个vector里
+        vector<pair<int, int> > counters;
+        for (auto p : count_map) {
+            counters.push_back(p);
+        }
+        sort(counters.begin(), counters.end());
 
         // 每个元素选择了多少个
-        vector<int> selected(S.back() - S.front() + 1, -1);
+        unordered_map<int, int> selected;
+        for (auto p : counters) {
+            selected[p.first] = 0;
+        }
 
-        subsets(S, count, selected, 0, result);
+        dfs(nums, counters, selected, 0, result);
         return result;
     }
 
 private:
-    static void subsets(const vector<int> &S, vector<int> &count,
-            vector<int> &selected, size_t step, vector<vector<int> > &result) {
-        if (step == count.size()) {
+    static void dfs(const vector<int> &S, const vector<pair<int, int> >& counters,
+            unordered_map<int, int>& selected, size_t step, vector<vector<int> > &result) {
+        if (step == counters.size()) {
             vector<int> subset;
-            for(size_t i = 0; i < selected.size(); i++) {
-                for (int j = 0; j < selected[i]; j++) {
-                    subset.push_back(i+S[0]);
+            for (auto p : counters) {
+                for (int i = 0; i < selected[p.first]; ++i) {
+                    subset.push_back(p.first);
                 }
             }
             result.push_back(subset);
             return;
         }
 
-        for (int i = 0; i <= count[step]; i++) {
-            selected[step] = i;
-            subsets(S, count, selected, step + 1, result);
+        for (int i = 0; i <= counters[step].second; i++) {
+            selected[counters[step].first] = i;
+            dfs(S, counters, selected, step + 1, result);
         }
     }
 };

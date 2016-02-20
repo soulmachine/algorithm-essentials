@@ -16,19 +16,9 @@ Your function should return length = 2, and `A` is now `[1,2]`.
 无
 
 
-### 代码1
+### 代码
 
-{% codesnippet "./code/remove-duplicates-from-sorted-array-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
-
-### 代码2
-
-{% codesnippet "./code/remove-duplicates-from-sorted-array-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
-
-### 代码3
-
-{% codesnippet "./code/remove-duplicates-from-sorted-array-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% codesnippet "./code/remove-duplicates-from-sorted-array."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

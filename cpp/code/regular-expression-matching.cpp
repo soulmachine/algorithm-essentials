@@ -11,12 +11,12 @@ private:
 
         // next char is not '*', then must match current character
         if (*(p + 1) != '*') {
-            if (*p == *s || (*p == '.' && *s != '\0'))
+            if (*s != '\0' && (*p == *s || *p == '.'))
                 return isMatch(s + 1, p + 1);
             else
                 return false;
         } else { // next char is '*'
-            while (*p == *s || (*p == '.' && *s != '\0')) {
+            while (*s != '\0' && (*p == *s || *p == '.')) {
                 if (isMatch(s, p + 2))
                     return true;
                 s++;

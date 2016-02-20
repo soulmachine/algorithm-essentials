@@ -13,20 +13,9 @@ For example,
 
 ### next_permutation()
 
-偷懒的做法，可以直接使用`std::next_permutation()`。如果是在OJ网站上，可以用这个API偷个懒；如果是在面试中，面试官肯定会让你重新实现。
-
-#### 代码
-
-{% codesnippet "./code/permutations-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
-
-### 重新实现next_permutation()
-
-#### 代码
-
 函数 `next_permutation()`的具体实现见这节 [Next Permutation](../linear-list/array/next-permutation.md)。
 
-{% codesnippet "./code/permutations-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% codesnippet "./code/permutations-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 递归
@@ -40,7 +29,7 @@ For example,
 
 #### 代码
 
-{% codesnippet "./code/permutations-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% codesnippet "./code/permutations-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
 ### 相关题目

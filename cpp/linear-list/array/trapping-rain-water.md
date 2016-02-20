@@ -8,10 +8,7 @@ Given `n` non-negative integers representing an elevation map where the width of
 For example, 
 Given `[0,1,0,2,1,0,1,3,2,1,2,1]`, return 6.
 
-\begin{center}
-\includegraphics{trapping-rain-water.png}\\
-\figcaption{Trapping Rain Water}\label{fig:trapping-rain-water}
-\end{center}
+![Trapping Rain Water](../../images/trapping-rain-water.png)
 
 
 ### 分析
@@ -39,15 +36,7 @@ Given `[0,1,0,2,1,0,1,3,2,1,2,1]`, return 6.
 {% codesnippet "./code/trapping-rain-water-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
 
-### 代码3
-
-第三种解法，用一个栈辅助，小于栈顶的元素压入，大于等于栈顶就把栈里所有小于或等于当前值的元素全部出栈处理掉。
-
-{% codesnippet "./code/trapping-rain-water-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
-
 ### 相关题目
 
-
-* [Container With Most Water](#container-with-most-water)
-* [Largest Rectangle in Histogram](#largest-rectangle-in-histogram)
+* [Container With Most Water](../../greedy/container-with-most-water.md)
+* [Largest Rectangle in Histogram](../../stack-and-queue/stack/largest-rectangle-in-histogram.md)

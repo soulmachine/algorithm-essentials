@@ -3,37 +3,31 @@
 class Solution {
 public:
     void nextPermutation(vector<int> &nums) {
-        next_permutation(nums.begin(), nums.end());
+        next_permutation(nums, 0, nums.size());
     }
+private:
+    bool next_permutation(vector<int> &nums, int begin, int end) {
+        // From right to left, find the first digit(partitionNumber) 
+        // which violates the increase trend
+        int p = end - 2;
+        while (p > -1 && nums[p] >= nums[p + 1]) --p;
 
-    template<typename BidiIt>
-    bool next_permutation(BidiIt first, BidiIt last) {
-        // Get a reversed range to simplify reversed traversal.
-        const auto rfirst = reverse_iterator<BidiIt>(last);
-        const auto rlast = reverse_iterator<BidiIt>(first);
-
-        // Begin from the second last element to the first element.
-        auto pivot = next(rfirst);
-
-        // Find `pivot`, which is the first element that is no less than its
-        // successor.  `Prev` is used since `pivort` is a `reversed_iterator`.
-        while (pivot != rlast && *pivot >= *prev(pivot))
-            ++pivot;
-
-        // No such elemenet found, current sequence is already the largest
-        // permutation, then rearrange to the first permutation and return false.
-        if (pivot == rlast) {
-            reverse(rfirst, rlast);
+        // If not found, which means current sequence is already the largest
+        // permutation, then rearrange to the first permutation and return false
+        if(p == -1) {
+            reverse(&nums[begin], &nums[end]);
             return false;
         }
 
-        // Scan from right to left, find the first element that is greater than
-        // `pivot`.
-        auto change = find_if(rfirst, pivot, bind1st(less<int>(), *pivot));
+        // From right to left, find the first digit which is greater
+        // than the partition number, call it changeNumber
+        int c = end - 1;
+        while (c > 0 && nums[c] <= nums[p]) --c;
 
-        swap(*change, *pivot);
-        reverse(rfirst, pivot);
-
+        // Swap the partitionNumber and changeNumber
+        swap(nums[p], nums[c]);
+        // Reverse all the digits on the right of partitionNumber
+        reverse(&nums[p+1], &nums[end]);
         return true;
     }
 };

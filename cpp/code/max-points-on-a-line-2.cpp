@@ -1,5 +1,5 @@
 // Max Points on a Line
-// 暴力枚举，以点为中心，时间复杂度O(n^2)，空间复杂度O(n)
+// 暴力枚举，以点为中心，时间复杂度O(n^2)，空间复杂度O(n^2)
 class Solution {
 public:
     int maxPoints(vector<Point> &points) {
@@ -21,8 +21,13 @@ public:
                         continue;
                     }
                 } else {
-                    slope = 1.0 * (points[i].y - points[j].y) / 
-                        (points[i].x - points[j].x);
+                    if (points[i].y == points[j].y) {
+                        // 0.0 and -0.0 is the same
+                        slope = 0.0;
+                    } else {
+                        slope = 1.0 * (points[i].y - points[j].y) /
+                                (points[i].x - points[j].x);
+                    }
                 }
 
                 int count = 0;
