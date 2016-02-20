@@ -18,8 +18,29 @@ Your function should return length = 2, and `A` is now `[1,2]`.
 
 ### 代码
 
+{% if book.java %}
 {% codesnippet "./code/remove-duplicates-from-sorted-array."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
 
+{% if book.cpp %}
+```cpp
+// Remove Duplicates from Sorted Array
+// 时间复杂度O(n)，空间复杂度O(1)
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if (nums.empty()) return 0;
+
+        int index = 1;
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] != nums[index - 1])
+                nums[index++] = nums[i];
+        }
+        return index;
+    }
+};
+```
+{% endif %}
 
 ### 相关题目
 

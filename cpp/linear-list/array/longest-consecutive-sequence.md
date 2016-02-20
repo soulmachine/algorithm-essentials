@@ -23,4 +23,59 @@ Your algorithm should run in `O(n)` complexity.
 
 ### 代码
 
-{% codesnippet "./code/longest-consecutive-sequence."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% if book.java %}
+```java
+// Longest Consecutive Sequence
+// Time Complexity: O(n)，Space Complexity: O(n)
+public class Solution {
+    public int longestConsecutive(int[] nums) {
+        final HashSet<Integer> mySet = new HashSet<Integer>();
+        for (int i : nums) mySet.add(i);
+        
+        int longest = 0;
+        for (int i : nums) {
+            int length = 1;
+            for (int j = i - 1; mySet.contains(j); --j) {
+                mySet.remove(j);
+                ++length;
+            }
+            for (int j = i + 1; mySet.contains(j); ++j) {
+                mySet.remove(j);
+                ++length;
+            }
+            longest = Math.max(longest, length);
+        }
+        return longest;
+    }
+}
+```
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Longest Consecutive Sequence
+// Time Complexity: O(n)，Space Complexity: O(n)
+class Solution {
+public:
+    int longestConsecutive(const vector<int> &nums) {
+        unordered_set<int> my_set;
+        for (auto i : nums) my_set.insert(i);
+
+        int longest = 0;
+        for (auto i : nums) {
+            int length = 1;
+            for (int j = i - 1; my_set.find(j) != my_set.end(); --j) {
+                my_set.erase(j);
+                ++length;
+            }
+            for (int j = i + 1; my_set.find(j) != my_set.end(); ++j) {
+                my_set.erase(j);
+                ++length;
+            }
+            longest = max(longest, length);
+        }
+        return longest;
+    }
+};
+```
+{% endif %}

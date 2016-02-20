@@ -20,12 +20,65 @@ Your algorithm should have a linear runtime complexity. Could you implement it w
 
 ### 代码1
 
+{% if book.java %}
 {% codesnippet "./code/single-number-ii-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Single Number II
+// 方法1，时间复杂度O(n)，空间复杂度O(1)
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        const int W = sizeof(int) * 8; // 一个整数的bit数，即整数字长
+        int count[W];  // count[i]表示在在i位出现的1的次数
+        fill_n(&count[0], W, 0);
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = 0; j < W; j++) {
+                count[j] += (nums[i] >> j) & 1;
+                count[j] %= 3;
+            }
+        }
+        int result = 0;
+        for (int i = 0; i < W; i++) {
+            result += (count[i] << i);
+        }
+        return result;
+    }
+};
+```
+{% endif %}
 
 
 ### 代码2
 
+{% if book.java %}
 {% codesnippet "./code/single-number-ii-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Single Number II
+// 方法2，时间复杂度O(n)，空间复杂度O(1)
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int one = 0, two = 0, three = 0;
+        for (int i : nums) {
+            two |= (one & i);
+            one ^= i;
+            three = ~(one & two);
+            one &= three;
+            two &= three;
+        }
+
+        return one;
+    }
+};
+```
+{% endif %}
+
 
 ### 相关题目
 

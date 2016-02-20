@@ -60,8 +60,30 @@ public class Solution {
 
 下面是一个更简洁的版本。上面的代码略长，不过扩展性好一些，例如将`occur < 2`改为`occur < 3`，就变成了允许重复最多3次。
 
+{% if book.java %}
 {% codesnippet "./code/remove-duplicates-from-sorted-array-ii-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
 
+{% if book.cpp %}
+```cpp
+// Remove Duplicates from Sorted Array II
+// Time Complexity: O(n), Space Complexity: O(1)
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        const int n = nums.size();
+        int index = 0;
+        for (int i = 0; i < n; ++i) {
+            if (i > 0 && i < n - 1 && nums[i] == nums[i - 1] && nums[i] == nums[i + 1])
+                continue;
+
+            nums[index++] = nums[i];
+        }
+        return index;
+    }
+};
+```
+{% endif %}
 
 ### 相关题目
 
