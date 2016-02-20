@@ -1,5 +1,6 @@
 {
      "variables": {
-         "java": true
+         "java": true,
+         "suffix": "java"
     }
 }
