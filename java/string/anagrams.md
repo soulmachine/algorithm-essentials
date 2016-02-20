@@ -17,4 +17,58 @@ Anagram（回文构词法）是指打乱字母顺序从而得到新的单词，�
 
 ### 代码
 
-{% codesnippet "./code/anagrams."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% if book.java %}
+``java
+// Anagrams
+// 时间复杂度O(n)，空间复杂度O(n)
+public class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        final HashMap<String, ArrayList<String>> group = new HashMap<>();
+        for (final String s : strs) {
+            char[] tmp = s.toCharArray();
+            Arrays.sort(tmp);
+
+            final String key = new String(tmp);
+            if (!group.containsKey(key)) {
+                group.put(key, new ArrayList<>());
+            }
+            group.get(key).add(s);
+        }
+
+        List<List<String>> result = new ArrayList<>();
+        for (Map.Entry<String, ArrayList<String>> entry : group.entrySet()) {
+            final ArrayList<String> list = entry.getValue();
+            Collections.sort(list);
+            result.add(list);
+        }
+        return result;
+    }
+}
+```
+{% endif %}
+
+{% if book.cpp %}
+``cpp
+// Anagrams
+// 时间复杂度O(n)，空间复杂度O(n)
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string> > group;
+        for (const auto &s : strs) {
+            string key = s;
+            sort(key.begin(), key.end());
+            group[key].push_back(s);
+        }
+
+        vector<vector<string>> result;
+        for (auto iter = group.cbegin(); iter != group.cend(); iter++) {
+            auto v = iter->second;
+            sort(v.begin(), v.end());
+            result.push_back(v);
+        }
+        return result;
+    }
+};
+```
+{% endif %}

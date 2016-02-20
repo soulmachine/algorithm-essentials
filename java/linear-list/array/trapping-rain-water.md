@@ -28,12 +28,77 @@ Given `[0,1,0,2,1,0,1,3,2,1,2,1]`, return 6.
 
 ### 代码1
 
+{% if book.java %}
 {% codesnippet "./code/trapping-rain-water-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Trapping Rain Water
+// 思路1，时间复杂度O(n)，空间复杂度O(n)
+class Solution {
+public:
+    int trap(const vector<int>& A) {
+        const int n = A.size();
+        int *left_peak = new int[n]();
+        int *right_peak = new int[n]();
+
+        for (int i = 1; i < n; i++) {
+            left_peak[i] = max(left_peak[i - 1], A[i - 1]);
+        }
+        for (int i = n - 2; i >=0; --i) {
+            right_peak[i] = max(right_peak[i+1], A[i+1]);
+        }
+
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            int height = min(left_peak[i], right_peak[i]);
+            if (height > A[i]) {
+                sum += height - A[i];
+            }
+        }
+
+        delete[] left_peak;
+        delete[] right_peak;
+        return sum;
+    }
+};
+```
+{% endif %}
 
 
 ### 代码2
 
+{% if book.java %}
 {% codesnippet "./code/trapping-rain-water-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Trapping Rain Water
+// 思路2，时间复杂度O(n)，空间复杂度O(1)
+class Solution {
+public:
+    int trap(const vector<int>& A) {
+        const int n = A.size();
+        int peak_index = 0; // 最高的柱子，将数组分为两半
+        for (int i = 0; i < n; i++)
+            if (A[i] > A[peak_index]) peak_index = i;
+
+        int water = 0;
+        for (int i = 0, left_peak = 0; i < peak_index; i++) {
+            if (A[i] > left_peak) left_peak = A[i];
+            else water += left_peak - A[i];
+        }
+        for (int i = n - 1, right_peak = 0; i > peak_index; i--) {
+            if (A[i] > right_peak) right_peak = A[i];
+            else water += right_peak - A[i];
+        }
+        return water;
+    }
+};
+```
+{% endif %}
 
 
 ### 相关题目

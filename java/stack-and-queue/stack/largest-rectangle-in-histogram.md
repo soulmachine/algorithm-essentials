@@ -24,7 +24,55 @@ For example, given height = `[2,1,5,6,2,3]`, return 10.
 
 ### 代码
 
-{% codesnippet "./code/largest-rectangle-in-histogram."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% if book.java %}
+```java
+// Largest Rectangle in Histogram
+// 时间复杂度O(n)，空间复杂度O(n)
+class Solution {
+    public int largestRectangleArea(int[] heights) {
+        Stack<Integer> s = new Stack<>();
+        int result = 0;
+        for (int i = 0; i <= heights.length; ) {
+            final int value = i < heights.length ? heights[i] : 0;
+            if (s.isEmpty() || value > heights[s.peek()])
+                s.push(i++);
+            else {
+                int tmp = s.pop();
+                result = Math.max(result,
+                        heights[tmp] * (s.isEmpty() ? i : i - s.peek() - 1));
+            }
+        }
+        return result;
+    }
+}
+```
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Largest Rectangle in Histogram
+// 时间复杂度O(n)，空间复杂度O(n)
+class Solution {
+public:
+    int largestRectangleArea(vector<int> &heights) {
+        stack<int> s;
+        heights.push_back(0);
+        int result = 0;
+        for (int i = 0; i < heights.size(); ) {
+            if (s.empty() || heights[i] > heights[s.top()])
+                s.push(i++);
+            else {
+                int tmp = s.top();
+                s.pop();
+                result = max(result,
+                        heights[tmp] * (s.empty() ? i : i - s.top() - 1));
+            }
+        }
+        return result;
+    }
+};
+```
+{% endif %}
 
 
 ### 相关题目

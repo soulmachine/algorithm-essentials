@@ -23,8 +23,40 @@ How many possible unique paths are there?
 
 给前面的深搜，加个缓存，就可以过大集合了。即备忘录法。
 
+{% if book.java %}
 {% codesnippet "./code/unique-paths-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
 
+{% if book.cpp %}
+```cpp
+// Unique Paths
+// 深搜 + 缓存，即备忘录法
+// 时间复杂度O(n^2)，空间复杂度O(n^2)
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        // f[x][y] 表示 从(0,0)到(x,y)的路径条数
+        f = vector<vector<int> >(m, vector<int>(n, 0));
+        f[0][0] = 1;
+        return dfs(m - 1, n - 1);
+    }
+private:
+    vector<vector<int> > f;  // 缓存
+
+    int dfs(int x, int y) {
+        if (x < 0 || y < 0) return 0; // 数据非法，终止条件
+
+        if (x == 0 && y == 0) return f[0][0]; // 回到起点，收敛条件
+
+        if (f[x][y] > 0) {
+            return f[x][y];
+        } else {
+            return f[x][y] = dfs(x - 1, y) +  dfs(x, y - 1);
+        }
+    }
+};
+```
+{% endif %}
 
 ### 动规
 
@@ -36,7 +68,32 @@ How many possible unique paths are there?
 f[i][j]=f[i-1][j]+f[i][j-1]
 ```
 
+{% if book.java %}
 {% codesnippet "./code/unique-paths-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Unique Paths
+// 动规，滚动数组
+// 时间复杂度O(n^2)，空间复杂度O(n)
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        vector<int> f(n, 0);
+        f[0] = 1;
+        for (int i = 0; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                // 左边的f[j]，表示更新后的f[j]，与公式中的f[i][j]对应
+                // 右边的f[j]，表示老的f[j]，与公式中的f[i-1][j]对应
+                f[j] = f[j] + f[j - 1];
+            }
+        }
+        return f[n - 1];
+    }
+};
+```
+{% endif %}
 
 
 ### 数学公式

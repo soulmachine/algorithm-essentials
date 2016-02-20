@@ -25,7 +25,56 @@ Output: `index1=1, index2=2`
 
 ### 代码
 
-{% codesnippet "./code/two-sum."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% if book.java %}
+```java
+// Two Sum
+// 方法2：hash。用一个哈希表，存储每个数对应的下标
+// Time Complexity: O(n)，Space Complexity: O(n)
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        final HashMap<Integer, Integer> myMap = new HashMap<Integer, Integer>();
+        int[] result = new int[2];
+        for (int i = 0; i < nums.length; i++) {
+            myMap.put(nums[i],i);
+        }
+        for (int i = 0; i < nums.length; i++) {
+            final Integer v = myMap.get(target-nums[i]);
+            if (v != null && v > i) {
+                return new int[]{i+1, v+1};
+            }
+        }
+        return null;
+    }
+};
+```
+{% endif %}
+
+{% if book.cpp %}
+// Two Sum
+// 方法2：hash。用一个哈希表，存储每个数对应的下标
+// Time Complexity: O(n)，Space Complexity: O(n)
+class Solution {
+public:
+    vector<int> twoSum(vector<int> &nums, int target) {
+        unordered_map<int, int> my_map;
+        vector<int> result;
+        for (int i = 0; i < nums.size(); i++) {
+            my_map[nums[i]] = i;
+        }
+        for (int i = 0; i < nums.size(); i++) {
+            auto iter = my_map.find(target-nums[i]);
+            if (iter != my_map.end() && iter->second > i) {
+                result.push_back(i + 1);
+                result.push_back(iter->second + 1);
+                break;
+            }
+        }
+        return result;
+    }
+};
+```cpp
+```
+{% endif %}
 
 
 ### 相关题目

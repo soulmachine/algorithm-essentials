@@ -49,9 +49,94 @@ Note:
 
 ### 数学公式
 
-{% codesnippet "./code/gray-code-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% if book.java %}
+```java
+// Gray Code
+// 数学公式，时间复杂度O(2^n)，空间复杂度O(1)
+public class Solution {
+    public ArrayList<Integer> grayCode(int n) {
+        final int size = 1 << n;  // 2^n
+        ArrayList<Integer> result = new ArrayList<>(size);
+
+        for (int i = 0; i < size; ++i)
+            result.add(binary_to_gray(i));
+        return result;
+    }
+    private static int binary_to_gray(int n) {
+        return n ^ (n >> 1);
+    }
+}
+```
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Gray Code
+// 数学公式，时间复杂度O(2^n)，空间复杂度O(1)
+class Solution {
+public:
+    vector<int> grayCode(int n) {
+        const int size = 1 << n;  // 2^n
+        vector<int> result;
+        result.reserve(size);
+
+        for (int i = 0; i < size; ++i)
+            result.push_back(binary_to_gray(i));
+        return result;
+    }
+private:
+    static int binary_to_gray(int n) {
+        return n ^ (n >> 1);
+    }
+};
+```
+{% endif %}
 
 
 ### Reflect-and-prefix method
 
-{% codesnippet "./code/gray-code-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% if book.java %}
+```java
+// Gray Code
+// reflect-and-prefix method
+// 时间复杂度O(2^n)，空间复杂度O(1)
+public class Solution {
+    public ArrayList<Integer> grayCode(int n) {
+        final int size = 1 << n;
+        ArrayList<Integer> result = new ArrayList<>(size);
+
+        result.add(0);
+        for (int i = 0; i < n; i++) {
+            final int highest_bit = 1 << i;
+            for (int j = result.size() - 1; j >= 0; j--) // 要反着遍历，才能对称
+                result.add(highest_bit | result.get(j));
+        }
+        return result;
+    }
+}
+```
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Gray Code
+// reflect-and-prefix method
+// 时间复杂度O(2^n)，空间复杂度O(1)
+class Solution {
+public:
+    vector<int> grayCode(int n) {
+        const int size = 1 << n;
+        vector<int> result;
+        result.reserve(size);
+        
+        result.push_back(0);
+        for (int i = 0; i < n; i++) {
+            const int highest_bit = 1 << i;
+            for (int j = result.size() - 1; j >= 0; j--) // 要反着遍历，才能对称
+                result.push_back(highest_bit | result[j]);
+        }
+        return result;
+    }
+};
+```
+{% endif %}
