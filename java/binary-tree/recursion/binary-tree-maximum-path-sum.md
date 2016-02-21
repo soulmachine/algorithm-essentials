@@ -37,5 +37,5 @@ Return `6`.
 
 ### 相关题目
 
-
 * [Maximum Subarray](maximum-subarray.md)
+* [Maximum Product Subarray](maximum-product-subarray.md)

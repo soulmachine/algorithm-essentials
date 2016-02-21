@@ -144,6 +144,7 @@
 * [动态规划](dp/README.md)
     * [Triangle](dp/triangle.md)
     * [Maximum Subarray](dp/maximum-subarray.md)
+    * [Maximum Product Subarray](dp/maximum-product-subarray.md)
     * [Palindrome Partitioning II](dp/palindrome-partitioning-ii.md)
     * [Maximal Rectangle](dp/maximal-rectangle.md)
     * [Best Time to Buy and Sell Stock III](dp/best-time-to-buy-and-sell-stock-iii.md)
