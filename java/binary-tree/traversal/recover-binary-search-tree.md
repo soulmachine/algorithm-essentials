@@ -12,15 +12,20 @@ Note: A solution using `O(n)` space is pretty straight forward. Could you devise
 
 ### 分析
 
-`O(n)`空间的解法是，开一个指针数组，中序遍历，将节点指针依次存放到数组里，然后寻找两处逆向的位置，先从前往后找第一个逆序的位置，然后从后往前找第二个逆序的位置，交换这两个指针的值。
+`O(logn)`空间的解法是，中序递归遍历，用两个指针存放在遍历过程中碰到的两处逆向的位置。
 
-中序遍历一般需要用到栈，空间也是`O(n)`的，如何才能不使用栈？Morris中序遍历。
+本题要求`O(1)`空间，只能用Morris中序遍历。
 
 
-### 代码
+### 中序遍历，递归方式
+
+{% codesnippet "./code/recover-binary-search-tree-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+
+
+### Morris中序遍历
 
 {% if book.java %}
-{% codesnippet "./code/recover-binary-search-tree."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% codesnippet "./code/recover-binary-search-tree-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 {% endif %}
 
 {% if book.cpp %}
