@@ -33,17 +33,79 @@ $$
 
 ### 代码1
 
+{% if book.java %}
 {% codesnippet "./code/jump-game-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Jump Game
+// 思路1，时间复杂度O(n)，空间复杂度O(1)
+class Solution {
+public:
+    bool canJump(const vector<int>& nums) {
+        int reach = 1; // 最右能跳到哪里
+        for (int i = 0; i < reach && reach < nums.size(); ++i)
+            reach = max(reach,  i + 1 + nums[i]);
+        return reach >= nums.size();
+    }
+};
+```
+{% endif %}
 
 
 ### 代码2
 
+{% if book.java %}
 {% codesnippet "./code/jump-game-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Jump Game
+// 思路2，时间复杂度O(n)，空间复杂度O(1)
+class Solution {
+public:
+    bool canJump (const vector<int>& nums) {
+        if (nums.empty()) return true;
+        // 逆向下楼梯，最左能下降到第几层
+        int left_most = nums.size() - 1;
+
+        for (int i = nums.size() - 2; i >= 0; --i)
+            if (i + nums[i] >= left_most)
+                left_most = i;
+
+        return left_most == 0;
+    }
+};
+```
+{% endif %}
 
 
 ### 代码3
 
+{% if book.java %}
 {% codesnippet "./code/jump-game-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Jump Game
+// 思路三，动规，时间复杂度O(n)，空间复杂度O(n)
+class Solution {
+public:
+    bool canJump(const vector<int>& nums) {
+        vector<int> f(nums.size(), 0);
+        f[0] = 0;
+        for (int i = 1; i < nums.size(); i++) {
+            f[i] = max(f[i - 1], nums[i - 1]) - 1;
+            if (f[i] < 0) return false;;
+        }
+        return f[nums.size() - 1] >= 0;
+    }
+};
+```
+{% endif %}
 
 
 ### 相关题目

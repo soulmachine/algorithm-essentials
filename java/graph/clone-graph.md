@@ -37,9 +37,139 @@ Visually, the graph looks like the following:
 
 ### DFS
 
-{% codesnippet "./code/clone-graph-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% if book.java %}
+```java
+// Clone Graph
+// DFS，时间复杂度O(n)，空间复杂度O(n)
+public class Solution {
+    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+        if(node == null) return null;
+        // key is original node，value is copied node
+        HashMap<UndirectedGraphNode, UndirectedGraphNode> visited = new HashMap<>();
+        clone(node, visited);
+        return visited.get(node);
+    }
+    // DFS
+    private static UndirectedGraphNode clone(UndirectedGraphNode node,
+                                              HashMap<UndirectedGraphNode,
+                                                      UndirectedGraphNode> visited) {
+        // a copy already exists
+        if (visited.containsKey(node)) return visited.get(node);
+
+        UndirectedGraphNode new_node = new UndirectedGraphNode(node.label);
+        visited.put(node, new_node);
+        for (UndirectedGraphNode nbr : node.neighbors)
+            new_node.neighbors.add(clone(nbr, visited));
+        return new_node;
+    }
+}
+```
+{% endif %}
+
+{% if book.cpp %}
+```cpp
+// Clone Graph
+// DFS，时间复杂度O(n)，空间复杂度O(n)
+class Solution {
+public:
+    UndirectedGraphNode *cloneGraph(const UndirectedGraphNode *node) {
+        if(node == nullptr) return nullptr;
+        // key is original node，value is copied node
+        unordered_map<const UndirectedGraphNode *,
+                            UndirectedGraphNode *> visited;
+        clone(node, visited);
+        return visited[node];
+    }
+private:
+    // DFS
+    static UndirectedGraphNode* clone(const UndirectedGraphNode *node,
+            unordered_map<const UndirectedGraphNode *,
+            UndirectedGraphNode *> &visited) {
+        // a copy already exists
+        if (visited.find(node) != visited.end()) return visited[node];
+
+        UndirectedGraphNode *new_node = new UndirectedGraphNode(node->label);
+        visited[node] = new_node;
+        for (auto nbr : node->neighbors)
+            new_node->neighbors.push_back(clone(nbr, visited));
+        return new_node;
+    }
+};
+```
+{% endif %}
 
 
 ### BFS
 
-{% codesnippet "./code/clone-graph-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% if book.java %}
+```java
+// Clone Graph
+// BFS，时间复杂度O(n)，空间复杂度O(n)
+public class Solution {
+    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+        if (node == null) return null;
+        // key is original node，value is copied node
+        HashMap<UndirectedGraphNode,UndirectedGraphNode> visited = new HashMap<>();
+        // each node in queue is already copied itself
+        // but neighbors are not copied yet
+        Queue<UndirectedGraphNode> q = new LinkedList<>();
+        q.offer(node);
+        visited.put(node, new UndirectedGraphNode(node.label));
+        while (!q.isEmpty()) {
+            UndirectedGraphNode cur = q.poll();
+            for (UndirectedGraphNode nbr : cur.neighbors) {
+                // a copy already exists
+                if (visited.containsKey(nbr)) {
+                    visited.get(cur).neighbors.add(visited.get(nbr));
+                } else {
+                    UndirectedGraphNode new_node =
+                            new UndirectedGraphNode(nbr.label);
+                    visited.put(nbr, new_node);
+                    visited.get(cur).neighbors.add(new_node);
+                    q.offer(nbr);
+                }
+            }
+        }
+        return visited.get(node);
+    }
+}
+```
+{% endif %}
+
+{% if  book.cpp %}
+```cpp
+// Clone Graph
+// BFS，时间复杂度O(n)，空间复杂度O(n)
+class Solution {
+public:
+    UndirectedGraphNode *cloneGraph(const UndirectedGraphNode *node) {
+        if (node == nullptr) return nullptr;
+        // key is original node，value is copied node
+        unordered_map<const UndirectedGraphNode *,
+                            UndirectedGraphNode *> copied;
+        // each node in queue is already copied itself
+        // but neighbors are not copied yet
+        queue<const UndirectedGraphNode *> q;
+        q.push(node);
+        copied[node] = new UndirectedGraphNode(node->label);
+        while (!q.empty()) {
+            const UndirectedGraphNode *cur = q.front();
+            q.pop();
+            for (auto nbr : cur->neighbors) {
+                // a copy already exists
+                if (copied.find(nbr) != copied.end()) {
+                    copied[cur]->neighbors.push_back(copied[nbr]);
+                } else {
+                    UndirectedGraphNode *new_node =
+                            new UndirectedGraphNode(nbr->label);
+                    copied[nbr] = new_node;
+                    copied[cur]->neighbors.push_back(new_node);
+                    q.push(nbr);
+                }
+            }
+        }
+        return copied[node];
+    }
+};
+```
+{% endif %}

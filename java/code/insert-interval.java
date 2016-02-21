@@ -1,10 +1,3 @@
-struct Interval {
-    int start;
-    int end;
-    Interval() : start(0), end(0) { }
-    Interval(int s, int e) : start(s), end(e) { }
-};
- 
 // Insert Interval
 // 时间复杂度O(n)，空间复杂度O(1)
 public class Solution {

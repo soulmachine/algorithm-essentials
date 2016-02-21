@@ -15,6 +15,31 @@ Note: You may not slant the container.
 
 ### 代码
 
+{% if book.java %}
+```java
+// Container With Most Water
+// 时间复杂度O(n)，空间复杂度O(1)
+public class Solution {
+    public int maxArea(int[] height) {
+        int start = 0;
+        int end = height.length - 1;
+        int result = Integer.MIN_VALUE;
+        while (start < end) {
+            int area = Math.min(height[end], height[start]) * (end - start);
+            result = Math.max(result, area);
+            if (height[start] <= height[end]) {
+                start++;
+            } else {
+                end--;
+            }
+        }
+        return result;
+    }
+}
+```
+{% endif %}
+
+{% if book.cpp %}
 ```cpp
 // LeetCode, Container With Most Water
 // 时间复杂度O(n)，空间复杂度O(1)
@@ -37,6 +62,7 @@ public:
     }
 };
 ```
+{% endif %}
 
 
 ### 相关题目
