@@ -12,12 +12,12 @@ Write a function to determine if a given target is in the array.
 
 ### 分析
 
-允许重复元素，则上一题中如果`A[m]>=A[l]`,那么`[l,m]`为递增序列的假设就不能成立了，比如`[1,3,1,1,1]`。
+允许重复元素，则上一题中如果`A[left] <= A[mid]`,那么`[left,mid]`为递增序列的假设就不能成立了，比如`[1,3,1,1,1]`。
 
-如果`A[m]>=A[l]`不能确定递增，那就把它拆分成两个条件：
+既然`A[left] <= A[mid]`不能确定递增，那就把它拆分成两个条件：
 
-* 若`A[m]>A[l]`，则区间`[l,m]`一定递增
-* 若`A[m]==A[l]` 确定不了，那就`l++`，往下看一步即可。
+* 若`A[left] < A[mid]`，则区间`[left,mid]`一定递增
+* 若`A[left] == A[mid]` 确定不了，那就`left++`，往下看一步即可。
 
 
 ### 代码
@@ -90,3 +90,5 @@ public:
 ### 相关题目
 
 * [Search in Rotated Sorted Array](search-in-rotated-sorted-array.md)
+* [Find Minimum in Rotated Sorted Array](find-minimum-in-rotated-sorted-array.md)
+* [Find Minimum in Rotated Sorted Array II](find-minimum-in-rotated-sorted-array-ii.md)

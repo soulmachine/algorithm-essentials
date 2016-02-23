@@ -3,37 +3,31 @@
 // 时间复杂度O(logn)，空间复杂度O(1)
 class Solution {
 public:
-    vector<int> searchRange (vector<int>& nums, int target) {
-        auto lower = lower_bound(nums.begin(), nums.end(), target);
-        auto uppper = upper_bound(lower, nums.end(), target);
+    vector<int> searchRange (const vector<int>& nums, int target) {
+        int lower = lower_bound(nums, 0, nums.size(), target);
+        int upper = upper_bound(nums, 0, nums.size(), target);
 
-        if (lower == nums.end() || *lower != target)
+        if (lower == nums.size() || nums[lower] != target)
             return vector<int> { -1, -1 };
         else
-            return vector<int> {distance(nums.begin(), lower), distance(nums.begin(), prev(uppper))};
+            return vector<int> {lower, upper-1};
     }
 
-    template<typename ForwardIterator, typename T>
-    ForwardIterator lower_bound (ForwardIterator first,
-            ForwardIterator last, T value) {
+    int lower_bound (const vector<int>& A, int first, int last, int target) {
         while (first != last) {
-            auto mid = next(first, distance(first, last) / 2);
-
-            if (value > *mid) first = ++mid;
-            else              last = mid;
+            int mid = first + (last - first) / 2;
+            if (target > A[mid]) first = ++mid;
+            else                 last = mid;
         }
 
         return first;
     }
 
-    template<typename ForwardIterator, typename T>
-    ForwardIterator upper_bound (ForwardIterator first,
-            ForwardIterator last, T value) {
+    int upper_bound (const vector<int>& A, int first, int last, int target) {
         while (first != last) {
-            auto mid = next(first, distance (first, last) / 2);
-
-            if (value >= *mid) first = ++mid;  // 与 lower_bound 仅此不同
-            else               last = mid;
+            int mid = first + (last - first) / 2;
+            if (target >= A[mid]) first = ++mid;  // 与 lower_bound 仅此不同
+            else                  last = mid;
         }
 
         return first;
