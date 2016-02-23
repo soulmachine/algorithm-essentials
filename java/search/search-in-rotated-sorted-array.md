@@ -14,7 +14,33 @@ You may assume no duplicate exists in the array.
 
 ### 分析
 
-二分查找，难度主要在于左右边界的确定。
+一个有序数组被循环右移，只可能有一下两种情况：
+
+```
+   7 │
+ 6   │
+─────┼───────────
+     │         5
+     │       4
+     │     3
+     │   2
+     │ 1
+```
+
+```
+         7 │
+       6   │
+     5     │
+   4       │
+ 3         │
+───────────┼───────────      
+           │   2
+           │ 1
+```
+
+本题依旧可以用二分查找，难度主要在于左右边界的确定。仔细观察上面两幅图，我们可以得出如下结论：
+
+如果`A[left] <= A[mid]`,那么`[left,mid]` 一定为单调递增序列。
 
 
 ### 代码
@@ -83,3 +109,5 @@ public:
 ### 相关题目
 
 * [Search in Rotated Sorted Array II](search-in-rotated-sorted-array-ii.md)
+* [Find Minimum in Rotated Sorted Array](find-minimum-in-rotated-sorted-array.md)
+* [Find Minimum in Rotated Sorted Array II](find-minimum-in-rotated-sorted-array-ii.md)

@@ -3,18 +3,15 @@
 // 时间复杂度O(logn)，空间复杂度O(1)
 class Solution {
 public:
-    int searchInsert(vector<int>& nums, int target) {
-        return distance(nums.begin(), lower_bound(nums.begin(), nums.end(), target));
+    int searchInsert(const vector<int>& nums, int target) {
+        return lower_bound(nums, 0, nums.size(), target);
     }
 
-    template<typename ForwardIterator, typename T>
-    ForwardIterator lower_bound (ForwardIterator first,
-            ForwardIterator last, T value) {
+    int lower_bound (const vector<int>& A, int first, int last, int target) {
         while (first != last) {
-            auto mid = next(first, distance(first, last) / 2);
-
-            if (value > *mid)   first = ++mid;
-            else                last = mid;
+            int mid = first + (last - first) / 2;
+            if (target > A[mid]) first = ++mid;
+            else                 last = mid;
         }
 
         return first;
