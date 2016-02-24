@@ -122,6 +122,7 @@
     * [Word Ladder II](bfs/word-ladder-ii.md)
     * [Surrounded Regions](bfs/surrounded-regions.md)
 * [深度优先搜索](dfs/README.md)
+    * [Additive Number](dfs/additive-number.md)
     * [Palindrome Partitioning](dfs/palindrome-partitioning.md)
     * [Unique Paths](dfs/unique-paths.md)
     * [Unique Paths II](dfs/unique-paths-ii.md)
