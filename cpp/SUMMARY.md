@@ -57,6 +57,7 @@
     * [Length of Last Word](string/length-of-last-word.md)
 * [栈和队列](stack-and-queue/README.md)
     * [栈](stack-and-queue/stack/README.md)
+        * [Min Stack](stack-and-queue/stack/min-stack.md)
         * [Valid Parentheses](stack-and-queue/stack/valid-parentheses.md)
         * [Longest Valid Parentheses](stack-and-queue/stack/longest-valid-parentheses.md)
         * [Largest Rectangle in Histogram](stack-and-queue/stack/largest-rectangle-in-histogram.md)
