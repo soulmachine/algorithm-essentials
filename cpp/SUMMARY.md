@@ -180,3 +180,4 @@
     * [Divide Two Integers](simulation/divide-two-integers.md)
     * [Text Justification](simulation/text-justification.md)
     * [Max Points on a Line](simulation/max-points-on-a-line.md)
+    * [Fraction to Recurring Decimal](simulation/fraction-to-recurring-decimal.md)
