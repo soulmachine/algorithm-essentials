@@ -102,6 +102,7 @@
     * [Sort List](sorting/sort-list.md)
     * [First Missing Positive](sorting/first-missing-positive.md)
     * [Sort Colors](sorting/sort-colors.md)
+    * [Maximum Gap](sorting/maximum-gap.md)
 * [查找](search/README.md)
     * [Search for a Range](search/search-for-a-range.md)
     * [Search Insert Position](search/search-insert-position.md)
