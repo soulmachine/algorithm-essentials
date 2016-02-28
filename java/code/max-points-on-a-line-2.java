@@ -45,11 +45,4 @@ public class Solution {
         }
         return result;
     }
-
-    public static void main(String[] args) {
-        Solution s = new Solution();
-        Point[] points = new Point[] {new Point(2,3), new Point(3,3), new Point(-5,3)};
-        int tmp = s.maxPoints(points);
-        System.out.println(tmp);
-    }
 }
