@@ -24,6 +24,7 @@
         * [Candy](linear-list/array/candy.md)
         * [Single Number](linear-list/array/single-number.md)
         * [Single Number II](linear-list/array/single-number-ii.md)
+        * [Majority Element](linear-list/array/majority-element.md)
     * [单链表](linear-list/linked-list/README.md)
         * [Add Two Numbers](linear-list/linked-list/add-two-numbers.md)
         * [Reverse Linked List II](linear-list/linked-list/reverse-linked-list-ii.md)
@@ -181,3 +182,4 @@
     * [Text Justification](simulation/text-justification.md)
     * [Max Points on a Line](simulation/max-points-on-a-line.md)
     * [Fraction to Recurring Decimal](simulation/fraction-to-recurring-decimal.md)
+    * [Factorial Trailing Zeroes](simulation/factorial-trailing-zeroes.md)
