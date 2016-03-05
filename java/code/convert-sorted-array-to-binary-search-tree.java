@@ -7,7 +7,7 @@ public class Solution {
 
     private static TreeNode sortedArrayToBST (int[] nums, int begin, int end) {
         int length = end - begin;
-        if (length <= 0) return null;  // 终止条件
+        if (length < 1) return null;  // 终止条件
 
         // 三方合并
         int mid = begin + length / 2;
