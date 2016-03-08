@@ -44,7 +44,7 @@ Note:
 
 方法2，`n`比特的格雷码，可以递归地从`n-1`比特的格雷码生成。如下图所示。
 
-![The first few steps of the reflect-and-prefix method.](../../images/gray-code-construction.png)
+![The first few steps of the reflect-and-prefix method.](../images/gray-code-construction.png)
 
 
 ### 数学公式
