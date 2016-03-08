@@ -36,5 +36,4 @@ global[i][j] = max(local[i][j], global[i-1][j])
 {% codesnippet "./code/best-time-to-buy-and-sell-stock-iv-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 {% endif %}
 
-### 解法2 最长k段子段和
-
+### 解法2 最长m段子段和
