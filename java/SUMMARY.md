@@ -195,3 +195,4 @@
     * [Single Number](bitwise-operations/single-number.md)
     * [Single Number II](bitwise-operations/single-number-ii.md)
     * [Power of Two](bitwise-operations/power-of-two.md)
+    * [Missing Number](bitwise-operations/missing-number.md)
