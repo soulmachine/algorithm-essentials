@@ -26,14 +26,20 @@ Your algorithm should run in linear runtime complexity. Could you implement it u
 
 ### 解法1
 
+{% if book.java %}
 {% codesnippet "./code/missing-number-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
 
 
 ### 解法2
 
+{% if book.java %}
 {% codesnippet "./code/missing-number-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
 
 
 ### 解法3
 
+{% if book.java %}
 {% codesnippet "./code/missing-number-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
