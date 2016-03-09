@@ -21,13 +21,19 @@ Your algorithm should run in linear runtime complexity. Could you implement it u
 
 方法2，利用异或位运算，把数组中的每一个数，与1到n进行按位异或，最后剩下的，就是丢失的数。
 
-方法3，二分查找。首先把数组排序，设中间元素为`nums[mid]`，如果`nums[mid]`的值大于其下标，说明丢失的数字在左边，反之则在右边。
+方法3，二分查找。首先把数组排序，设中间元素为`nums[mid]`，如果`nums[mid]`的值大于其下标，说明丢失的数字在左边，反之则在右边。时间复杂度`O(nlogn)`，比前面两个方法慢，但是如果题目给的数组是事先排好序的，那么复杂度就是`O(log n)`，所以这个方法还是很有意义的。
 
 
 ### 解法1
 
+{% codesnippet "./code/missing-number-1."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+
 
 ### 解法2
 
+{% codesnippet "./code/missing-number-2."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+
 
 ### 解法3
+
+{% codesnippet "./code/missing-number-3."+book.suffix, language=book.suffix %}{% endcodesnippet %}
