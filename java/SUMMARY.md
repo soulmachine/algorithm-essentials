@@ -53,6 +53,7 @@
     * [Roman to Integer](string/roman-to-integer.md)
     * [Count and Say](string/count-and-say.md)
     * [Anagrams](string/anagrams.md)
+    * [Valid Anagram](string/valid-anagram.md)
     * [Simplify Path](string/simplify-path.md)
     * [Length of Last Word](string/length-of-last-word.md)
 * [栈和队列](stack-and-queue/README.md)
