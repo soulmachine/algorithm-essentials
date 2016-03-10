@@ -11,6 +11,7 @@
         * [3Sum Closest](linear-list/array/3sum-closest.md)
         * [4Sum](linear-list/array/4sum.md)
         * [Remove Element](linear-list/array/remove-element.md)
+        * [Move Zeroes](linear-list/array/move-zeroes.md)
         * [Next Permutation](linear-list/array/next-permutation.md)
         * [Permutation Sequence](linear-list/array/permutation-sequence.md)
         * [Valid Sudoku](linear-list/array/valid-sudoku.md)
