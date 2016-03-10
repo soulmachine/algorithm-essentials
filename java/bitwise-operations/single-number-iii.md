@@ -30,4 +30,6 @@ Given `nums = [1, 2, 1, 3, 2, 5]`, return `[3, 5]`.
 
 ### 代码
 
+{% if book.java %}
 {% codesnippet "./code/single-number-iii."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+{% endif %}
