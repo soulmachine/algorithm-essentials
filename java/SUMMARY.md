@@ -194,6 +194,7 @@
     * [Gray Code](bitwise-operations/gray-code.md)
     * [Single Number](bitwise-operations/single-number.md)
     * [Single Number II](bitwise-operations/single-number-ii.md)
+    * [Single Number III](bitwise-operations/single-number-iii.md)
     * [Power of Two](bitwise-operations/power-of-two.md)
     * [Missing Number](bitwise-operations/missing-number.md)
     * [Maximum Product of Word Lengths](bitwise-operations/maximum-product-of-word-lengths.md)
