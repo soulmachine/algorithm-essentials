@@ -28,6 +28,7 @@
         * [Contains Duplicate II](linear-list/array/contains-duplicate-ii.md)
         * [Contains Duplicate III](linear-list/array/contains-duplicate-iii.md)
     * [单链表](linear-list/linked-list/README.md)
+        * [Reverse Linked List](linear-list/linked-list/reverse-linked-list.md)
         * [Add Two Numbers](linear-list/linked-list/add-two-numbers.md)
         * [Reverse Linked List II](linear-list/linked-list/reverse-linked-list-ii.md)
         * [Partition List](linear-list/linked-list/partition-list.md)
