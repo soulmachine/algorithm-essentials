@@ -211,3 +211,4 @@
     * [Missing Number](bitwise-operations/missing-number.md)
     * [Maximum Product of Word Lengths](bitwise-operations/maximum-product-of-word-lengths.md)
     * [Bitwise AND of Numbers Range](bitwise-operations/bitwise-and-of-numbers-range.md)
+    * [Power of Three](simulation/power-of-three.md)
