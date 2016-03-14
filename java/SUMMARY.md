@@ -178,6 +178,7 @@
     * [Word Break](dp/word-break.md)
     * [Word Break II](dp/word-break-ii.md)
     * [Dungeon Game](dp/dungeon-game.md)
+    * [House Robber](dp/house-robber.md)
 * [图](graph/README.md)
     * [Clone Graph](graph/clone-graph.md)
 * [模拟](simulation/README.md)
