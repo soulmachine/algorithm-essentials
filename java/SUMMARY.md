@@ -62,6 +62,7 @@
     * [Simplify Path](string/simplify-path.md)
     * [Length of Last Word](string/length-of-last-word.md)
     * [Isomorphic Strings](string/isomorphic-strings.md)
+    * [Word Pattern](string/word-pattern.md)
 * [栈和队列](stack-and-queue/README.md)
     * [栈](stack-and-queue/stack/README.md)
         * [Min Stack](stack-and-queue/stack/min-stack.md)
