@@ -44,6 +44,7 @@
         * [Linked List Cycle II](linear-list/linked-list/linked-list-cycle-ii.md)
         * [Reorder List](linear-list/linked-list/reorder-list.md)
         * [LRU Cache](linear-list/linked-list/lru-cache.md)
+        * [Palindrome Linked List](linear-list/linked-list/palindrome-linked-list.md)
 * [字符串](string/README.md)
     * [Valid Palindrome](string/valid-palindrome.md)
     * [Implement strStr()](string/strstr.md)
