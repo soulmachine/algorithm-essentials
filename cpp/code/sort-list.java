@@ -4,24 +4,17 @@ public class Solution {
     public ListNode sortList(ListNode head) {
         if (head == null || head.next == null)return head;
 
-        // 快慢指针找到中间节点
-        ListNode fast = head, slow = head;
-        while (fast.next != null && fast.next.next != null) {
-            fast = fast.next.next;
-            slow = slow.next;
-        }
-        // 断开
-        fast = slow;
-        slow = slow.next;
-        fast.next = null;
+        final ListNode middle = findMiddle(head);
+        final ListNode head2 = middle.next;
+        middle.next = null; // 断开
 
-        ListNode l1 = sortList(head);  // 前半段排序
-        ListNode l2 = sortList(slow);  // 后半段排序
+        final ListNode l1 = sortList(head);  // 前半段排序
+        final ListNode l2 = sortList(head2);  // 后半段排序
         return mergeTwoLists(l1, l2);
     }
 
     // Merge Two Sorted Lists
-    ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    private static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(-1);
         for (ListNode p = dummy; l1 != null || l2 != null; p = p.next) {
             int val1 = l1 == null ? Integer.MAX_VALUE : l1.val;
@@ -35,5 +28,18 @@ public class Solution {
             }
         }
         return dummy.next;
+    }
+    // 快慢指针找到中间节点
+    private static ListNode findMiddle(ListNode head) {
+        if (head == null) return null;
+
+        ListNode slow = head;
+        ListNode fast = head.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
     }
 }
