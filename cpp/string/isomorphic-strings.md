@@ -1,4 +1,4 @@
-## isomorphic-strings
+## Isomorphic Strings
 
 ### 描述
 
@@ -60,3 +60,8 @@ public class Solution {
 }
 ```
 {% endif %}
+
+
+### 相关题目
+
+* [Word Pattern](word-pattern.md)
