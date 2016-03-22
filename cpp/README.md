@@ -6,7 +6,7 @@
 
 1. 背后有强大的AlgoHub支持。
 
-    本书的所有题目，都可以在 [www.algohub.org](http://www.algohub.org) 上在线判断代码。这样的一大好处是，读者可以边看书，边实现自己的代码，然后提交到网站上验证自己的想法是否正确。AlgoHub的使命是成为最好的算法学习和交流平台。AlgoHub囊括了 POJ, ZOJ, leetcode, HackerRank 等网站的经典题目（一些质量不高的题目则忽略），且 AlgoHub有非常简单的加题系统，用户不需要写一行代码即可自己添加题目，所以AlgoHub的题库还在飞速增长中。
+    本书的所有题目，都可以在 [www.algohub.org](http://www.algohub.org)(即将上线) 上在线判断代码。这样的一大好处是，读者可以边看书，边实现自己的代码，然后提交到网站上验证自己的想法是否正确。AlgoHub的使命是成为最好的算法学习和交流平台。AlgoHub囊括了 POJ, ZOJ, leetcode, HackerRank 等网站的经典题目（一些质量不高的题目则忽略），且 AlgoHub有非常简单的加题系统，用户不需要写一行代码即可自己添加题目，所以AlgoHub的题库还在飞速增长中。
 
 1. 每道题都有完整的代码。
 
