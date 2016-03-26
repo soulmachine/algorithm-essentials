@@ -101,6 +101,7 @@
         * [Convert Sorted Array to Binary Search Tree](binary-tree/bst/convert-sorted-array-to-binary-search-tree.md)
         * [Convert Sorted List to Binary Search Tree](binary-tree/bst/convert-sorted-list-to-binary-search-tree.md)
         * [LCA of BST](binary-tree/bst/lca-of-bst.md)
+        * [Kth Smallest Element in a BST](binary-tree/bst/kth-smallest-element-in-a-bst.md)
     * [二叉树的递归](binary-tree/recursion/README.md)
         * [Minimum Depth of Binary Tree](binary-tree/recursion/minimum-depth-of-binary-tree.md)
         * [Maximum Depth of Binary Tree](binary-tree/recursion/maximum-depth-of-binary-tree.md)
