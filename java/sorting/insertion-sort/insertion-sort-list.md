@@ -78,4 +78,4 @@ public:
 
 ### 相关题目
 
-* [Sort List](sort-list.md)
+* [Sort List](../merge-sort/sort-list.md)

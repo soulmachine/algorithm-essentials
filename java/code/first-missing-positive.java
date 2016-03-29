@@ -13,7 +13,7 @@ public class Solution {
         final int n = A.length;
         for (int i = 0; i < n; i++) {
             while (A[i] != i + 1) {
-                if (A[i] <= 0 || A[i] > n || A[i] == A[A[i] - 1])
+                if (A[i] < 1 || A[i] > n || A[i] == A[A[i] - 1])
                     break;
                 // swap
                 int tmp = A[i];

@@ -122,4 +122,4 @@ private:
 
 ### 相关题目
 
-* [First Missing Positive](first-missing-positive.md)
+* [First Missing Positive](../bucket-sort/first-missing-positive.md)

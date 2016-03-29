@@ -8,7 +8,7 @@ Merge k sorted linked lists and return it as one sorted list. Analyze and descri
 
 ### 分析
 
-可以复用 [Merge Two Sorted Lists](merge-two-sorted-lists.md）的函数
+可以复用 [Merge Two Sorted Lists](merge-two-sorted-lists.md) 的函数
 
 
 ### 代码
@@ -18,5 +18,5 @@ Merge k sorted linked lists and return it as one sorted list. Analyze and descri
 
 ### 相关题目
 
-* [Merge Sorted Array](merge-sorted-array.md)
+* [Merge Two Sorted Arrays](merge-two-sorted-arrays.md)
 * [Merge Two Sorted Lists](merge-two-sorted-lists.md)
