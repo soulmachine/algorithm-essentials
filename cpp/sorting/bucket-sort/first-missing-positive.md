@@ -55,4 +55,4 @@ private:
 
 ### 相关题目
 
-* [Sort Colors](sort-colors.md)
+* [Sort Colors](../quick-sort/sort-colors.md)

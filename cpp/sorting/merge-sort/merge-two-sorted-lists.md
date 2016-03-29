@@ -18,5 +18,5 @@ Merge two sorted linked lists and return it as a new list. The new list should b
 
 ### 相关题目
 
-* [Merge Sorted Array](merge-sorted-array.md)
+* [Merge Two Sorted Arrays](merge-two-sorted-arrays.md)
 * [Merge k Sorted Lists](merge-k-sorted-lists.md)

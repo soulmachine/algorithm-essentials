@@ -117,4 +117,4 @@ private:
 
 ### 相关题目
 
-* [Insertion Sort List](Insertion-Sort-List.md)
+* [Insertion Sort List](../insertion-sort/insertion-sort-list.md)
