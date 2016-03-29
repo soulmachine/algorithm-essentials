@@ -159,6 +159,7 @@
     * [Restore IP Addresses](dfs/restore-ip-addresses.md)
     * [Combination Sum](dfs/combination-sum.md)
     * [Combination Sum II](dfs/combination-sum-ii.md)
+    * [Combination Sum III](dfs/combination-sum-iii.md)
     * [Generate Parentheses](dfs/generate-parentheses.md)
     * [Sudoku Solver](dfs/sudoku-solver.md)
     * [Word Search](dfs/word-search.md)
