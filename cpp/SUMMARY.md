@@ -82,6 +82,7 @@
         * [Binary Tree Postorder Traversal](binary-tree/traversal/binary-tree-postorder-traversal.md)
         * [Binary Tree Level Order Traversal](binary-tree/traversal/binary-tree-level-order-traversal.md)
         * [Binary Tree Level Order Traversal II](binary-tree/traversal/binary-tree-level-order-traversal-ii.md)
+        * [Binary Tree Right Side View](binary-tree/traversal/binary-tree-right-side-view.md)
         * [Invert Binary Tree](binary-tree/traversal/invert-binary-tree.md)
         * [Binary Search Tree Iterator](binary-tree/traversal/binary-search-tree-iterator.md)
         * [Binary Tree Zigzag Level Order Traversal](binary-tree/traversal/binary-tree-zigzag-level-order-traversal.md)
