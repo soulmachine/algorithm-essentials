@@ -128,6 +128,7 @@
         * [Maximum Gap](sorting/radix-sort/maximum-gap.md)
     * [其他](sorting/other/README.md)
         * [Largest Number](sorting/other/largest-number.md)
+    * [小结](sorting/summary.md)
 * [查找](search/README.md)
     * [Search for a Range](search/search-for-a-range.md)
     * [Search Insert Position](search/search-insert-position.md)
