@@ -222,6 +222,7 @@
     * [Happy Number](number-theory/happy-number.md)
     * [Ugly Number](number-theory/ugly-number.md)
     * [Ugly Number II](number-theory/ugly-number-ii.md)
+    * [Super Ugly Number](number-theory/super-ugly-number.md)
     * [Fraction to Recurring Decimal](number-theory/fraction-to-recurring-decimal.md)
     * [Factorial Trailing Zeroes](number-theory/factorial-trailing-zeroes.md)
     * [Nim Game](number-theory/nim-game.md)

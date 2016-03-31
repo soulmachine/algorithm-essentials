@@ -38,3 +38,4 @@ Note that 1 is typically treated as an ugly number.
 ### 相关题目
 
 * [Ugly Number](ugly-number.md)
+* [Super Ugly Number](super-ugly-number.md)
