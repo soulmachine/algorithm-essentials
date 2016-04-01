@@ -127,6 +127,7 @@
         * [First Missing Positive](sorting/bucket-sort/first-missing-positive.md)
     * [快速排序](sorting/quick-sort/README.md)
         * [Sort Colors](sorting/quick-sort/sort-colors.md)
+        * [Kth Largest Element in an Array](sorting/quick-sort/kth-largest-element-in-an-array.md)
     * [基数排序](sorting/radix-sort/README.md)
         * [Maximum Gap](sorting/radix-sort/maximum-gap.md)
     * [其他](sorting/other/README.md)
