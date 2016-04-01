@@ -29,6 +29,7 @@
         * [Contains Duplicate III](linear-list/array/contains-duplicate-iii.md)
         * [Product of Array Except Self](linear-list/array/product-of-array-except-self.md)
         * [Game of Life](linear-list/array/game-of-life.md)
+        * [Increasing Triplet Subsequence](linear-list/array/increasing-triplet-subsequence.md)
     * [单链表](linear-list/linked-list/README.md)
         * [Reverse Linked List](linear-list/linked-list/reverse-linked-list.md)
         * [Odd Even Linked List](linear-list/linked-list/odd-even-linked-list.md)
