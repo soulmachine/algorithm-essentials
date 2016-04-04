@@ -183,6 +183,7 @@
     * [Best Time to Buy and Sell Stock II](greedy/best-time-to-buy-and-sell-stock-ii.md)
     * [Longest Substring Without Repeating Characters](greedy/longest-substring-without-repeating-characters.md)
     * [Container With Most Water](greedy/container-with-most-water.md)
+    * [Patching Array](greedy/patching-array.md)
 * [动态规划](dp/README.md)
     * [Triangle](dp/triangle.md)
     * [Maximum Subarray](dp/maximum-subarray.md)
