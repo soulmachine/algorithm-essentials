@@ -113,6 +113,7 @@
         * [Binary Tree Maximum Path Sum](binary-tree/recursion/binary-tree-maximum-path-sum.md)
         * [Populating Next Right Pointers in Each Node](binary-tree/recursion/populating-next-right-pointers-in-each-node.md)
         * [Sum Root to Leaf Numbers](binary-tree/recursion/sum-root-to-leaf-numbers.md)
+        * [LCA of Binary Tree](binary-tree/recursion/lca-of-binary-tree.md)
     * [线段树](binary-tree/segment-tree/README.md)
         * [Range Sum Query - Mutable](binary-tree/segment-tree/range-sum-query-mutable.md)
 * [排序](sorting/README.md)
