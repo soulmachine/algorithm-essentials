@@ -31,8 +31,9 @@ For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another exa
 
 ### 代码
 
+{% if book.java %}
 {% codesnippet "./code/lca-of-binary-tree."+book.suffix, language=book.suffix %}{% endcodesnippet %}
-
+{% endif %}
 
 ### 相关题目
 
