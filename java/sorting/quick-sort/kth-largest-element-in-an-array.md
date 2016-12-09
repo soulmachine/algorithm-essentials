@@ -77,7 +77,7 @@ public class Solution {
         return nums[nums.length - k];
     }
     private static int findKthLargest(int[] nums, int begin, int end, int k) {
-        if (begin + 1 == end && k == 1) return nums[0];
+        if (begin + 1 == end && k == 1) return nums[begin];
 
         final int pos = partition(nums, begin, end - 1);
         final int len = pos - begin;
