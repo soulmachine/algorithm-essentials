@@ -1,5 +1,7 @@
 {
-    "gitbook": "2.x.x",
+    "gitbook": "3.x.x",
+    "title": "算法珠玑",
+    "description": "一个精简的题库",
     "plugins": ["katex", "github", "codesnippet", "image-captions"],
     "pluginsConfig": {
         "github": {
