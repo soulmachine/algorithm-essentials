@@ -2,8 +2,11 @@
     "gitbook": "3.x.x",
     "title": "算法珠玑",
     "description": "一个精简的题库",
-    "plugins": ["katex", "github", "codesnippet", "image-captions"],
+    "plugins": ["katex", "github", "codesnippet", "image-captions", "disqus"],
     "pluginsConfig": {
+        "disqus": {
+            "shortName": "algorithm-essentials"
+        },
         "github": {
             "url": "https://www.github.com/soulmachine/algorithm-essentials"
         }
