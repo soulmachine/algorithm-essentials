@@ -249,4 +249,4 @@
     * [Divide Two Integers](simulation/divide-two-integers.md)
     * [Text Justification](simulation/text-justification.md)
     * [Max Points on a Line](simulation/max-points-on-a-line.md)
-* [Java集合经验总结](java-collection.md)
+* [Java集合框架总结](java-collection.md)

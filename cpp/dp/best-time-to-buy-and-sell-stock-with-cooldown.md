@@ -22,7 +22,7 @@ transactions = [buy, sell, cooldown, buy, sell]
 
 对于`sell[i]`，最大利润有两种可能，一是今天没动作跟昨天未持股状态一样，二是今天卖了股票，所以状态转移方程如下：
 
-`sell[i] = max{sell[i - 1], buy[i-1] + prices[i-1]}`
+`sell[i] = max{sell[i - 1], buy[i-1] + prices[i]}`
 
 对于`buy[i]`，最大利润有两种可能，一是今天没动作跟昨天持股状态一样，二是前天卖了股票，今天买了股票，因为 cooldown 只能隔天交易，所以今天买股票要追溯到前天的状态。状态转移方程如下：
 
