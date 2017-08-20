@@ -18,7 +18,7 @@ Anagram（回文构词法）是指打乱字母顺序从而得到新的单词，�
 ### 代码
 
 {% if book.java %}
-``java
+```java
 // Anagrams
 // 时间复杂度O(n)，空间复杂度O(n)
 public class Solution {
@@ -48,7 +48,7 @@ public class Solution {
 {% endif %}
 
 {% if book.cpp %}
-``cpp
+```cpp
 // Anagrams
 // 时间复杂度O(n)，空间复杂度O(n)
 class Solution {
