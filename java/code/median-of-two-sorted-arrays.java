@@ -25,6 +25,6 @@ public class Solution {
         else if (A[ai + k1 - 1] > B[bi + k2 - 1])
             return findKth(A, ai, B, bi + k2, k - k2);
         else
-            return A[k1 - 1];
+            return A[ai + k1 - 1];
     }
 };
