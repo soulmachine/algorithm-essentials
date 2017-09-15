@@ -50,6 +50,7 @@ public class Solution {
 {% endif %}
 
 {% if book.cpp %}
+```cpp
 // Two Sum
 // 方法2：hash。用一个哈希表，存储每个数对应的下标
 // Time Complexity: O(n)，Space Complexity: O(n)
@@ -72,7 +73,6 @@ public:
         return result;
     }
 };
-```cpp
 ```
 {% endif %}
 
