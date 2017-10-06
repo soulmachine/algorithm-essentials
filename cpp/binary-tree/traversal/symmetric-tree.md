@@ -3,9 +3,30 @@
 
 ### 描述
 
-Given two binary trees, write a function to check if they are equal or not.
+Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
 
-Two binary trees are considered equal if they are structurally identical and the nodes have the same value.
+For example, this binary tree `[1,2,2,3,4,4,3]` is symmetric:
+
+```
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+```
+
+But the following `[1,2,2,null,3,null,3]` is not:
+
+```
+    1
+   / \
+  2   2
+   \   \
+   3    3
+```
+
+Note:
+Bonus points if you could solve it both recursively and iteratively.
 
 
 ### 分析
