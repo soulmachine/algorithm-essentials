@@ -36,7 +36,7 @@ Maximum amount of money the thief can rob = 4 + 5 = 9.
 
 `f(root) = max{f(root.left) + f(root.right), g(root.left)+g(root.right) + root.val}`
 
-`g(root) = max{f(root.left), f(root.right)}`
+`g(root) = f(root.left) + f(root.right)`
 
 
 ### 代码
