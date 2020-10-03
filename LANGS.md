@@ -1,5 +1,5 @@
 * [Chinese](java/)
-* [C++](cpp)
+* [English](cpp/)
 
 <!--
 * [C#](cs)
