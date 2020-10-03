@@ -1,4 +1,4 @@
-* [Java](java)
+* [Chinese](java/)
 * [C++](cpp)
 
 <!--
