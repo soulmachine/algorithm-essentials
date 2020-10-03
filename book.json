@@ -2,7 +2,7 @@
     "gitbook": "3.x.x",
     "title": "算法珠玑",
     "description": "一个精简的题库",
-    "plugins": ["katex", "github", "codesnippet", "image-captions", "disqus"],
+    "plugins": ["katex", "github", "codesnippet", "image-captions", "disqus", "codetabs"],
     "pluginsConfig": {
         "disqus": {
             "shortName": "algorithm-essentials"

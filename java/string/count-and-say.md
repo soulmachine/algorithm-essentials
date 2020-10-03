@@ -28,3 +28,13 @@ Note: The sequence of integers will be represented as a string.
 ### 代码
 
 {% codesnippet "./code/count-and-say."+book.suffix, language=book.suffix %}{% endcodesnippet %}
+
+{% codetabs name="Python", type="py" -%}
+msg = "Hello World"
+print msg
+{%- language name="JavaScript", type="js" -%}
+var msg = "Hello World";
+console.log(msg);
+{%- language name="HTML", type="html" -%}
+<b>Hello World</b>
+{%- endcodetabs %}
