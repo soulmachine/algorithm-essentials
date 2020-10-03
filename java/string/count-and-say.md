@@ -24,6 +24,8 @@ Note: The sequence of integers will be represented as a string.
 
 模拟。
 
+xxx
+
 
 ### 代码
 
