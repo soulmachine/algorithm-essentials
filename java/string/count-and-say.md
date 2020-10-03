@@ -27,9 +27,10 @@ Note: The sequence of integers will be represented as a string.
 
 ### 代码
 
+codetabs
+
 {% codesnippet "./code/count-and-say."+book.suffix, language=book.suffix %}{% endcodesnippet %}
 
-codetabs
 
 {% codetabs name="Python", type="py" -%}
 msg = "Hello World"
