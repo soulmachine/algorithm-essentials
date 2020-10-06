@@ -40,6 +40,12 @@ module.exports = {
       indexName: "algorithm_essentials",
       searchParameters: {}, // Optional (if provided by Algolia)
     },
+    googleAnalytics: {
+      trackingID: "UA-7583537-12",
+    },
+    gtag: {
+      trackingID: "UA-7583537-12",
+    },
   },
   presets: [
     [
