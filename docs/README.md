@@ -1,8 +1,9 @@
-# 算法珠玑
-
-举一反三，以少胜多，告别题海战术
-
-[在线阅读](https://soulmachine.github.io/algorithm-essentials)
+---
+id: README
+title: 算法珠玑 —— 举一反三，以少胜多，告别题海战术
+sidebar_label: 介绍
+slug: /
+---
 
 本书的目标读者是准备去硅谷找工作的码农，也适用于在国内找工作的码农，以及刚接触 ACM 算法竞赛的新手。
 
@@ -30,4 +31,6 @@ Github: <https://github.com/soulmachine/algorithm-essentials>
 
 微博： [@灵魂机器](http://weibo.com/soulmachine)
 
-This ebook is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+## License
+
+Book License: [CC BY-SA 3.0 License](http://creativecommons.org/licenses/by-sa/3.0/)

@@ -1,2 +1,0 @@
-* [Chinese](java/)
-* [English](cpp/)
