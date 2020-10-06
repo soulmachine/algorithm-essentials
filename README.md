@@ -2,7 +2,7 @@
 
 举一反三，以少胜多，告别题海战术
 
-[在线阅读](https://soulmachine.github.io/algorithm-essentials)
+[在线阅读](http://algorithm-essentials.soulmachine.me)
 
 本书的目标读者是准备去硅谷找工作的码农，也适用于在国内找工作的码农，以及刚接触 ACM 算法竞赛的新手。
 
