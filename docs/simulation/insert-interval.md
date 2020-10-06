@@ -35,33 +35,30 @@ values={[
 <TabItem value="java">
 
 ```java
-struct Interval {
-    int start;
-    int end;
-    Interval() : start(0), end(0) { }
-    Interval(int s, int e) : start(s), end(e) { }
-};
-
 // Insert Interval
 // 时间复杂度O(n)，空间复杂度O(1)
 public class Solution {
-    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        ArrayList<int[]> list = new ArrayList<>(Arrays.asList(intervals));
+        insert(list, newInterval);
+        return list.toArray(new int[0][2]);
+    }
+
+    private void insert(ArrayList<int[]> intervals, int[] newInterval) {
         for (int i = 0; i < intervals.size();) {
-            final Interval cur = intervals.get(i);
-            if (newInterval.end < cur.start) {
+            final int[] cur = intervals.get(i);
+            if (newInterval[1] < cur[0]) {
                 intervals.add(i, newInterval);
-                return intervals;
-            } else if (newInterval.start > cur.end) {
+                return;
+            } else if (newInterval[0] > cur[1]) {
                 ++i;
-                continue;
             } else {
-                newInterval.start = Math.min(newInterval.start, cur.start);
-                newInterval.end = Math.max(newInterval.end, cur.end);
+                newInterval[0] = Math.min(newInterval[0], cur[0]);
+                newInterval[1] = Math.max(newInterval[1], cur[1]);
                 intervals.remove(i);
             }
         }
         intervals.add(newInterval);
-        return intervals;
     }
 }
 ```

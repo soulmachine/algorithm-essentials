@@ -30,34 +30,32 @@ values={[
 
 ```java
 // Merge Interval
-//复用一下Insert Intervals的解法即可
+// 复用一下Insert Intervals的解法即可
 // 时间复杂度O(n1+n2+...)，空间复杂度O(1)
 public class Solution {
-    public List<Interval> merge(List<Interval> intervals) {
-        List<Interval> result = new ArrayList<>();
-        for (int i = 0; i < intervals.size(); i++) {
-            insert(result, intervals.get(i));
+    public int[][] merge(int[][] intervals) {
+        ArrayList<int[]> list = new ArrayList<>();
+        for (int[] newInterval : intervals) {
+            insert(list, newInterval);
         }
-        return result;
+        return list.toArray(new int[0][2]);
     }
-    private static List<Interval> insert(List<Interval> intervals,
-                                         Interval newInterval) {
+
+    private void insert(ArrayList<int[]> intervals, int[] newInterval) {
         for (int i = 0; i < intervals.size();) {
-            final Interval cur = intervals.get(i);
-            if (newInterval.end < cur.start) {
+            final int[] cur = intervals.get(i);
+            if (newInterval[1] < cur[0]) {
                 intervals.add(i, newInterval);
-                return intervals;
-            } else if (newInterval.start > cur.end) {
+                return;
+            } else if (newInterval[0] > cur[1]) {
                 ++i;
-                continue;
             } else {
-                newInterval.start = Math.min(newInterval.start, cur.start);
-                newInterval.end = Math.max(newInterval.end, cur.end);
+                newInterval[0] = Math.min(newInterval[0], cur[0]);
+                newInterval[1] = Math.max(newInterval[1], cur[1]);
                 intervals.remove(i);
             }
         }
         intervals.add(newInterval);
-        return intervals;
     }
 }
 ```
