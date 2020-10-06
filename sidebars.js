@@ -327,6 +327,7 @@ module.exports = {
       "simulation/palindrome-number",
       "simulation/insert-interval",
       "simulation/merge-intervals",
+      "simulation/employee-free-time",
       "simulation/minimum-window-substring",
       "simulation/multiply-strings",
       "simulation/substring-with-concatenation-of-all-words",
