@@ -28,33 +28,64 @@ import TabItem from "@theme/TabItem";
 <Tabs
 defaultValue="java"
 values={[
+{ label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
 }>
+<TabItem value="python">
+
+```python
+# Longest Consecutive Sequence
+# Time Complexity: O(n)，Space Complexity: O(n)
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        s = set(nums)
+        longest = 0
+
+        for num in s:
+            if num-1 not in s:
+                current_num = num
+                length = 1
+
+                while current_num+1 in s:
+                    current_num += 1
+                    length +=1
+
+                longest = max(longest, length)
+
+        return longest
+```
+
+</TabItem>
 <TabItem value="java">
 
 ```java
 // Longest Consecutive Sequence
 // Time Complexity: O(n)，Space Complexity: O(n)
-public class Solution {
+class Solution {
     public int longestConsecutive(int[] nums) {
-        final HashSet<Integer> mySet = new HashSet<Integer>();
-        for (int i : nums) mySet.add(i);
+        Set<Integer> s = new HashSet<Integer>();
+        for (int num : nums) {
+            s.add(num);
+        }
 
         int longest = 0;
-        for (int i : nums) {
-            int length = 1;
-            for (int j = i - 1; mySet.contains(j); --j) {
-                mySet.remove(j);
-                ++length;
+
+        for (int num : s) {
+            if (!s.contains(num-1)) {
+                int currentNum = num;
+                int length = 1;
+
+                while (s.contains(currentNum+1)) {
+                    currentNum += 1;
+                    length += 1;
+                }
+
+                longest = Math.max(longest, length);
             }
-            for (int j = i + 1; mySet.contains(j); ++j) {
-                mySet.remove(j);
-                ++length;
-            }
-            longest = Math.max(longest, length);
         }
+
         return longest;
     }
 }

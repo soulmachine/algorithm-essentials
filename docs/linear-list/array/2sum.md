@@ -6,13 +6,32 @@ title: 2Sum
 
 Given an array of integers, find two numbers such that they add up to a specific target number.
 
-The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.
 
-You may assume that each input would have exactly one solution.
+**Example 1:**
 
-Input: `numbers={2, 7, 11, 15}, target=9`
+> **Input**: nums = [2,7,11,15], target = 9
+>
+> **Output**: [0,1]
 
-Output: `index1=1, index2=2`
+**Example 2:**
+
+> **Input**: nums = [3,2,4], target = 6
+>
+> **Output**: [1,2]
+
+**Example 3:**
+
+> **Input**: nums = [3,3], target = 6
+>
+> **Output**: [0,1]
+
+**Constraints:**
+
+- 2 <= nums.length <= $10^5$
+- $-10^9$ <= nums[i] <= $10^9$
+- $-10^9$ <= target <= $10^9$
+- Only one valid answer exists.
 
 ### 分析
 
@@ -30,10 +49,30 @@ import TabItem from "@theme/TabItem";
 <Tabs
 defaultValue="java"
 values={[
+{ label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
 }>
+<TabItem value="python">
+
+```python
+# Two Sum
+# 方法2：hash。用一个哈希表，存储每个数对应的下标
+# Time Complexity: O(n)，Space Complexity: O(n)
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        m = {num: i for i, num in enumerate(nums)}
+
+        for i, num in enumerate(nums):
+            complement = m.get(target - num)
+            if complement is not None and complement > i:
+                return [i, complement]
+
+        return None
+```
+
+</TabItem>
 <TabItem value="java">
 
 ```java
@@ -42,15 +81,14 @@ values={[
 // Time Complexity: O(n)，Space Complexity: O(n)
 public class Solution {
     public int[] twoSum(int[] nums, int target) {
-        final HashMap<Integer, Integer> myMap = new HashMap<Integer, Integer>();
-        int[] result = new int[2];
+        Map<Integer, Integer> m = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            myMap.put(nums[i],i);
+            m.put(nums[i], i);
         }
         for (int i = 0; i < nums.length; i++) {
-            final Integer v = myMap.get(target-nums[i]);
+            final Integer v = m.get(target-nums[i]);
             if (v != null && v > i) {
-                return new int[]{i+1, v+1};
+                return new int[]{i, v};
             }
         }
         return null;
@@ -67,22 +105,18 @@ public class Solution {
 // Time Complexity: O(n)，Space Complexity: O(n)
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target)
-    {
-        unordered_map<int, int> my_map;
-        vector<int> result;
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> m;
         for (int i = 0; i < nums.size(); i++) {
-            my_map[nums[i]] = i;
+            m[nums[i]] = i;
         }
         for (int i = 0; i < nums.size(); i++) {
-            auto iter = my_map.find(target - nums[i]);
-            if (iter != my_map.end() && iter->second > i) {
-                result.push_back(i + 1);
-                result.push_back(iter->second + 1);
-                break;
+            auto iter = m.find(target - nums[i]);
+            if (iter != m.end() && iter->second > i) {
+                return {i, iter->second};
             }
         }
-        return result;
+        return {-1, -1};
     }
 };
 ```
@@ -92,6 +126,7 @@ public:
 
 ### 相关题目
 
+- [2Sum II](2sum-ii.md)
 - [3Sum](3sum.md)
 - [3Sum Closest](3sum-closest.md)
 - [4Sum](4sum.md)

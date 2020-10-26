@@ -22,7 +22,7 @@ A solution set is:
 
 ### 分析
 
-先排序，然后左右夹逼，复杂度 $$O(n^2)$$。
+先排序，然后双指针左右夹逼，时间复杂度 $$O(n^2)$$。
 
 这个方法可以推广到`k-sum`，先排序，然后做`k-2`次循环，在最内层循环左右夹逼，时间复杂度是 $$O(\max\{n \log n, n^{k-1}\})$$。
 
@@ -34,44 +34,84 @@ import TabItem from "@theme/TabItem";
 <Tabs
 defaultValue="java"
 values={[
+{ label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
 }>
+<TabItem value="python">
+
+```python
+# 3Sum
+# 先排序，然后左右夹逼，注意跳过重复的数
+# Time Complexity: O(n^2)
+# Space Complexity: from O(logn) to O(n), depending on the
+# implementation of the sorting algorithm
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        result = []
+        for i in range(len(nums)):
+            if i == 0 or nums[i] != nums[i-1]:
+                self.twoSumII(nums, i, result)
+        return result
+
+    def twoSumII(self, nums: List[int], i: int, result: List[List[int]])->None:
+        target = 0
+        low, high = i+1, len(nums)-1
+        while low < high:
+            sum = nums[i] + nums[low] + nums[high];
+            if sum < target:
+                low += 1
+            elif sum > target:
+                high -= 1
+            else:
+                result.append([nums[i], nums[low], nums[high]])
+                low += 1
+                high -= 1
+                while low < high and nums[low] == nums[low-1]:
+                    low += 1
+                while low < high and nums[high] == nums[high+1]:
+                    high -= 1
+```
+
+</TabItem>
 <TabItem value="java">
 
 ```java
 // 3Sum
 // 先排序，然后左右夹逼，注意跳过重复的数
-// Time Complexity: O(n^2)，Space Complexity: O(1)
+// Time Complexity: O(n^2)
+// Space Complexity: from O(logn) to O(n), depending on the
+// implementation of the sorting algorithm
 public class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        if (nums.length < 3) return result;
         Arrays.sort(nums);
-        final int target = 0;
+        List<List<Integer>> result = new ArrayList<>();
 
-        for (int i = 0; i < nums.length - 2; ++i) {
-            if (i > 0 && nums[i] == nums[i-1]) continue;
-            int j = i+1;
-            int k = nums.length-1;
-            while (j < k) {
-                if (nums[i] + nums[j] + nums[k] < target) {
-                    ++j;
-                    while(nums[j] == nums[j-1] && j < k) ++j;
-                } else if(nums[i] + nums[j] + nums[k] > target) {
-                    --k;
-                    while(nums[k] == nums[k+1] && j < k) --k;
-                } else {
-                    result.add(Arrays.asList(nums[i], nums[j], nums[k]));
-                    ++j;
-                    --k;
-                    while(nums[j] == nums[j-1] && j < k) ++j;
-                    while(nums[k] == nums[k+1] && j < k) --k;
-                }
+        for (int i = 0; i < nums.length; ++i) {
+            if (i == 0 || nums[i] != nums[i-1]) {
+                twoSumII(nums, i, result);
             }
         }
         return result;
+    }
+
+    public void twoSumII(int[] nums, int i, List<List<Integer>> result) {
+        final int target = 0;
+        int low = i+1, high = nums.length-1;
+        while (low < high) {
+            int sum = nums[i] + nums[low] + nums[high];
+            if (sum < target) {
+                ++low;
+            } else if(sum > target) {
+                --high;
+            } else {
+                result.add(Arrays.asList(nums[i], nums[low++], nums[high--]));
+                while(low < high && nums[low] == nums[low-1]) ++low;
+                while(low < high && nums[high] == nums[high+1]) --high;
+            }
+        }
     }
 };
 ```
@@ -81,38 +121,38 @@ public class Solution {
 
 ```cpp
 // 3Sum
-// 先排序，然后左右夹逼，注意跳过重复的数
-// Time Complexity: O(n^2)，Space Complexity: O(1)
+// 先排序，然后双指针左右夹逼，注意跳过重复的数
+// Time Complexity: O(n^2)
+// Space Complexity: from O(logn) to O(n), depending on the
+// implementation of the sorting algorithm
 class Solution {
-    public:
+public:
     vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(begin(nums), end(nums));
         vector<vector<int>> result;
-        if (nums.size() < 3) return result;
-        sort(nums.begin(), nums.end());
-        const int target = 0;
 
-        auto last = nums.end();
-        for (auto i = nums.begin(); i < last-2; ++i) {
-            if (i > nums.begin() && *i == *(i-1)) continue;
-            auto j = i+1;
-            auto k = last-1;
-            while (j < k) {
-                if (*i + *j + *k < target) {
-                    ++j;
-                    while(*j == *(j - 1) && j < k) ++j;
-                } else if (*i + *j + *k > target) {
-                    --k;
-                    while(*k == *(k + 1) && j < k) --k;
-                } else {
-                    result.push_back({ *i, *j, *k });
-                    ++j;
-                    --k;
-                    while(*j == *(j - 1) && j < k) ++j;
-                    while(*k == *(k + 1) && j < k) --k;
-                }
+        for (int i = 0; i < nums.size(); ++i)
+            if (i == 0 || nums[i] != nums[i - 1]) {
+                twoSumII(nums, i, result);
+            }
+        return result;
+    }
+
+    void twoSumII(vector<int>& nums, int i, vector<vector<int>> &result) {
+        const int target = 0;
+        int low = i + 1, high = nums.size() - 1;
+        while (low < high) {
+            int sum = nums[i] + nums[low] + nums[high];
+            if (sum < target) {
+                ++low;
+            } else if (sum > target) {
+                --high;
+            } else {
+                result.push_back({ nums[i], nums[low++], nums[high--] });
+                while(low < high && nums[low] == nums[low-1]) ++low;
+                while(low < high && nums[high] == nums[high+1]) --high;
             }
         }
-        return result;
     }
 };
 ```
@@ -123,5 +163,6 @@ class Solution {
 ### 相关题目
 
 - [2Sum](2sum.md)
+- [2Sum II](2sum-ii.md)
 - [3Sum Closest](3sum-closest.md)
 - [4Sum](4sum.md)

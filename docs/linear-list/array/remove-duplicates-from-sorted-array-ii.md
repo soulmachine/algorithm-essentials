@@ -20,10 +20,32 @@ import TabItem from "@theme/TabItem";
 <Tabs
 defaultValue="java"
 values={[
+{ label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
 }>
+<TabItem value="python">
+
+```python
+# Remove Duplicates from Sorted Array II
+# Time complexity: O(n), Space Complexity: O(1)
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        N = 2
+        if len(nums) <= N:
+            return len(nums)
+
+        length = N
+        for i in range(N, len(nums)):
+            if nums[i] != nums[length-N]:
+                nums[length] = nums[i]
+                length += 1
+
+        return length
+```
+
+</TabItem>
 <TabItem value="java">
 
 ```java
@@ -31,15 +53,16 @@ values={[
 // Time complexity: O(n), Space Complexity: O(1)
 public class Solution {
     public int removeDuplicates(int[] nums) {
-        if (nums.length <= 2) return nums.length;
+        final int N = 2;
+        if (nums.length <= N) return nums.length;
 
-        int index = 2;
-        for (int i = 2; i < nums.length; i++){
-            if (nums[i] != nums[index - 2])
-                nums[index++] = nums[i];
+        int len = N;
+        for (int i = N; i < nums.length; i++){
+            if (nums[i] != nums[len - N])
+                nums[len++] = nums[i];
         }
 
-        return index;
+        return len;
     }
 };
 ```
@@ -53,15 +76,16 @@ public class Solution {
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        if (nums.size() <= 2) return nums.size();
+        const int N = 2;
+        if (nums.size() <= N) return nums.size();
 
-        int index = 2;
-        for (int i = 2; i < nums.size(); i++){
-            if (nums[i] != nums[index - 2])
-                nums[index++] = nums[i];
+        int len = N;
+        for (int i = N; i < nums.size(); i++){
+            if (nums[i] != nums[len - N])
+                nums[len++] = nums[i];
         }
 
-        return index;
+        return len;
     }
 };
 ```

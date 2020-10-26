@@ -12,7 +12,7 @@ The sum that is closest to the target is 2. (`-1 + 2 + 1 = 2`).
 
 ### 分析
 
-先排序，然后左右夹逼，复杂度 $$O(n^2)$$。
+先排序，然后双指针左右夹逼，复杂度 $$O(n^2)$$。
 
 ### 代码
 
@@ -22,39 +22,61 @@ import TabItem from "@theme/TabItem";
 <Tabs
 defaultValue="java"
 values={[
+{ label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
 }>
+<TabItem value="python">
+
+```python
+# 3Sum Closest
+# 先排序，然后双指针左右夹逼
+# Time Complexity: O(n^2)
+# Space Complexity: from O(logn) to O(n), depending on the
+# implementation of the sorting algorithm
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        diff = float('inf')
+        nums.sort()
+        for i in range(len(nums)):
+            low, high = i + 1, len(nums) - 1
+            while low < high:
+                sum = nums[i] + nums[low] + nums[high]
+                if abs(target - sum) < abs(diff):
+                    diff = target - sum
+                if sum < target:
+                    low += 1
+                else:
+                    high -= 1
+        return target - diff
+```
+
+</TabItem>
 <TabItem value="java">
 
 ```java
 // 3Sum Closest
-// 先排序，然后左右夹逼
-// Time Complexity: O(n^2), Space Complexity: O(1)
+// 先排序，然后双指针左右夹逼
+// Time Complexity: O(n^2)
+// Space Complexity: from O(logn) to O(n), depending on the
+// implementation of the sorting algorithm
 public class Solution {
     public int threeSumClosest(int[] nums, int target) {
-        int result = 0;
-        int minGap = Integer.MAX_VALUE;
+        int diff = Integer.MAX_VALUE;
         Arrays.sort(nums);
+        for (int i = 0; i < nums.length; ++i) {
+            int low = i + 1, high = nums.length - 1; // two pointers
+            while(low < high) {
+                int sum = nums[i] + nums[low] + nums[high];
+                if (Math.abs(sum - target) < Math.abs(diff))
+                    diff = target - sum;
 
-        for (int i = 0; i < nums.length - 1; ++i) {
-            int j = i + 1;
-            int k = nums.length - 1;
-
-            while(j < k) {
-                final int sum = nums[i] + nums[j] + nums[k];
-                final int gap = Math.abs(sum - target);
-                if (gap < minGap) {
-                    result = sum;
-                    minGap = gap;
-                }
-
-                if (sum < target) ++j;
-                else              --k;
+                if (sum < target) ++low;
+                else              --high;
             }
         }
-        return result;
+        return target - diff;
     }
 }
 ```
@@ -64,35 +86,27 @@ public class Solution {
 
 ```cpp
 // 3Sum Closest
-// 先排序，然后左右夹逼//
-// Time Complexity: O(n^2), Space Complexity: O(1)
+// 先排序，然后双指针左右夹逼
+// Time Complexity: O(n^2)
+// Space Complexity: from O(logn) to O(n), depending on the
+// implementation of the sorting algorithm
 class Solution {
 public:
     int threeSumClosest(vector<int>& nums, int target) {
-        int result = 0;
-        int min_gap = INT_MAX;
-
+        int diff = INT_MAX;
         sort(nums.begin(), nums.end());
+        for (int i = 0; i < nums.size(); ++i) {
+            int low = i + 1, high = nums.size() - 1; // two pointers
+            while(low < high) {
+                int sum = nums[i] + nums[low] + nums[high];
+                if (abs(sum - target) < abs(diff))
+                    diff = target - sum;
 
-        for (auto a = nums.begin(); a != prev(nums.end(), 2); ++a) {
-            auto b = next(a);
-            auto c = prev(nums.end());
-
-            while (b < c) {
-                const int sum = *a + *b + *c;
-                const int gap = abs(sum - target);
-
-                if (gap < min_gap) {
-                    result = sum;
-                    min_gap = gap;
-                }
-
-                if (sum < target) ++b;
-                else              --c;
+                if (sum < target) ++low;
+                else              --high;
             }
         }
-
-        return result;
+        return target - diff;
     }
 };
 ```
@@ -103,5 +117,6 @@ public:
 ### 相关题目
 
 - [2Sum](2sum.md)
+- [2Sum II](2sum-ii.md)
 - [3Sum](3sum.md)
 - [4Sum](4sum.md)

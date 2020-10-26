@@ -23,7 +23,7 @@ A solution set is:
 
 ### 分析
 
-先排序，然后左右夹逼，复杂度 $$O(n^3)$$，会超时。
+先排序，然后双指针左右夹逼，复杂度 $$O(n^3)$$，会超时。
 
 可以用一个 hashmap 先缓存两个数的和，最终复杂度$$O(n^3)$$。这个策略也适用于 3Sum 。
 
@@ -43,7 +43,7 @@ values={[
 
 ```java
 // 4Sum
-// 先排序，然后左右夹逼
+// 先排序，然后双指针左右夹逼
 // Time Complexity: O(n^3)，Space Complexity: O(1)
 public class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
@@ -139,8 +139,8 @@ values={[
 
 ```java
 // 4Sum
-// 先排序，然后左右夹逼
-// Time Complexity: O(n^3)，Space Complexity: O(1)
+// 用一个hashmap先缓存两个数的和
+// Time Complexity: O(n^3)，Space Complexity: O(n)
 public class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
         List<List<Integer>> result = new ArrayList<>();
@@ -234,5 +234,6 @@ public:
 ### 相关题目
 
 - [2Sum](2sum.md)
+- [2Sum II](2sum-ii.md)
 - [3Sum](3sum.md)
 - [3Sum Closest](3sum-closest.md)
