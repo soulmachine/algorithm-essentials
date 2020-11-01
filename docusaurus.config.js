@@ -36,8 +36,8 @@ module.exports = {
       ],
     },
     algolia: {
-      apiKey: "568df6814a8a79db9841e05558664cc1",
-      indexName: "algorithm_essentials",
+      apiKey: "02f7be89c899e6289492d2f3822fa580",
+      indexName: "algorithm_essentials_soulmachine",
       searchParameters: {}, // Optional (if provided by Algolia)
     },
     googleAnalytics: {
