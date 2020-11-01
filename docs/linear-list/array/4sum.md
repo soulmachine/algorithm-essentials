@@ -35,7 +35,7 @@ import TabItem from "@theme/TabItem";
 #### 双指针
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
 { label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
@@ -195,7 +195,7 @@ public:
 其他代码完全一样，仅仅是`twoSumII()`不一样。
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
 { label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
@@ -360,3 +360,4 @@ public:
 - [2Sum II](2sum-ii.md)
 - [3Sum](3sum.md)
 - [3Sum Closest](3sum-closest.md)
+- [4Sum II](4sum-ii.md)

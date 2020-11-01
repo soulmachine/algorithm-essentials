@@ -15,6 +15,7 @@ module.exports = {
           "linear-list/array/3sum-closest",
           "linear-list/array/3sum-smaller",
           "linear-list/array/4sum",
+          "linear-list/array/4sum-ii",
           "linear-list/array/remove-element",
           "linear-list/array/move-zeroes",
           "linear-list/array/next-permutation",
