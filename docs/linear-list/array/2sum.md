@@ -46,6 +46,8 @@ The function twoSum should return indices of the two numbers such that they add 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
+#### HashMap + 两次遍历
+
 <Tabs
 defaultValue="python"
 values={[
@@ -58,7 +60,7 @@ values={[
 
 ```python
 # Two Sum
-# 方法2：hash。用一个哈希表，存储每个数对应的下标
+# 方法2：HashMap + 两次遍历。用一个哈希表，存储每个数对应的下标
 # Time Complexity: O(n)，Space Complexity: O(n)
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
@@ -77,7 +79,7 @@ class Solution:
 
 ```java
 // Two Sum
-// 方法2：hash。用一个哈希表，存储每个数对应的下标
+// 方法2：HashMap + 两次遍历。用一个哈希表，存储每个数对应的下标
 // Time Complexity: O(n)，Space Complexity: O(n)
 public class Solution {
     public int[] twoSum(int[] nums, int target) {
@@ -86,9 +88,9 @@ public class Solution {
             m.put(nums[i], i);
         }
         for (int i = 0; i < nums.length; i++) {
-            final Integer v = m.get(target-nums[i]);
-            if (v != null && v > i) {
-                return new int[]{i, v};
+            final Integer complement = m.get(target-nums[i]);
+            if (complement != null && complement > i) {
+                return new int[]{i, complement};
             }
         }
         return null;
@@ -101,7 +103,7 @@ public class Solution {
 
 ```cpp
 // Two Sum
-// 方法 2：hash。用一个哈希表，存储每个数对应的下标
+// 方法2：HashMap + 两次遍历。用一个哈希表，存储每个数对应的下标
 // Time Complexity: O(n)，Space Complexity: O(n)
 class Solution {
 public:
@@ -111,10 +113,87 @@ public:
             m[nums[i]] = i;
         }
         for (int i = 0; i < nums.size(); i++) {
-            auto iter = m.find(target - nums[i]);
-            if (iter != m.end() && iter->second > i) {
-                return {i, iter->second};
+            auto complement = m.find(target - nums[i]);
+            if (complement != m.end() && complement->second > i) {
+                return {i, complement->second};
             }
+        }
+        return {-1, -1};
+    }
+};
+```
+
+</TabItem>
+</Tabs>
+
+#### HashMap + 单次遍历
+
+上面的方法可以优化一下，只需要一次遍历。
+
+<Tabs
+defaultValue="python"
+values={[
+{ label: 'Python', value: 'python', },
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="python">
+
+```python
+# Two Sum
+# 方法2：HashMap + 单次遍历。用一个哈希表，存储每个数对应的下标
+# Time Complexity: O(n)，Space Complexity: O(n)
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        m = {}
+        for i, num in enumerate(nums):
+            complement = m.get(target - num)
+            if complement is not None:
+                return [i, complement]
+            m[num] = i
+        return None
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+// Two Sum
+// 方法2：HashMap + 单次遍历。用一个哈希表，存储每个数对应的下标
+// Time Complexity: O(n)，Space Complexity: O(n)
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> m = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            final Integer complement = m.get(target-nums[i]);
+            if (complement != null) {
+                return new int[]{i, complement};
+            }
+            m.put(nums[i], i);
+        }
+        return new int[]{-1, -1};
+    }
+};
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// Two Sum
+// 方法2：HashMap + 单次遍历。用一个哈希表，存储每个数对应的下标
+// Time Complexity: O(n)，Space Complexity: O(n)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> m;
+        for (int i = 0; i < nums.size(); i++) {
+            auto complement = m.find(target - nums[i]);
+            if (complement != m.end()) {
+                return {i, complement->second};
+            }
+            m[nums[i]] = i;
         }
         return {-1, -1};
     }

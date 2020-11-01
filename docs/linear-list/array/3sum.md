@@ -31,6 +31,8 @@ A solution set is:
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
+#### 双指针
+
 <Tabs
 defaultValue="python"
 values={[
@@ -53,26 +55,28 @@ class Solution:
         result = []
         for i in range(len(nums)):
             if i == 0 or nums[i] != nums[i-1]:
-                self.twoSumII(nums, i, result)
+                for lst in self.twoSumII(nums, i+1, 0-nums[i]):
+                    result.append([nums[i]]+lst)
         return result
 
-    def twoSumII(self, nums: List[int], i: int, result: List[List[int]])->None:
-        target = 0
-        low, high = i+1, len(nums)-1
+    def twoSumII(self, nums: List[int], start: int, target:int)->List[List[int]]:
+        result = []
+        low, high = start, len(nums)-1
         while low < high:
-            sum = nums[i] + nums[low] + nums[high];
+            sum = nums[low] + nums[high];
             if sum < target:
                 low += 1
             elif sum > target:
                 high -= 1
             else:
-                result.append([nums[i], nums[low], nums[high]])
+                result.append([nums[low], nums[high]])
                 low += 1
                 high -= 1
                 while low < high and nums[low] == nums[low-1]:
                     low += 1
                 while low < high and nums[high] == nums[high+1]:
                     high -= 1
+        return result
 ```
 
 </TabItem>
@@ -91,27 +95,31 @@ public class Solution {
 
         for (int i = 0; i < nums.length; ++i) {
             if (i == 0 || nums[i] != nums[i-1]) {
-                twoSumII(nums, i, result);
+                for(List<Integer> lst: twoSumII(nums, i+1, 0-nums[i])) {
+                    lst.add(0, nums[i]);
+                    result.add(lst);
+                }
             }
         }
         return result;
     }
 
-    public void twoSumII(int[] nums, int i, List<List<Integer>> result) {
-        final int target = 0;
-        int low = i+1, high = nums.length-1;
+    public List<List<Integer>> twoSumII(int[] nums, int start, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        int low = start, high = nums.length-1;
         while (low < high) {
-            int sum = nums[i] + nums[low] + nums[high];
+            int sum = nums[low] + nums[high];
             if (sum < target) {
                 ++low;
             } else if(sum > target) {
                 --high;
             } else {
-                result.add(Arrays.asList(nums[i], nums[low++], nums[high--]));
+                result.add(new ArrayList<>(Arrays.asList(nums[low++], nums[high--])));
                 while(low < high && nums[low] == nums[low-1]) ++low;
                 while(low < high && nums[high] == nums[high+1]) --high;
             }
         }
+        return result;
     }
 };
 ```
@@ -133,26 +141,153 @@ public:
 
         for (int i = 0; i < nums.size(); ++i)
             if (i == 0 || nums[i] != nums[i - 1]) {
-                twoSumII(nums, i, result);
+                for (auto& lst: twoSumII(nums, i+1, 0-nums[i])) {
+                    lst.insert(lst.begin(), nums[i]);
+                    result.push_back(lst);
+                }
             }
         return result;
     }
 
-    void twoSumII(vector<int>& nums, int i, vector<vector<int>> &result) {
-        const int target = 0;
-        int low = i + 1, high = nums.size() - 1;
+    vector<vector<int>> twoSumII(vector<int>& nums, int start, int target) {
+        vector<vector<int>> result;
+        int low = start, high = nums.size() - 1;
         while (low < high) {
-            int sum = nums[i] + nums[low] + nums[high];
+            int sum = nums[low] + nums[high];
             if (sum < target) {
                 ++low;
             } else if (sum > target) {
                 --high;
             } else {
-                result.push_back({ nums[i], nums[low++], nums[high--] });
+                result.push_back({ nums[low++], nums[high--] });
                 while(low < high && nums[low] == nums[low-1]) ++low;
                 while(low < high && nums[high] == nums[high+1]) --high;
             }
         }
+        return result;
+    }
+};
+```
+
+</TabItem>
+</Tabs>
+
+#### HashSet
+
+其他代码完全一样，仅仅是 `twoSumII()`不同。
+
+<Tabs
+defaultValue="python"
+values={[
+{ label: 'Python', value: 'python', },
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="python">
+
+```python
+# 3Sum
+# 先排序，然后twoSumII()用HashSet实现
+# Time Complexity: O(n^2), Space Complexity: O(n)
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        result = []
+        for i in range(len(nums)):
+            if i == 0 or nums[i] != nums[i-1]:
+                for lst in self.twoSumII(nums, i+1, 0-nums[i]):
+                    result.append([nums[i]]+lst)
+        return result
+
+    def twoSumII(self, nums: List[int], start: int, target:int)->List[List[int]]:
+        result = []
+        s = set()
+        for i in range(start, len(nums)):
+            if len(result) == 0 or result[-1][1] != nums[i]:
+                complement = target - nums[i]
+                if complement in s:
+                    result.append([complement, nums[i]])
+            s.add(nums[i])
+        return result
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+// 3Sum
+// 先排序，然后twoSumII()用HashSet实现
+// Time Complexity: O(n^2), Space Complexity: O(n)
+public class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+
+        for (int i = 0; i < nums.length; ++i) {
+            if (i == 0 || nums[i] != nums[i-1]) {
+                for(List<Integer> lst: twoSumII(nums, i+1, 0-nums[i])) {
+                    lst.add(0, nums[i]);
+                    result.add(lst);
+                }
+            }
+        }
+        return result;
+    }
+
+    public List<List<Integer>> twoSumII(int[] nums, int start, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        Set<Integer> s = new HashSet<>();
+        for (int i = start; i < nums.length; ++i) {
+            if (result.isEmpty() || result.get(result.size() - 1).get(1) != nums[i]) {
+                int complement = target - nums[i];
+                if (s.contains(complement)) {
+                    result.add(new ArrayList<>(Arrays.asList(complement, nums[i])));
+                }
+            }
+            s.add(nums[i]);
+        }
+        return result;
+    }
+};
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// 3Sum
+// 先排序，然后twoSumII()用HashSet实现
+// Time Complexity: O(n^2), Space Complexity: O(n)
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(begin(nums), end(nums));
+        vector<vector<int>> result;
+
+        for (int i = 0; i < nums.size(); ++i)
+            if (i == 0 || nums[i] != nums[i - 1]) {
+                for (auto& lst: twoSumII(nums, i+1, 0-nums[i])) {
+                    lst.insert(lst.begin(), nums[i]);
+                    result.push_back(lst);
+                }
+            }
+        return result;
+    }
+
+    vector<vector<int>> twoSumII(vector<int>& nums, int start, int target) {
+        vector<vector<int>> result;
+        unordered_set<int> s;
+        for (auto i = start; i < nums.size(); ++i) {
+            if (result.empty() || result.back()[1] != nums[i]) {
+                int complement = target - nums[i];
+                if (s.count(complement)) {
+                    result.push_back({ complement, nums[i]});
+                }
+            }
+            s.insert(nums[i]);
+        }
+        return result;
     }
 };
 ```

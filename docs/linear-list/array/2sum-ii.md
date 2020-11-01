@@ -34,12 +34,14 @@ Based on [2Sum](2sum.md), the only change is that **array is sorted in ascending
 
 ### 分析
 
-双指针，左右夹逼。
+由于数组已经排好序，最佳方法就是用双指针，左右夹逼。
 
 ### 代码
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+
+#### 双指针
 
 <Tabs
 defaultValue="python"
@@ -111,6 +113,81 @@ public:
             } else {
                 return {low + 1, high + 1};
             }
+        }
+        return {-1, -1};
+    }
+};
+```
+
+</TabItem>
+</Tabs>
+
+#### HashMap
+
+<Tabs
+defaultValue="python"
+values={[
+{ label: 'Python', value: 'python', },
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="python">
+
+```python
+# 2Sum II
+# 方法2：HashMap + 单次遍历
+# Time Complexity: O(n)，Space Complexity: O(n)
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        m = {}
+        for i, num in enumerate(nums):
+            complement = m.get(target - num)
+            if complement is not None:
+                return [complement+1, i+1]
+            m[num] = i
+        return [-1, -1]
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+// 2Sum II
+// 方法2：HashMap + 单次遍历
+// Time Complexity: O(n)，Space Complexity: O(n)
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> m = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            final Integer complement = m.get(target-nums[i]);
+            if (complement != null) {
+                return new int[]{complement+1, i+1};
+            }
+            m.put(nums[i], i);
+        }
+        return new int[]{-1, -1};
+    }
+};
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// 2Sum II
+// 方法2：HashMap + 单次遍历
+// Time Complexity: O(n)，Space Complexity: O(n)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> m;
+        for (int i = 0; i < nums.size(); i++) {
+            auto complement = m.find(target - nums[i]);
+            if (complement != m.end()) {
+                return {complement->second+1, i+1};
+            }
+            m[nums[i]] = i;
         }
         return {-1, -1};
     }
