@@ -18,26 +18,45 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
 }>
+<TabItem value="python">
+
+```python
+# Remove Element
+# 双指针
+# Time Complexity: O(n), Space Complexity: O(1)
+class Solution:
+    def removeElement(self, nums: List[int], target: int) -> int:
+        i = 0
+        for j in range(len(nums)):
+            if nums[j] != target:
+                nums[i] = nums[j]
+                i += 1
+        return i
+```
+
+</TabItem>
 <TabItem value="java">
 
 ```java
 // Remove Element
+// 双指针
 // Time Complexity: O(n), Space Complexity: O(1)
 public class Solution {
     public int removeElement(int[] nums, int target) {
-        int index = 0;
-        for (int i = 0; i < nums.length; ++i) {
-            if (nums[i] != target) {
-                nums[index++] = nums[i];
+        int i = 0;
+        for (int j = 0; j < nums.length; ++j) {
+            if (nums[j] != target) {
+                nums[i++] = nums[j];
             }
         }
-        return index;
+        return i;
     }
 };
 ```
@@ -47,17 +66,18 @@ public class Solution {
 
 ```cpp
 // Remove Element
+// 双指针
 // Time Complexity: O(n), Space Complexity: O(1)
 class Solution {
 public:
     int removeElement(vector<int>& nums, int target) {
-        int index = 0;
-        for (int i = 0; i < nums.size(); ++i) {
-            if (nums[i] != target) {
-                nums[index++] = nums[i];
+        int i = 0;
+        for (int j = 0; j < nums.size(); ++j) {
+            if (nums[j] != target) {
+                nums[i++] = nums[j];
             }
         }
-        return index;
+        return i;
     }
 };
 ```

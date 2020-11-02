@@ -19,23 +19,78 @@ For example, given `nums = [0, 1, 0, 3, 12]`, after calling your function, nums 
 
 ### 代码
 
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+defaultValue="python"
+values={[
+{ label: 'Python', value: 'python', },
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="python">
+
+```python
+# Move Zeroes
+# 双指针
+# Time Complexity: O(n), Space Complexity: O(1)
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        i = 0
+        for j in range(len(nums)):
+            if nums[j] != 0:
+                nums[i] = nums[j]
+                i += 1
+        for j in range(i, len(nums)):
+            nums[j] = 0
+```
+
+</TabItem>
+<TabItem value="java">
+
 ```java
 // Move Zeroes
+// 双指针
 // Time Complexity: O(n), Space Complexity: O(1)
 public class Solution {
     public void moveZeroes(int[] nums) {
-        int index = 0;
-        for (int i = 0; i < nums.length; ++i) {
-            if (nums[i] != 0) {
-                nums[index++] = nums[i];
+        int i = 0;
+        for (int j = 0; j < nums.length; ++j) {
+            if (nums[j] != 0) {
+                nums[i++] = nums[j];
             }
         }
-        for (int i = index; i < nums.length; ++i) {
-            nums[i] = 0;
+        for (int j = i; j < nums.length; ++j) {
+            nums[j] = 0;
         }
     }
 }
 ```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// Move Zeroes
+// 双指针
+// Time Complexity: O(n), Space Complexity: O(1)
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int i = 0;
+        for (int j = 0; j < nums.size(); ++j) {
+            if (nums[j] != 0) {
+                swap(nums[i++], nums[j]);
+            }
+        }
+    }
+};
+```
+
+</TabItem>
+</Tabs>
 
 ### 相关题目
 
