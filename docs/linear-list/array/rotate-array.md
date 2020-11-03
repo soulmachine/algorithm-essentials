@@ -19,7 +19,9 @@ Try to come up as many solutions as you can, there are at least 3 different ways
 
 第三个方法，先将数组分为两段，前`n-k`个为一段，后`k`个元素作为第二段，将第一段 reverse, 第二段 reverse, 然后将整个数组 reverse, 这样经过三轮 reverse，就完成了循环右移。时间复杂度`O(n)`，空间复杂度`O(1)`。
 
-### 解法 1 三轮 reverse
+### 代码
+
+#### 三轮 reverse
 
 ```java
 // Rotate Array

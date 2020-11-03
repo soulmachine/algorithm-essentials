@@ -29,6 +29,7 @@ module.exports = {
           "linear-list/array/gas-station",
           "linear-list/array/candy",
           "linear-list/array/majority-element",
+          "linear-list/array/majority-element-ii",
           "linear-list/array/rotate-array",
           "linear-list/array/contains-duplicate",
           "linear-list/array/contains-duplicate-ii",
