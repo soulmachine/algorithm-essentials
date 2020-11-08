@@ -164,6 +164,7 @@ module.exports = {
           "binary-tree/recursion/populating-next-right-pointers-in-each-node",
           "binary-tree/recursion/sum-root-to-leaf-numbers",
           "binary-tree/recursion/lca-of-binary-tree",
+          "binary-tree/recursion/serialize-and-deserialize-binary-tree",
         ],
       },
       {
