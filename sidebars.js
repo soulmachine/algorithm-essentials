@@ -95,12 +95,16 @@ module.exports = {
           "stack-and-queue/stack/largest-rectangle-in-histogram",
           "stack-and-queue/stack/evaluate-reverse-polish-notation",
           "stack-and-queue/stack/implement-stack-using-queues",
+          "stack-and-queue/stack/median-of-data-stream",
         ],
       },
       {
         type: "category",
         label: "队列",
-        items: ["stack-and-queue/queue/implement-queue-using-stacks"],
+        items: [
+          "stack-and-queue/queue/implement-queue-using-stacks",
+          "stack-and-queue/queue/moving-average-of-data-stream",
+        ],
       },
     ],
     二叉树: [
