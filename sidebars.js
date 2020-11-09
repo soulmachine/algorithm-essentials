@@ -306,7 +306,7 @@ module.exports = {
       "dp/range-sum-query-immutable",
       "dp/range-sum-query-2d-immutable",
     ],
-    图: ["graph/README", "graph/clone-graph"],
+    图: ["graph/README", "graph/clone-graph", "graph/graph-valid-tree"],
     位操作: [
       "bitwise-operations/reverse-bits",
       "bitwise-operations/repeated-dna-sequences",
