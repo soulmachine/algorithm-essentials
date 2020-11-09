@@ -305,6 +305,7 @@ module.exports = {
       "dp/house-robber-iii",
       "dp/range-sum-query-immutable",
       "dp/range-sum-query-2d-immutable",
+      "dp/frog-jump",
     ],
     图: ["graph/README", "graph/clone-graph", "graph/graph-valid-tree"],
     位操作: [
