@@ -20,39 +20,60 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
 }>
+<TabItem value="python">
+
+```python
+# Longest Valid Parenthese
+# Using a stack
+# Time Complexity: O(n), Space Complexity: O(n)
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        max_len = 0
+        stack = deque()
+        stack.append(-1)
+
+        for i in range(len(s)):
+            if s[i] == '(':
+                stack.append(i);
+            else:
+                stack.pop()
+                if len(stack) == 0:
+                    stack.append(i)
+                else:
+                    max_len = max(max_len, i - stack[-1])
+
+        return max_len
+```
+
+</TabItem>
 <TabItem value="java">
 
 ```java
 // Longest Valid Parenthese
-// 使用栈，时间复杂度O(n)，空间复杂度O(n)
+// Using a stack
+// Time Complexity: O(n), Space Complexity: O(n)
 public class Solution {
     public int longestValidParentheses(String s) {
-        // the position of the last ')'
-        int maxLen = 0, last = -1;
-        // keep track of the positions of non-matching '('s
-        Stack<Integer> lefts = new Stack<>();
+        int maxLen = 0;
+        Stack<Integer> stack = new Stack<>();
+        stack.push(-1);
 
         for (int i = 0; i < s.length(); ++i) {
             if (s.charAt(i) =='(') {
-                lefts.push(i);
+                stack.push(i);
             } else {
-                if (lefts.empty()) {
-                    // no matching left
-                    last = i;
+                stack.pop();
+                if(stack.empty()) {
+                    stack.push(i);
                 } else {
-                    // find a matching pair
-                    lefts.pop();
-                    if (lefts.empty()) {
-                        maxLen = Math.max(maxLen, i-last);
-                    } else {
-                        maxLen = Math.max(maxLen, i-lefts.peek());
-                    }
+                    maxLen = Math.max(maxLen, i - stack.peek());
                 }
             }
         }
@@ -66,28 +87,24 @@ public class Solution {
 
 ```cpp
 // Longest Valid Parenthese
-// 使用栈，时间复杂度O(n)，空间复杂度O(n)
+// Using a stack
+// Time Complexity: O(n), Space Complexity: O(n)
 class Solution {
 public:
-    int longestValidParentheses(const string& s) {
-        int max_len = 0, last = -1; // the position of the last ')'
-        stack<int> lefts;  // keep track of the positions of non-matching '('s
+    int longestValidParentheses(string s) {
+        int max_len = 0;
+        stack<int>  stack;
+        stack.push(-1);
 
-        for (int i = 0; i < s.size(); ++i) {
-            if (s[i] =='(') {
-                lefts.push(i);
+        for (int i = 0; i < s.length(); ++i) {
+            if (s[i] == '(') {
+                stack.push(i);
             } else {
-                if (lefts.empty()) {
-                    // no matching left
-                    last = i;
+                stack.pop();
+                if(stack.empty()) {
+                    stack.push(i);
                 } else {
-                    // find a matching pair
-                    lefts.pop();
-                    if (lefts.empty()) {
-                        max_len = max(max_len, i-last);
-                    } else {
-                        max_len = max(max_len, i-lefts.top());
-                    }
+                    max_len = max(max_len, i - stack.top());
                 }
             }
         }
