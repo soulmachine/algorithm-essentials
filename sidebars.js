@@ -104,6 +104,7 @@ module.exports = {
         items: [
           "stack-and-queue/queue/implement-queue-using-stacks",
           "stack-and-queue/queue/moving-average-of-data-stream",
+          "stack-and-queue/queue/sliding-window-maximum",
         ],
       },
     ],
