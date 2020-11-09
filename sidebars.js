@@ -1,6 +1,6 @@
 module.exports = {
   someSidebar: {
-    介绍: ["README"],
+    介绍: ["README", "data-structures"],
     线性表: [
       {
         type: "category",
