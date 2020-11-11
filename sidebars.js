@@ -253,6 +253,9 @@ module.exports = {
       "bfs/word-ladder",
       "bfs/word-ladder-ii",
       "bfs/surrounded-regions",
+      "bfs/the-maze",
+      "bfs/the-maze-ii",
+      "bfs/the-maze-iii",
       "bfs/bfs-summary",
     ],
     深度优先搜索: [
