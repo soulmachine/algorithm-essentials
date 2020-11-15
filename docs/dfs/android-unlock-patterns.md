@@ -64,14 +64,7 @@ values={[
 public class Solution {
 
     public int numberOfPatterns(int m, int n) {
-        int[][] jumps = new int[10][10]; // jump table
-        jumps[1][3] = jumps[3][1] = 2; // 1-3 jumps over 2
-        jumps[1][7] = jumps[7][1] = 4;
-        jumps[3][9] = jumps[9][3] = 6;
-        jumps[7][9] = jumps[9][7] = 8;
-        jumps[2][8] = jumps[8][2] = jumps[4][6] = jumps[6][4] = 5;
-        jumps[1][9] = jumps[9][1] = jumps[3][7] = jumps[7][3] = 5;
-
+        int[][] jumps = build_jump_table();
         boolean[] visited = new boolean[10];
 
         int count = 0;
@@ -83,26 +76,30 @@ public class Solution {
         return count;
     }
 
-    /** DFS.
-      @param visited Visit history
-      @param jump Hard coded jump table
-      @param num Use num as the starting point
-      @param remain Remaining length
-      @return Number of valid paterns of length remain+1
-    */
-    int dfs(boolean visited[], int[][] jump, int num, int remain) {
+    private static int dfs(boolean visited[], int[][] jump, int num, int remain) {
         if(remain == 0) return 1;
 
         int count = 0;
         visited[num] = true;
         for(int i = 1; i <= 9; ++i) {
-            // If number i is not visited and (two numbers are adjacent or jump number is already visited)
+            // If i is not visited and (two numbers are adjacent or jump number is already visited)
             if(!visited[i] && (jump[num][i] == 0 || (visited[jump[num][i]]))) {
                 count += dfs(visited, jump, i, remain - 1);
             }
         }
         visited[num] = false;
         return count;
+    }
+
+    private int[][] build_jump_table() {
+        int[][] jumps = new int[10][10]; // jump table, 0 means adjacent
+        jumps[1][3] = jumps[3][1] = 2; // The edge 1-3 jumps over 2
+        jumps[1][7] = jumps[7][1] = 4;
+        jumps[3][9] = jumps[9][3] = 6;
+        jumps[7][9] = jumps[9][7] = 8;
+        jumps[2][8] = jumps[8][2] = jumps[4][6] = jumps[6][4] = 5;
+        jumps[1][9] = jumps[9][1] = jumps[3][7] = jumps[7][3] = 5;
+        return jumps;
     }
 }
 ```
