@@ -285,6 +285,7 @@ module.exports = {
       "dfs/generate-parentheses",
       "dfs/sudoku-solver",
       "dfs/word-search",
+      "dfs/android-unlock-patterns",
       "dfs/dfs-summary",
     ],
     分治法: ["divide-and-conquer/pow", "divide-and-conquer/sqrt"],
