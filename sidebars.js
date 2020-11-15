@@ -38,6 +38,8 @@ module.exports = {
           "linear-list/array/game-of-life",
           "linear-list/array/increasing-triplet-subsequence",
           "linear-list/array/meeting-rooms",
+          "linear-list/array/intersection-of-two-arrays",
+          "linear-list/array/intersection-of-two-arrays-ii",
         ],
       },
       {
@@ -62,6 +64,7 @@ module.exports = {
           "linear-list/linked-list/reorder-list",
           "linear-list/linked-list/lru-cache",
           "linear-list/linked-list/palindrome-linked-list",
+          "linear-list/linked-list/intersection-of-two-linked-lists",
         ],
       },
     ],
