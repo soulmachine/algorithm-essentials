@@ -369,6 +369,7 @@ module.exports = {
       "simulation/divide-two-integers",
       "simulation/text-justification",
       "simulation/max-points-on-a-line",
+      "simulation/sparse-matrix-multiplication",
     ],
     Java集合框架总结: ["java-collection"],
   },
