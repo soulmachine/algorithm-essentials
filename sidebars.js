@@ -37,6 +37,7 @@ module.exports = {
           "linear-list/array/product-of-array-except-self",
           "linear-list/array/game-of-life",
           "linear-list/array/increasing-triplet-subsequence",
+          "linear-list/array/meeting-rooms",
         ],
       },
       {
@@ -217,6 +218,11 @@ module.exports = {
         type: "category",
         label: "基数排序",
         items: ["sorting/radix-sort/README", "sorting/radix-sort/maximum-gap"],
+      },
+      {
+        type: "category",
+        label: "堆排序",
+        items: ["sorting/heap-sort/meeting-rooms-ii"],
       },
       {
         type: "category",
