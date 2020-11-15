@@ -225,7 +225,11 @@ module.exports = {
       {
         type: "category",
         label: "堆排序",
-        items: ["sorting/heap-sort/meeting-rooms-ii"],
+        items: [
+          "sorting/heap-sort/meeting-rooms-ii",
+          "sorting/heap-sort/top-k-frequent-elements",
+          "sorting/heap-sort/top-k-frequent-words",
+        ],
       },
       {
         type: "category",
