@@ -298,6 +298,7 @@ module.exports = {
       "greedy/longest-substring-without-repeating-characters",
       "greedy/container-with-most-water",
       "greedy/patching-array",
+      "greedy/task-scheduler",
     ],
     动态规划: [
       "dp/triangle",
