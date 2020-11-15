@@ -46,6 +46,9 @@ module.exports = {
     gtag: {
       trackingID: "UA-7583537-12",
     },
+    prism: {
+      theme: require("prism-react-renderer/themes/github"),
+    },
   },
   presets: [
     [
