@@ -76,15 +76,15 @@ public class Solution {
         return count;
     }
 
-    private static int dfs(boolean visited[], int[][] jump, int num, int remain) {
+    private static int dfs(boolean visited[], int[][] jumps, int num, int remain) {
         if(remain == 0) return 1;
 
         int count = 0;
         visited[num] = true;
         for(int i = 1; i <= 9; ++i) {
-            // If i is not visited and (two numbers are adjacent or jump number is already visited)
-            if(!visited[i] && (jump[num][i] == 0 || (visited[jump[num][i]]))) {
-                count += dfs(visited, jump, i, remain - 1);
+            int mid = jumps[num][i]; // Edge num->i jumps over mid
+            if(!visited[i] && (mid == 0 || (visited[mid]))) {
+                count += dfs(visited, jumps, i, remain - 1);
             }
         }
         visited[num] = false;
@@ -93,7 +93,7 @@ public class Solution {
 
     private int[][] build_jump_table() {
         int[][] jumps = new int[10][10]; // jump table, 0 means adjacent
-        jumps[1][3] = jumps[3][1] = 2; // The edge 1-3 jumps over 2
+        jumps[1][3] = jumps[3][1] = 2; // The edge 1->3 jumps over 2
         jumps[1][7] = jumps[7][1] = 4;
         jumps[3][9] = jumps[9][3] = 6;
         jumps[7][9] = jumps[9][7] = 8;
