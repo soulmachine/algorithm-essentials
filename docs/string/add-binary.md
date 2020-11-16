@@ -17,7 +17,7 @@ Return `100`.
 
 ### 分析
 
-无
+手工模拟大整数加法。
 
 ### 代码
 
@@ -35,22 +35,19 @@ values={[
 
 ```java
 // Add Binary
-// 时间复杂度O(n)，空间复杂度O(1)
+// Time Complexity: O(max(m,n)), Space Complexity: O(max(m,n))
 class Solution {
     public String addBinary(String a, String b) {
         StringBuilder result = new StringBuilder();
-        int i = a.length() - 1;
-        int j = b.length() - 1;
-        int carry = 0;
-
+        int i = a.length() - 1, j = b.length() - 1, carry = 0;
         while(i >= 0 || j >= 0 || carry > 0) {
-            int valueA = i < 0 ? 0 : a.charAt(i--) - '0';
-            int valueB = j < 0 ? 0 : b.charAt(j--) - '0';
-            int sum = valueA + valueB + carry;
-            result.insert(0, Character.forDigit(sum % 2, 10));
+            int x = i < 0 ? 0 : a.charAt(i--) - '0';
+            int y = j < 0 ? 0 : b.charAt(j--) - '0';
+            int sum = x + y + carry;
+            result.append(sum % 2);
             carry = sum / 2;
         }
-        return result.toString();
+        return result.reverse().toString();
     }
 }
 ```
@@ -59,20 +56,18 @@ class Solution {
 <TabItem value="cpp">
 
 ```cpp
-// Add Binary
-// 时间复杂度O(n)，空间复杂度O(1)
+// Add Strings
+// Time Complexity: O(max(m,n)), Space Complexity: O(max(m,n))
 class Solution {
 public:
     string addBinary(string a, string b) {
         string result;
-        int i = a.length() - 1;
-        int j = b.length() - 1;
-        int carry = 0;
+        int i = a.length() - 1, j = b.length() - 1, carry = 0;
 
         while(i >= 0 || j >= 0 || carry > 0) {
-            int valueA = i < 0 ? 0 : a[i--] - '0';
-            int valueB = j < 0 ? 0 : b[j--] - '0';
-            int sum = valueA + valueB + carry;
+            int x = i < 0 ? 0 : a[i--] - '0';
+            int y = j < 0 ? 0 : b[j--] - '0';
+            int sum = x + y + carry;
             result.insert(result.begin(), (sum % 2) + '0');
             carry = sum / 2;
         }
@@ -87,3 +82,4 @@ public:
 ### 相关题目
 
 - [Add Two Numbers](linear-list/linked-list/add-two-numbers.md)
+- [Add Strings](add-strings.md)

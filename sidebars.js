@@ -74,6 +74,7 @@ module.exports = {
       "string/strstr",
       "string/atoi",
       "string/add-binary",
+      "string/add-strings",
       "string/longest-palindromic-substring",
       "string/regular-expression-matching",
       "string/wildcard-matching",
