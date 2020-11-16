@@ -47,85 +47,101 @@ values={[
 
 ```java
 // LRU Cache
-// 时间复杂度O(logn)，空间复杂度O(n)
+// HashMap + Doubly Linked List
 public class LRUCache {
     private int capacity;
-    private final HashMap<Integer, Node> map;
-    private Node head;
-    private Node end;
+    private HashMap<Integer, Node> m;
+    private DList list;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        map = new HashMap<>();
+        m = new HashMap<>();
+        list = new DList();
     }
 
+    // Time Complexity: O(1)
     public int get(int key) {
-        if(map.containsKey(key)){
-            Node n = map.get(key);
-            remove(n);
-            setHead(n);
-            return n.value;
-        }
-
-        return -1;
+        if (!m.containsKey(key)) return -1;
+        Node node = m.get(key);
+        update(node);
+        return node.value;
     }
 
-    public void set(int key, int value) {
-        if (map.containsKey(key)){
-            Node old = map.get(key);
-            old.value = value;
-            remove(old);
-            setHead(old);
+    // Time Complexity: O(1)
+    public void put(int key, int value) {
+        if (m.containsKey(key)){
+            Node node = m.get(key);
+            node.value = value;
+            update(node);
         } else {
-            Node created = new Node(key, value);
-            if (map.size() >= capacity){
-                map.remove(end.key);
-                remove(end);
-                setHead(created);
-            } else {
-                setHead(created);
+            Node node = new Node(key, value);
+            if (m.size() >= capacity){
+                Node last = list.peekLast();
+                m.remove(last.key);
+                list.remove(last);
             }
 
-            map.put(key, created);
+            list.offerFirst(node);
+            m.put(key, node);
         }
     }
 
-    private void remove(Node n){
-        if (n.prev !=null) {
-            n.prev.next = n.next;
-        } else {
-            head = n.next;
-        }
-
-        if (n.next != null) {
-            n.next.prev = n.prev;
-        } else {
-            end = n.prev;
-        }
-
+    private void update(Node node) {
+        list.remove(node);
+        list.offerFirst(node);
     }
 
-    private void setHead(Node n){
-        n.next = head;
-        n.prev = null;
 
-        if (head!=null ) head.prev = n;
-
-        head = n;
-
-        if(end == null) end = head;
-    }
-
-    // doubly linked list
+    // Node of doubly linked list
     static class Node {
-        int key;
-        int value;
-        Node prev;
-        Node next;
+        int key, value;
+        Node prev, next;
 
-        public Node(int key, int value) {
+        Node(int key, int value) {
             this.key = key;
             this.value = value;
+        }
+    }
+
+    // Doubly linked list
+    static class DList {
+        Node head, tail;
+        int size;
+
+        DList() {
+            // head and tail are two dummy nodes
+            head = new Node(0, 0);
+            tail = new Node(0, 0);
+            head.next = tail;
+            tail.prev = head;
+        }
+
+        // Add a new node at head
+        void offerFirst(Node node) {
+            head.next.prev = node;
+            node.next = head.next;
+            node.prev = head;
+            head.next = node;
+            size++;
+        }
+
+        // Remove a node in the middle
+        void remove(Node node) {
+            if (node == null) return;
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+            size--;
+        }
+
+        // Remove the tail node
+        Node pollLast() {
+            Node last = tail.prev;
+            remove(last);
+            return last;
+        }
+
+        Node peekLast() {
+            return tail.prev;
         }
     }
 }
@@ -158,7 +174,7 @@ public:
         return cacheMap[key]->value;
     }
 
-    void set(int key, int value) {
+    void put(int key, int value) {
         if (cacheMap.find(key) == cacheMap.end()) {
             if (cacheList.size() == capacity) { //删除链表尾部节点（最少访问的节点）
                 cacheMap.erase(cacheList.back().key);
@@ -183,3 +199,7 @@ private:
 
 </TabItem>
 </Tabs>
+
+### 相关题目
+
+- [LFU Cache](lfu-cache.md)

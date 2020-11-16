@@ -63,6 +63,7 @@ module.exports = {
           "linear-list/linked-list/linked-list-cycle-ii",
           "linear-list/linked-list/reorder-list",
           "linear-list/linked-list/lru-cache",
+          "linear-list/linked-list/lfu-cache",
           "linear-list/linked-list/palindrome-linked-list",
           "linear-list/linked-list/intersection-of-two-linked-lists",
         ],
