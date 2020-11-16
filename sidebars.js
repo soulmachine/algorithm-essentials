@@ -89,6 +89,7 @@ module.exports = {
       "string/length-of-last-word",
       "string/isomorphic-strings",
       "string/word-pattern",
+      "string/decode-string",
     ],
     栈和队列: [
       {
