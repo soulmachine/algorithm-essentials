@@ -328,6 +328,16 @@ module.exports = {
       "dp/range-sum-query-immutable",
       "dp/range-sum-query-2d-immutable",
       "dp/frog-jump",
+      {
+        type: "category",
+        label: "背包问题",
+        items: [
+          "dp/knapsack-problem/README",
+          "dp/knapsack-problem/partition-equal-subset-sum",
+          "dp/knapsack-problem/ones-and-zeroes",
+          "dp/knapsack-problem/last-stone-weight-ii",
+        ],
+      },
     ],
     图: ["graph/README", "graph/clone-graph", "graph/graph-valid-tree"],
     位操作: [
