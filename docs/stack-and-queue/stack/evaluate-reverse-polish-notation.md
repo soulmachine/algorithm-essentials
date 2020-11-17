@@ -57,7 +57,7 @@ class Solution {
 }
 ```
 
-### 迭代版
+### 栈
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -72,32 +72,29 @@ values={[
 <TabItem value="java">
 
 ```java
-// Max Points on a Line
-// 迭代，时间复杂度O(n)，空间复杂度O(logn)
+// Evaluate Reverse Polish Notation
+// UsingStack
+// Time Complexity: O(n)，Space Complexity: O(n)
 class Solution {
     public int evalRPN(String[] tokens) {
-        Stack<String> s = new Stack<>();
+        Stack<Integer> s = new Stack<>();
         for (String token : tokens) {
-            if (!isOperator(token)) {
-                s.push(token);
+            if (!"+-*/".contains(token)) {
+                s.push(Integer.valueOf(token));
             } else {
-                int y = Integer.parseInt(s.pop());
-                int x = Integer.parseInt(s.pop());
-                switch (token.charAt(0)) {
-                    case '+': x += y; break;
-                    case '-': x -= y; break;
-                    case '*': x *= y; break;
+                int y = s.pop();
+                int x = s.pop();
+                switch (token) {
+                    case "+": x += y; break;
+                    case "-": x -= y; break;
+                    case "*": x *= y; break;
                     default: x /= y;
                 }
-                s.push(String.valueOf(x));
+                s.push(x);
             }
         }
-        return Integer.parseInt(s.peek());
+        return s.peek();
     }
-    private static boolean isOperator(final String op) {
-        return op.length() == 1 && OPS.indexOf(op) != -1;
-    }
-    private static String OPS = new String("+-*/");
 }
 ```
 
@@ -105,34 +102,29 @@ class Solution {
 <TabItem value="cpp">
 
 ```cpp
-// Max Points on a Line
-// 迭代，时间复杂度O(n)，空间复杂度O(logn)
+// Evaluate Reverse Polish Notation
+// UsingStack
+// Time Complexity: O(n)，Space Complexity: O(n)
 class Solution {
 public:
     int evalRPN(vector<string> &tokens) {
-        stack<string> s;
+        stack<int> s;
         for (auto token : tokens) {
-            if (!is_operator(token)) {
-                s.push(token);
+            if (string("+-*/").find(token) == string::npos) {
+                s.push(std::stoi(token));
             } else {
-                int y = stoi(s.top());
-                s.pop();
-                int x = stoi(s.top());
-                s.pop();
+                int y = s.top(); s.pop();
+                int x = s.top(); s.pop();
                 switch(token[0]) {
                     case '+' : x += y; break;
                     case '-' : x -= y; break;
                     case '*' : x *= y; break;
                     default:   x /= y;
                 }
-                s.push(to_string(x));
+                s.push(x);
             }
         }
-        return stoi(s.top());
-    }
-private:
-    bool is_operator(const string &op) {
-        return op.size() == 1 && string("+-*/").find(op) != string::npos;
+        return s.top();
     }
 };
 ```

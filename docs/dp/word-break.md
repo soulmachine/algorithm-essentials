@@ -16,11 +16,11 @@ Return true because `"leetcode"` can be segmented as `"leet code"`.
 
 ### 分析
 
-设状态为`f(i)`，表示`s[0,i)`是否可以分词，则状态转移方程为
+本题最直观的做法是 BFS，也可以用 DFS 和动态规划。
 
-`f(i) = any_of(f(j) && s[j,i] in dict), 0 <= j < i`
+### 代码
 
-### 深搜
+#### DFS
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -84,7 +84,62 @@ private:
 </TabItem>
 </Tabs>
 
-### 动规
+#### BFS
+
+<Tabs
+defaultValue="java"
+values={[
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="java">
+
+```java
+// Word Break
+// BFS
+// Time Complexity: O(n^2), Space Complexity: O(n)
+public class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> set = new HashSet<>(wordDict);
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[s.length()];
+
+        queue.offer(0);
+        while (!queue.isEmpty()) {
+            int start = queue.poll();
+            if (!visited[start]) {
+                for (int end = start + 1; end <= s.length(); end++) {
+                    if (set.contains(s.substring(start, end))) {
+                        queue.offer(end);
+                        if (end == s.length()) {
+                            return true;
+                        }
+                    }
+                }
+                visited[start] = true;
+            }
+        }
+        return false;
+    }
+}
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// TODO
+```
+
+</TabItem>
+</Tabs>
+
+#### 动规
+
+设状态为`f(i)`，表示`s[0,i)`是否可以分词，则状态转移方程为
+
+`f(i) = any_of(f(j) && s[j,i] in dict), 0 <= j < i`
 
 <Tabs
 defaultValue="java"
