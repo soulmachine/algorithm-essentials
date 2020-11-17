@@ -19,48 +19,83 @@ Some examples:
 
 逆波兰表达式是典型的递归结构，所以可以用递归来求解，也可以用栈来求解。
 
-### 递归版
-
-递归的写法，C++版可以 AC，但 Java 版会爆栈`StackOverflowError`，所以 Java 只能用栈来解决。
-
-```java
-// Evaluate Reverse Polish Notation
-// 递归，时间复杂度O(n)，空间复杂度O(logn)
-// StackOverflowError
-class Solution {
-    public int evalRPN(final String[] tokens) {
-        return evalRPN(tokens, tokens.length - 1);
-    }
-    private static int evalRPN(final String[] tokens, int i) {
-        if (i < 0) return 0;
-        int x, y;
-        final String token = tokens[i--];
-        if (isOperator(token))  {
-            y = evalRPN(tokens, i--);
-            x = evalRPN(tokens, i--);
-
-            switch (token.charAt(0)) {
-                case '+': x += y; break;
-                case '-': x -= y; break;
-                case '*': x *= y; break;
-                default: x /= y;
-            }
-        } else  {
-            x = Integer.parseInt(token);
-        }
-        return x;
-    }
-    private static boolean isOperator(final String op) {
-        return op.length() == 1 && OPS.indexOf(op) != -1;
-    }
-    private static String OPS = new String("+-*/");
-}
-```
-
-### 栈
+### 代码
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+
+#### 递归版
+
+<Tabs
+defaultValue="java"
+values={[
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="java">
+
+```java
+// Evaluate Reverse Polish Notation
+// Recursive
+// Time Complexity: O(n)，Space Complexity: O(n)
+class Solution {
+    private int top;
+
+    public int evalRPN(String[] tokens) {
+        top = tokens.length-1;
+        return dfs(tokens);
+    }
+
+    public int dfs(String[] tokens) {
+        String token = tokens[top--];
+        if (!"+-*/".contains(token)) {
+            return Integer.parseInt(token);
+        } else {
+            int y = dfs(tokens);
+            int x = dfs(tokens);
+            switch (token) {
+                case "+": return x + y;
+                case "-": return x - y;
+                case "*": return x * y;
+                default: return x / y;
+            }
+        }
+    }
+}
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// Evaluate Reverse Polish Notation
+// UsingStack
+// Time Complexity: O(n)，Space Complexity: O(n)
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        const string& token = tokens.back(); tokens.pop_back();
+        if (string("+-*/").find(token) == string::npos) {
+            return std::stoi(token);
+        } else {
+            int y = evalRPN(tokens);
+            int x = evalRPN(tokens);
+            switch(token[0]) {
+                case '+' : return x + y;
+                case '-' : return x - y;
+                case '*' : return x * y;
+                default:   return x / y;
+            }
+        }
+    }
+};
+```
+
+</TabItem>
+</Tabs>
+
+#### 栈
 
 <Tabs
 defaultValue="java"
