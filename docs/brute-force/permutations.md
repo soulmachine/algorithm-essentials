@@ -10,12 +10,102 @@ For example,
 `[1,2,3]` have the following permutations:
 `[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2]`, and `[3,2,1]`.
 
-### next_permutation()
-
-函数 `next_permutation()`的具体实现见这节 [Next Permutation](../linear-list/array/next-permutation.md)。
+### 代码
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+
+#### 递归
+
+<Tabs
+defaultValue="java"
+values={[
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="java">
+
+```java
+// Permutations
+// Recursive
+// Time Complexity: O(n!), Space Complexity: O(n)
+public class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        dfs(nums, 0, result);
+        return result;
+    }
+
+    private static void dfs(int[] nums, int start, List<List<Integer>> result) {
+        if (start == nums.length) {
+            result.add(Arrays.stream(nums).boxed().collect(Collectors.toList()));
+            return;
+        }
+
+        for (int i = start; i < nums.length; i++) {
+            swap(nums, start, i);
+            dfs(nums, start + 1, result);
+            swap(nums, start, i); // restore
+        }
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+}
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// Permutations
+// 深搜，增量构造法
+// 时间复杂度O(n!)，空间复杂度O(n)
+class Solution {
+public:
+    vector<vector<int> > permute(vector<int>& num) {
+        sort(num.begin(), num.end());
+
+        vector<vector<int>> result;
+        vector<int> path;  // 中间结果
+
+        dfs(num, path, result);
+        return result;
+    }
+private:
+    void dfs(const vector<int>& num, vector<int> &path,
+            vector<vector<int> > &result) {
+        if (path.size() == num.size()) {  // 收敛条件
+            result.push_back(path);
+            return;
+        }
+
+        // 扩展状态
+        for (auto i : num) {
+            // 查找 i 是否在path 中出现过
+            auto pos = find(path.begin(), path.end(), i);
+
+            if (pos == path.end()) {
+                path.push_back(i);
+                dfs(num, path, result);
+                path.pop_back();
+            }
+        }
+    }
+};
+```
+
+</TabItem>
+</Tabs>
+
+#### next_permutation()
+
+函数 `next_permutation()`的具体实现见这节 [Next Permutation](../linear-list/array/next-permutation.md)。
 
 <Tabs
 defaultValue="java"
@@ -140,105 +230,6 @@ private:
         reverse(rfirst, pivot);
 
         return true;
-    }
-};
-```
-
-</TabItem>
-</Tabs>
-
-### 递归
-
-本题是求路径本身，求所有解，函数参数需要标记当前走到了哪步，还需要中间结果的引用，最终结果的引用。
-
-扩展节点，每次从左到右，选一个没有出现过的元素。
-
-本题不需要判重，因为状态装换图是一颗有层次的树。收敛条件是当前走到了最后一个元素。
-
-#### 代码
-
-<Tabs
-defaultValue="java"
-values={[
-{ label: 'Java', value: 'java', },
-{ label: 'C++', value: 'cpp', },
-]
-}>
-<TabItem value="java">
-
-```java
-// Permutations
-// 深搜，增量构造法
-// 时间复杂度O(n!)，空间复杂度O(n)
-public class Solution {
-    public List<List<Integer>> permute(int[] nums) {
-        Arrays.sort(nums);
-
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> path = new ArrayList<>(); // 中间结果
-
-        dfs(nums, path, result);
-        return result;
-    }
-    private static void dfs(int[] nums, List<Integer> path,
-                            List<List<Integer>> result) {
-        if (path.size() == nums.length) {  // 收敛条件
-            result.add(new ArrayList<Integer>(path));
-            return;
-        }
-
-        // 扩展状态
-        for (int i : nums) {
-            // 查找 i 是否在path 中出现过
-            int pos = path.indexOf(i);
-
-            if (pos == -1) {
-                path.add(i);
-                dfs(nums, path, result);
-                path.remove(path.size() - 1);
-            }
-        }
-    }
-}
-```
-
-</TabItem>
-<TabItem value="cpp">
-
-```cpp
-// Permutations
-// 深搜，增量构造法
-// 时间复杂度O(n!)，空间复杂度O(n)
-class Solution {
-public:
-    vector<vector<int> > permute(vector<int>& num) {
-        sort(num.begin(), num.end());
-
-        vector<vector<int>> result;
-        vector<int> path;  // 中间结果
-
-        dfs(num, path, result);
-        return result;
-    }
-private:
-    void dfs(const vector<int>& num, vector<int> &path,
-            vector<vector<int> > &result) {
-        if (path.size() == num.size()) {  // 收敛条件
-            result.push_back(path);
-            return;
-        }
-
-        // 扩展状态
-        for (auto i : num) {
-            // 查找 i 是否在path 中出现过
-            auto pos = find(path.begin(), path.end(), i);
-
-            if (pos == path.end()) {
-                path.push_back(i);
-                dfs(num, path, result);
-                path.pop_back();
-            }
-        }
     }
 };
 ```
