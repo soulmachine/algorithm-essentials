@@ -50,6 +50,7 @@ module.exports = {
           "linear-list/linked-list/reverse-linked-list",
           "linear-list/linked-list/odd-even-linked-list",
           "linear-list/linked-list/add-two-numbers",
+          "linear-list/linked-list/add-two-numbers-ii",
           "linear-list/linked-list/reverse-linked-list-ii",
           "linear-list/linked-list/partition-list",
           "linear-list/linked-list/remove-duplicates-from-sorted-list",

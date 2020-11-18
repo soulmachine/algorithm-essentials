@@ -8,29 +8,22 @@ Reverse a singly linked list.
 
 ### 分析
 
-用三个指针 `tail`,`p`,`q`，紧紧相邻，不断前进，每次将`p.next`指向`tail`，将`q.next`指向`p`。
+用双指针 `p`, `q`，不断前进。
 
 ### 解法 1 迭代
 
 ```java
 // Reverse Linked List
 // Time Complexity: O(n), Space Complexity: O(1)
-public class Solution {
+class Solution {
     public ListNode reverseList(ListNode head) {
-        if (head == null || head.next == null) return head;
-
-        ListNode tail = null;
-        ListNode p = head;
-        ListNode q = p.next;
-
+        ListNode p = null;
+        ListNode q = head;
         while (q != null) {
-            ListNode old = q.next;
-            p.next = tail;
+            ListNode tmp = q.next;
             q.next = p;
-
-            tail = p;
             p = q;
-            q = old;
+            q = tmp;
         }
         return p;
     }
@@ -45,12 +38,9 @@ public class Solution {
 public class Solution {
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) return head;
-
-        ListNode tail = head.next;
+        ListNode newHead = reverseList(head.next);
+        head.next.next = head;
         head.next = null;
-        ListNode newHead = reverseList(tail);
-        tail.next = head;
-
         return newHead;
     }
 }
