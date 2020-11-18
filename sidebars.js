@@ -255,6 +255,7 @@ module.exports = {
       "search/find-minimum-in-rotated-sorted-array-ii",
       "search/median-of-two-sorted-arrays",
       "search/h-index-ii",
+      "search/random-pick-with-weight",
     ],
     暴力枚举法: [
       "brute-force/subsets",
