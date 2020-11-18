@@ -81,3 +81,4 @@ public:
 
 - [Add Two Numbers](linear-list/linked-list/add-two-numbers.md)
 - [Add Binary](add-binary.md)
+- [Multiply Strings](multiply-strings.md)

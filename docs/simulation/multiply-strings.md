@@ -12,12 +12,62 @@ Note: The numbers can be arbitrarily large and are non-negative.
 
 高精度乘法。
 
-常见的做法是将字符转化为一个 int，一一对应，形成一个 int 数组。但是这样很浪费空间，一个 int32 的最大值是`2^{31}-1=2147483647`，可以与 9 个字符对应，由于有乘法，减半，则至少可以与 4 个字符一一对应。一个 int64 可以与 9 个字符对应。
-
-### 代码 1
+### 代码
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+
+#### 模拟乘法
+
+<Tabs
+defaultValue="java"
+values={[
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="java">
+
+```java
+// Multiply Strings
+// Time Complexity: O(n*m), Space Complexity: O(n+m)
+class Solution {
+    public String multiply(String num1, String num2) {
+        int m = num1.length(), n = num2.length();
+        int[] z = new int[m + n];
+
+        for(int i = m - 1; i >= 0; i--) {
+            for(int j = n - 1; j >= 0; j--) {
+                int mul = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+                int sum = mul + z[i+j+1];
+                z[i + j + 1] = sum % 10;
+                z[i + j] += sum / 10; // carry
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for(int x : z) {
+            if(!(sb.length() == 0 && x == 0)) // skip prefix zeros
+                sb.append(x);
+        }
+        return sb.length() == 0 ? "0" : sb.toString();
+    }
+}
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// TODO
+```
+
+</TabItem>
+</Tabs>
+
+#### 转化成整数数组，一个字符对应一个整数
+
+常见的做法是把每个字符转化为一个 int，一一对应，形成一个 int 数组。
 
 <Tabs
 defaultValue="java"
@@ -141,7 +191,9 @@ public:
 </TabItem>
 </Tabs>
 
-### 代码 2
+#### 转化成整数数组，9 个字符对应一个 64 位整数
+
+一个字符用一个 int 表示，其实是比较浪费内存空间的，因为一个 int64 的最大值是$2^{63}-1=9223372036854775807$，可以与 19 个字符对应，由于有乘法，减半，则至少可以与 9 个字符一一对应。
 
 <Tabs
 defaultValue="java"
@@ -329,3 +381,7 @@ public:
 
 </TabItem>
 </Tabs>
+
+### 相关题目
+
+- [Add Strings](add-strings.md)
