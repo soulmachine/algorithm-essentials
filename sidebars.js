@@ -340,7 +340,12 @@ module.exports = {
         ],
       },
     ],
-    图: ["graph/README", "graph/clone-graph", "graph/graph-valid-tree"],
+    图: [
+      "graph/README",
+      "graph/clone-graph",
+      "graph/graph-valid-tree",
+      "graph/network-delay-time",
+    ],
     位操作: [
       "bitwise-operations/reverse-bits",
       "bitwise-operations/repeated-dna-sequences",
