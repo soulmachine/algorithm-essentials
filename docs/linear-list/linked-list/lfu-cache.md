@@ -44,6 +44,10 @@ Implement the `LFUCache` class:
 
 ### 分析
 
+`int get(int key)` 需要 O(1)，意味着我们需要一个 `HashMap<Integer, Node> nodeMap`，由 key 指向`Node`节点，这个节点里包含它的值`value`和频率`count`等信息。
+
+当缓存到达最大容量时，需要把访问频率最低的元素弹出去，因此我们需要一个整数变量`min`，来记录最小的频率。还需要一种 O(1)的方法，能够根据`min`的值，找到对应的元素列表，这些元素的访问频率都等于`min`，因此最佳方法是用一个`HashMap<Integer, DList> countMap`，把频率映射到双向链表。为啥用双向链表？因为每次访问一个`key`，这个`key`的频率就会增 1，那么这个节点需要从旧的列表摘除，插入到新的列表，这种需要频繁插入，删除的场景，显然适合用双向链表。
+
 ### 代码
 
 本题比 [LRU Cache](lru-cache.md) 更复杂，但大体上是类似的。
