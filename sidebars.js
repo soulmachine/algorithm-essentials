@@ -345,6 +345,7 @@ module.exports = {
       "graph/clone-graph",
       "graph/graph-valid-tree",
       "graph/network-delay-time",
+      "graph/path-with-maximum-probability",
     ],
     位操作: [
       "bitwise-operations/reverse-bits",
