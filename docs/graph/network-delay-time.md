@@ -26,7 +26,7 @@ Now, we send a signal from a certain node `K`. How long will it take for all nod
 
 ### 分析
 
-本题可以抽象为：给定图 `G` 和源顶点 `v`，找到从 `v` 至图中所有顶点的最短路径。这是经典的单源最短路径问题，用 Dijkstra 算法。
+本题可以抽象为：给定图 `G` 和源顶点 `v`，找到从 `v` 至图中所有顶点的最短路径。这是经典的单源最短路径问题，用 Dijkstra 算法。时间复杂度 $O(E\log V)$，空间复杂度 $O(V+E)$，`V` 为顶点个数，`E` 为边条数。
 
 ### 代码
 
@@ -45,7 +45,7 @@ values={[
 ```java
 // Network Delay Time
 // Dijkstra
-// Time Complexity: O(Nlog(N) + E), Space Complexity: O(N + E)
+// Time Complexity: O(logN*E), Space Complexity: O(N + E)
 class Solution {
     public int networkDelayTime(int[][] times, int N, int K) {
         // adjacency list, map<vertex_id, map<vertex_id, weight>>
