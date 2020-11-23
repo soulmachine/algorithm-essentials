@@ -58,17 +58,17 @@ class Solution {
         }
 
         // Min heap, sorted by frequency
-        PriorityQueue<String> minHeap = new PriorityQueue<>(
+        PriorityQueue<String> pq = new PriorityQueue<>(
             (x, y) -> m.get(x) == m.get(y)? y.compareTo(x) : m.get(x) - m.get(y));
 
         for (String s: m.keySet()) {
-          minHeap.offer(s);
-          if (minHeap.size() > k) minHeap.poll();
+          pq.offer(s);
+          if (pq.size() > k) pq.poll();
         }
 
         String[] top = new String[k];
         for(int i = k - 1; i >= 0; --i) {
-            top[i] = minHeap.poll();
+            top[i] = pq.poll();
         }
         return Arrays.asList(top);
     }

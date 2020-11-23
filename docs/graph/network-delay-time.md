@@ -73,14 +73,14 @@ class Solution {
         Map<Integer, Integer> father = new HashMap<>();
 
         // pair<distance, vertex_id>, min heap, sorted by distance from start to vertex_id
-        Queue<int[]> minHeap = new PriorityQueue<>((a, b) -> (a[0] - b[0]));
+        Queue<int[]> pq = new PriorityQueue<>((a, b) -> (a[0] - b[0]));
 
         // from start to start itself
-        minHeap.offer(new int[]{0, start});
+        pq.offer(new int[]{0, start});
         dist.put(start, 0);
 
-        while(!minHeap.isEmpty()){
-            final int u = minHeap.poll()[1];
+        while(!pq.isEmpty()){
+            final int u = pq.poll()[1];
             if (!graph.containsKey(u)) continue; // leaf node
 
             for(int v : graph.get(u).keySet()){
@@ -89,7 +89,7 @@ class Solution {
                     final int shorter = dist.get(u)+ w;
                     dist.put(v, shorter);
                     father.put(v, u);
-                    minHeap.offer(new int[]{shorter, v});
+                    pq.offer(new int[]{shorter, v});
                 }
             }
         }

@@ -311,11 +311,11 @@ values={[
 
 ```python
 # min heap by default
-q = []
-heapq.heappush(7)
-q[0]
-heapq.heappop()
-len(q) == 0
+pq = []
+heapq.heappush(pq, 7)
+pq[0]
+heapq.heappop(pq)
+len(pq) == 0
 ```
 
 </TabItem>
@@ -323,11 +323,11 @@ len(q) == 0
 
 ```java
 // min heap by default
-PriorityQueue<Integer> q = new PriorityQueue<>();
-q.offer(7);
-q.peek();
-q.poll();
-q.isEmpty();
+PriorityQueue<Integer> pq = new PriorityQueue<>();
+pq.offer(7);
+pq.peek();
+pq.poll();
+pq.isEmpty();
 ```
 
 </TabItem>
@@ -335,11 +335,11 @@ q.isEmpty();
 
 ```cpp
 // max heap by default
-priority_queue<int> q;
-q.push(7)
-q.top();
-q.pop();
-q.empty()
+priority_queue<int> pq;
+pq.push(7)
+pq.top();
+pq.pop();
+pq.empty()
 ```
 
 </TabItem>
