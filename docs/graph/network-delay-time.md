@@ -45,7 +45,7 @@ values={[
 ```java
 // Network Delay Time
 // Dijkstra
-// Time Complexity: O(logN*E), Space Complexity: O(N + E)
+// Time Complexity: O(ElogN), Space Complexity: O(N + E)
 class Solution {
     public int networkDelayTime(int[][] times, int N, int K) {
         // adjacency list, map<vertex_id, map<vertex_id, weight>>
@@ -73,14 +73,14 @@ class Solution {
         Map<Integer, Integer> father = new HashMap<>();
 
         // pair<distance, vertex_id>, min heap, sorted by distance from start to vertex_id
-        Queue<int[]> pq = new PriorityQueue<>((a, b) -> (a[0] - b[0]));
+        Queue<Pair<Integer, Integer>> pq = new PriorityQueue<>((a, b) -> a.getKey() - b.getKey());
 
         // from start to start itself
-        pq.offer(new int[]{0, start});
+        pq.offer(new Pair(0, start));
         dist.put(start, 0);
 
         while(!pq.isEmpty()){
-            final int u = pq.poll()[1];
+            final int u = pq.poll().getValue();
             if (!graph.containsKey(u)) continue; // leaf node
 
             for(int v : graph.get(u).keySet()){
@@ -89,7 +89,7 @@ class Solution {
                     final int shorter = dist.get(u)+ w;
                     dist.put(v, shorter);
                     father.put(v, u);
-                    pq.offer(new int[]{shorter, v});
+                    pq.offer(new Pair(shorter, v));
                 }
             }
         }
@@ -108,3 +108,7 @@ class Solution {
 
 </TabItem>
 </Tabs>
+
+### 相关题目
+
+- [Path with Maximum Probability](path-with-maximum-probability.md)
