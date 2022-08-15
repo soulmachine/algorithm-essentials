@@ -1,5 +1,5 @@
-const remarkMath = require("remark-math");
-const rehypeKatex = require("rehype-katex");
+const math = require('remark-math');
+const katex = require('rehype-katex');
 
 module.exports = {
   title: "算法珠玑",
@@ -13,10 +13,10 @@ module.exports = {
   stylesheets: [
     // from https://github.com/KaTeX/KaTeX#starter-template
     {
-      href: "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css",
+      href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
       type: "text/css",
       integrity:
-        "sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X",
+        "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
       crossorigin: "anonymous",
     },
   ],
@@ -36,15 +36,10 @@ module.exports = {
       ],
     },
     algolia: {
+      appId: 'BH4D9OD16A',
       apiKey: "02f7be89c899e6289492d2f3822fa580",
       indexName: "algorithm_essentials_soulmachine",
       searchParameters: {}, // Optional (if provided by Algolia)
-    },
-    googleAnalytics: {
-      trackingID: "UA-7583537-12",
-    },
-    gtag: {
-      trackingID: "UA-7583537-12",
     },
     prism: {
       theme: require("prism-react-renderer/themes/github"),
@@ -60,11 +55,17 @@ module.exports = {
           // Please change this to your repo.
           editUrl:
             "https://github.com/soulmachine/algorithm-essentials/edit/master/",
-          remarkPlugins: [remarkMath],
-          rehypePlugins: [[rehypeKatex, { strict: false }]],
+          remarkPlugins: [math],
+          rehypePlugins: [[katex, { strict: false }]],
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
+        },
+        gtag: {
+          trackingID: "UA-7583537-12",
+        },
+        googleAnalytics: {
+          trackingID: "UA-7583537-12",
         },
       },
     ],
