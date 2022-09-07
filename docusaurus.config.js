@@ -36,8 +36,8 @@ module.exports = {
       ],
     },
     algolia: {
-      appId: 'BH4D9OD16A',
-      apiKey: "02f7be89c899e6289492d2f3822fa580",
+      appId: 'SJ9D0I9C67',
+      apiKey: "f611fdd8408b5a18f8cb862bdebf72fb",
       indexName: "algorithm_essentials_soulmachine",
       searchParameters: {}, // Optional (if provided by Algolia)
     },
