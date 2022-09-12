@@ -11,19 +11,13 @@ Can you solve it without using extra space?
 
 ### 分析
 
-当 fast 与 slow 相遇时，slow 肯定没有遍历完链表，而 fast 已经在环内循环了`n`圈($$1 \leq n$$)。假设 slow 走了`s`步，则 fast 走了`2s`步（fast 步数还等于`s`加上在环上多转的`n`圈），设环长为`r`，则：
+用快慢指针，都从表头出发，当快指针和慢指针相遇时，慢指针还没有走完链表，快指针已经在环内转了n圈。
 
-`2s = s + nr`
+假设环的长度为`r`，环入口点距离链表头的距离为`a`，两指针第一次相遇点距离环入口为`b`，
 
-`s = nr`
+由于快指针走过的距离是慢指针的两倍，则有 `a+nr+b=2*(a+b)` -> `nr=a+b` -> `a= nr-b`
 
-设整个链表长`L`，环入口点与相遇点距离为`a`，起点到环入口点的距离为`x`，则
-
-`x + a = nr = (n – 1)r +r = (n-1)r + L - x`
-
-`x = (n-1)r + (L – x – a)`
-
-`L – x – a`为相遇点到环入口点的距离，由此可知，从链表头到环入口点等于`n-1`圈内环+相遇点到环入口点，于是我们可以从`head`开始另设一个指针`slow2`，两个慢指针每次前进一步，它俩一定会在环入口点相遇。
+可见，当快慢指针相遇时，重新用双指针的技巧，不过这时候二个指针的速度要相同，一个从表头出发，一个从相遇点出发，当2个指针相遇时，它们一定会在入口点相遇。
 
 ### 代码
 
@@ -97,4 +91,4 @@ public:
 ### 相关题目
 
 - [Linked List Cycle](linked-list-cycle.md)
-- [Intersection of Two Linked Lists](intersection-of-two-linked-lists.md)
+- [Middle of the Linked List](middle-of-the-linked-list.md)

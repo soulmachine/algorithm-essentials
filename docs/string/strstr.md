@@ -221,4 +221,4 @@ private:
 
 ### 相关题目
 
-- [String to Integer (atoi)](string-to-integer.md)
+- [String to Integer (atoi)](atoi.md)

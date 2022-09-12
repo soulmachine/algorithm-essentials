@@ -33,12 +33,12 @@ values={[
 # Time Complexity: O(n), Space Complexity: O(1)
 class Solution:
     def removeElement(self, nums: List[int], target: int) -> int:
-        i = 0
-        for j in range(len(nums)):
-            if nums[j] != target:
-                nums[i] = nums[j]
-                i += 1
-        return i
+        slow = 0
+        for fast in range(len(nums)):
+            if nums[fast] != target:
+                nums[slow] = nums[fast]
+                slow += 1
+        return slow
 ```
 
 </TabItem>
@@ -50,13 +50,13 @@ class Solution:
 // Time Complexity: O(n), Space Complexity: O(1)
 public class Solution {
     public int removeElement(int[] nums, int target) {
-        int i = 0;
-        for (int j = 0; j < nums.length; ++j) {
-            if (nums[j] != target) {
-                nums[i++] = nums[j];
+        int slow = 0;
+        for (int fast = 0; fast < nums.length; ++fast) {
+            if (nums[fast] != target) {
+                nums[slow++] = nums[fast];
             }
         }
-        return i;
+        return slow;
     }
 };
 ```
@@ -71,13 +71,13 @@ public class Solution {
 class Solution {
 public:
     int removeElement(vector<int>& nums, int target) {
-        int i = 0;
-        for (int j = 0; j < nums.size(); ++j) {
-            if (nums[j] != target) {
-                nums[i++] = nums[j];
+        int slow = 0;
+        for (int fast = 0; fast < nums.size(); ++fast) {
+            if (nums[fast] != target) {
+                nums[slow++] = nums[fast];
             }
         }
-        return i;
+        return slow;
     }
 };
 ```
@@ -87,4 +87,7 @@ public:
 
 ### 相关题目
 
+- [Remove Duplicates from Sorted Array](remove-duplicates-from-sorted-array.md)
+- [Remove Duplicates from Sorted Array II](remove-duplicates-from-sorted-array-ii.md)
 - [Move Zeroes](move-zeroes.md)
+- [Remove Duplicates from Sorted List](../linked-list/remove-duplicates-from-sorted-list.md)

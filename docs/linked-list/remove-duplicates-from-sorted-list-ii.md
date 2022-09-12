@@ -37,15 +37,16 @@ class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         if (head ==null || head.next == null) return head;
 
-        ListNode p = head.next;
-        if (head.val == p.val) {
-            while (p != null && head.val == p.val) {
-                p = p.next;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        if (slow.val == fast.val) {
+            while (fast != null && slow.val == fast.val) {
+                fast = fast.next;
             }
-            return deleteDuplicates(p);
+            return deleteDuplicates(fast);
         } else {
-            head.next = deleteDuplicates(head.next);
-            return head;
+            slow.next = deleteDuplicates(slow.next);
+            return slow;
         }
     }
 };
@@ -56,24 +57,25 @@ class Solution {
 
 ```cpp
 // Remove Duplicates from Sorted List II
-// 递归版，时间复杂度O(n)，空间复杂度O(1)
+// 递归版，时间复杂度O(n)，空间复杂度O(n)
 class Solution {
 public:
     ListNode *deleteDuplicates(ListNode *head) {
         if (head == nullptr || head->next == nullptr) return head;
 
-        ListNode *p = head->next;
-        if (head->val == p->val) {
-            while (p != nullptr && head->val == p->val) {
-                ListNode *tmp = p;
-                p = p->next;
+        ListNode *slow = head;
+        ListNode *fast = head->next;
+        if (slow->val == fast->val) {
+            while (fast != nullptr && slow->val == fast->val) {
+                ListNode *tmp = fast;
+                fast = fast->next;
                 delete tmp;
             }
-            delete head;
-            return deleteDuplicates(p);
+            delete slow;
+            return deleteDuplicates(fast);
         } else {
-            head->next = deleteDuplicates(head->next);
-            return head;
+            slow->next = deleteDuplicates(slow->next);
+            return slow;
         }
     }
 };
@@ -166,4 +168,8 @@ public:
 
 ### 相关题目
 
+- [Remove Duplicates from Sorted Array](../array/remove-duplicates-from-sorted-array.md)
+- [Remove Duplicates from Sorted Array II](../array/remove-duplicates-from-sorted-array-ii.md)
+- [Remove Element](../array/remove-element.md)
+- [Move Zeroes](../array/move-zeroes.md)
 - [Remove Duplicates from Sorted List](remove-duplicates-from-sorted-list.md)

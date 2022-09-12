@@ -180,7 +180,7 @@ private:
 
 ### 相关题目
 
-- [Next Permutation](../linear-list/array/next-permutation.md)
-- [Permutation Sequence](../linear-list/array/permutation-sequence.md)
+- [Next Permutation](../array/next-permutation.md)
+- [Permutation Sequence](../array/permutation-sequence.md)
 - [Permutations](permutations.md)
 - [Combinations](combinations.md)

@@ -127,7 +127,7 @@ private:
 
 ### 相关题目
 
-- [Permutation Sequence](../../linear-list/array/permutation-sequence.md)
-- [Permutations](../../brute-force/permutations.md)
-- [Permutations II](../../brute-force/permutations-ii.md)
-- [Combinations](../../brute-force/combinations.md)
+- [Permutation Sequence](permutation-sequence.md)
+- [Permutations](../brute-force/permutations.md)
+- [Permutations II](../brute-force/permutations-ii.md)
+- [Combinations](../brute-force/combinations.md)

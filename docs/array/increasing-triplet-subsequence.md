@@ -41,4 +41,4 @@ public class Solution {
 
 ### 相关题目
 
-- [Longest Increasing Subsequence](../../dp/longest-increasing-subsequence.md)
+- [Longest Increasing Subsequence](../dp/longest-increasing-subsequence.md)

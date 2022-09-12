@@ -1,10 +1,10 @@
 ---
-title: 节点定义
+title: 简介
 ---
 
 本章主要讲树相关的算法。
 
-LeetCode 上二叉树的节点定义如下：
+本书中二叉树的节点定义如下：
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -42,3 +42,5 @@ struct TreeNode {
 
 </TabItem>
 </Tabs>
+
+二叉树是一种递归的数据结构，它是最容易培养框架思维的，而且大部分算法技巧，本质上都是树的遍历问题。

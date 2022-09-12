@@ -105,7 +105,7 @@ private:
 
 #### next_permutation()
 
-函数 `next_permutation()`的具体实现见这节 [Next Permutation](../linear-list/array/next-permutation.md)。
+函数 `next_permutation()`的具体实现见这节 [Next Permutation](../array/next-permutation.md)。
 
 <Tabs
 defaultValue="java"
@@ -239,7 +239,7 @@ private:
 
 ### 相关题目
 
-- [Next Permutation](../linear-list/array/next-permutation.md)
-- [Permutation Sequence](../linear-list/array/permutation-sequence.md)
+- [Next Permutation](../array/next-permutation.md)
+- [Permutation Sequence](../array/permutation-sequence.md)
 - [Permutations II](permutations-ii.md)
 - [Combinations](combinations.md)

@@ -92,5 +92,5 @@ public class Solution {
 ### 相关题目
 
 - [Add Two Numbers](add-two-numbers.md)
-- [Add Binary](../../simulation/add-binary.md)
-- [Add Strings](../../simulation/add-strings.md)
+- [Add Binary](../simulation/add-binary.md)
+- [Add Strings](../simulation/add-strings.md)

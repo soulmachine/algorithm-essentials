@@ -64,7 +64,24 @@ public class Solution {
 <TabItem value="cpp">
 
 ```cpp
-// TODO
+// Intersection of Two Linked Lists
+// Two Pointers
+// Time Complexity: O(m+n), Space Complexity: O(1)
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if(headA == nullptr || headB == nullptr) return nullptr;
+
+        ListNode * a = headA;
+        ListNode * b = headB;
+        while ( a != b) {
+            a = a == nullptr? headB : a->next;
+            b = b == nullptr? headA : b->next;
+        }
+
+        return a;
+    }
+};
 ```
 
 </TabItem>
@@ -72,4 +89,4 @@ public class Solution {
 
 ### 相关题目
 
-- [Linked List Cycle II](linked-list-cycle-ii.md)
+- [Remove Nth Node From End of List](remove-nth-node-from-end-of-list.md)

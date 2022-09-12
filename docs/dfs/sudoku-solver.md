@@ -122,4 +122,4 @@ private:
 
 ### 相关题目
 
-- [Valid Sudoku](../linear-list/array/valid-sudoku.md)
+- [Valid Sudoku](../array/valid-sudoku.md)

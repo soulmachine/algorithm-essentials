@@ -174,5 +174,5 @@ public:
 
 ### 相关题目
 
-- [Container With Most Water](../../greedy/container-with-most-water.md)
-- [Largest Rectangle in Histogram](../../stack-and-queue/stack/largest-rectangle-in-histogram.md)
+- [Container With Most Water](../greedy/container-with-most-water.md)
+- [Largest Rectangle in Histogram](../stack-and-queue/stack/largest-rectangle-in-histogram.md)

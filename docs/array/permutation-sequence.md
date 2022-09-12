@@ -151,6 +151,6 @@ private:
 ### 相关题目
 
 - [Next Permutation](next-permutation.md)
-- [Permutations](../../brute-force/permutations.md)
-- [Permutations II](../../brute-force/permutations-ii.md)
-- [Combinations](../../brute-force/combinations.md)
+- [Permutations](../brute-force/permutations.md)
+- [Permutations II](../brute-force/permutations-ii.md)
+- [Combinations](../brute-force/combinations.md)

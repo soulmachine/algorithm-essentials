@@ -125,4 +125,4 @@ public:
 
 ### 相关题目
 
-- [Sudoku Solver](../../dfs/sudoku-solver.md)
+- [Sudoku Solver](../dfs/sudoku-solver.md)

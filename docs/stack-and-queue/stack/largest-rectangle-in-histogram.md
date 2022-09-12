@@ -88,5 +88,5 @@ public:
 
 ### 相关题目
 
-- [Trapping Rain Water](../../linear-list/array/trapping-rain-water.md)
+- [Trapping Rain Water](../../array/trapping-rain-water.md)
 - [Container With Most Water](../../greedy/container-with-most-water.md)

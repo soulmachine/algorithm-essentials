@@ -65,4 +65,4 @@ class Solution {
 
 ### 相关题目
 
-- [Meeting Rooms](../../linear-list/array/meeting-rooms.md)
+- [Meeting Rooms](../../array/meeting-rooms.md)

@@ -16,7 +16,7 @@ Given `1->1->2->3->3`, return `1->2->3`.
 
 无
 
-### 递归版
+### 解法1: 递归版
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -32,25 +32,18 @@ values={[
 
 ```java
 // Remove Duplicates from Sorted List
-// 递归版，时间复杂度O(n)，空间复杂度O(1)
+// 递归版，时间复杂度O(n)，空间复杂度O(n)
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        if (head == null) return head;
-        ListNode dummy = new ListNode(head.val + 1); // 值只要跟head不同即可
-        dummy.next = head;
+        if (head == null || head.next == null) return head;
 
-        recur(dummy, head);
-        return dummy.next;
-    }
-    private static void recur(ListNode prev, ListNode cur) {
-        if (cur == null) return;
-
-        if (prev.val == cur.val) { // 删除head
-            prev.next = cur.next;
-            recur(prev, prev.next);
+        ListNode newHead = deleteDuplicates(head.next);
+        if(head.val == newHead.val) {
+            return newHead;
         } else {
-            recur(prev.next, cur.next);
+            head.next=newHead;
         }
+        return head;
     }
 };
 ```
@@ -60,28 +53,19 @@ class Solution {
 
 ```cpp
 // Remove Duplicates from Sorted List
-// 递归版，时间复杂度O(n)，空间复杂度O(1)
+// 递归版，时间复杂度O(n)，空间复杂度O(n)
 class Solution {
 public:
-    ListNode *deleteDuplicates(ListNode *head) {
-        if (!head) return head;
-        ListNode dummy(head->val + 1); // 值只要跟head不同即可
-        dummy.next = head;
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(head == nullptr || head->next == nullptr) return head;
 
-        recur(&dummy, head);
-        return dummy.next;
-    }
-private:
-    static void recur(ListNode *prev, ListNode *cur) {
-        if (cur == nullptr) return;
-
-        if (prev->val == cur->val) { // 删除head
-            prev->next = cur->next;
-            delete cur;
-            recur(prev, prev->next);
+        ListNode* newHead = deleteDuplicates(head->next);
+        if(head->val == newHead->val) {
+            return newHead;
         } else {
-            recur(prev->next, cur->next);
+            head->next=newHead;
         }
+        return head;
     }
 };
 ```
@@ -89,7 +73,7 @@ private:
 </TabItem>
 </Tabs>
 
-### 迭代版
+### 解法2: 迭代版
 
 <Tabs
 defaultValue="java"
@@ -107,11 +91,11 @@ class Solution {
 public ListNode deleteDuplicates(ListNode head) {
         if (head == null) return null;
 
-        for (ListNode prev = head, cur = head.next; cur != null; cur = prev.next) {
-            if (prev.val == cur.val) {
-                prev.next = cur.next;
+        for (ListNode slow = head, fast = head.next; fast != null; fast = slow.next) {
+            if (slow.val == fast.val) {
+                slow.next = fast.next;
             } else {
-                prev = cur;
+                slow = fast;
             }
         }
         return head;
@@ -130,12 +114,12 @@ public:
     ListNode *deleteDuplicates(ListNode *head) {
         if (head == nullptr) return nullptr;
 
-        for (ListNode *prev = head, *cur = head->next; cur != nullptr; cur = prev->next) {
-            if (prev->val == cur->val) {
-                prev->next = cur->next;
-                delete cur;
+        for (ListNode *slow = head, *fast = head->next; fast != nullptr; fast = slow->next) {
+            if (slow->val == fast->val) {
+                slow->next = fast->next;
+                delete fast;
             } else {
-                prev = cur;
+                slow = fast;
             }
         }
         return head;
@@ -149,3 +133,7 @@ public:
 ### 相关题目
 
 - [Remove Duplicates from Sorted List II](remove-duplicates-from-sorted-list-ii.md)
+- [Remove Duplicates from Sorted Array](../array/remove-duplicates-from-sorted-array.md)
+- [Remove Duplicates from Sorted Array II](../array/remove-duplicates-from-sorted-array-ii.md)
+- [Remove Element](../array/remove-element.md)
+- [Move Zeroes](../array/move-zeroes.md)

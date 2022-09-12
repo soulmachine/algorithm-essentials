@@ -12,7 +12,7 @@ Output: `7 -> 0 -> 8`
 
 ### 分析
 
-跟 [Add Binary](../../simulation/add-binary.md) 很类似
+跟 [Add Binary](../simulation/add-binary.md) 很类似
 
 ### 代码
 
@@ -92,5 +92,5 @@ public:
 ### 相关题目
 
 - [Add Two Numbers II](add-two-numbers-ii.md)
-- [Add Binary](../../simulation/add-binary.md)
-- [Add Strings](../../simulation/add-strings.md)
+- [Add Binary](../simulation/add-binary.md)
+- [Add Strings](../simulation/add-strings.md)

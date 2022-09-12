@@ -73,3 +73,4 @@ public:
 ### 相关题目
 
 - [Linked List Cycle II](linked-list-cycle-ii.md)
+- [Middle of the Linked List](middle-of-the-linked-list.md)

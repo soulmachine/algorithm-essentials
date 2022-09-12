@@ -98,7 +98,7 @@ void dfs(type &input, type &path, type &result, int cur or gap) {
 
 递归有两种加速策略，一种是 **剪枝(prunning)**，对中间结果进行判断，提前返回；一种是**缓存**，缓存中间结果，防止重复计算，用空间换时间。
 
-其实，递归+缓存，就是 memorization。所谓**memorization**（翻译为备忘录法，见[第 ??? 节](dp-vs-memorization.md)，就是"top-down with cache"（自顶向下+缓存），它是Donald Michie 在1968年创造的术语，表示一种优化技术，在top-down 形式的程序中，使用缓存来避免重复计算，从而达到加速的目的。
+其实，递归+缓存，就是 memorization。所谓**memorization**（翻译为备忘录法)，就是"top-down with cache"（自顶向下+缓存），它是Donald Michie 在1968年创造的术语，表示一种优化技术，在top-down 形式的程序中，使用缓存来避免重复计算，从而达到加速的目的。
 
 **memorization 不一定用递归**，就像深搜不一定用递归一样，可以在迭代(iterative)中使用 memorization 。**递归也不一定用 memorization**，可以用memorization来加速，但不是必须的。只有当递归使用了缓存，它才是 memorization 。
 

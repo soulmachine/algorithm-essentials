@@ -81,5 +81,5 @@ public:
 
 ### 相关题目
 
-- [Add Two Numbers](linear-list/linked-list/add-two-numbers.md)
+- [Add Two Numbers](../linked-list/add-two-numbers.md)
 - [Add Strings](add-strings.md)

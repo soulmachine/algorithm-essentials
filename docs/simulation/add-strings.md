@@ -79,6 +79,6 @@ public:
 
 ### 相关题目
 
-- [Add Two Numbers](linear-list/linked-list/add-two-numbers.md)
+- [Add Two Numbers](../linked-list/add-two-numbers.md)
 - [Add Binary](add-binary.md)
 - [Multiply Strings](multiply-strings.md)

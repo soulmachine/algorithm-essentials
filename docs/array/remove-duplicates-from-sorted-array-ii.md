@@ -36,13 +36,13 @@ class Solution:
         if len(nums) <= N:
             return len(nums)
 
-        length = N
-        for i in range(N, len(nums)):
-            if nums[i] != nums[length-N]:
-                nums[length] = nums[i]
-                length += 1
+        slow = N
+        for fast in range(N, len(nums)):
+            if nums[fast] != nums[slow-N]:
+                nums[slow] = nums[fast]
+                slow += 1
 
-        return length
+        return slow
 ```
 
 </TabItem>
@@ -56,13 +56,13 @@ public class Solution {
         final int N = 2;
         if (nums.length <= N) return nums.length;
 
-        int len = N;
-        for (int i = N; i < nums.length; i++){
-            if (nums[i] != nums[len - N])
-                nums[len++] = nums[i];
+        int slow = N;
+        for (int fast = N; fast < nums.length; fast++){
+            if (nums[fast] != nums[slow - N])
+                nums[slow++] = nums[fast];
         }
 
-        return len;
+        return slow;
     }
 };
 ```
@@ -79,13 +79,13 @@ public:
         const int N = 2;
         if (nums.size() <= N) return nums.size();
 
-        int len = N;
-        for (int i = N; i < nums.size(); i++){
-            if (nums[i] != nums[len - N])
-                nums[len++] = nums[i];
+        int slow = N;
+        for (int fast = N; fast < nums.size(); fast++){
+            if (nums[fast] != nums[slow-N])
+                nums[slow++] = nums[fast];
         }
 
-        return len;
+        return slow;
     }
 };
 ```
@@ -153,3 +153,6 @@ public:
 ### 相关题目
 
 - [Remove Duplicates from Sorted Array](remove-duplicates-from-sorted-array.md)
+- [Remove Element](remove-element.md)
+- [Move Zeroes](move-zeroes.md)
+- [Remove Duplicates from Sorted List](../linked-list/remove-duplicates-from-sorted-list.md)

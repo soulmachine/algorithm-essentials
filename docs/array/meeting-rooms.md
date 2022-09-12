@@ -60,4 +60,4 @@ class Solution {
 
 ### 相关题目
 
-- [Meeting Rooms II](../../sorting/heap-sort/meeting-rooms-ii.md)
+- [Meeting Rooms II](../sorting/heap-sort/meeting-rooms-ii.md)

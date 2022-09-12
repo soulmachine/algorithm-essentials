@@ -39,13 +39,13 @@ class Solution:
         if len(nums) == 0:
             return 0
 
-        i = 0
-        for j in range(1, len(nums)):
-            if nums[j] != nums[i]:
-                i += 1
-                nums[i] = nums[j]
+        slow = 0
+        for fast in range(len(nums)):
+            if nums[fast] != nums[slow]:
+                slow += 1
+                nums[slow] = nums[fast]
 
-        return i + 1
+        return slow + 1
 ```
 
 </TabItem>
@@ -58,12 +58,12 @@ public class Solution {
     public int removeDuplicates(int[] nums) {
         if (nums.length == 0) return 0;
 
-        int len = 1;
-        for (int i = 1; i < nums.length; i++){
-            if (nums[i] != nums[len - 1])
-                nums[len++] = nums[i];
+        int slow = 0;
+        for (int fast = 0; fast < nums.length; fast++){
+            if (nums[fast] != nums[slow])
+                nums[++slow] = nums[fast];
         }
-        return len;
+        return slow + 1;
     }
 };
 ```
@@ -79,12 +79,13 @@ public:
     int removeDuplicates(vector<int>& nums) {
         if (nums.empty()) return 0;
 
-        int len = 1;
-        for (int i = 1; i < nums.size(); i++) {
-            if (nums[i] != nums[len-1])
-                nums[len++] = nums[i];
+        int slow = 0;
+        for (int fast = 0; fast < nums.size(); fast++) {
+            if (nums[fast] != nums[slow]) {
+                nums[++slow] = nums[fast];
+            }
         }
-        return len;
+        return slow+1;
     }
 };
 ```
@@ -95,3 +96,6 @@ public:
 ### 相关题目
 
 - [Remove Duplicates from Sorted Array II](remove-duplicates-from-sorted-array-ii.md)
+- [Remove Element](remove-element.md)
+- [Move Zeroes](move-zeroes.md)
+- [Remove Duplicates from Sorted List](../linked-list/remove-duplicates-from-sorted-list.md)
