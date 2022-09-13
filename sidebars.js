@@ -8,9 +8,6 @@ module.exports = {
         {
           type: "category",
           label: "快慢指针",
-          link: {
-            type: 'generated-index',
-          },
           items: [
             "array/remove-duplicates-from-sorted-array",
             "array/remove-duplicates-from-sorted-array-ii",
@@ -59,11 +56,8 @@ module.exports = {
     {
       type: 'category',
       label: '单链表',
-      link: {
-        type: 'generated-index',
-      },
+      link: { type: 'doc', id: "linked-list/README" },
       items: [
-        "linked-list/README",
         {
           type: "category",
           label: "快慢指针",
@@ -98,12 +92,9 @@ module.exports = {
     {
       type: 'category',
       label: '二叉树',
-      link: {
-        type: 'generated-index',
-      },
+      link: { type: 'doc', id: "binary-tree/README" },
       collapsed: false,
       items: [
-        "binary-tree/README",
         {
           type: "category",
           label: "二叉树的遍历",
@@ -149,8 +140,8 @@ module.exports = {
         {
           type: "category",
           label: "二叉树的递归",
+          link: { type: 'doc', id: "binary-tree/recursion/README" },
           items: [
-            "binary-tree/recursion/README",
             "binary-tree/recursion/minimum-depth-of-binary-tree",
             "binary-tree/recursion/maximum-depth-of-binary-tree",
             "binary-tree/recursion/path-sum",
@@ -232,23 +223,24 @@ module.exports = {
         {
           type: "category",
           label: "桶排序",
+          link: { type: 'doc', id: "sorting/bucket-sort/README" },
           items: [
-            "sorting/bucket-sort/README",
             "sorting/bucket-sort/first-missing-positive",
           ],
         },
         {
           type: "category",
           label: "计数排序",
+          link: { type: 'doc', id: "sorting/counting-sort/README" },
           items: [
-            "sorting/counting-sort/README",
             "sorting/counting-sort/h-index",
           ],
         },
         {
           type: "category",
           label: "基数排序",
-          items: ["sorting/radix-sort/README", "sorting/radix-sort/maximum-gap"],
+          link: { type: 'doc', id: "sorting/radix-sort/README" },
+          items: ["sorting/radix-sort/maximum-gap"],
         },
         {
           type: "category",
@@ -274,9 +266,6 @@ module.exports = {
     {
       type: 'category',
       label: '查找',
-      link: {
-        type: 'generated-index',
-      },
       items: [
         "search/search-for-a-range",
         "search/search-insert-position",
@@ -294,9 +283,6 @@ module.exports = {
     {
       type: 'category',
       label: '暴力枚举法',
-      link: {
-        type: 'generated-index',
-      },
       items: [
         "brute-force/subsets",
         "brute-force/subsets-ii",
@@ -308,11 +294,8 @@ module.exports = {
     {
       type: 'category',
       label: '广度优先搜索',
-      link: {
-        type: 'generated-index',
-      },
+      link: { type: 'doc', id: "bfs/README" },
       items: [
-        "bfs/README",
         "bfs/word-ladder",
         "bfs/word-ladder-ii",
         "bfs/surrounded-regions",
@@ -325,9 +308,6 @@ module.exports = {
     {
       type: 'category',
       label: '深度优先搜索',
-      link: {
-        type: 'generated-index',
-      },
       items: [
         "dfs/additive-number",
         "dfs/palindrome-partitioning",
@@ -350,17 +330,11 @@ module.exports = {
     {
       type: 'category',
       label: '分治法',
-      link: {
-        type: 'generated-index',
-      },
       items: ["divide-and-conquer/pow", "divide-and-conquer/sqrt"],
     },
     {
       type: 'category',
       label: '贪心法',
-      link: {
-        type: 'generated-index',
-      },
       items: [
         "greedy/jump-game",
         "greedy/jump-game-ii",
@@ -375,9 +349,6 @@ module.exports = {
     {
       type: 'category',
       label: '动态规划',
-      link: {
-        type: 'generated-index',
-      },
       items: [
         "dp/triangle",
         "dp/maximum-subarray",
@@ -406,8 +377,8 @@ module.exports = {
         {
           type: "category",
           label: "背包问题",
+          link: { type: 'doc', id: "dp/knapsack-problem/README" },
           items: [
-            "dp/knapsack-problem/README",
             "dp/knapsack-problem/partition-equal-subset-sum",
             "dp/knapsack-problem/ones-and-zeroes",
             "dp/knapsack-problem/last-stone-weight-ii",
@@ -418,11 +389,8 @@ module.exports = {
     {
       type: 'category',
       label: '图',
-      link: {
-        type: 'generated-index',
-      },
+      link: { type: 'doc', id: "graph/README" },
       items: [
-        "graph/README",
         "graph/clone-graph",
         "graph/graph-valid-tree",
         "graph/network-delay-time",
@@ -432,9 +400,6 @@ module.exports = {
     {
       type: 'category',
       label: '字符串',
-      link: {
-        type: 'generated-index',
-      },
       items: [
         "string/valid-palindrome",
         "string/strstr",
@@ -459,9 +424,6 @@ module.exports = {
     {
       type: 'category',
       label: '位操作',
-      link: {
-        type: 'generated-index',
-      },
       items: [
         "bitwise-operations/reverse-bits",
         "bitwise-operations/repeated-dna-sequences",
@@ -481,11 +443,8 @@ module.exports = {
     {
       type: 'category',
       label: '数论',
-      link: {
-        type: 'generated-index',
-      },
+      link: { type: 'doc', id: "number-theory/README" },
       items: [
-        "number-theory/README",
         "number-theory/happy-number",
         "number-theory/ugly-number",
         "number-theory/ugly-number-ii",
@@ -497,11 +456,8 @@ module.exports = {
     {
       type: 'category',
       label: '模拟',
-      link: {
-        type: 'generated-index',
-      },
+      link: { type: 'doc', id: "simulation/README" },
       items: [
-        "simulation/README",
         "simulation/reverse-integer",
         "simulation/palindrome-number",
         "simulation/insert-interval",
