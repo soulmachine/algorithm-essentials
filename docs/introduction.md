@@ -1,7 +1,7 @@
 ---
-id: README
+id: introduction
 title: 算法珠玑 —— 举一反三，以少胜多，告别题海战术
-sidebar_label: 介绍
+sidebar_label: 简介
 slug: /
 ---
 

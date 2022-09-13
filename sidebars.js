@@ -1,19 +1,9 @@
 module.exports = {
   docs: [
-    {
-      type: 'category',
-      label: '介绍',
-      link: {
-        type: 'generated-index',
-      },
-      items: ["README", "data-structures"],
-    },
+    "introduction",
     {
       type: 'category',
       label: '数组',
-      link: {
-        type: 'generated-index',
-      },
       items: [
         {
           type: "category",
@@ -533,6 +523,6 @@ module.exports = {
         "simulation/sparse-matrix-multiplication",
       ],
     },
-    "java-collection",
+    { 附录: ["data-structures", "java-collection"] },
   ],
 };
