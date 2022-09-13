@@ -48,8 +48,7 @@ const config = {
         docs: {
           routeBasePath: "/", // docs-only mode, see https://docusaurus.io/docs/docs-introduction#docs-only-mode
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            "https://github.com/soulmachine/algorithm-essentials/edit/master/",
+          // editUrl: "https://github.com/soulmachine/algorithm-essentials/edit/master/",
           remarkPlugins: [math],
           rehypePlugins: [[katex, { strict: false }]],
         },
