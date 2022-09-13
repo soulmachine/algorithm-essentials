@@ -82,6 +82,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
+        hideOnScroll: true,
         title: "算法珠玑",
         logo: {
           alt: "算法珠玑",
