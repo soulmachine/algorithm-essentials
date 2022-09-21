@@ -96,9 +96,9 @@ const config = {
         ],
       },
       algolia: {
-        appId: 'IMD1FFERB9',
-        apiKey: "63b2c582ff61a2e223b8fc135e3bc448",
-        indexName: "index_algorithm_essentials",
+        appId: 'SJ9D0I9C67',
+        apiKey: "d92895330fd9ec0342db2ae9b5555bd4",
+        indexName: "algorithm_essentials_soulmachine",
       },
       prism: {
         additionalLanguages: ['java'],

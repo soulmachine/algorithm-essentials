@@ -35,7 +35,6 @@ module.exports = {
         "array/trapping-rain-water",
         "array/rotate-image",
         "array/plus-one",
-        "array/climbing-stairs",
         "array/set-matrix-zeroes",
         "array/gas-station",
         "array/candy",
@@ -98,6 +97,7 @@ module.exports = {
         {
           type: "category",
           label: "二叉树的遍历",
+          link: { type: 'doc', id: "binary-tree/traversal/README" },
           items: [
             "binary-tree/traversal/binary-tree-preorder-traversal",
             "binary-tree/traversal/binary-tree-inorder-traversal",
@@ -349,11 +349,53 @@ module.exports = {
     {
       type: 'category',
       label: '动态规划',
+      link: { type: 'doc', id: "dp/README" },
       items: [
+        {
+          type: "category",
+          label: "背包问题",
+          link: { type: 'doc', id: "dp/knapsack-problem/README" },
+          items: [
+            {
+              type: "category",
+              label: "0-1背包问题",
+              link: { type: 'doc', id: "dp/knapsack-problem/zero-one-knapsack" },
+              items: [
+                "dp/knapsack-problem/partition-equal-subset-sum",
+                "dp/knapsack-problem/ones-and-zeroes",
+                "dp/knapsack-problem/last-stone-weight-ii",
+                "dp/knapsack-problem/target-sum",
+              ],
+            },
+            {
+              type: "category",
+              label: "完全背包问题",
+              link: { type: 'doc', id: "dp/knapsack-problem/unbounded-knapsack" },
+              items: [
+                "dp/knapsack-problem/coin-change",
+                "dp/knapsack-problem/coin-change-ii",
+                "dp/knapsack-problem/perfect-squares",
+                "dp/knapsack-problem/combination-sum-iv",
+                "dp/knapsack-problem/word-break",
+                "dp/knapsack-problem/word-break-ii",
+              ],
+            },
+            {
+              type: "category",
+              label: "多重背包问题",
+              link: { type: 'doc', id: "dp/knapsack-problem/bounded-knapsack" },
+              items: [
+              ],
+            },
+            "dp/knapsack-problem/summary",
+          ],
+        },
+        "dp/climbing-stairs",
         "dp/triangle",
         "dp/maximum-subarray",
         "dp/maximum-product-subarray",
         "dp/longest-increasing-subsequence",
+        "dp/russian-doll-envelopes",
         "dp/palindrome-partitioning-ii",
         "dp/maximal-rectangle",
         "dp/best-time-to-buy-and-sell-stock-iii",
@@ -365,8 +407,6 @@ module.exports = {
         "dp/edit-distance",
         "dp/decode-ways",
         "dp/distinct-subsequences",
-        "dp/word-break",
-        "dp/word-break-ii",
         "dp/dungeon-game",
         "dp/house-robber",
         "dp/house-robber-ii",
@@ -374,16 +414,6 @@ module.exports = {
         "dp/range-sum-query-immutable",
         "dp/range-sum-query-2d-immutable",
         "dp/frog-jump",
-        {
-          type: "category",
-          label: "背包问题",
-          link: { type: 'doc', id: "dp/knapsack-problem/README" },
-          items: [
-            "dp/knapsack-problem/partition-equal-subset-sum",
-            "dp/knapsack-problem/ones-and-zeroes",
-            "dp/knapsack-problem/last-stone-weight-ii",
-          ],
-        },
       ],
     },
     {

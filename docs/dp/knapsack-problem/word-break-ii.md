@@ -89,16 +89,15 @@ public class Solution {
 class Solution {
 public:
     vector<string> wordBreak(string s, unordered_set<string> &dict) {
-        // 长度为n的字符串有n+1个隔板
-        vector<bool> f(s.length() + 1, false);
+        vector<bool> dp(s.length() + 1, false);
+        dp[0] = true;
         // prev[i][j]为true，表示s[j, i)是一个合法单词，可以从j处切开
         // 第一行未用
         vector<vector<bool> > prev(s.length() + 1, vector<bool>(s.length()));
-        f[0] = true;
         for (size_t i = 1; i <= s.length(); ++i) {
             for (int j = i - 1; j >= 0; --j) {
-                if (f[j] && dict.find(s.substr(j, i - j)) != dict.end()) {
-                    f[i] = true;
+                if (dp[j] && dict.find(s.substr(j, i - j)) != dict.end()) {
+                    dp[i] = true;
                     prev[i][j] = true;
                 }
             }

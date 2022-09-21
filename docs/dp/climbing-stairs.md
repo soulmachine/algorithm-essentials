@@ -23,10 +23,72 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 
 方法 3，数学公式。斐波那契数列的通项公式为 $$a_n=\dfrac{1}{\sqrt{5}}\left[\left(\dfrac{1+\sqrt{5}}{2}\right)^n-\left(\dfrac{1-\sqrt{5}}{2}\right)^n\right]$$。
 
-### 迭代
+### 代码
+
+#### 1. 动规
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+
+<Tabs
+defaultValue="java"
+values={[
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="java">
+
+```java
+// Climbing Stairs
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+public class Solution {
+    public int climbStairs(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
+    }
+}
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// Climbing Stairs
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+class Solution {
+public:
+    int climbStairs(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        vector<int> dp(n+1);
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
+    }
+};
+```
+
+</TabItem>
+</Tabs>
+
+#### 2. 迭代
+
+实际上我们不需要保存整个数组，只需要保存前两个元素即可。
 
 <Tabs
 defaultValue="java"
@@ -78,7 +140,9 @@ public:
 </TabItem>
 </Tabs>
 
-### 数学公式
+#### 3. 数学公式
+
+这个方法最快，不过在面试中用不到，列在这里仅做参考。
 
 <Tabs
 defaultValue="java"

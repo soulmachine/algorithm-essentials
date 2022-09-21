@@ -137,7 +137,7 @@ public class Solution {
 
 #### 动规
 
-设状态为`f(i)`，表示`s[0,i)`是否可以分词，则状态转移方程为
+本题可以视为一个完全背包问题，令函数`f(i)`表示`s[0,i)`是否可以分词，则状态转移方程为
 
 `f(i) = any_of(f(j) && s[j,i] in dict), 0 <= j < i`
 
@@ -154,19 +154,17 @@ values={[
 // Word Break
 // 动规，时间复杂度O(n^2)，空间复杂度O(n)
 class Solution {
-    public boolean wordBreak(String s, Set<String> dict) {
-        // 长度为n的字符串有n+1个隔板
-        boolean[] f = new boolean[s.length() + 1];
-        f[0] = true; // 空字符串
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> dict = new HashSet<>();
+        dict.addAll(wordDict);
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true; // base case, empty string
         for (int i = 1; i <= s.length(); ++i) {
             for (int j = i - 1; j >= 0; --j) {
-                if (f[j] && dict.contains(s.substring(j, i))) {
-                    f[i] = true;
-                    break;
-                }
+                dp[i] = dp[i] || dp[j] && dict.contains(s.substring(j, i));
             }
         }
-        return f[s.length()];
+        return dp[s.length()];
     }
 }
 ```
@@ -179,19 +177,16 @@ class Solution {
 // 动规，时间复杂度O(n^2)，空间复杂度O(n)
 class Solution {
 public:
-    bool wordBreak(string s, unordered_set<string> &dict) {
-        // 长度为n的字符串有n+1个隔板
-        vector<bool> f(s.size() + 1, false);
-        f[0] = true; // 空字符串
+    bool wordBreak(const string& s, const vector<string>& wordDict) {
+        unordered_set<string> dict(wordDict.begin(), wordDict.end());
+        vector<bool> dp(s.size() + 1, false);
+        dp[0] = true; // base case
         for (int i = 1; i <= s.size(); ++i) {
             for (int j = i - 1; j >= 0; --j) {
-                if (f[j] && dict.find(s.substr(j, i - j)) != dict.end()) {
-                    f[i] = true;
-                    break;
-                }
+                dp[i] = dp[i] || dp[j] && dict.find(s.substr(j, i - j)) != dict.end();
             }
         }
-        return f[s.size()];
+        return dp[s.size()];
     }
 };
 ```

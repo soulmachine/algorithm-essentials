@@ -35,9 +35,9 @@ A set `x` is a subset of a set `y` if all elements of `x` are also elements of `
 
 0-1 背包问题，每个字符串有两种重量，0 的个数和 1 的个数，每个字符串的价值都是 1，因此这个问题里有两个背包，一个装 0，一个装 1，价值则是背包里字符串的个数。
 
-令`f[i][j][k]`表示把前`i`个字符串装进容量为`j`的背包 0 和容量为`k`背包 1，可以获得的最大集合的大小，则状态转移方程是：
+令$f(i, j, k)$表示把前$i$个字符串装进容量为$j$的第一个背包和容量为$k$第二个背包，可以获得的子集的最大大小，则状态转移方程是：
 
-$$f[i][j][k]=\max\left\{f[i-1][j][k], f[i-1][j-w_0[i][k-w_1[i]]+1\right\}$$
+$$f(i,j,k)=\max\left\{f(i-1,j,k), f(i-1, j-w0_i,k-w1_i)+1\right\}$$
 
 ### 代码
 
@@ -45,7 +45,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="cpp"
 values={[
 { label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
@@ -67,7 +67,7 @@ values={[
 // Time Complexity: O(l*m*n), Space Complexity: O(m*n)
 class Solution {
     public int findMaxForm(String[] strs, int m, int n) {
-        int[][] f = new int[m+1][n+1];
+        int[][] dp = new int[m+1][n+1];
 
         int[] w0 = new int[strs.length];
         int[] w1 = new int[strs.length];
@@ -79,10 +79,10 @@ class Solution {
         for (int i = 0; i < strs.length; ++i) {
             for(int j = m; j >= w0[i]; --j)
                 for(int k = n;k >= w1[i]; --k) {
-                    f[j][k] = Math.max(f[j][k], f[j-w0[i]][k-w1[i]]+1);
+                    dp[j][k] = Math.max(dp[j][k], dp[j-w0[i]][k-w1[i]]+1);
                 }
         }
-        return f[m][n];
+        return dp[m][n];
     }
 
     private static int numberOfZeroes(String s) {
@@ -99,7 +99,37 @@ class Solution {
 <TabItem value="cpp">
 
 ```cpp
-// TODO
+// Ones and Zeroes
+// 0-1 knapsack problem
+// Time Complexity: O(l*m*n), Space Complexity: O(m*n)
+class Solution {
+public:
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        vector<vector<int>> dp(m+1, vector<int>(n+1));
+        vector<int> w0(strs.size());
+        vector<int> w1(strs.size());
+        for (int i = 0; i < strs.size(); ++i) {
+            w0[i] = numberOfZeroes(strs[i]);
+            w1[i] = strs[i].size() - w0[i];
+        }
+
+        for (int i = 0; i < strs.size(); ++i) {
+            for(int j = m; j >= w0[i]; --j)
+                for(int k = n; k >= w1[i]; --k) {
+                    dp[j][k] = max(dp[j][k], dp[j-w0[i]][k-w1[i]]+1);
+                }
+        }
+        return dp[m][n];
+    }
+private:
+    static int numberOfZeroes(const string& s) {
+        int count = 0;
+        for (char c : s) {
+            if (c == '0') count++;
+        }
+        return count;
+    }
+};
 ```
 
 </TabItem>
