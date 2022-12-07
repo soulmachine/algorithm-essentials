@@ -48,10 +48,7 @@ public class Solution {
                 p = p.left;
             } else {
                 p = s.pop();
-                --k;
-                if (k == 0) {
-                    return p.val;
-                }
+                if (--k == 0) return p.val;
                 p = p.right;
             }
         }

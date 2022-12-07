@@ -51,7 +51,9 @@ The maze is represented by a binary 2D array. 1 means the wall and 0 means the e
 
 ### 分析
 
-求最短路径，很显然，用 BFS。
+求最短路径，很显然，用 BFS。通常判断重复用一个布尔二维矩阵`visited`即可，不过本题光这样判重是不够的，需要判断路径是否更短，因为本题一步不是单纯的只走一步，而是要一路碰到墙为止，所以用原始的BFS是不行的。
+
+时间复杂度 $O(M \times N \times \max\left\{M, N\right\})$ , 因为要遍历每个位置，同时在每个位置要一直走到墙。空间复杂度 $O(M \times N)$，队列里最坏可能会存储所有的位置。
 
 ### 代码
 
@@ -69,7 +71,7 @@ values={[
 <TabItem value="python">
 
 ```python
-TODO
+# TODO
 ```
 
 </TabItem>
@@ -82,15 +84,15 @@ TODO
 // Space complexity : O(mn)
 public class Solution {
     public int shortestDistance(int[][] maze, int[] start, int[] dest) {
-        int m = maze.length, n = maze[0].length;
-        int[][] distance = new int[m][n];
+        final int M = maze.length, N = maze[0].length;
+        int[][] distance = new int[M][N];
         for (int[] row: distance) Arrays.fill(row, Integer.MAX_VALUE);
 
-        int[][] dirs={{1, 0}, {-1, 0}, {0, -1}, {0, 1}}; // up, down, left, right
+        int[][] dirs={{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // up, down, left, right
         Queue<int[]> q = new LinkedList<>();
 
-        q.offer(start);
         distance[start[0]][start[1]] = 0;
+        q.offer(start);
         while (!q.isEmpty()) {
             int[] cur = q.poll();
             int x = cur[0], y = cur[1];
@@ -98,14 +100,15 @@ public class Solution {
             for (int[] dir: dirs) {
                 int newX = x, newY = y;
                 int i = dir[0], j = dir[1];
-                int count = 0;
-                while (0 <= newX + i && newX + i < m && 0 <= newY + j && newY + j < n && maze[newX + i][newY + j] == 0) {
+                int step = distance[x][y];
+                // walk until hit wall
+                while (0 <= newX + i && newX + i < M && 0 <= newY + j && newY + j < N && maze[newX + i][newY + j] == 0) {
                     newX += i;
                     newY += j;
-                    count++;
+                    step++;
                 }
-                if (distance[x][y] + count < distance[newX][newY]) {
-                    distance[newX][newY] = distance[x][y] + count;
+                if (step < distance[newX][newY]) {
+                    distance[newX][newY] = step;
                     q.offer(new int[] {newX, newY});
                 }
             }

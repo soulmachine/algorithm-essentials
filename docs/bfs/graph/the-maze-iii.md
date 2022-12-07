@@ -91,77 +91,62 @@ TODO
 // Space complexity : O(mn)
 public class Solution {
     public String findShortestWay(int[][] maze, int[] ball, int[] hole) {
-        int m = maze.length, n = maze[0].length;
-        Point[][] points = new Point[m][n];
-        for (int i = 0; i < m * n; i++) points[i/n][i%n] = new Point(i/n, i%n);
-
-        Queue<Point> q=new LinkedList<>();
-        int[][] directions = {{-1,0}, {1,0}, {0,-1}, {0,1}};
-        String[] names=new String[] {"u", "d", "l", "r"};
-
-        final Function<Point, Boolean> stateIsValid = (Point p) ->
-                0 <= p.x && p.x < maze.length && 0 <= p.y && p.y < maze[0].length &&
-                        maze[p.x][p.y] == 0 && (p.x!=hole[0] || p.y !=hole[1]);
-        final Function<Point, Boolean> stateIsTarget = (Point p) ->
-                p.x ==hole[0] && p.y ==hole[1];
-        final Function<Point, List<Point>> stateExtend = (Point p) -> {
-            List<Point> result = new ArrayList<>();
-
-            for (int i = 0; i < 4; i++) {
-                Point newPoint = new Point(p);
-                while (stateIsValid.apply(newPoint)) {
-                    newPoint.x +=directions[i][0];
-                    newPoint.y +=directions[i][1];
-                    newPoint.distance++;
-                }
-
-                if (!stateIsTarget.apply(newPoint)) { // check the hole
-                    newPoint.x -= directions[i][0];
-                    newPoint.y -= directions[i][1];
-                    newPoint.distance--;
-                }
-                if (newPoint.compareTo(points[newPoint.x][newPoint.y]) < 0) {
-                    newPoint.path += names[i];
-                    result.add(newPoint);
-                }
-            }
-            return result;
-        };
-
-        points[ball[0]][ball[1]].distance = 0;
-        q.offer(points[ball[0]][ball[1]]);
-        while (!q.isEmpty()) {
-            Point p = q.poll();
-            List<Point> newStates = stateExtend.apply(p);
-            for (Point newState : newStates) {
-                q.offer(newState);
-                points[newState.x][newState.y] = newState;
+        final int M = maze.length, N = maze[0].length;
+        State[][] states = new State[M][N];
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                states[i][j] = new State();
             }
         }
 
-        return points[hole[0]][hole[1]].distance ==Integer.MAX_VALUE ? "impossible" : points[hole[0]][hole[1]].path;
+        final int[][] dirs={{-1, 0}, {1, 0},{0, -1}, {0, 1}}; // up, down, left, right
+        final char[] names=new char[] {'u', 'd', 'l', 'r'};
+
+        Queue<int[]> q = new LinkedList<>();
+        states[ball[0]][ball[1]].distance = 0;
+        q.offer(ball);
+        while (!q.isEmpty()) {
+            int[] cur = q.poll();
+            int x = cur[0], y = cur[1];
+            if (x == hole[0] && y == hole[1]) continue;
+
+            for (int i = 0; i < 4; i++) { // try four directions
+                final int[] dir = dirs[i];
+                int newX = x, newY = y;
+                int dx = dir[0], dy = dir[1];
+                State newState = new State(states[x][y].distance, states[x][y].path + names[i]);
+                // walk until hit wall or meet the hole
+                while (0 <= newX + dx && newX + dx < M && 0 <= newY + dy && newY + dy < N && maze[newX + dx][newY + dy] == 0) {
+                    newX += dx;
+                    newY += dy;
+                    newState.distance++;
+                    if (newX == hole[0] && newY == hole[1]) break;
+                }
+                if (newState.compareTo(states[newX][newY]) < 0) {
+                    states[newX][newY] = newState;
+                    q.offer(new int[] {newX, newY});
+                }
+            }
+        }
+
+        return states[hole[0]][hole[1]].distance == Integer.MAX_VALUE ? "impossible" : states[hole[0]][hole[1]].path;
     }
 
-    static class Point implements Comparable<Point> {
-        int x, y; // coordinates
+    static class State implements Comparable<State> {
         int distance; // distance between start and this point
         String path; // path from start to this point
 
-        public Point(int x, int y) {
-            this.x = x;
-            this.y = y;
+        public State() {
             this.distance =Integer.MAX_VALUE;
             this.path ="";
         }
-
-        public Point(Point other) {
-            this.x = other.x;
-            this.y = other.y;
-            this.distance = other.distance;
-            this.path = other.path;
+        public State(int distance, String path) {
+            this.distance = distance;
+            this.path = path;
         }
+
         @Override
-        public int compareTo(Point other) {
+        public int compareTo(State other) {
             if (this.distance == other.distance) {
                 return this.path.compareTo(other.path);
             } else {

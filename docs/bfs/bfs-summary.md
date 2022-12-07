@@ -8,18 +8,13 @@ title: 小结
 
 1. 如何表示状态？
 1. 如何扩展状态？
-1. 在扩展状态的过程中，如何判断新状态是否有效？
-1. 在扩展状态的过程中，如何判断重复？
+1. 如何判断重复？
 
-深搜和广搜的最显著区别，在于第三步，扩展状态的时候，顺序不一样。代码层面上，仅需要修改一行代码，就可以将广搜变成深搜，那就是，把队列`queue`替换为栈`stack`，就变成深搜了。
+深搜和广搜的最显著区别，在于第2步，扩展状态的时候，顺序不一样。代码层面上，仅需要修改一行代码，把队列替换为栈，就可以将广搜变成深搜。
 
 ### 适用场景
 
-**输入数据**：没什么特征，不像深搜，需要有“递归”的性质。如果是树或者图，概率更大。
-
-**状态转换图**：树或者 DAG 图。
-
-**求解目标**：多阶段最优化问题。
+**求最短路径**，一定是是BFS，用DFS不可能做到最短。
 
 ### 思考的步骤
 
@@ -157,6 +152,10 @@ void gen_path(unordered_map<state_t, vector<state_t> > &father,
 
 **单队列的写法**
 
+有几点注意：
+
+* 可以在一个状态入队列前，把该状态标记为已访问；也可以在弹出一个状态后，再标记为已访问。一般建议前者，这样可以保证队列中不存在重复的状态。
+
 ```cpp
 #include "bfs_common.h"
 
@@ -191,13 +190,13 @@ vector<state_t> bfs(state_t &start, const vector<vector<int>> &grid) {
     };
 
     assert (start.level == 0);
+    visited.insert(start); // mark as visited before enqueue
     q.push(start);
     while (!q.empty()) {
         // 千万不能用 const auto&，pop() 会删除元素，
         // 引用就变成了悬空引用
         const state_t state = q.front();
         q.pop();
-        visited.insert(state);
 
         // 访问节点
         if (state_is_target(state)) {
@@ -208,6 +207,7 @@ vector<state_t> bfs(state_t &start, const vector<vector<int>> &grid) {
         // 扩展节点
         vector<state_t> new_states = state_extend(state);
         for (const auto& new_state : new_states) {
+            visited.insert(new_state); // mark as visited before enqueue
             q.push(new_state);
             father[new_state] = state;  // 求一条路径
             // visited.insert(state); // 优化：可以提前加入 visited 集合，

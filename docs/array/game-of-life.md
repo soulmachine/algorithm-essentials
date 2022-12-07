@@ -28,12 +28,11 @@ Write a function to compute the next state (after one update) of the board given
 
 因为题目给出的是一个 int 矩阵，大有空间可以利用。我们可以换一种方式进行编码，假设对于每个点，值的含义为：
 
-- 状态 0：死细胞转为死细胞
-- 状态 1：活细胞转为活细胞
-- 状态 2：活细胞转为死细胞
-- 状态 3：死细胞转为活细胞
+- 状态 0 和 1，表示状态不变
+- 状态 -1：活细胞转为死细胞
+- 状态 2：死细胞转为活细胞
 
-得到这样一个矩阵后，最后将所有状态对 2 取模，状态 0 和 2 变成死细胞，1 和 3 变成活细胞，就是所求的下一轮局面了。
+得到这样一个矩阵后，最后将所有大于0的位置变成活细胞1，小于0的位置变成死细胞0，就是所求的下一轮局面了。
 
 ### 代码
 
@@ -51,27 +50,35 @@ public class Solution {
         // encode
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
-                int live = 0; // number of live cells
+                int live = 0; // number of live neighbors
                 for (int k = 0; k < 8; ++k) {
                     final int x = i + dx[k];
                     final int y = j + dy[k];
-                    if (x > -1 && x < m && y > -1 && y < n &&
-                            (board[x][y] == 1 || board[x][y] == 2)) {
+                    if (x > -1 && x < m && y > -1 && y < n && Math.abs(board[x][y]) == 1) {
                         ++live;
                     }
                 }
+                // Rule 1 or Rule 3
+                if ((board[i][j] == 1) && (live < 2 || live > 3)) {
+                    // -1 signifies the cell is now dead but originally was live.
+                    board[i][j] = -1;
+                }
+                // Rule 4
                 if (board[i][j] == 0 && live == 3) {
-                    board[i][j] = 3;
-                } else if (board[i][j] == 1 && (live < 2 || live > 3)) {
+                    // 2 signifies the cell is now live but was originally dead.
                     board[i][j] = 2;
                 }
             }
         }
 
-        //decode
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
-                board[i][j] %= 2;
+        // Get the final representation for the newly updated board.
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] > 0) {
+                    board[i][j] = 1;
+                } else {
+                    board[i][j] = 0;
+                }
             }
         }
     }

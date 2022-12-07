@@ -31,77 +31,12 @@ return its bottom-up level order traversal as:
 
 在上一题 [Binary Tree Level Order Traversal](binary-tree-level-order-traversal.md) 的基础上，`reverse()`一下即可。
 
-### 递归版
+### 代码
+
+#### 迭代版
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-
-<Tabs
-defaultValue="java"
-values={[
-{ label: 'Java', value: 'java', },
-{ label: 'C++', value: 'cpp', },
-]
-}>
-<TabItem value="java">
-
-```java
-// Binary Tree Level Order Traversal II
-// 递归版，时间复杂度O(n)，空间复杂度O(n)
-public class Solution {
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        traverse(root, 1, result);
-        Collections.reverse(result);
-        return result;
-    }
-
-    void traverse(TreeNode root, int level,
-                  List<List<Integer>> result) {
-        if (root == null) return;
-
-        if (level > result.size())
-            result.add(new ArrayList<>());
-
-        result.get(level-1).add(root.val);
-        traverse(root.left, level+1, result);
-        traverse(root.right, level+1, result);
-    }
-}
-```
-
-</TabItem>
-<TabItem value="cpp">
-
-```cpp
-// Binary Tree Level Order Traversal II
-// 递归版，时间复杂度O(n)，空间复杂度O(n)
-class Solution {
-public:
-    vector<vector<int> > levelOrderBottom(TreeNode *root) {
-        vector<vector<int>> result;
-        traverse(root, 1, result);
-        std::reverse(result.begin(), result.end()); // 比上一题多此一行
-        return result;
-    }
-
-    void traverse(TreeNode *root, size_t level, vector<vector<int>> &result) {
-        if (!root) return;
-
-        if (level > result.size())
-            result.push_back(vector<int>());
-
-        result[level-1].push_back(root->val);
-        traverse(root->left, level+1, result);
-        traverse(root->right, level+1, result);
-    }
-};
-```
-
-</TabItem>
-</Tabs>
-
-### 迭代版
 
 <Tabs
 defaultValue="java"
@@ -177,6 +112,73 @@ public:
         }
         reverse(result.begin(), result.end()); // 比上一题多此一行
         return result;
+    }
+};
+```
+
+</TabItem>
+</Tabs>
+
+#### 递归版
+
+<Tabs
+defaultValue="java"
+values={[
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="java">
+
+```java
+// Binary Tree Level Order Traversal II
+// 递归版，时间复杂度O(n)，空间复杂度O(n)
+public class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        traverse(root, 1, result);
+        Collections.reverse(result);
+        return result;
+    }
+
+    void traverse(TreeNode root, int level,
+                  List<List<Integer>> result) {
+        if (root == null) return;
+
+        if (level > result.size())
+            result.add(new ArrayList<>());
+
+        result.get(level-1).add(root.val);
+        traverse(root.left, level+1, result);
+        traverse(root.right, level+1, result);
+    }
+}
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// Binary Tree Level Order Traversal II
+// 递归版，时间复杂度O(n)，空间复杂度O(n)
+class Solution {
+public:
+    vector<vector<int> > levelOrderBottom(TreeNode *root) {
+        vector<vector<int>> result;
+        traverse(root, 1, result);
+        std::reverse(result.begin(), result.end()); // 比上一题多此一行
+        return result;
+    }
+
+    void traverse(TreeNode *root, size_t level, vector<vector<int>> &result) {
+        if (!root) return;
+
+        if (level > result.size())
+            result.push_back(vector<int>());
+
+        result[level-1].push_back(root->val);
+        traverse(root->left, level+1, result);
+        traverse(root->right, level+1, result);
     }
 };
 ```

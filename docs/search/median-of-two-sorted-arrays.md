@@ -91,29 +91,30 @@ public class Solution {
 class Solution {
 public:
     double findMedianSortedArrays(const vector<int>& A, const vector<int>& B) {
-        const int total = A.size() + B.size();
+        int total = A.size() + B.size();
         if (total %2 == 1)
-            return find_kth(A.begin(), m, B.begin(), n, total / 2 + 1);
+            return find_kth(A, 0, B, 0, total / 2 + 1);
         else
-            return (find_kth(A.begin(), m, B.begin(), n, total / 2)
-                    + find_kth(A.begin(), m, B.begin(), n, total / 2 + 1)) / 2.0;
+            return (find_kth(A, 0, B, 0, total / 2)
+                    + find_kth(A, 0, B, 0, total / 2 + 1)) / 2.0;
     }
 private:
-    static int find_kth(std::vector<int>::const_iterator A, int m,
-            std::vector<int>::const_iterator B, int n, int k) {
-        //always assume that m is equal or smaller than n
-        if (m > n) return find_kth(B, n, A, m, k);
-        if (m == 0) return *(B + k - 1);
-        if (k == 1) return min(*A, *B);
+    static int find_kth(const vector<int>& A, int ai, const vector<int>& B, int bi, int k) {
+        //always assume that A is shorter than B
+        if (A.size() - ai > B.size() - bi) {
+            return find_kth(B, bi, A, ai, k);
+        }
+        if (A.size() - ai == 0) return B[bi + k - 1];
+        if (k == 1) return min(A[ai], B[bi]);
 
         //divide k into two parts
-        int ia = min(k / 2, m), ib = k - ia;
-        if (*(A + ia - 1) < *(B + ib - 1))
-            return find_kth(A + ia, m - ia, B, n, k - ia);
-        else if (*(A + ia - 1) > *(B + ib - 1))
-            return find_kth(A, m, B + ib, n - ib, k - ib);
+        int k1 = min(k / 2, (int)A.size() - ai), k2 = k - k1;
+        if (A[ai + k1 - 1] < B[bi + k2 - 1])
+            return find_kth(A, ai + k1, B, bi, k - k1);
+        else if (A[ai + k1 - 1] > B[bi + k2 - 1])
+            return find_kth(A, ai, B, bi + k2, k - k2);
         else
-            return A[ia - 1];
+            return A[ai + k1 - 1];
     }
 };
 ```

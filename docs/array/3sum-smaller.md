@@ -62,8 +62,7 @@ values={[
 # 3Sum Smaller
 # 先排序，然后双指针左右夹逼
 # Time Complexity: O(n^2)
-# Space Complexity: from O(logn) to O(n), depending on the
-# implementation of the sorting algorithm
+# Space Complexity: O(1)
 class Solution:
     def threeSumSmaller(self, nums: List[int], target: int) -> int:
         nums.sort()
@@ -91,8 +90,7 @@ class Solution:
 // 3Sum Smaller
 // 先排序，然后双指针左右夹逼
 // Time Complexity: O(n^2)
-// Space Complexity: from O(logn) to O(n), depending on the
-// implementation of the sorting algorithm
+// Space Complexity: O(1)
 class Solution {
     public int threeSumSmaller(int[] nums, int target) {
         if(nums.length < 3) return 0;
@@ -127,8 +125,7 @@ class Solution {
 // 3Sum Smaller
 // 先排序，然后双指针左右夹逼
 // Time Complexity: O(n^2)
-// Space Complexity: from O(logn) to O(n), depending on the
-// implementation of the sorting algorithm
+// Space Complexity: O(1)
 class Solution {
 public:
     int threeSumSmaller(vector<int>& nums, int target) {

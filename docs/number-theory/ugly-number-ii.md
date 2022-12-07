@@ -37,21 +37,18 @@ public class Solution {
     public int nthUglyNumber(int n) {
         final int[] nums = new int[n];
         nums[0] = 1; // 1 is the first ugly number
-        int index = 0, index2 = 0, index3 = 0, index5 = 0;
+        int i2 = 0, i3 = 0, i5 = 0;
 
-        while (index + 1 < n) {
-            int x2 = nums[index2] * 2;
-            int x3 = nums[index3] * 3;
-            int x5 = nums[index5] * 5;
-            int min = Math.min(x2, Math.min(x3, x5));
+        for (int i = 1; i < n; ++i) {
+            int u2 = nums[i2] * 2, u3 = nums[i3] * 3, u5 = nums[i5] * 5;
+            int ugly = Math.min(u2, Math.min(u3, u5));
+            nums[i] = ugly;
 
-            if (min == x2) ++index2;
-            else if (min == x3) ++index3;
-            else ++index5;
+            // Do NOT use if else if here, otherwise duplicated numbers may happen
+            if (ugly == u2) ++i2;
+            if (ugly == u3) ++i3;
+            if (ugly == u5) ++i5;
 
-            if (min != nums[index]) { // skip duplicate
-                nums[++index] = min;
-            }
         }
         return nums[n - 1];
     }

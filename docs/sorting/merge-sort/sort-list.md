@@ -4,7 +4,7 @@ title: Sort List
 
 ### 描述
 
-Sort a linked list in `O(n log n)` time using constant space complexity.
+Sort a singly linked list.
 
 ### 分析
 
@@ -26,7 +26,7 @@ values={[
 
 ```java
 // Sort List
-// 归并排序，时间复杂度O(nlogn)，空间复杂度O(1)
+// 归并排序，时间复杂度O(nlogn)，空间复杂度O(logn)
 public class Solution {
     public ListNode sortList(ListNode head) {
         if (head == null || head.next == null)return head;
@@ -77,7 +77,7 @@ public class Solution {
 
 ```cpp
 // Sort List
-// 归并排序，时间复杂度O(nlogn)，空间复杂度O(1)
+// 归并排序，时间复杂度O(nlogn)，空间复杂度O(logn)
 class Solution {
 public:
     ListNode *sortList(ListNode *head) {

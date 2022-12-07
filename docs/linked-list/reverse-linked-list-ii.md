@@ -11,9 +11,7 @@ Given `1->2->3->4->5->nullptr`, `m` = 2 and `n` = 4,
 
 return `1->4->3->2->5->nullptr`.
 
-Note:
-Given `m`, `n` satisfy the following condition:
-$$1 \leq m \leq  n \leq $$ length of list.
+Note: given `m`, `n` satisfy the following condition: $1 \leq m \leq  n \leq$ length of list.
 
 ### 分析
 

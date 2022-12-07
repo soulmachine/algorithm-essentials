@@ -1,5 +1,5 @@
 ---
-title: LCA of Binary Tree
+title: Lowest Common Ancestor of a Binary Tree
 ---
 
 ### 描述
@@ -50,3 +50,5 @@ public class Solution {
 ### 相关题目
 
 - [LCA of BST](../bst/lca-of-bst.md)
+- [Lowest Common Ancestor of a Binary Tree II](lowest-common-ancestor-of-a-binary-tree-ii.md)
+- [Lowest Common Ancestor of a Binary Tree III](lowest-common-ancestor-of-a-binary-tree-iii.md)

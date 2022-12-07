@@ -65,35 +65,22 @@ public class Solution {
 
 ```cpp
 // Merge Interval
-//复用一下Insert Intervals的解法即可
-// 时间复杂度O(n1+n2+...)，空间复杂度O(1)
+// Time complexity: O(nlogn)
+// Space complexity: O(1)
 class Solution {
 public:
-    vector<Interval> merge(vector<Interval> &intervals) {
-        vector<Interval> result;
-        for (int i = 0; i < intervals.size(); i++) {
-            insert(result, intervals[i]);
-        }
-        return result;
-    }
-private:
-    vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
-        vector<Interval>::iterator it = intervals.begin();
-        while (it != intervals.end()) {
-            if (newInterval.end < it->start) {
-                intervals.insert(it, newInterval);
-                return intervals;
-            } else if (newInterval.start > it->end) {
-                it++;
-                continue;
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        sort(intervals.begin(), intervals.end());
+
+        vector<vector<int>> merged;
+        for (auto interval : intervals) {
+            if (merged.empty() || merged.back()[1] < interval[0]) {
+                merged.push_back(interval);
             } else {
-                newInterval.start = min(newInterval.start, it->start);
-                newInterval.end = max(newInterval.end, it->end);
-                it = intervals.erase(it);
+                merged.back()[1] = max(merged.back()[1], interval[1]);
             }
         }
-        intervals.insert(intervals.end(), newInterval);
-        return intervals;
+        return merged;
     }
 };
 ```

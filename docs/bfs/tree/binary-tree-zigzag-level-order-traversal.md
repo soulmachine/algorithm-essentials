@@ -32,84 +32,12 @@ return its zigzag level order traversal as:
 
 广度优先遍历，用一个 bool 记录是从左到右还是从右到左，每一层结束就翻转一下。
 
-### 递归版
+### 代码
+
+#### 迭代版
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-
-<Tabs
-defaultValue="java"
-values={[
-{ label: 'Java', value: 'java', },
-{ label: 'C++', value: 'cpp', },
-]
-}>
-<TabItem value="java">
-
-```java
-// Binary Tree Zigzag Level Order Traversal
-// 递归版，时间复杂度O(n)，空间复杂度O(n)
-public class Solution {
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        traverse(root, 1, result, true);
-        return result;
-    }
-
-    private static void traverse(TreeNode root, int level, List<List<Integer>> result,
-                                 boolean left_to_right) {
-        if (root == null) return;
-
-        if (level > result.size())
-            result.add(new ArrayList<>());
-
-        if (left_to_right)
-            result.get(level-1).add(root.val);
-        else
-            result.get(level-1).add(0, root.val);
-
-        traverse(root.left, level+1, result, !left_to_right);
-        traverse(root.right, level+1, result, !left_to_right);
-    }
-}
-```
-
-</TabItem>
-<TabItem value="cpp">
-
-```cpp
-// Binary Tree Zigzag Level Order Traversal
-// 递归版，时间复杂度O(n)，空间复杂度O(n)
-class Solution {
-public:
-    vector<vector<int> > zigzagLevelOrder(TreeNode *root) {
-        vector<vector<int>> result;
-        traverse(root, 1, result, true);
-        return result;
-    }
-
-    void traverse(TreeNode *root, size_t level, vector<vector<int>> &result,
-            bool left_to_right) {
-        if (!root) return;
-
-        if (level > result.size())
-            result.push_back(vector<int>());
-
-        if (left_to_right)
-            result[level-1].push_back(root->val);
-        else
-            result[level-1].insert(result[level-1].begin(), root->val);
-
-        traverse(root->left, level+1, result, !left_to_right);
-        traverse(root->right, level+1, result, !left_to_right);
-    }
-};
-```
-
-</TabItem>
-</Tabs>
-
-### 迭代版
 
 <Tabs
 defaultValue="java"
@@ -193,6 +121,80 @@ public:
             swap(next, current);
         }
         return result;
+    }
+};
+```
+
+</TabItem>
+</Tabs>
+
+#### 递归版
+
+<Tabs
+defaultValue="java"
+values={[
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="java">
+
+```java
+// Binary Tree Zigzag Level Order Traversal
+// 递归版，时间复杂度O(n)，空间复杂度O(n)
+public class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        traverse(root, 1, result, true);
+        return result;
+    }
+
+    private static void traverse(TreeNode root, int level, List<List<Integer>> result,
+                                 boolean left_to_right) {
+        if (root == null) return;
+
+        if (level > result.size())
+            result.add(new ArrayList<>());
+
+        if (left_to_right)
+            result.get(level-1).add(root.val);
+        else
+            result.get(level-1).add(0, root.val);
+
+        traverse(root.left, level+1, result, !left_to_right);
+        traverse(root.right, level+1, result, !left_to_right);
+    }
+}
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// Binary Tree Zigzag Level Order Traversal
+// 递归版，时间复杂度O(n)，空间复杂度O(n)
+class Solution {
+public:
+    vector<vector<int> > zigzagLevelOrder(TreeNode *root) {
+        vector<vector<int>> result;
+        traverse(root, 1, result, true);
+        return result;
+    }
+
+    void traverse(TreeNode *root, size_t level, vector<vector<int>> &result,
+            bool left_to_right) {
+        if (!root) return;
+
+        if (level > result.size())
+            result.push_back(vector<int>());
+
+        if (left_to_right)
+            result[level-1].push_back(root->val);
+        else
+            result[level-1].insert(result[level-1].begin(), root->val);
+
+        traverse(root->left, level+1, result, !left_to_right);
+        traverse(root->right, level+1, result, !left_to_right);
     }
 };
 ```

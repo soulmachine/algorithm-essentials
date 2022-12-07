@@ -41,8 +41,8 @@ values={[
 # Moving Average of Data Stream
 # Time Complexity O(1), Space Complexity O(n)
 class MovingAverage:
-    def __init__(self, size: int):
-        self.size = size
+    def __init__(self, capacity: int):
+        self.capacity = capacity
         self.queue = deque()
         self.window_sum = 0.0
         self.count = 0
@@ -50,9 +50,9 @@ class MovingAverage:
     def next(self, val: int) -> float:
         self.count += 1
         self.queue.append(val)
-        head = self.queue.popleft() if self.count > self.size else 0
+        head = self.queue.popleft() if self.count > self.capacity else 0
         self.window_sum = self.window_sum - head + val
-        return self.window_sum / min(self.size, self.count)
+        return self.window_sum / min(self.capacity, self.count)
 ```
 
 </TabItem>
@@ -62,20 +62,20 @@ class MovingAverage:
 // Moving Average of Data Stream
 // Time Complexity O(1), Space Complexity O(n)
 class MovingAverage {
-  private int size, count = 0;
+  private int capacity, count = 0;
   private double windowSum = 0.0;
   private Deque<Integer> queue = new ArrayDeque<>();
 
-  public MovingAverage(int size) {
-    this.size = size;
+  public MovingAverage(int capacity) {
+    this.capacity = capacity;
   }
 
-  public double next(int val) {
+  public double next(int value) {
     ++count;
-    queue.add(val);
-    int head = count > size ? queue.poll() : 0;
-    windowSum = windowSum - head + val;
-    return windowSum / Math.min(size, count);
+    queue.add(value);
+    int head = count > capacity ? queue.poll() : 0;
+    windowSum = windowSum - head + value;
+    return windowSum / Math.min(capacity, count);
   }
 }
 ```
@@ -89,20 +89,20 @@ class MovingAverage {
 class MovingAverage {
 public:
     /** Initialize your data structure here. */
-    MovingAverage(int size) {
-        this->size = size;
+    MovingAverage(int capacity) {
+        this->capacity = capacity;
     }
 
     double next(int val) {
         ++count;
         queue.push_back(val);
-        int head = count > size ? queue.front() : 0;
-        if (count > size) queue.pop_front();
+        int head = count > capacity ? queue.front() : 0;
+        if (count > capacity) queue.pop_front();
         window_sum = window_sum - head + val;
-        return window_sum / min(size, count);
+        return window_sum / min(capacity, count);
     }
 private:
-    int size, count = 0;
+    int capacity, count = 0;
     double window_sum = 0;
     deque<int> queue;
 };
@@ -127,21 +127,19 @@ values={[
 # Moving Average of Data Stream
 # Time Complexity O(1), Space Complexity O(n)
 class MovingAverage:
-    def __init__(self, size: int):
-        self.size = size
-        self.queue = [0] * size
-        self.tail = 0
-        self.window_sum = 0.0
+    def __init__(self, capacity: int):
+        self.q = [0] * capacity
+        self.capacity = capacity
+        self.head = 0
         self.count = 0
+        self.window_sum = 0.0
 
-    def next(self, val: int) -> float:
+    def next(self, value: int) -> float:
+        tail = (self.head + self.count) % self.capacity
         self.count += 1
-        head_index = (self.tail + 1) % self.size
-        self.window_sum = self.window_sum - self.queue[head_index] + val
-        # move forward for one step
-        self.tail = (self.tail + 1) % self.size
-        self.queue[self.tail] = val
-        return self.window_sum / min(self.size, self.count)
+        self.window_sum = self.window_sum - self.q[tail] + value
+        self.q[tail] = value
+        return self.window_sum / min(self.capacity, self.count)
 ```
 
 </TabItem>
@@ -150,24 +148,24 @@ class MovingAverage:
 ```java
 // Moving Average of Data Stream
 // Time Complexity O(1), Space Complexity O(n)
-class MovingAverage {
-  private int size, count = 0, tail = 0;
+class MovingAverage {  
+  private int[] q;
+  private int capacity, head, count;
   private double windowSum = 0.0;
-  private int[] queue;
 
-  public MovingAverage(int size) {
-    this.size = size;
-    this.queue = new int[size];
+  public MovingAverage(int capacity) {
+    q = new int[capacity];
+    this.capacity = capacity;
+    head = 0;
+    count = 0;
   }
 
-  public double next(int val) {
-    ++this.count;
-    int headIndex = (this.tail + 1) % this.size;
-    this.windowSum = this.windowSum - this.queue[headIndex] + val;
-    // move forward for one step
-    this.tail = (this.tail + 1) % size;
-    this.queue[this.tail] = val;
-    return this.windowSum / Math.min(this.size, this.count);
+  public double next(int value) {
+    int tail = (head + count) % capacity;
+    count++;
+    windowSum = windowSum - q[tail] + value;
+    q[tail] = value;
+    return windowSum / Math.min(capacity, count);
   }
 }
 ```
@@ -181,23 +179,24 @@ class MovingAverage {
 class MovingAverage {
 public:
     MovingAverage(int size) {
-        this->size = size;
-        this->queue = vector<int>(size);
+        q = new int[size];
+        std::fill_n(q, size, 0);
+        capacity = size;
+        head = 0;
+        count = 0;
     }
 
-    double next(int val) {
-        ++count;
-        int head_index = (tail + 1) % size;
-        window_sum = window_sum - queue[head_index] + val;
-        // move forward for one step
-        tail = (tail + 1) % size;
-        queue[tail] = val;
-        return window_sum / min(size, count);
+    double next(int value) {
+        int tail = (head + count) % capacity;
+        count++;
+        windowSum = windowSum - q[tail] + value;
+        q[tail] = value;
+        return windowSum / min(capacity, count);
     }
 private:
-    int size, count = 0, tail = 0;
-    double window_sum = 0;
-    vector<int> queue;
+    int *q;
+    int capacity, head, count;
+    double windowSum = 0.0;
 };
 
 ```

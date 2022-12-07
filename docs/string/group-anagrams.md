@@ -1,5 +1,5 @@
 ---
-title: Anagrams
+title: Group anagrams
 ---
 
 ### 描述
@@ -29,8 +29,8 @@ values={[
 <TabItem value="java">
 
 ```java
-// Anagrams
-// 时间复杂度O(n)，空间复杂度O(n)
+// Group anagrams
+// 时间复杂度O(NKlogK)，空间复杂度O(NK)
 public class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         final HashMap<String, ArrayList<String>> group = new HashMap<>();
@@ -60,8 +60,8 @@ public class Solution {
 <TabItem value="cpp">
 
 ```cpp
-// Anagrams
-// 时间复杂度O(n)，空间复杂度O(n)
+// Group anagrams
+// 时间复杂度O(NKlogK)，空间复杂度O(NK)
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {

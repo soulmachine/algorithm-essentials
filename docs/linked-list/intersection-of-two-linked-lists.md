@@ -46,8 +46,6 @@ values={[
 // Time Complexity: O(m+n), Space Complexity: O(1)
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        if(headA == null || headB == null) return null;
-
         ListNode a = headA;
         ListNode b = headB;
         while( a != b) {
@@ -55,7 +53,7 @@ public class Solution {
             b = b == null? headA : b.next;
         }
 
-        return a;
+        return a; // return b is also OK
     }
 }
 ```
@@ -70,16 +68,14 @@ public class Solution {
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        if(headA == nullptr || headB == nullptr) return nullptr;
-
-        ListNode * a = headA;
-        ListNode * b = headB;
+        ListNode *a = headA;
+        ListNode *b = headB;
         while ( a != b) {
             a = a == nullptr? headB : a->next;
             b = b == nullptr? headA : b->next;
         }
 
-        return a;
+        return a; // return b is also OK
     }
 };
 ```

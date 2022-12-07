@@ -29,12 +29,93 @@ return its level order traversal as:
 
 ### 分析
 
-无
+从题目所求的目标来看，毫无疑问用广搜。
 
-### 递归版
+### 代码
+
+### 迭代版
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+
+<Tabs
+defaultValue="java"
+values={[
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="java">
+
+```java
+// Binary Tree Level Order Traversal
+// 迭代版，时间复杂度O(n)，空间复杂度O(1)
+public class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        Queue<TreeNode> current = new LinkedList<>();
+        Queue<TreeNode> next = new LinkedList<>();
+
+        if(root != null) {
+            current.offer(root);
+        }
+
+        while (!current.isEmpty()) {
+            ArrayList<Integer> level = new ArrayList<>(); // elments in one level
+            while (!current.isEmpty()) {
+                TreeNode node = current.poll();
+                level.add(node.val);
+                if (node.left != null) next.add(node.left);
+                if (node.right != null) next.add(node.right);
+            }
+            result.add(level);
+            // swap
+            Queue<TreeNode> tmp = current;
+            current = next;
+            next = tmp;
+        }
+        return result;
+    }
+}
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// Binary Tree Level Order Traversal
+// 迭代版，时间复杂度O(n)，空间复杂度O(1)
+class Solution {
+public:
+    vector<vector<int> > levelOrder(TreeNode *root) {
+        vector<vector<int> > result;
+        queue<TreeNode*> current, next;
+
+        if(root != nullptr) {
+            current.push(root);
+        }
+
+        while (!current.empty()) {
+            vector<int> level; // elments in one level
+            while (!current.empty()) {
+                TreeNode* node = current.front();
+                current.pop();
+                level.push_back(node->val);
+                if (node->left != nullptr) next.push(node->left);
+                if (node->right != nullptr) next.push(node->right);
+            }
+            result.push_back(level);
+            swap(next, current);
+        }
+        return result;
+    }
+};
+```
+
+</TabItem>
+</Tabs>
+
+#### 递归版
 
 <Tabs
 defaultValue="java"
@@ -92,89 +173,6 @@ public:
         result[level-1].push_back(root->val);
         traverse(root->left, level+1, result);
         traverse(root->right, level+1, result);
-    }
-};
-```
-
-</TabItem>
-</Tabs>
-
-### 迭代版
-
-<Tabs
-defaultValue="java"
-values={[
-{ label: 'Java', value: 'java', },
-{ label: 'C++', value: 'cpp', },
-]
-}>
-<TabItem value="java">
-
-```java
-// Binary Tree Level Order Traversal
-// 迭代版，时间复杂度O(n)，空间复杂度O(1)
-public class Solution {
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        Queue<TreeNode> current = new LinkedList<>();
-        Queue<TreeNode> next = new LinkedList<>();
-
-        if(root == null) {
-            return result;
-        } else {
-            current.offer(root);
-        }
-
-        while (!current.isEmpty()) {
-            ArrayList<Integer> level = new ArrayList<>(); // elments in one level
-            while (!current.isEmpty()) {
-                TreeNode node = current.poll();
-                level.add(node.val);
-                if (node.left != null) next.add(node.left);
-                if (node.right != null) next.add(node.right);
-            }
-            result.add(level);
-            // swap
-            Queue<TreeNode> tmp = current;
-            current = next;
-            next = tmp;
-        }
-        return result;
-    }
-}
-```
-
-</TabItem>
-<TabItem value="cpp">
-
-```cpp
-// Binary Tree Level Order Traversal
-// 迭代版，时间复杂度O(n)，空间复杂度O(1)
-class Solution {
-public:
-    vector<vector<int> > levelOrder(TreeNode *root) {
-        vector<vector<int> > result;
-        queue<TreeNode*> current, next;
-
-        if(root == nullptr) {
-            return result;
-        } else {
-            current.push(root);
-        }
-
-        while (!current.empty()) {
-            vector<int> level; // elments in one level
-            while (!current.empty()) {
-                TreeNode* node = current.front();
-                current.pop();
-                level.push_back(node->val);
-                if (node->left != nullptr) next.push(node->left);
-                if (node->right != nullptr) next.push(node->right);
-            }
-            result.push_back(level);
-            swap(next, current);
-        }
-        return result;
     }
 };
 ```

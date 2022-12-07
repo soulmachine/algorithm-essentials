@@ -47,12 +47,12 @@ public class Solution {
     private void insert(ArrayList<int[]> intervals, int[] newInterval) {
         for (int i = 0; i < intervals.size();) {
             final int[] cur = intervals.get(i);
-            if (newInterval[1] < cur[0]) {
+            if (newInterval[1] < cur[0]) { // insert before cur
                 intervals.add(i, newInterval);
                 return;
             } else if (newInterval[0] > cur[1]) {
                 ++i;
-            } else {
+            } else { // overlap
                 newInterval[0] = Math.min(newInterval[0], cur[0]);
                 newInterval[1] = Math.max(newInterval[1], cur[1]);
                 intervals.remove(i);
@@ -71,18 +71,17 @@ public class Solution {
 // 时间复杂度O(n)，空间复杂度O(1)
 class Solution {
 public:
-    vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
-        vector<Interval>::iterator it = intervals.begin();
-        while (it != intervals.end()) {
-            if (newInterval.end < it->start) {
+    vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval) {
+        for (auto it = intervals.begin(); it != intervals.end();) {
+            if (newInterval[1] < it->at(0)) { // insert before cur
                 intervals.insert(it, newInterval);
                 return intervals;
-            } else if (newInterval.start > it->end) {
+            } else if (newInterval[0] > it->at(1)) {
                 it++;
                 continue;
-            } else {
-                newInterval.start = min(newInterval.start, it->start);
-                newInterval.end = max(newInterval.end, it->end);
+            } else { // overlap
+                newInterval[0] = min(newInterval[0], it->at(0));
+                newInterval[1] = max(newInterval[1], it->at(1));
                 it = intervals.erase(it);
             }
         }

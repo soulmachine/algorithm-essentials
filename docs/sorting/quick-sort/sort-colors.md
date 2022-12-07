@@ -27,66 +27,12 @@ Could you come up with an one-pass algorithm using only constant space?
 
 第 3 种思路，利用快速排序里 partition 的思想，第一次将数组按 0 分割，第二次按 1 分割，排序完毕，可以推广到`n`种颜色，每种颜色有重复元素的情况。
 
-### 代码 1
+### 代码
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-<Tabs
-defaultValue="java"
-values={[
-{ label: 'Java', value: 'java', },
-{ label: 'C++', value: 'cpp', },
-]
-}>
-<TabItem value="java">
-
-```java
-// Sort Colors
-// Counting Sort
-// 时间复杂度O(n)，空间复杂度O(1)
-public class Solution {
-    public void sortColors(int[] nums) {
-        int[] counts = new int[3]; // 记录每个颜色出现的次数
-
-        for (int i = 0; i < nums.length; i++)
-            counts[nums[i]]++;
-
-        for (int i = 0, index = 0; i < 3; i++)
-            for (int j = 0; j < counts[i]; j++)
-                nums[index++] = i;
-
-    }
-}
-```
-
-</TabItem>
-<TabItem value="cpp">
-
-```cpp
-// Sort Colors
-// Counting Sort
-// 时间复杂度O(n)，空间复杂度O(1)
-class Solution {
-public:
-    void sortColors(vector<int>& A) {
-        int counts[3] = { 0 }; // 记录每个颜色出现的次数
-
-        for (int i = 0; i < A.size(); i++)
-            counts[A[i]]++;
-
-        for (int i = 0, index = 0; i < 3; i++)
-            for (int j = 0; j < counts[i]; j++)
-                A[index++] = i;
-
-    }
-};
-```
-
-</TabItem>
-</Tabs>
-
-### 代码 2
+#### 双指针
 
 <Tabs
 defaultValue="java"
@@ -107,9 +53,9 @@ public class Solution {
 
         for (int i = 0; i < blue + 1;) {
             if (A[i] == 0)
-                swap (A, i++, red++);
+                swap (A, i++, red++); // swap A[i] to the left side
             else if (A[i] == 2)
-                swap(A, i, blue--);
+                swap(A, i, blue--); // swap A[i] to the right side
             else
                 i++;
         }
@@ -134,11 +80,11 @@ public:
         // 一个是red的index，一个是blue的index，两边往中间走
         int red = 0, blue = A.size() - 1;
 
-        for (int i = 0; i < blue + 1;) {
+        for (int i = 0; i <= blue;) {
             if (A[i] == 0)
-                swap(A[i++], A[red++]);
+                swap(A[i++], A[red++]); // swap A[i] to the left side
             else if (A[i] == 2)
-                swap(A[i], A[blue--]);
+                swap(A[i], A[blue--]); // swap A[i] to the right side
             else
                 i++;
         }
@@ -149,7 +95,11 @@ public:
 </TabItem>
 </Tabs>
 
-### 代码 3
+#### 快速排序
+
+令N为元素个数，K为颜色种类，每次选择一个颜色进行划分，因此有logK层。递归调用logK层，空间复杂度是O(logK)；每层需要递归遍历整个数组，因此时间复杂度为O(NlogK)。
+
+本题K=3，因此可以近似认为时间复杂度是O(N), 空间复杂度是O(1)。
 
 <Tabs
 defaultValue="java"
@@ -162,35 +112,30 @@ values={[
 
 ```java
 // Sort Colors
-// 重新实现 partition()
-// 时间复杂度O(n)，空间复杂度O(1)
+// 时间复杂度O(NlogK)，空间复杂度O(logK)
 public class Solution {
     public void sortColors(int[] nums) {
-        partition(nums, partition(nums, 0, nums.length, new EqualTo(0)),
-                nums.length, new EqualTo(1));
+        quickSort(nums, 0, nums.length-1);
     }
-    private static int partition(int[] nums, int begin, int end, EqualTo predicate) {
-        int pos = begin;
 
-        for (; begin != end; ++begin)
-            if (predicate.apply(nums[begin]))
-                swap(nums, begin,pos++);
-
-        return pos;
-    }
-    static class EqualTo {
-        private final int target;
-        public EqualTo(int target) {
-            this.target = target;
-        }
-        public boolean apply(int x) {
-            return x == target;
+    private static void quickSort(int[] nums, int left, int right) {
+        if (left < right) {
+            final int pos = partition(nums, left, right);
+            quickSort(nums, left, pos - 1);
+            quickSort(nums, pos + 1, right);
         }
     }
-    private static void swap(int[] nums, int i, int j) {
-        int tmp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = tmp;
+
+    private static int partition(int[] nums, int i, int j) {
+        final int pivot = nums[i];
+        while (i < j) {
+            while (i < j && nums[j] >= pivot) --j;
+            nums[i] = nums[j];
+            while(i < j && nums[i] <= pivot) ++i;
+            nums[j] = nums[i];
+        }
+        nums[i] = pivot;
+        return i;
     }
 }
 ```
@@ -200,25 +145,30 @@ public class Solution {
 
 ```cpp
 // Sort Colors
-// 重新实现 partition()
-// 时间复杂度O(n)，空间复杂度O(1)
+// 时间复杂度O(NlogK)，空间复杂度O(logK)
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        partition(partition(nums.begin(), nums.end(), bind1st(equal_to<int>(), 0)),
-                 nums.end(), bind1st(equal_to<int>(), 1));
+        quick_sort(nums, 0, nums.size()-1);
     }
 private:
-    template<typename ForwardIterator, typename UnaryPredicate>
-    ForwardIterator partition(ForwardIterator first, ForwardIterator last,
-            UnaryPredicate pred) {
-        auto pos = first;
-
-        for (; first != last; ++first)
-            if (pred(*first))
-                swap(*first, *pos++);
-
-        return pos;
+    void quick_sort(vector<int>& nums, int i, int j) {
+        if (i < j) {
+            const int pos = partition(nums, i, j);
+            quick_sort(nums, i, pos - 1);
+            quick_sort(nums, pos + 1, j);
+        }
+    }
+    int partition(vector<int>& nums, int i, int j) {
+        const int pivot = nums[i];
+        while (i < j) {
+            while (i < j && nums[j] >= pivot) --j;
+            nums[i] = nums[j];
+            while(i < j && nums[i] <= pivot) ++i;
+            nums[j] = nums[i];
+        }
+        nums[i] = pivot;
+        return i;
     }
 };
 ```

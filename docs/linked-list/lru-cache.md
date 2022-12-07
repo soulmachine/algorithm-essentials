@@ -50,19 +50,19 @@ values={[
 // HashMap + Doubly Linked List
 public class LRUCache {
     private int capacity;
-    private HashMap<Integer, Node> m;
-    private DList list;
+    private Map<Integer, DLinkedNode> m;
+    private DLinkedList list;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
         m = new HashMap<>();
-        list = new DList();
+        list = new DLinkedList();
     }
 
     // Time Complexity: O(1)
     public int get(int key) {
         if (!m.containsKey(key)) return -1;
-        Node node = m.get(key);
+        DLinkedNode node = m.get(key);
         update(node);
         return node.value;
     }
@@ -70,13 +70,13 @@ public class LRUCache {
     // Time Complexity: O(1)
     public void put(int key, int value) {
         if (m.containsKey(key)){
-            Node node = m.get(key);
+            DLinkedNode node = m.get(key);
             node.value = value;
             update(node);
         } else {
-            Node node = new Node(key, value);
+            DLinkedNode node = new DLinkedNode(key, value);
             if (m.size() >= capacity){
-                Node last = list.peekLast();
+                DLinkedNode last = list.peekLast();
                 m.remove(last.key);
                 list.remove(last);
             }
@@ -86,38 +86,38 @@ public class LRUCache {
         }
     }
 
-    private void update(Node node) {
+    private void update(DLinkedNode node) {
         list.remove(node);
         list.offerFirst(node);
     }
 
 
     // Node of doubly linked list
-    static class Node {
+    static class DLinkedNode {
         int key, value;
-        Node prev, next;
+        DLinkedNode prev, next;
 
-        Node(int key, int value) {
+        DLinkedNode(int key, int value) {
             this.key = key;
             this.value = value;
         }
     }
 
     // Doubly linked list
-    static class DList {
-        Node head, tail;
+    static class DLinkedList {
+        DLinkedNode head, tail;
         int size;
 
-        DList() {
+        DLinkedList() {
             // head and tail are two dummy nodes
-            head = new Node(0, 0);
-            tail = new Node(0, 0);
+            head = new DLinkedNode(0, 0);
+            tail = new DLinkedNode(0, 0);
             head.next = tail;
             tail.prev = head;
         }
 
         // Add a new node at head
-        void offerFirst(Node node) {
+        void offerFirst(DLinkedNode node) {
             head.next.prev = node;
             node.next = head.next;
             node.prev = head;
@@ -126,21 +126,14 @@ public class LRUCache {
         }
 
         // Remove a node in the middle
-        void remove(Node node) {
+        void remove(DLinkedNode node) {
             if (node == null) return;
             node.prev.next = node.next;
             node.next.prev = node.prev;
             size--;
         }
 
-        // Remove the tail node
-        Node pollLast() {
-            Node last = tail.prev;
-            remove(last);
-            return last;
-        }
-
-        Node peekLast() {
+        DLinkedNode peekLast() {
             return tail.prev;
         }
     }
@@ -152,48 +145,96 @@ public class LRUCache {
 
 ```cpp
 // LRU Cache
-// 时间复杂度O(logn)，空间复杂度O(n)
 class LRUCache{
 private:
-    struct CacheNode {
-        int key;
-        int value;
-        CacheNode(int k, int v) :key(k), value(v){}
+    // Node of doubly linked list
+    class DLinkedNode {
+    public:
+        int key, value;
+        DLinkedNode *prev=nullptr, *next=nullptr;
+
+        DLinkedNode(int key, int value) {
+            this->key = key;
+            this->value = value;
+        }
     };
+
+    // Doubly linked list
+    class DLinkedList {
+    public:
+        DLinkedList() {
+            // head and tail are two dummy nodes
+            head = new DLinkedNode(0, 0);
+            tail = new DLinkedNode(0, 0);
+            head->next = tail;
+            tail->prev = head;
+        }
+
+        // Add a new node at head
+        void offerFirst(DLinkedNode *node) {
+            head->next->prev = node;
+            node->next = head->next;
+            node->prev = head;
+            head->next = node;
+            size++;
+        }
+
+        // Remove a node in the middle
+        void remove(DLinkedNode *node) {
+            if (node == nullptr) return;
+            node->prev->next = node->next;
+            node->next->prev = node->prev;
+            size--;
+        }
+
+        DLinkedNode* peekLast() {
+            return tail->prev;
+        }
+    private:
+        DLinkedNode *head, *tail;
+        int size;
+    };
+
 public:
     LRUCache(int capacity) {
         this->capacity = capacity;
     }
 
+    // Time Complexity: O(1)
     int get(int key) {
-        if (cacheMap.find(key) == cacheMap.end()) return -1;
-
-        // 把当前访问的节点移到链表头部，并且更新map中该节点的地址
-        cacheList.splice(cacheList.begin(), cacheList, cacheMap[key]);
-        cacheMap[key] = cacheList.begin();
-        return cacheMap[key]->value;
+        if (m.find(key) == m.end()) return -1;
+        DLinkedNode *node = m[key];
+        update(node);
+        return node->value;
     }
 
+    // Time Complexity: O(1)
     void put(int key, int value) {
-        if (cacheMap.find(key) == cacheMap.end()) {
-            if (cacheList.size() == capacity) { //删除链表尾部节点（最少访问的节点）
-                cacheMap.erase(cacheList.back().key);
-                cacheList.pop_back();
-            }
-            // 插入新节点到链表头部, 并且在map中增加该节点
-            cacheList.push_front(CacheNode(key, value));
-            cacheMap[key] = cacheList.begin();
+        if (m.find(key) != m.end()){
+            DLinkedNode *node = m[key];
+            node->value = value;
+            update(node);
         } else {
-            //更新节点的值，把当前访问的节点移到链表头部,并且更新map中该节点的地址
-            cacheMap[key]->value = value;
-            cacheList.splice(cacheList.begin(), cacheList, cacheMap[key]);
-            cacheMap[key] = cacheList.begin();
+            DLinkedNode *node = new DLinkedNode(key, value);
+            if (m.size() >= capacity){
+                DLinkedNode *last = list.peekLast();
+                m.erase(last->key);
+                list.remove(last);
+            }
+
+            list.offerFirst(node);
+            m[key] = node;
         }
     }
+
+    void update(DLinkedNode *node) {
+        list.remove(node);
+        list.offerFirst(node);
+    }
 private:
-    list<CacheNode> cacheList; // doubly linked list
-    unordered_map<int, list<CacheNode>::iterator> cacheMap;
-    int capacity;
+    int capacity = 0;
+    unordered_map<int, DLinkedNode*> m;
+    DLinkedList list;
 };
 ```
 

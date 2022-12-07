@@ -16,7 +16,7 @@ Given `1->1->1->2->3`, return `2->3`.
 
 无
 
-### 递归版
+### 代码
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -32,94 +32,18 @@ values={[
 
 ```java
 // Remove Duplicates from Sorted List II
-// 递归版，时间复杂度O(n)，空间复杂度O(1)
+// Time complexity O(n)，space complexity O(1)
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        if (head ==null || head.next == null) return head;
-
-        ListNode slow = head;
-        ListNode fast = head.next;
-        if (slow.val == fast.val) {
-            while (fast != null && slow.val == fast.val) {
-                fast = fast.next;
+        ListNode dummy = new ListNode(0, head);
+        for(ListNode p = dummy, q = head; q != null; q = q.next) {
+            while (q.next != null && p.next.val == q.next.val) q = q.next;
+            if (p.next == q) { // no duplicate
+                p = p.next;
+            } else {
+                p.next = q.next; // skip all duplicates
             }
-            return deleteDuplicates(fast);
-        } else {
-            slow.next = deleteDuplicates(slow.next);
-            return slow;
         }
-    }
-};
-```
-
-</TabItem>
-<TabItem value="cpp">
-
-```cpp
-// Remove Duplicates from Sorted List II
-// 递归版，时间复杂度O(n)，空间复杂度O(n)
-class Solution {
-public:
-    ListNode *deleteDuplicates(ListNode *head) {
-        if (head == nullptr || head->next == nullptr) return head;
-
-        ListNode *slow = head;
-        ListNode *fast = head->next;
-        if (slow->val == fast->val) {
-            while (fast != nullptr && slow->val == fast->val) {
-                ListNode *tmp = fast;
-                fast = fast->next;
-                delete tmp;
-            }
-            delete slow;
-            return deleteDuplicates(fast);
-        } else {
-            slow->next = deleteDuplicates(slow->next);
-            return slow;
-        }
-    }
-};
-```
-
-</TabItem>
-</Tabs>
-
-### 迭代版
-
-<Tabs
-defaultValue="java"
-values={[
-{ label: 'Java', value: 'java', },
-{ label: 'C++', value: 'cpp', },
-]
-}>
-<TabItem value="java">
-
-```java
-// Remove Duplicates from Sorted List II
-// 迭代版，时间复杂度O(n)，空间复杂度O(1)
-public class Solution {
-    public ListNode deleteDuplicates(ListNode head) {
-        if (head == null) return head;
-
-        ListNode dummy = new ListNode(Integer.MAX_VALUE); // 头结点
-        dummy.next = head;
-        ListNode prev = dummy, cur = head;
-        while (cur != null) {
-            boolean duplicated = false;
-            while (cur.next != null && cur.val == cur.next.val) {
-                duplicated = true;
-                cur = cur.next;
-            }
-            if (duplicated) { // 删除重复的最后一个元素
-                cur = cur.next;
-                continue;
-            }
-            prev.next = cur;
-            prev = prev.next;
-            cur = cur.next;
-        }
-        prev.next = cur;
         return dummy.next;
     }
 }
@@ -130,34 +54,19 @@ public class Solution {
 
 ```cpp
 // Remove Duplicates from Sorted List II
-// 迭代版，时间复杂度O(n)，空间复杂度O(1)
+// Time complexity O(n)，space complexity O(1)
 class Solution {
 public:
-    ListNode *deleteDuplicates(ListNode *head) {
-        if (head == nullptr) return head;
-
-        ListNode dummy(INT_MIN); // 头结点
-        dummy.next = head;
-        ListNode *prev = &dummy, *cur = head;
-        while (cur != nullptr) {
-            bool duplicated = false;
-            while (cur->next != nullptr && cur->val == cur->next->val) {
-                duplicated = true;
-                ListNode *temp = cur;
-                cur = cur->next;
-                delete temp;
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode dummy(0, head);
+        for(ListNode *p = &dummy, *q = head; q != nullptr; q = q->next) {
+            while (q->next && p->next->val == q->next->val) q = q->next;
+            if (p->next == q) { // no duplicate
+                p = p->next;
+            } else {
+                p->next = q->next; // skip all duplicates
             }
-            if (duplicated) { // 删除重复的最后一个元素
-                ListNode *temp = cur;
-                cur = cur->next;
-                delete temp;
-                continue;
-            }
-            prev->next = cur;
-            prev = prev->next;
-            cur = cur->next;
         }
-        prev->next = cur;
         return dummy.next;
     }
 };
@@ -165,6 +74,8 @@ public:
 
 </TabItem>
 </Tabs>
+
+C++代码里其实还需要调用 `delete q->next;`来释放内存，但是这里为了简洁就省略了。
 
 ### 相关题目
 

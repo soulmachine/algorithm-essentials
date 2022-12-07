@@ -143,13 +143,13 @@ class Solution {
 class Solution {
 public:
     int evalRPN(vector<string> &tokens) {
-        stack<int> s;
+        stack<int64_t> s; // use 64-bit to avoid overflow when x*y
         for (auto token : tokens) {
             if (string("+-*/").find(token) == string::npos) {
                 s.push(std::stoi(token));
             } else {
-                int y = s.top(); s.pop();
-                int x = s.top(); s.pop();
+                int64_t y = s.top(); s.pop();
+                int64_t x = s.top(); s.pop();
                 switch(token[0]) {
                     case '+' : x += y; break;
                     case '-' : x -= y; break;
@@ -159,7 +159,7 @@ public:
                 s.push(x);
             }
         }
-        return s.top();
+        return (int)s.top();
     }
 };
 ```

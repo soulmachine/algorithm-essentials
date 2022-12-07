@@ -21,7 +21,7 @@ return `1->3->5->2->4->NULL`.
 
 ### 分析
 
-创建两个新的空链表，遍历原始链表，把奇数位置的节点添加到第一个小链表，把偶数位置的节点添加到第二个小链表。
+一次遍历，在遍历的过程中交叉赋值，最后把奇数链表的尾巴连接到偶数链表的头部。
 
 ### 代码
 
@@ -30,29 +30,18 @@ return `1->3->5->2->4->NULL`.
 // Time Complexity: O(n), Space Complexity: O(1)
 public class Solution {
     public ListNode oddEvenList(ListNode head) {
-        final ListNode oddDummy = new ListNode(0);
-        final ListNode evenDummy = new ListNode(0);
-        ListNode odd = oddDummy;
-        ListNode even = evenDummy;
-
-        int index = 1;
-        while (head != null) {
-            if (index  % 2 == 1) {
-                odd.next = head;
-                odd = odd.next;
-            } else {
-                even.next = head;
-                even = even.next;
-            }
-
-            ListNode tmp = head.next;
-            head.next = null;
-            head = tmp;
-            ++index;
+        if (head == null) return null;
+        // head and odd are the head pointer and tail pointer of odd list
+        // evenHead and even are the head pointer and tail pointer of even list
+        ListNode odd = head, even = head.next, evenHead = even;
+        while (even != null && even.next != null) {
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
         }
-
-        odd.next = evenDummy.next;
-        return oddDummy.next;
+        odd.next = evenHead;
+        return head;
     }
 }
 ```

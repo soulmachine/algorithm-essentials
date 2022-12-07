@@ -168,5 +168,6 @@ private:
 
 ### 相关题目
 
-- [Maximum Subarray](maximum-subarray.md)
+- [Maximum Sum Circular Subarray](maximum-sum-circular-subarray.md)
+- [Maximum Subarray Sum with One Deletion](maximum-subarray-sum-with-one-deletion.md)
 - [Binary Tree Maximum Path Sum](../binary-tree/recursion/binary-tree-maximum-path-sum.md)

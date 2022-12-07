@@ -16,7 +16,7 @@ Given `1->1->2->3->3`, return `1->2->3`.
 
 无
 
-### 解法1: 递归版
+### 代码
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -32,70 +32,15 @@ values={[
 
 ```java
 // Remove Duplicates from Sorted List
-// 递归版，时间复杂度O(n)，空间复杂度O(n)
-class Solution {
-    public ListNode deleteDuplicates(ListNode head) {
-        if (head == null || head.next == null) return head;
-
-        ListNode newHead = deleteDuplicates(head.next);
-        if(head.val == newHead.val) {
-            return newHead;
-        } else {
-            head.next=newHead;
-        }
-        return head;
-    }
-};
-```
-
-</TabItem>
-<TabItem value="cpp">
-
-```cpp
-// Remove Duplicates from Sorted List
-// 递归版，时间复杂度O(n)，空间复杂度O(n)
-class Solution {
-public:
-    ListNode* deleteDuplicates(ListNode* head) {
-        if(head == nullptr || head->next == nullptr) return head;
-
-        ListNode* newHead = deleteDuplicates(head->next);
-        if(head->val == newHead->val) {
-            return newHead;
-        } else {
-            head->next=newHead;
-        }
-        return head;
-    }
-};
-```
-
-</TabItem>
-</Tabs>
-
-### 解法2: 迭代版
-
-<Tabs
-defaultValue="java"
-values={[
-{ label: 'Java', value: 'java', },
-{ label: 'C++', value: 'cpp', },
-]
-}>
-<TabItem value="java">
-
-```java
-// Remove Duplicates from Sorted List
-// 迭代版，时间复杂度O(n)，空间复杂度O(1)
+// 时间复杂度O(n)，空间复杂度O(1)
 class Solution {
 public ListNode deleteDuplicates(ListNode head) {
-        if (head == null) return null;
-
-        for (ListNode slow = head, fast = head.next; fast != null; fast = slow.next) {
-            if (slow.val == fast.val) {
-                slow.next = fast.next;
+        ListNode p = head;
+        while (p != null && p.next != null) {
+            if (p.next.val == p.val) {
+                p.next = p.next.next;
             } else {
-                slow = fast;
+                p = p.next;
             }
         }
         return head;
@@ -108,18 +53,18 @@ public ListNode deleteDuplicates(ListNode head) {
 
 ```cpp
 // Remove Duplicates from Sorted List
-// 迭代版，时间复杂度O(n)，空间复杂度O(1)
+// 时间复杂度O(n)，空间复杂度O(1)
 class Solution {
 public:
     ListNode *deleteDuplicates(ListNode *head) {
-        if (head == nullptr) return nullptr;
-
-        for (ListNode *slow = head, *fast = head->next; fast != nullptr; fast = slow->next) {
-            if (slow->val == fast->val) {
-                slow->next = fast->next;
-                delete fast;
+        ListNode *p = head;
+        while(p && p->next) {
+            if (p->next->val == p->val) {
+                ListNode *tmp = p->next;
+                p->next = p->next->next;
+                delete tmp;
             } else {
-                slow = fast;
+                p = p->next;
             }
         }
         return head;

@@ -52,8 +52,9 @@ public class Solution {
 class Solution {
 public:
     double myPow(double x, int n) {
-        if (n < 0) return 1.0 / power(x, -n);
-        else return power(x, n);
+        long long N = n; // to prevent overflow
+        if (N < 0) return power(1/x, -N);
+        else return power(x, N);
     }
 private:
     double power(double x, int n) {

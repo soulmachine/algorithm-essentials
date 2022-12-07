@@ -79,8 +79,8 @@ public class Solution {
                 return false;
             return true;
         };
-        final Function<State, ArrayList<State>> stateExtend = (State s) -> {
-            ArrayList<State> result = new ArrayList<>();
+        final Function<State, List<State>> stateExtend = (State s) -> {
+            List<State> result = new ArrayList<>();
             final int x = s.x;
             final int y = s.y;
             // 上下左右
@@ -91,8 +91,6 @@ public class Solution {
             };
             for (int k = 0; k < 4; ++k) {
                 if (stateIsValid.apply(newStates[k])) {
-                    // 既有标记功能又有去重功能
-                    board[newStates[k].x][newStates[k].y] = '+';
                     result.add(newStates[k]);
                 }
             }
@@ -105,8 +103,12 @@ public class Solution {
         }
         while (!q.isEmpty()) {
             State cur = q.poll();
-            ArrayList<State> newStates = stateExtend.apply(cur);
-            for (State s : newStates) q.offer(s);
+            List<State> newStates = stateExtend.apply(cur);
+            for (State s : newStates) {
+                // 既有标记功能又有去重功能
+                board[s.x][s.y] = '+';
+                q.offer(s);
+            }
         }
     }
     static class State {
@@ -124,74 +126,65 @@ public class Solution {
 <TabItem value="cpp">
 
 ```cpp
-// LeetCode, Surrounded Regions
-// BFS，时间复杂度O(n)，空间复杂度O(n)
+// Surrounded Regions
+// BFS，时间复杂度O(MN)，空间复杂度O(MN)
 class Solution {
 public:
     void solve(vector<vector<char>> &board) {
         if (board.empty()) return;
-
-        const int m = board.size();
-        const int n = board[0].size();
-        for (int i = 0; i < n; i++) {
+        const int M = board.size(), N = board[0].size();
+        // four borders
+        for (int i = 0; i < N; i++) {
             bfs(board, 0, i);
-            bfs(board, m - 1, i);
+            bfs(board, M - 1, i);
         }
-        for (int j = 1; j < m - 1; j++) {
+        for (int j = 1; j < M - 1; j++) {
             bfs(board, j, 0);
-            bfs(board, j, n - 1);
+            bfs(board, j, N - 1);
         }
-        for (int i = 0; i < m; i++)
-            for (int j = 0; j < n; j++)
+        // restore
+        for (int i = 0; i < M; i++)
+            for (int j = 0; j < N; j++)
                 if (board[i][j] == 'O')
                     board[i][j] = 'X';
                 else if (board[i][j] == '+')
                     board[i][j] = 'O';
     }
 private:
+    typedef pair<int, int> state_t;
+
     void bfs(vector<vector<char>> &board, int i, int j) {
-        typedef pair<int, int> state_t;
         queue<state_t> q;
-        const int m = board.size();
-        const int n = board[0].size();
+        const int M = board.size(), N = board[0].size();
 
-        auto state_is_valid = [&](const state_t &s) {
-            const int x = s.first;
-            const int y = s.second;
-            if (x < 0 || x >= m || y < 0 || y >= n || board[x][y] != 'O')
-                return false;
-            return true;
-        };
+        // up, down, left, right
+        const int dirs[][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
-        auto state_extend = [&](const state_t &s) {
-            vector<state_t> result;
-            const int x = s.first;
-            const int y = s.second;
-            // 上下左右
-            const state_t new_states[4] = {{x-1,y}, {x+1,y},
-                    {x,y-1}, {x,y+1}};
-            for (int k = 0; k < 4;  ++k) {
-                if (state_is_valid(new_states[k])) {
-                    // 既有标记功能又有去重功能
-                    board[new_states[k].first][new_states[k].second] = '+';
-                    result.push_back(new_states[k]);
-                }
-            }
-
-            return result;
-        };
-
-        state_t start = { i, j };
-        if (state_is_valid(start)) {
+        state_t start = {i, j};
+        if (state_is_valid(board, start)) {
             board[i][j] = '+';
             q.push(start);
         }
         while (!q.empty()) {
             auto cur = q.front();
             q.pop();
-            auto new_states = state_extend(cur);
-            for (auto s : new_states) q.push(s);
+            const int x = cur.first, y = cur.second;
+
+            for (const auto &dir : dirs) {
+                const state_t new_state = {x + dir[0], y + dir[1]};
+                if (state_is_valid(board, new_state)) {
+                    // 既有标记功能又有去重功能
+                    board[new_state.first][new_state.second] = '+';
+                    q.push(new_state);
+                }
+            }
         }
+    }
+
+    bool state_is_valid(const vector<vector<char>> &board, const state_t s) {
+        const int M = board.size(), N = board[0].size();
+        const int x = s.first, y = s.second;
+        return 0 <= x && x < M && 0 <= y && y < N && board[x][y] == 'O';
     }
 };
 ```

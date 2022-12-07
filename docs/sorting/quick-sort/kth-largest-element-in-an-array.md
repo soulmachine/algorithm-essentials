@@ -35,7 +35,21 @@ You may assume `k` is always valid, 1 ≤ k ≤ array's length.
 
 思路 4 和 5 比较高效，可以接受，其他思路太慢了，不采纳。
 
-### 思路 4 partition
+### 代码
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+#### 小根堆
+
+<Tabs
+defaultValue="cpp"
+values={[
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="java">
 
 ```java
 // Kth Largest Element in an Array
@@ -45,14 +59,9 @@ public class Solution {
         final Queue<Integer> q = new PriorityQueue<>();
 
         for (int x : nums) {
-            if (q.size() < k) {
-                q.offer(x);
-            } else {
-                final int top = q.peek();
-                if (x > top) {
-                    q.poll();
-                    q.offer(x);
-                }
+            q.offer(x);
+            if (q.size() > k) {
+                q.poll();
             }
         }
         return q.peek();
@@ -60,37 +69,62 @@ public class Solution {
 }
 ```
 
-### 思路 5 小根堆
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// Kth Largest Element in an Array
+// Time complexity: O(nlogk), Space complexity: O(k)
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int, vector<int>, greater<int>> q;
+        for (int x : nums) {
+            q.push(x);
+            if (q.size() > k) {
+                q.pop();
+            }
+        }
+        return q.top();
+    }
+};
+```
+
+</TabItem>
+</Tabs>
+
+#### Quickselect
+
+<Tabs
+defaultValue="java"
+values={[
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="java">
 
 ```java
 // Kth Largest Element in an Array
 // Time complexity: O(n), Space complexity: O(1)
 public class Solution {
     public int findKthLargest(int[] nums, int k) {
-        quickSort(nums, 0, nums.length - 1);
-        return nums[nums.length - k];
+        return quickSelect(nums, 0, nums.length - 1, nums.length - k);
     }
-    private static int findKthLargest(int[] nums, int begin, int end, int k) {
-        if (begin + 1 == end && k == 1) return nums[0];
 
-        final int pos = partition(nums, begin, end - 1);
-        final int len = pos - begin;
+    private static int quickSelect(int[] nums, int low, int high, int k) {
+        if (low == high) return nums[low];
+        final int pos = partition(nums, low, high);
 
-        if (len == k) {
-            return nums[pos-1];
-        } else if (len < k) {
-            return findKthLargest(nums, pos, end, k - len);
+        if (pos == k) {
+            return nums[pos];
+        } else if (pos < k) {
+            return quickSelect(nums, pos+1, high, k);
         } else {
-            return findKthLargest(nums, begin, pos, k);
+            return quickSelect(nums, low, pos-1, k);
         }
     }
-    private static void quickSort(int[] nums, int left, int right) {
-        if (left < right) {
-            final int pos = partition(nums, left, right);
-            quickSort(nums, left, pos - 1);
-            quickSort(nums, pos + 1, right);
-        }
-    }
+
     private static int partition(int[] nums, int i, int j) {
         final int pivot = nums[i];
         while (i < j) {
@@ -104,3 +138,45 @@ public class Solution {
     }
 }
 ```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// Kth Largest Element in an Array
+// Time complexity: O(n), Space complexity: O(1)
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        return quick_select(nums, 0, nums.size() - 1, nums.size() - k);
+    }
+private:
+    int quick_select(vector<int>& nums, int low, int high, int k) {
+        if (low == high) return nums[low];
+        const int pos = partition(nums, low, high);
+
+        if (pos == k) {
+            return nums[pos];
+        } else if (pos < k) {
+            return quick_select(nums, pos+1, high, k);
+        } else {
+            return quick_select(nums, low, pos-1, k);
+        }
+    }
+    
+    int partition(vector<int>& nums, int i, int j) {
+        const int pivot = nums[i];
+        while (i < j) {
+            while (i < j && nums[j] >= pivot) --j;
+            nums[i] = nums[j];
+            while(i < j && nums[i] <= pivot) ++i;
+            nums[j] = nums[i];
+        }
+        nums[i] = pivot;
+        return i;
+    }
+};
+```
+
+</TabItem>
+</Tabs>

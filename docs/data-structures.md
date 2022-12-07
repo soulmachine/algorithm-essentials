@@ -79,31 +79,16 @@ l.push_back(1);
 </TabItem>
 </Tabs>
 
-### 单链表
+### 双向链表
 
 <Tabs
-defaultValue="python"
+defaultValue="java"
 groupId="data-structures"
 values={[
-{ label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
 }>
-<TabItem value="python">
-
-```python
-# To mimic singly linked list, always operate at head
-l = deque()
-# insert at head, time complexity O(1)
-l.appendleft(7)
-# access head, time complexity O(1)
-l[0]
-# remove head, time complexity O(1)
-l.popleft()
-```
-
-</TabItem>
 <TabItem value="java">
 
 ```java
@@ -129,76 +114,6 @@ l.push_front(7);
 l.front();
 // remove head, time complexity O(1)
 l.pop_front();
-```
-
-</TabItem>
-</Tabs>
-
-### 双向链表
-
-<Tabs
-defaultValue="python"
-groupId="data-structures"
-values={[
-{ label: 'Python', value: 'python', },
-{ label: 'Java', value: 'java', },
-{ label: 'C++', value: 'cpp', },
-]
-}>
-<TabItem value="python">
-
-```python
-q = deque()
-# insert at tail, time complexity O(1)
-q.push(7)
-# access tail, time complexity O(1)
-q[-1]
-# remove tail, time complexity O(1)
-q.pop()
-# insert at head, time complexity O(1)
-q.pushleft(7)
-# access head, time complexity O(1)
-q[0]
-# remove head, time complexity O(1)
-q.popleft()
-```
-
-</TabItem>
-<TabItem value="java">
-
-```java
-Deque<Integer> q = new ArrayDeque<>();
-// insert at tail, time complexity O(1)
-q.offerLast(7)
-// access tail, time complexity O(1)
-q.peekLast()
-// remove tail, time complexity O(1)
-q.pollLast()
-// insert at head, time complexity O(1)
-q.offerFirst(7)
-// access head, time complexity O(1)
-q.peekFirst()
-// remove head, time complexity O(1)
-q.pollFirst()
-```
-
-</TabItem>
-<TabItem value="cpp">
-
-```cpp
-deque<int> q;
-// insert at tail, time complexity O(1)
-q.push_back(7)
-// access tail, time complexity O(1)
-q.back()
-// remove tail, time complexity O(1)
-q.pop_back()
-// insert at head, time complexity O(1)
-q.push_front(7)
-// access head, time complexity O(1)
-q.front()
-// remove head, time complexity O(1)
-q.pop_front()
 ```
 
 </TabItem>
@@ -289,8 +204,78 @@ q.isEmpty();
 queue<int> q;
 s.push_back(7)
 s.front();
-s.pop_front();
+s.pop();
 s.empty()
+```
+
+</TabItem>
+</Tabs>
+
+### 双端队列
+
+<Tabs
+defaultValue="python"
+groupId="data-structures"
+values={[
+{ label: 'Python', value: 'python', },
+{ label: 'Java', value: 'java', },
+{ label: 'C++', value: 'cpp', },
+]
+}>
+<TabItem value="python">
+
+```python
+q = deque()
+# insert at tail, time complexity O(1)
+q.push(7)
+# access tail, time complexity O(1)
+q[-1]
+# remove tail, time complexity O(1)
+q.pop()
+# insert at head, time complexity O(1)
+q.pushleft(7)
+# access head, time complexity O(1)
+q[0]
+# remove head, time complexity O(1)
+q.popleft()
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+Deque<Integer> q = new ArrayDeque<>();
+// insert at tail, time complexity O(1)
+q.offerLast(7)
+// access tail, time complexity O(1)
+q.peekLast()
+// remove tail, time complexity O(1)
+q.pollLast()
+// insert at head, time complexity O(1)
+q.offerFirst(7)
+// access head, time complexity O(1)
+q.peekFirst()
+// remove head, time complexity O(1)
+q.pollFirst()
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+deque<int> q;
+// insert at tail, time complexity O(1)
+q.push_back(7)
+// access tail, time complexity O(1)
+q.back()
+// remove tail, time complexity O(1)
+q.pop_back()
+// insert at head, time complexity O(1)
+q.push_front(7)
+// access head, time complexity O(1)
+q.front()
+// remove head, time complexity O(1)
+q.pop_front()
 ```
 
 </TabItem>

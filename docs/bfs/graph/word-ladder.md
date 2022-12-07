@@ -45,19 +45,20 @@ values={[
 
 ```java
 // Word Ladder
-// 时间复杂度O(n)，空间复杂度O(n)
+// 时间复杂度O(n*m)，空间复杂度O(n)
 public class Solution {
-    public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Queue<State> q = new LinkedList<>();
-        HashSet<State> visited = new HashSet<>(); // 判重
+        Set<State> visited = new HashSet<>();
+        Set<String> wordDict = new HashSet<>(wordList);
 
         final Function<State, Boolean> stateIsValid = (State s) ->
-                wordList.contains(s.word) || s.word.equals(endWord);
+                wordDict.contains(s.word);
         final Function<State, Boolean> stateIsTarget = (State s) ->
                 s.word.equals(endWord);
 
-        final Function<State, HashSet<State> > stateExtend = (State s) -> {
-            HashSet<State> result = new HashSet<>();
+        final Function<State, List<State> > stateExtend = (State s) -> {
+            List<State> result = new ArrayList<>();
 
             char[] array = s.word.toCharArray();
             for (int i = 0; i < array.length; ++i) {
@@ -69,8 +70,7 @@ public class Solution {
                     array[i] = c;
                     State newState = new State(new String(array), s.level+1);
 
-                    if (stateIsValid.apply(newState) &&
-                            !visited.contains(newState)) {
+                    if (stateIsValid.apply(newState) && !visited.contains(newState)) {
                         result.add(newState);
                     }
                     array[i] = old; // 恢复该单词
@@ -81,8 +81,9 @@ public class Solution {
         };
 
         State startState = new State(beginWord, 0);
-        q.offer(startState);
         visited.add(startState);
+        q.offer(startState);
+
         while (!q.isEmpty()) {
             State state = q.poll();
 
@@ -91,10 +92,10 @@ public class Solution {
             }
 
 
-            HashSet<State> newStates = stateExtend.apply(state);
+            List<State> newStates = stateExtend.apply(state);
             for (State newState : newStates) {
-                q.offer(newState);
                 visited.add(newState);
+                q.offer(newState);
             }
         }
         return 0;
@@ -131,12 +132,11 @@ public class Solution {
 
 ```cpp
 // Word Ladder
-// 时间复杂度O(n)，空间复杂度O(n)
+// 时间复杂度O(n*m)，空间复杂度O(n)
 struct state_t {
     string word;
     int level;
 
-    state_t() { word = ""; level = 0; }
     state_t(const string& word, int level) {
         this->word = word;
         this->level = level;
@@ -162,16 +162,17 @@ namespace std {
 class Solution {
 public:
     int ladderLength(const string& start, const string &end,
-            const unordered_set<string> &dict) {
+            const vector<string> &wordList) {
         queue<state_t> q;
-        unordered_set<state_t> visited;  // 判重
+        unordered_set<state_t> visited;
+        unordered_set<string> dict(wordList.begin(), wordList.end());
 
         auto state_is_valid = [&](const state_t& s) {
-            return dict.find(s.word) != dict.end() || s.word == end;
+            return dict.find(s.word) != dict.end();
         };
         auto state_is_target = [&](const state_t &s) {return s.word == end; };
         auto state_extend = [&](const state_t &s) {
-            unordered_set<state_t> result;
+            vector<state_t> result;
 
             for (size_t i = 0; i < s.word.size(); ++i) {
                 state_t new_state(s.word, s.level + 1);
@@ -183,7 +184,7 @@ public:
 
                     if (state_is_valid(new_state) &&
                         visited.find(new_state) == visited.end()) {
-                        result.insert(new_state);
+                        result.push_back(new_state);
                     }
                     swap(c, new_state.word[i]); // 恢复该单词
                 }
@@ -193,8 +194,8 @@ public:
         };
 
         state_t start_state(start, 0);
-        q.push(start_state);
         visited.insert(start_state);
+        q.push(start_state);
         while (!q.empty()) {
             // 千万不能用 const auto&，pop() 会删除元素，
             // 引用就变成了悬空引用
@@ -207,8 +208,8 @@ public:
 
             const auto& new_states = state_extend(state);
             for (const auto& new_state : new_states) {
-                q.push(new_state);
                 visited.insert(new_state);
+                q.push(new_state);
             }
         }
         return 0;

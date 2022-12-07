@@ -18,7 +18,7 @@ Your algorithm should run in `O(n)` complexity.
 
 由于序列里的元素是无序的，又要求`O(n)`，首先要想到用哈希表。
 
-用一个哈希表存储所有出现过的元素，对每个元素，以该元素为中心，往左右扩张，直到不连续为止，记录下最长的长度。
+用一个哈希表存储所有出现过的元素，对每个元素，以该元素为中心，往左右扩张，直到不连续为止，记录下最长的长度。可以对这个过程略作优化，只需往右扩张：对每个元素`x`，先看一下`x-1`是否在hashset中存在，若不存在，说明左边有个断点，`x`是新片段的起点，只需向右扩张。
 
 ### 代码
 
@@ -105,16 +105,13 @@ public:
 
         int longest = 0;
         for (auto i : nums) {
-            int length = 1;
-            for (int j = i - 1; my_set.find(j) != my_set.end(); --j) {
-                my_set.erase(j);
-                ++length;
+            if (my_set.find(i - 1) == my_set.end()) { // gap exists, a new streak starts
+                int length = 0;
+                for (int j = i; my_set.find(j) != my_set.end(); j++) {
+                    length += 1;
+                }
+                longest = max(longest, length);
             }
-            for (int j = i + 1; my_set.find(j) != my_set.end(); ++j) {
-                my_set.erase(j);
-                ++length;
-            }
-            longest = max(longest, length);
         }
         return longest;
     }
