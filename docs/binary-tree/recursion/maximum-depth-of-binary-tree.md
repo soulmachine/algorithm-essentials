@@ -34,22 +34,9 @@ class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if root is None:
             return 0
-
-        depth = 0
-        q = [(1, root)]
-        i = 0
-
-        while i < len(q):
-            current_depth, root = q[i]
-            depth = max(depth, current_depth)
-            if root.left is not None:
-                q.append((current_depth + 1, root.left))
-            if root.right is not None:
-                q.append((current_depth + 1, root.right))
-            i += 1
-
-        return depth
-```
+        else: 
+            return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+        ```
 </TabItem>
 <TabItem value="java">
 
