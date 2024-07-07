@@ -20,10 +20,37 @@ import TabItem from "@theme/TabItem";
 <Tabs
 defaultValue="java"
 values={[
+{ label: 'Python', value: 'python', },
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
 }>
+<TabItem value="python">
+
+```python
+# Maximum Depth of Binary Tree
+# 时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
+
+        depth = 0
+        q = [(1, root)]
+        i = 0
+
+        while i < len(q):
+            current_depth, root = q[i]
+            depth = max(depth, current_depth)
+            if root.left is not None:
+                q.append((current_depth + 1, root.left))
+            if root.right is not None:
+                q.append((current_depth + 1, root.right))
+            i += 1
+
+        return depth
+```
+</TabItem>
 <TabItem value="java">
 
 ```java
