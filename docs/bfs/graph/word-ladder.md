@@ -35,7 +35,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="cpp"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
@@ -70,7 +70,7 @@ public class Solution {
                     array[i] = c;
                     State newState = new State(new String(array), s.level+1);
 
-                    if (stateIsValid.apply(newState) && !visited.contains(newState)) {
+                    if (stateIsValid.apply(newState)) {
                         result.add(newState);
                     }
                     array[i] = old; // 恢复该单词
@@ -133,238 +133,60 @@ public class Solution {
 ```cpp
 // Word Ladder
 // 时间复杂度O(n*m)，空间复杂度O(n)
-struct state_t {
-    string word;
-    int level;
+class Solution {
+ public:
+  int ladderLength(const string &start, const string &end,
+                   const vector<string> &wordList) {
+    queue<pair<string, int>> q;
+    unordered_set<string> visited;
+    unordered_set<string> dict(wordList.begin(), wordList.end());
 
-    state_t(const string& word, int level) {
-        this->word = word;
-        this->level = level;
-    }
-
-    bool operator==(const state_t &other) const {
-        return this->word == other.word;
-    }
-};
-
-namespace std {
-    template<> struct hash<state_t> {
-    public:
-        size_t operator()(const state_t& s) const {
-            return str_hash(s.word);
-        }
-    private:
-        std::hash<std::string> str_hash;
+    auto state_is_valid = [&](const string &s) {
+      return dict.find(s) != dict.end();
     };
-}
+    auto state_is_target = [&](const string &s) { return s == end; };
+    auto state_extend = [&](const string &s) {
+      vector<string> result;
 
+      for (size_t i = 0; i < s.size(); ++i) {
+        string new_state(s);
+        for (char c = 'a'; c <= 'z'; c++) {
+          if (c == new_state[i]) continue;
 
-class Solution {
-public:
-    int ladderLength(const string& start, const string &end,
-            const vector<string> &wordList) {
-        queue<state_t> q;
-        unordered_set<state_t> visited;
-        unordered_set<string> dict(wordList.begin(), wordList.end());
-
-        auto state_is_valid = [&](const state_t& s) {
-            return dict.find(s.word) != dict.end();
-        };
-        auto state_is_target = [&](const state_t &s) {return s.word == end; };
-        auto state_extend = [&](const state_t &s) {
-            vector<state_t> result;
-
-            for (size_t i = 0; i < s.word.size(); ++i) {
-                state_t new_state(s.word, s.level + 1);
-                for (char c = 'a'; c <= 'z'; c++) {
-                    // 防止同字母替换
-                    if (c == new_state.word[i]) continue;
-
-                    swap(c, new_state.word[i]);
-
-                    if (state_is_valid(new_state) &&
-                        visited.find(new_state) == visited.end()) {
-                        result.push_back(new_state);
-                    }
-                    swap(c, new_state.word[i]); // 恢复该单词
-                }
-            }
-
-            return result;
-        };
-
-        state_t start_state(start, 0);
-        visited.insert(start_state);
-        q.push(start_state);
-        while (!q.empty()) {
-            // 千万不能用 const auto&，pop() 会删除元素，
-            // 引用就变成了悬空引用
-            const auto state = q.front();
-            q.pop();
-
-            if (state_is_target(state)) {
-                return state.level + 1;
-            }
-
-            const auto& new_states = state_extend(state);
-            for (const auto& new_state : new_states) {
-                visited.insert(new_state);
-                q.push(new_state);
-            }
+          swap(c, new_state[i]);
+          if (state_is_valid(new_state) &&
+              visited.find(new_state) == visited.end()) {
+            result.push_back(new_state);
+          }
+          swap(c, new_state[i]);  // restore
         }
-        return 0;
-    }
-};
-```
+      }
 
-</TabItem>
-</Tabs>
+      return result;
+    };
 
-### 双队列
+    visited.insert(start); // mark as visited before enqueue
+    q.push(pair<string, int>{start, 0});
+    while (!q.empty()) {
+      // Do NOT use reference here, because pop() will delete
+      // the element, then the reference will become dangled
+      const pair<string, int> state = q.front();
+      q.pop();
 
-<Tabs
-defaultValue="java"
-values={[
-{ label: 'Java', value: 'java', },
-{ label: 'C++', value: 'cpp', },
-]
-}>
-<TabItem value="java">
+      if (state_is_target(state.first)) {
+        return state.second + 1;
+      }
 
-```java
-// Word Ladder
-// 时间复杂度O(n)，空间复杂度O(n)
-public class Solution {
-    public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
-        Queue<String> current = new LinkedList<>(); // 当前层
-        Queue<String> next = new LinkedList<>();    // 下一层
-        HashSet<String> visited = new HashSet<>();  // 判重
-
-        int level = -1;  // 层次
-
-        final Function<String, Boolean> stateIsValid = (String s) ->
-                wordList.contains(s) || s.equals(endWord);
-        final Function<String, Boolean> stateIsTarget = (String s) ->
-                s.equals(endWord);
-
-        final Function<String, HashSet<String> > stateExtend = (String s) -> {
-            HashSet<String> result = new HashSet<>();
-
-            char[] array = s.toCharArray();
-            for (int i = 0; i < array.length; ++i) {
-                final char old = array[i];
-                for (char c = 'a'; c <= 'z'; c++) {
-                    // 防止同字母替换
-                    if (c == array[i]) continue;
-
-                    array[i] = c;
-                    String newState = new String(array);
-
-                    if (stateIsValid.apply(newState) &&
-                            !visited.contains(newState)) {
-                        result.add(newState);
-                    }
-                    array[i] = old; // 恢复该单词
-                }
-            }
-
-            return result;
-        };
-
-        current.offer(beginWord);
-        visited.add(beginWord);
-        while (!current.isEmpty()) {
-            ++level;
-            while (!current.isEmpty()) {
-                // 千万不能用 const auto&，pop() 会删除元素，
-                // 引用就变成了悬空引用
-                String state = current.poll();
-
-                if (stateIsTarget.apply(state)) {
-                    return level + 1;
-                }
-
-                HashSet<String> newStates = stateExtend.apply(state);
-                for (String newState : newStates) {
-                    next.offer(newState);
-                    visited.add(newState);
-                }
-            }
-            // swap
-            Queue<String> tmp = current;
-            current = next;
-            next = tmp;
+      const vector<string> &new_states = state_extend(state.first);
+      for (const string &new_state : new_states) {
+        if (visited.find(new_state) == visited.end()) {
+          visited.insert(new_state);  // mark as visited before enqueue
+          q.push(pair<string, int>{new_state, state.second + 1});
         }
-        return 0;
+      }
     }
-}
-```
-
-</TabItem>
-<TabItem value="cpp">
-
-```cpp
-// Word Ladder
-// 时间复杂度O(n)，空间复杂度O(n)
-class Solution {
-public:
-    int ladderLength(const string& start, const string &end,
-            const unordered_set<string> &dict) {
-        queue<string> current, next;    // 当前层，下一层
-        unordered_set<string> visited;  // 判重
-
-        int level = -1;  // 层次
-
-        auto state_is_valid = [&](const string& s) {
-            return dict.find(s) != dict.end() || s == end;
-        };
-        auto state_is_target = [&](const string &s) {return s == end;};
-        auto state_extend = [&](const string &s) {
-            unordered_set<string> result;
-
-            for (size_t i = 0; i < s.size(); ++i) {
-                string new_word(s);
-                for (char c = 'a'; c <= 'z'; c++) {
-                    // 防止同字母替换
-                    if (c == new_word[i]) continue;
-
-                    swap(c, new_word[i]);
-
-                    if (state_is_valid(new_word) &&
-                        visited.find(new_word) == visited.end()) {
-                        result.insert(new_word);
-                    }
-                    swap(c, new_word[i]); // 恢复该单词
-                }
-            }
-
-            return result;
-        };
-
-        current.push(start);
-        visited.insert(start);
-        while (!current.empty()) {
-            ++level;
-            while (!current.empty()) {
-                // 千万不能用 const auto&，pop() 会删除元素，
-                // 引用就变成了悬空引用
-                const auto state = current.front();
-                current.pop();
-
-                if (state_is_target(state)) {
-                    return level + 1;
-                }
-
-                const auto& new_states = state_extend(state);
-                for (const auto& new_state : new_states) {
-                    next.push(new_state);
-                    visited.insert(new_state);
-                }
-            }
-            swap(next, current);
-        }
-        return 0;
-    }
+    return 0;
+  }
 };
 ```
 

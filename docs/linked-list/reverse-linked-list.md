@@ -10,7 +10,9 @@ Reverse a singly linked list.
 
 用双指针 `p`, `q`，不断前进。
 
-### 解法 1 迭代
+### 代码
+
+#### 迭代
 
 ```java
 // Reverse Linked List
@@ -30,7 +32,7 @@ class Solution {
 }
 ```
 
-### 解法 2 递归
+#### 递归
 
 ```java
 // Reverse Linked List

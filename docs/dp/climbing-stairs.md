@@ -186,4 +186,4 @@ class Solution {
 
 ### 相关题目
 
-- [Decode Ways](../dp/decode-ways.md)
+- [Decode Ways](decode-ways.md)

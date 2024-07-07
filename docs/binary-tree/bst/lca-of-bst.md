@@ -75,4 +75,4 @@ public class Solution {
 
 ### 相关题目
 
-- [LCA of Binary Tree](../recursion/lca-of-binary-tree.md)
+- [LCA of Binary Tree](../recursion/lowest-common-ancestor-of-a-binary-tree.md)

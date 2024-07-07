@@ -22,7 +22,7 @@ The number of ways decoding `"12"` is 2.
 
 ### 分析
 
-跟第???节[Climbing Stairs](../array/climbing-stairs.md)很类似，不过多加一些判断逻辑。
+跟第???节[Climbing Stairs](climbing-stairs.md)很类似，不过多加一些判断逻辑。
 
 ### 代码
 
@@ -99,4 +99,4 @@ public:
 
 ### 相关题目
 
-- [Climbing Stairs](../array/climbing-stairs.md)
+- [Climbing Stairs](climbing-stairs.md)
