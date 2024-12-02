@@ -16,5 +16,5 @@ TODO
 
 ### 相关题目
 
-- [LCA of Binary Tree](lca-of-binary-tree.md)
+- [LCA of Binary Tree](lowest-common-ancestor-of-a-binary-tree.md)
 - [LCA of BST](../bst/lca-of-bst.md)

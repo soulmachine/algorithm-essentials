@@ -65,4 +65,4 @@ public:
 
 ### 相关题目
 
-- [Valid Palindrome](valid-palindrome.md)
+- [Valid Palindrome](../dual-pointers/valid-palindrome.md)

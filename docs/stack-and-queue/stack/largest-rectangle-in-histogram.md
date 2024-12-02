@@ -14,7 +14,7 @@ For example, given height = `[2,1,5,6,2,3]`, return 10.
 
 ### 分析
 
-简单的，类似于 [Container With Most Water](../../greedy/container-with-most-water.md)，对每个柱子，左右扩展，直到碰到比自己矮的，计算这个矩形的面积，用一个变量记录最大的面积，复杂度`O(n^2)`，会超时。
+简单的，类似于 [Container With Most Water](../../dual-pointers/container-with-most-water.md)，对每个柱子，左右扩展，直到碰到比自己矮的，计算这个矩形的面积，用一个变量记录最大的面积，复杂度`O(n^2)`，会超时。
 
 如上图所示，从左到右处理直方，当`i=4`时，小于当前栈顶（即直方 3），对于直方 3，无论后面还是前面的直方，都不可能得到比目前栈顶元素更高的高度了，处理掉直方 3（计算从直方 3 到直方 4 之间的矩形的面积，然后从栈里弹出）；对于直方 2 也是如此；直到碰到比直方 4 更矮的直方 1。
 
@@ -88,5 +88,5 @@ public:
 
 ### 相关题目
 
-- [Trapping Rain Water](../../array/trapping-rain-water.md)
-- [Container With Most Water](../../greedy/container-with-most-water.md)
+- [Trapping Rain Water](../../dual-pointers/trapping-rain-water.md)
+- [Container With Most Water](../../dual-pointers/container-with-most-water.md)

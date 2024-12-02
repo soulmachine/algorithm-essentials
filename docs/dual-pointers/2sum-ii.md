@@ -4,7 +4,7 @@ title: 2Sum II
 
 ### 描述
 
-Based on [2Sum](2sum.md), the only change is that **array is sorted in ascending order**.
+Based on [2Sum](../array/2sum.md), the only change is that **array is sorted in ascending order**.
 
 **Example 1:**
 
@@ -124,9 +124,9 @@ public:
 
 ### 相关题目
 
-- [2Sum](2sum.md)
+- [2Sum](../array/2sum.md)
 - [3Sum](3sum.md)
 - [3Sum Closest](3sum-closest.md)
 - [4Sum](4sum.md)
-- [4Sum II](4sum-ii.md)
+- [4Sum II](../array/4sum-ii.md)
 - [Reverse String](../string/reverse-string.md)

@@ -88,4 +88,4 @@ public:
 ### 相关题目
 
 - [Reverse Integer](reverse-integer.md)
-- [Valid Palindrome](../string/valid-palindrome.md)
+- [Valid Palindrome](../dual-pointers/valid-palindrome.md)

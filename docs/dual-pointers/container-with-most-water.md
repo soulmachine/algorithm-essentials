@@ -79,5 +79,5 @@ public:
 
 ### 相关题目
 
-- [Trapping Rain Water](../array/trapping-rain-water.md)
+- [Trapping Rain Water](trapping-rain-water.md)
 - [Largest Rectangle in Histogram](../stack-and-queue/stack/largest-rectangle-in-histogram.md)

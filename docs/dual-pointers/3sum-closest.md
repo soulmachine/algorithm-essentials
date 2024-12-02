@@ -116,8 +116,8 @@ public:
 
 ### 相关题目
 
-- [2Sum](2sum.md)
+- [2Sum](../array/2sum.md)
 - [2Sum II](2sum-ii.md)
 - [3Sum](3sum.md)
 - [4Sum](4sum.md)
-- [4Sum II](4sum-ii.md)
+- [4Sum II](../array/4sum-ii.md)
