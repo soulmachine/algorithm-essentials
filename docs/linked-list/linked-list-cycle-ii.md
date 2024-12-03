@@ -29,6 +29,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -83,6 +84,28 @@ public:
         return nullptr;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Linked List Cycle II
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def detectCycle(self, head):
+        slow, fast = head, head;
+        while fast and fast.next:
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast):
+                slow2 = head;
+
+                while slow2 != slow:
+                    slow2 = slow2.next;
+                    slow = slow.next;
+                return slow2;
+        return;
 ```
 
 </TabItem>
