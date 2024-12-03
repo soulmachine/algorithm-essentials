@@ -59,7 +59,6 @@ public:
 # 时间复杂度O(n)，空间复杂度O(1)
 class Solution:
     def middleNode(self, head):
-        # 设置两个指针，一个快一个慢
         slow, fast = head, head
         while fast and fast.next:
             slow = slow.next
