@@ -29,6 +29,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -80,6 +81,28 @@ public:
         return dummy.next;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Remove Nth Node From End of List
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def removeNthFromEnd(self, head, n):
+        dummy = ListNode(-1)
+        dummy.next = head
+        p, q = dummy, dummy
+
+        for i in range(n): # q先走n步
+            q = q.next
+
+        while q.next != None: # 一起走
+            p = p.next
+            q = q.next
+        p.next = p.next.next
+        return dummy.next
 ```
 
 </TabItem>
