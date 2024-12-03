@@ -36,6 +36,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -78,6 +79,22 @@ public:
         return a; // return b is also OK
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Intersection of Two Linked Lists
+# Time Complexity: O(m+n), Space Complexity: O(1)
+class Solution:
+    def getIntersectionNode(self, headA, headB):
+        a, b = headA, headB
+        while a != b:
+            a = headB if a == None else a.next
+            b = headA if b == None else b.next
+
+        return a # return b is also OK
 ```
 
 </TabItem>
