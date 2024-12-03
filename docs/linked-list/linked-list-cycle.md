@@ -25,6 +25,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -65,6 +66,23 @@ public:
         return false;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Linked List Cycle
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def hasCycle(self, head):
+        slow,fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
 ```
 
 </TabItem>
