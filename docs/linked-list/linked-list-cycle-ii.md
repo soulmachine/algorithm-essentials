@@ -105,7 +105,7 @@ class Solution:
                     slow2 = slow2.next;
                     slow = slow.next;
                 return slow2;
-        return;
+        return None
 ```
 
 </TabItem>
