@@ -86,6 +86,7 @@ public:
 
 ```python
 # Intersection of Two Linked Lists
+# Two Pointers
 # Time Complexity: O(m+n), Space Complexity: O(1)
 class Solution:
     def getIntersectionNode(self, headA, headB):
