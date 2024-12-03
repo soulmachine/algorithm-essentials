@@ -22,6 +22,7 @@ defaultValue="cpp"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -48,6 +49,22 @@ public:
         return slow;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Middle of the Linked List
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def middleNode(self, head):
+        # 设置两个指针，一个快一个慢
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
 ```
 
 </TabItem>
