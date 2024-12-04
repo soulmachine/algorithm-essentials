@@ -25,6 +25,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -89,6 +90,35 @@ public:
         return left_dummy.next;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Partition List
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def partition(self, head, x):
+        left_dummy = ListNode(-1) # 头结点
+        right_dummy = ListNode(-1) # 头结点
+
+        left_cur = left_dummy
+        right_cur = right_dummy
+        cur = head
+        while cur is not None:
+            if cur.val < x:
+                left_cur.next = cur
+                left_cur = cur
+            else:
+                right_cur.next = cur
+                right_cur = cur
+            cur = cur.next
+
+        left_cur.next = right_dummy.next
+        right_cur.next = None
+
+        return left_dummy.next
 ```
 
 </TabItem>
