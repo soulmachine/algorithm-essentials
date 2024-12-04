@@ -102,7 +102,7 @@ class Solution:
         dummy.next = head
 
         prev = dummy;
-        for i in range(m-1):
+        for _ in range(m-1):
             prev = prev.next
         head2 = prev
 
