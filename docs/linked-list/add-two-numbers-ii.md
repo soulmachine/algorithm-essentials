@@ -102,7 +102,7 @@ class Solution:
 
     @staticmethod
     def addTwoNumbersI(l1, l2):
-        dummy = ListNode(-1); # 头节点
+        dummy = ListNode(-1) # 头节点
         carry = 0
         prev = dummy
         pa, pb = l1, l2
