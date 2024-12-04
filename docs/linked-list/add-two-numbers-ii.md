@@ -18,7 +18,7 @@ What if you cannot modify the input lists? In other words, reversing the lists i
 
 ### 分析
 
-先把两个单聊表反转，就可以直接复用 [Add Two Numbers](add-two-numbers.md) 的代码了。
+先把两个单链表反转，就可以直接复用 [Add Two Numbers](add-two-numbers.md) 的代码了。
 
 ### 代码
 
@@ -30,6 +30,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -84,6 +85,50 @@ public class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Add Two Numbers II
+# Time Complexity: O(m+n), Time Complexity: O(1)
+class Solution:
+    def addTwoNumbers(self, l1, l2):
+        l1 = self.reverseList(l1)
+        l2 = self.reverseList(l2)
+        result = self.addTwoNumbersI(l1, l2)
+        return self.reverseList(result)
+
+    @staticmethod
+    def addTwoNumbersI(l1, l2):
+        dummy = ListNode(-1); # 头节点
+        carry = 0
+        prev = dummy
+        pa, pb = l1, l2
+        while pa is not None or pb is not None:
+            ai = 0 if pa is None else pa.val
+            bi = 0 if pb is None else pb.val
+            value = (ai + bi + carry) % 10
+            carry = (ai + bi + carry) / 10
+            prev.next = ListNode(value) # 尾插法
+            pa = None if pa is None else pa.next
+            pb = None if pb is None else pb.next
+            prev = prev.next
+        if carry > 0:
+            prev.next = ListNode(carry)
+        return dummy.next
+
+    @staticmethod
+    def reverseList(head):
+        p = None
+        q = head
+        while q is not None:
+            tmp = q.next
+            q.next = p
+            p = q
+            q = tmp
+        return p
 ```
 
 </TabItem>
