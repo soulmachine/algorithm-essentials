@@ -23,6 +23,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -81,6 +82,31 @@ public:
         return head;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Remove Rotate List
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def rotateRight(self, head, k):
+        if head is None or k == 0: return head
+
+        len = 1
+        p = head
+        while p.next: # 求长度
+            len += 1
+            p = p.next
+        k = len - k % len
+
+        p.next = head # 首尾相连
+        for step in range(k):
+            p = p.next # 接着往后跑
+        head = p.next # 新的首节点
+        p.next = None # 断开环
+        return head
 ```
 
 </TabItem>
