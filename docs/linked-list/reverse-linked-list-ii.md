@@ -27,6 +27,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -87,6 +88,33 @@ public:
         return dummy.next;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Reverse Linked List II
+# 迭代版，时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def reverseBetween(self, head, m, n):
+        dummy = ListNode(-1)
+        dummy.next = head
+
+        prev = dummy;
+        for i in range(m-1):
+            prev = prev.next
+        head2 = prev
+
+        prev = head2.next
+        cur = prev.next
+        for i in range(m, n):
+            prev.next = cur.next
+            cur.next = head2.next
+            head2.next = cur  # 头插法
+            cur = prev.next
+
+        return dummy.next
 ```
 
 </TabItem>
