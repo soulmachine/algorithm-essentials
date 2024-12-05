@@ -28,6 +28,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -120,6 +121,51 @@ public:
         return prev;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Reorder List
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def reorderList(self, head):
+        if head is None or head.next is None: return
+
+        slow, fast = head, head
+        prev = None
+        while fast and fast.next:
+            prev = slow
+            slow = slow.next
+            fast = fast.next.next
+        prev.next = None # cut at middle
+
+        slow = self.reverse(slow)
+
+        # merge two lists
+        curr = head
+        while curr.next:
+            tmp = curr.next
+            curr.next = slow
+            slow = slow.next
+            curr.next.next = tmp
+            curr = tmp
+        curr.next = slow
+
+    def reverse(self, head):
+        if head is None or head.next is None: return head
+
+        prev = head
+        curr = head.next
+        next = curr.next
+        while curr:
+            curr.next = prev
+            prev = curr
+            curr = next
+            next = next.next if next else None
+        head.next = None
+        return prev
 ```
 
 </TabItem>
