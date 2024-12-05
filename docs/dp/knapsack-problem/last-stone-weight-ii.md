@@ -25,8 +25,8 @@ At the end, there is at most 1 stone left. Return the **smallest possible** weig
 
 **Note**:
 
-- 1 <= stones.length <= 30
-- 1 <= stones[i] <= 100
+- $1 \leq stones.length \leq 30$
+- $1 \leq stones[i] \leq 100$
 
 ### 分析
 

@@ -14,4 +14,4 @@ TODO
 
 TODO
 
-<https://leetcode.com/problems/design-bounded-blocking-queue/discuss/380140/Java-ReentrantLock-%2B-Condition-Solution>
+[]url(https://leetcode.com/problems/design-bounded-blocking-queue/discuss/380140/Java-ReentrantLock-%2B-Condition-Solution)

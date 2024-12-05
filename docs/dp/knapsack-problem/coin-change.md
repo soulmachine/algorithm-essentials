@@ -28,9 +28,9 @@ You may assume that you have an infinite number of each kind of coin.
 
 **Constraints**:
 
-* 1 <= coins.length <= 12
-* 1 <= coins[i] <= $2^{31}$ - 1
-* 0 <= amount <= $10^4$
+* $1 \leq coins.length \leq 12$
+* $1 \leq coins[i] \leq 2^{31} - 1$
+* $0 \leq amount \leq 10^4$
 
 ### 分析
 

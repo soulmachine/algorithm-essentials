@@ -41,7 +41,7 @@ Clarification: The input/output format is the same as [how LeetCode serializes a
 **Constraints**:
 
 - The number of nodes in the tree is in the range [0, $10^4$].
-- -1000 <= Node.val <= 1000
+- $-1000 \leq Node.val \leq 1000$
 
 ### 分析
 

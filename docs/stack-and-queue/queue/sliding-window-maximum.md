@@ -35,9 +35,9 @@ Return the max sliding window.
 
 **Constraints**:
 
-- 1 <= nums.length <= $10^5$
-- -$10^4$ <= nums[i] <= $10^4$
-- 1 <= k <= nums.length
+- $1 \leq nums.length \leq 10^5$
+- $-10^4 \leq nums[i] \leq 10^4$
+- $1 \leq k \leq nums.length$
 
 ### 分析
 

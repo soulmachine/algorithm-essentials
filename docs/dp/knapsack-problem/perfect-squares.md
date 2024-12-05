@@ -22,7 +22,7 @@ A **perfect square** is an integer that is the square of an integer; in other wo
 
 **Constraints**:
 
-* 1 <= n <= $10^4$
+* 1 \leq n \leq 10^4
 
 ### 分析
 

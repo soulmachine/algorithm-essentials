@@ -37,7 +37,7 @@ Implement the `LFUCache` class:
 
 **Constraints**:
 
-- 0 <= capacity, key, value <= $10^4$
+- $0 \leq \text{capacity}, \text{key}, \text{value} \leq 10^4$
 - At most $10^5$ calls will be made to get and put.
 
 **Follow up**: Could you do both operations in `O(1)` time complexity?

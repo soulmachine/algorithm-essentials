@@ -26,10 +26,10 @@ Based on [2Sum](../array/2sum.md), the only change is that **array is sorted in 
 
 **Constraints:**
 
-- 2 <= nums.length <= $3 * 10^4$
-- -1000 <= nums[i] <= 1000
+- $2 \leq nums.length \leq 3 * 10^4$
+- $-1000 \leq nums[i] \leq 1000$
 - `nums` is sorted in ascending order
-- -1000 <= target <= 1000
+- $-1000 \leq target \leq 1000$
 - Only one valid answer exists.
 
 ### 分析

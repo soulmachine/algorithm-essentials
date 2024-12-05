@@ -36,7 +36,7 @@ For example, if there are 4 stones in the heap, then you will never win the game
 
 这题是行数为1，k=3的简化版尼姆游戏。由于是先手，只需要判断当前的石头数能否被4整除，如果能整除，则一定会输，否则一定能赢。
 
-**参考资料**: <http://www.guokr.com/article/68595/>
+**参考资料**: [http://www.guokr.com/article/68595/]url(http://www.guokr.com/article/68595/)
 
 
 ### 代码

@@ -33,12 +33,12 @@ You may assume that the borders of the maze are all walls (see examples).
 
 **Constraints**:
 
-- 1 <= maze.length, maze[i].length <= 100
+- $1 \leq maze.length, maze[i].length \leq 100$
 - maze[i][j] is 0 or 1.
 - start.length == 2
 - destination.length == 2
-- 0 <= start<sub>row</sub>, destination<sub>row</sub> <= maze.length
-- 0 <= start<sub>col</sub>, destination<sub>col</sub> <= maze[i].length
+- 0 \leq $start<sub>row</sub>, destination<sub>row</sub>$ \leq maze.length
+- 0 \leq $start<sub>col</sub>, destination<sub>col</sub>$ \leq maze[i].length
 - Both the ball and the destination exist on an empty space, and they will not be at the same position initially.
 - The maze contains at **least 2 empty spaces**.
 

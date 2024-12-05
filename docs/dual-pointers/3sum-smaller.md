@@ -35,9 +35,9 @@ Given an array of n integers `nums` and an integer target, find the number of in
 **Constraints**:
 
 - n == nums.length
-- 0 <= n <= 300
-- -100 <= nums[i] <= 100
-- -100 <= target <= 100
+- $0 \leq n \leq 300$
+- $-100 \leq nums[i] \leq 100$
+- $-100 \leq target \leq 100$
 
 ### 分析
 

@@ -31,10 +31,10 @@ Return the number of different expressions that you can build, which evaluates t
 
 **Constraints**:
 
-* 1 <= nums.length <= 20
-* 0 <= nums[i] <= 1000
-* 0 <= sum(nums[i]) <= 1000
-* -1000 <= target <= 1000
+* $1 \leq nums.length \leq 20$
+* $0 \leq nums[i] \leq 1000$
+* $0 \leq sum(nums[i]) \leq 1000$
+* $-1000 \leq target \leq 1000$
 
 ### 分析
 

@@ -54,7 +54,7 @@ The two patches can be `[2, 4]`.
 
 最终结果是添加2个数，8和29，就可以组合出`[1,100]`内的所有整数。
 
-参考资料：<https://leetcode.com/discuss/82822/solution-explanation>
+参考资料：[https://leetcode.com/discuss/82822/solution-explanation]url(https://leetcode.com/discuss/82822/solution-explanation)
 
 
 ### 代码
