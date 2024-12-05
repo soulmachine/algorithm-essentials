@@ -16,7 +16,7 @@ Note: You may not engage in multiple transactions at the same time (ie, you must
 
 允许在一天内买进又卖出，相当于不交易，因为题目的规定是最多两次，而不是一定要两次。
 
-将原数组变成差分数组，本题也可以看做是最大`m`子段和，`m=2`，参考代码：<https://gist.github.com/soulmachine/5906637>
+将原数组变成差分数组，本题也可以看做是最大`m`子段和，`m=2`，参考代码：[https://gist.github.com/soulmachine/5906637](https://gist.github.com/soulmachine/5906637)
 
 ### 代码
 

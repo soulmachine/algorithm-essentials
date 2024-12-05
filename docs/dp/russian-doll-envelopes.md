@@ -25,9 +25,9 @@ Return the **maximum number of envelopes** you can Russian doll (i.e., put one i
 
 **Constraints**:
 
-* 1 <= envelopes.length <= $10^5$
+* $1 \leq envelopes.length \leq $10^5$
 * envelopes[i].length == 2
-* 1 <= $w_i$, $h_i$ <= 10^5
+* $1 \leq $w_i$, $h_i$ \leq 10^5$
 
 ### 分析
 

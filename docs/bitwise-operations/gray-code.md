@@ -25,7 +25,7 @@ Note:
 
 ### 分析
 
-格雷码(Gray Code)的定义请参考 <http://en.wikipedia.org/wiki/Gray_code>
+格雷码(Gray Code)的定义请参考 [http://en.wikipedia.org/wiki/Gray_code](http://en.wikipedia.org/wiki/Gray_code)
 
 **自然二进制码转换为格雷码**：$$g_0=b_0, g_i=b_i \oplus b_{i-1}$$
 

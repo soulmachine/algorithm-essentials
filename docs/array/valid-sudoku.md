@@ -4,7 +4,7 @@ title: Valid Sudoku
 
 ### 描述
 
-Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules <http://sudoku.com.au/TheRules.aspx> .
+Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules [http://sudoku.com.au/TheRules.aspx]url(http://sudoku.com.au/TheRules.aspx) .
 
 The Sudoku board could be partially filled, where empty cells are filled with the character `'.'`.
 

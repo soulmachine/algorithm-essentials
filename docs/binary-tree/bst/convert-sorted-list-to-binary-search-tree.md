@@ -10,7 +10,7 @@ Given a singly linked list where elements are sorted in ascending order, convert
 
 这题与上一题类似，但是单链表不能随机访问，而自顶向下的二分法必须需要 RandomAccessIterator，因此前面的方法不适用本题。
 
-存在一种自底向上(bottom-up)的方法，见 <http://leetcode.com/2010/11/convert-sorted-list-to-balanced-binary.html>
+存在一种自底向上(bottom-up)的方法，见 [http://leetcode.com/2010/11/convert-sorted-list-to-balanced-binary.html](http://leetcode.com/2010/11/convert-sorted-list-to-balanced-binary.html)
 
 ### 分治法，自顶向下
 

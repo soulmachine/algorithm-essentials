@@ -18,8 +18,8 @@ Given a **non-empty** array nums containing **only positive integers**, find if 
 
 **Constraints**:
 
-- 1 <= nums.length <= 200
-- 1 <= nums[i] <= 100
+- $1 \leq nums.length \leq 200$
+- $1 \leq nums[i] \leq 100$
 
 ### 分析
 

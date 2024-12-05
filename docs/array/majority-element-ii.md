@@ -23,8 +23,8 @@ Follow-up: Could you solve the problem in linear time and in O(1) space?
 
 **Constraints**:
 
-- 1 <= nums.length <= 5 \* $10^4$
-- -$10^9$ <= nums[i] <= $10^9$
+- 1 \leq nums.length \leq 5 \times 10^4
+- -10^9 \leq nums[i] \leq 10^9
 
 ### 分析
 

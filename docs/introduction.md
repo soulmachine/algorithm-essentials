@@ -37,9 +37,9 @@ slug: /
 
 ## Community
 
-Github: <https://github.com/soulmachine/algorithm-essentials>
+Github: [https://github.com/soulmachine/algorithm-essentials](https://github.com/soulmachine/algorithm-essentials)
 
-微博： [@灵魂机器](http://weibo.com/soulmachine)
+微博： [@灵魂机器] [http://weibo.com/soulmachine](http://weibo.com/soulmachine)
 
 ## License
 

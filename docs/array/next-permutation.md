@@ -20,7 +20,7 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 
 ### 分析
 
-算法过程如下图所示（来自<http://fisherlei.blogspot.com/2012/12/leetcode-next-permutation.html>）。
+算法过程如下图所示（来自[http://fisherlei.blogspot.com/2012/12/leetcode-next-permutation.html](http://fisherlei.blogspot.com/2012/12/leetcode-next-permutation.html)）。
 
 ![下一个排列算法流程](/img/next-permutation.png)
 

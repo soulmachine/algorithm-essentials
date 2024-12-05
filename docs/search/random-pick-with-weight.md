@@ -50,8 +50,8 @@ More formally, the probability of picking index `i` is `w[i] / sum(w)`.
 
 **Constraints**:
 
-- 1 <= w.length <= 10000
-- 1 <= w[i] <= 10^5
+- $1 \leq w.length \leq 10000$
+- $1 \leq w[i] \leq 10^5$
 - `pickIndex()` will be called at most 10000 times.
 
 ### 分析

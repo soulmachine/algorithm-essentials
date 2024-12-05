@@ -26,7 +26,7 @@ to
 
 ### 分析
 
-这题是大名鼎鼎的 Homebrew 的作者 Max Howell 在 Twitter 上发牢骚的那道题。原始 Tweet 地址：<https://twitter.com/mxcl/status/608682016205344768>
+这题是大名鼎鼎的 Homebrew 的作者 Max Howell 在 Twitter 上发牢骚的那道题。原始 Tweet 地址：[https://twitter.com/mxcl/status/608682016205344768](https://twitter.com/mxcl/status/608682016205344768)
 
 这题最简单的办法，是层次遍历，每次交换左右子树。
 

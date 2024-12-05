@@ -95,7 +95,7 @@ void dfs(type &input, type &path, type &result, int cur or gap) {
 
 ### 深搜与回溯法的区别
 
-深搜(Depth-first search, DFS)的定义见 <http://en.wikipedia.org/wiki/Depth_first_search>，回溯法(backtracking)的定义见 <http://en.wikipedia.org/wiki/Backtracking>
+深搜(Depth-first search, DFS)的定义见 [http://en.wikipedia.org/wiki/Depth_first_search](http://en.wikipedia.org/wiki/Depth_first_search)，回溯法(backtracking)的定义见 [http://en.wikipedia.org/wiki/Backtracking](http://en.wikipedia.org/wiki/Backtracking)
 
 **回溯法 = 深搜 + 剪枝**。一般大家用深搜时，或多或少会剪枝，因此深搜与回溯法没有什么不同，可以在它们之间画上一个等号。本书同时使用深搜和回溯法两个术语，但读者可以认为二者等价。
 

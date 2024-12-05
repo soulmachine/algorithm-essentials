@@ -26,11 +26,11 @@ Given an integer `n`, return the number of ways you can write n as the sum of co
 
 **Constraints:**
 
-* 1 <= n <= $10^9$
+* $1 \leq n \leq 10^9$
 
 ### 分析
 
-<https://blog.csdn.net/qq_46105170/article/details/119196729>
+[https://blog.csdn.net/qq_46105170/article/details/119196729](https://blog.csdn.net/qq_46105170/article/details/119196729)
 
 ### 代码
 

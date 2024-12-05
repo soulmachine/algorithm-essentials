@@ -12,7 +12,7 @@ TODO
 
 ### 代码
 
-<https://leetcode.com/problems/find-distance-in-a-binary-tree/discuss/1039737/Detailed-explanation-of-how-to-solve-in-ONE-pass-based-on-LCA-approach>
+[Detailed explanation of how to solve in ONE pass based on LCA approach](https://leetcode.com/problems/find-distance-in-a-binary-tree/discuss/1039737/Detailed-explanation-of-how-to-solve-in-ONE-pass-based-on-LCA-approach)
 
 ### 相关题目
 

@@ -36,12 +36,12 @@ If there is no path from `start` to `end`, **return 0**. Your answer will be acc
 **Constraints**:
 
 - $2 <= n <= 10^4$
-- 0 <= start, end < n
+- $0 \leq \text{start}, \text{end} < n$
 - start != end
-- 0 <= a, b < n
+- $0 \leq a, b < n$
 - a != b
-- 0 <= succProb.length == edges.length <= $2*10^4$
-- 0 <= succProb[i] <= 1
+- $0 \leq \text{succProb.length} = \text{edges.length} \leq 2 \times 10^4$
+- $0 \leq \text{succProb}[i] \leq 1$
 - There is at most one edge between every two nodes.
 
 ### 分析

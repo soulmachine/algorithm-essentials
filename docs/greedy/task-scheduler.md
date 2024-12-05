@@ -39,7 +39,7 @@ Return the least number of units of times that the CPU will take to finish all t
 
 **Constraints**:
 
-- 1 <= task.length <= $10^4$
+- $1 \leq task.length \leq $10^4$
 - tasks[i] is upper-case English letter.
 - The integer `n` is in the range `[0, 100]`.
 

@@ -26,10 +26,10 @@ A set `x` is a subset of a set `y` if all elements of `x` are also elements of `
 
 **Constraints**:
 
-- 1 <= strs.length <= 600
-- 1 <= strs[i].length <= 100
+- $1 \leq strs.length \leq 600$
+- $1 \leq strs[i].length \leq 100$
 - strs[i] consists only of digits '0' and '1'.
-- 1 <= m, n <= 100
+- $1 \leq m, n \leq 100$
 
 ### 分析
 
