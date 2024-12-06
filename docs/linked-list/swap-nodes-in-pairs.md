@@ -25,6 +25,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -76,6 +77,31 @@ public:
 ```
 
 </TabItem>
+<TabItem value="python">
+
+```python
+# Swap Nodes in Pairs
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def swapPairs(self, head):
+        if head is None or head.next is None: return head
+        dummy = ListNode(-1, head)
+
+        prev = dummy
+        cur = prev.next
+        next = cur.next
+        while next:
+            prev.next = next
+            cur.next = next.next
+            next.next = cur
+
+            prev = cur
+            cur = cur.next
+            next = cur.next if cur else None
+        return dummy.next
+```
+
+</TabItem>
 </Tabs>
 
 下面这种写法更简洁，但题目规定了不准这样做。
@@ -85,6 +111,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -129,6 +156,26 @@ public:
         return head;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Swap Nodes in Pairs
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def swapPairs(self, head):
+        p = head
+
+        while p and p.next:
+            tmp = p.val
+            p.val = p.next.val
+            p.next.val = tmp
+
+            p = p.next.next
+
+        return head
 ```
 
 </TabItem>
