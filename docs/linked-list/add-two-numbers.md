@@ -24,6 +24,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -84,6 +85,33 @@ public:
         return dummy.next;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Add Two Numbers
+# 跟Add Binary 很类似
+# 时间复杂度O(m+n)，空间复杂度O(1)
+class Solution:
+    def addTwoNumbers(self, l1, l2):
+        dummy = ListNode(-1) # 头节点
+        carry = 0
+        prev = dummy
+        pa, pb = l1, l2
+        while pa is not None or pb is not None:
+            ai = 0 if pa is None else pa.val
+            bi = 0 if pb is None else pb.val
+            value = (ai + bi + carry) % 10
+            carry = (ai + bi + carry) // 10
+            prev.next = ListNode(value) # 尾插法
+            pa = None if pa is None else pa.next
+            pb = None if pb is None else pb.next
+            prev = prev.next
+        if carry > 0:
+            prev.next = ListNode(carry)
+        return dummy.next
 ```
 
 </TabItem>
