@@ -26,6 +26,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -70,6 +71,27 @@ public:
         return dummy.next;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Remove Duplicates from Sorted List II
+# Time complexity O(n)，space complexity O(1)
+class Solution:
+    def deleteDuplicates(self, head):
+        dummy = ListNode(0, head)
+        p, q = dummy, head
+        while q:
+            while q.next and p.next.val == q.next.val:
+                q = q.next
+            if p.next == q: # no duplicate
+                p = p.next
+            else:
+                p.next = q.next # skip all duplicates
+            q = q.next
+        return dummy.next
 ```
 
 </TabItem>
