@@ -110,7 +110,7 @@ class Solution:
             ai = 0 if pa is None else pa.val
             bi = 0 if pb is None else pb.val
             value = (ai + bi + carry) % 10
-            carry = (ai + bi + carry) / 10
+            carry = (ai + bi + carry) // 10
             prev.next = ListNode(value) # 尾插法
             pa = None if pa is None else pa.next
             pb = None if pb is None else pb.next
