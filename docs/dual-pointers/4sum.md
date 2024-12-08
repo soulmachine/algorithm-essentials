@@ -348,7 +348,7 @@ public:
 
 [2Sum](../array/two-sum.md)求的是位置，因此不能 sort。用两轮循环暴力搜索，时间复杂度$O(n^2)$, 空间复杂度 O(1)；如果用一个 HashMap 来缓存位置，时间复杂度可以降低到 O(n)，代价是空间复杂度变为 O(n)。
 
-[2Sum II](2sum-ii.md)求的是组合本身，`nums`数组已排好序，因此就不必再排序了，直接用双指针左右夹逼，时间复杂度 O(n)，空间复杂度 O(1)；也可以用 HashSet，时间复杂度 O(n)，空间复杂度 O(n)，并没有比双指针快，却更占内存。因此这题最佳方法是双指针。
+[2Sum II](two-sum-ii-input-array-is-sorted.md)求的是组合本身，`nums`数组已排好序，因此就不必再排序了，直接用双指针左右夹逼，时间复杂度 O(n)，空间复杂度 O(1)；也可以用 HashSet，时间复杂度 O(n)，空间复杂度 O(n)，并没有比双指针快，却更占内存。因此这题最佳方法是双指针。
 
 [3Sum](3sum.md)求的是组合本身且 k>2, 先排序，然后用双指针或者 HashSet 两种方法都可以。
 
@@ -357,7 +357,7 @@ public:
 ### 相关题目
 
 - [2Sum](../array/two-sum.md)
-- [2Sum II](2sum-ii.md)
+- [2Sum II](two-sum-ii-input-array-is-sorted.md)
 - [3Sum](3sum.md)
 - [3Sum Closest](3sum-closest.md)
 - [4Sum II](../array/4sum-ii.md)

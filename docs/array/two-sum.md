@@ -205,7 +205,7 @@ public:
 
 ### 相关题目
 
-- [2Sum II](../dual-pointers/2sum-ii.md)
+- [2Sum II](../dual-pointers/two-sum-ii-input-array-is-sorted.md)
 - [3Sum](../dual-pointers/3sum.md)
 - [3Sum Closest](../dual-pointers/3sum-closest.md)
 - [4Sum](../dual-pointers/4sum.md)

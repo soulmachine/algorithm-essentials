@@ -75,7 +75,7 @@ module.exports = {
           type: "category",
           label: "相向双指针",
           items: [
-            "dual-pointers/2sum-ii",
+            "dual-pointers/two-sum-ii-input-array-is-sorted",
             "dual-pointers/3sum",
             "dual-pointers/3sum-closest",
             "dual-pointers/3sum-smaller",
@@ -398,6 +398,7 @@ module.exports = {
         "brute-force/permutations",
         "brute-force/permutations-ii",
         "brute-force/combinations",
+        "brute-force/letter-combinations-of-a-phone-number",
       ],
     },
     {
