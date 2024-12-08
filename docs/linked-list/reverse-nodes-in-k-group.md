@@ -33,6 +33,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -103,6 +104,35 @@ public:
 ```
 
 </TabItem>
+<TabItem value="python">
+
+```python
+# Reverse Nodes in k-Group
+# 递归版，时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def reverseKGroup(self, head, k):
+        if head is None or head.next is None or k < 2:
+            return head
+
+        next_group = head
+        for i in range(k):
+            if next_group:
+                next_group = next_group.next
+            else:
+                return head
+        # next_group is the head of next group
+        # new_next_group is the new head of next group after reversion
+        new_next_group = self.reverseKGroup(next_group, k)
+        prev, cur = None, head
+        while cur != next_group:
+            next = cur.next
+            cur.next = prev if prev else new_next_group
+            prev = cur
+            cur = next
+        return prev # prev will be the new head of this group
+```
+
+</TabItem>
 </Tabs>
 
 ### 迭代版
@@ -112,6 +142,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -190,6 +221,52 @@ public:
         return begin;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Reverse Nodes in k-Group
+# 迭代版，时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def reverseKGroup(self, head, k):
+        if head is None or head.next is None or k < 2: return head
+        dummy = ListNode(-1, head)
+
+        prev, end = dummy, head
+        while end:
+            i = 1
+            while i < k and end:
+                end = end.next
+                i += 1
+
+            if end is None:
+                break # 不足 k 个
+
+            prev = self.reverse(prev, prev.next, end)
+
+            end = prev.next
+
+        return dummy.next
+
+    # prev 是 first 前一个元素, [begin, end] 闭区间，保证三者都不为 null
+    # 返回反转后的倒数第1个元素
+    def reverse(self, prev, begin, end):
+        end_next = end.next
+
+        p = begin
+        cur = p.next
+        next = cur.next
+        while cur != end_next:
+            cur.next = p
+
+            p = cur
+            cur = next
+            next = next.next if next else None
+        begin.next = end_next
+        prev.next = end
+        return begin
 ```
 
 </TabItem>
