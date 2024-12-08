@@ -41,6 +41,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -236,6 +237,34 @@ private:
     unordered_map<int, DLinkedNode*> m;
     DLinkedList list;
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# LRU Cache
+# OrderedDict
+class LRUCache:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.cache = OrderedDict()
+
+    #  Time Complexity: O(1)
+    def get(self, key):
+        if key in self.cache:
+            value = self.cache.pop(key)
+            self.cache[key] = value
+            return value
+        else: return -1
+
+    #  Time Complexity: O(1)
+    def put(self, key, value):
+        if key in self.cache:
+            self.cache.pop(key)
+        self.cache[key] = value
+        if len(self.cache) > self.capacity:
+            self.cache.popitem(last=False)
 ```
 
 </TabItem>
