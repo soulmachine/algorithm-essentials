@@ -132,7 +132,7 @@ public:
 
 ### 相关题目
 
-- [2Sum](2sum.md)
+- [2Sum](two-sum.md)
 - [2Sum II](../dual-pointers/2sum-ii.md)
 - [3Sum](../dual-pointers/3sum.md)
 - [3Sum Closest](../dual-pointers/3sum-closest.md)

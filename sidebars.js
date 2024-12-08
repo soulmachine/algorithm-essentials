@@ -100,7 +100,7 @@ module.exports = {
       type: 'category',
       label: '数组',
       items: [
-        "array/2sum",
+        "array/two-sum",
         "array/4sum-ii",
         "array/next-permutation",
         "array/permutation-sequence",
