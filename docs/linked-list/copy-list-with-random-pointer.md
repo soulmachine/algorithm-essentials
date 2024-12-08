@@ -22,6 +22,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -92,6 +93,45 @@ public:
         return dummy.next;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Copy List with Random Pointer
+# 两遍扫描，时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def copyRandomList(self, head):
+        cur = head
+        while cur:
+            node = RandomListNode(cur.val)
+            node.next = cur.next
+            cur.next = node
+            cur = node.next
+
+        cur = head
+        while cur:
+            if cur.random:
+                cur.next.random = cur.random.next
+            cur = cur.next.next
+
+        # 分拆两个单链表
+        dummy = RandomListNode(-1)
+        cur = head
+        new_cur = dummy
+        while cur:
+            new_cur.next = cur.next
+            new_cur = new_cur.next
+            cur.next = cur.next.next
+            cur = cur.next
+        return dummy.next
+
+class RandomListNode:
+    def __init__(self, x, next=None, random=None):
+        self.val = x
+        self.next = next
+        self.random = random
 ```
 
 </TabItem>
