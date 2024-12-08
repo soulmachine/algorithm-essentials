@@ -26,6 +26,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -70,6 +71,25 @@ public:
         return head;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# Remove Duplicates from Sorted List
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def deleteDuplicates(self, head):
+        p = head
+        while p and p.next:
+            if p.next.val == p.val:
+                tmp = p.next
+                p.next = p.next.next
+                del tmp
+            else:
+                p = p.next
+        return head
 ```
 
 </TabItem>
