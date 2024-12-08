@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -122,6 +124,58 @@ private:
         return slow;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Sort List
+# 归并排序，时间复杂度O(nlogn)，空间复杂度O(logn)
+class Solution:
+    def sortList(self, head):
+        if not head or not head.next:
+            return head
+
+        middle = self.findMiddle(head)
+        head2 = middle.next
+        middle.next = None # 断开
+
+        l1 = self.sortList(head)  # 前半段排序
+        l2 = self.sortList(head2) # 后半段排序
+        return self.mergeTwoLists(l1, l2)
+
+    # Merge Two Sorted Lists
+    @staticmethod
+    def mergeTwoLists(l1, l2):
+        dummy = ListNode(-1)
+        p = dummy
+        while l1 or l2:
+            val1 = float('inf') if not l1 else l1.val
+            val2 = float('inf') if not l2 else l2.val
+            if val1 <= val2:
+                p.next = l1
+                l1 = l1.next
+            else:
+                p.next = l2
+                l2 = l2.next
+            p = p.next
+        return dummy.next
+
+    # 快慢指针找到中间节点
+    @staticmethod
+    def findMiddle(head):
+        if not head:
+            return None
+
+        slow = head
+        fast = head.next
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
 ```
 
 </TabItem>

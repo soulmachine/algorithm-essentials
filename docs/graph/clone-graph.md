@@ -39,8 +39,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -105,6 +107,34 @@ private:
         return new_node;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Clone Graph
+# DFS, time complexity O(n), space complexity O(n)
+class Solution:
+    def cloneGraph(self, node: 'UndirectedGraphNode') -> 'UndirectedGraphNode':
+        if not node:
+            return None
+        # key is original node, value is copied node
+        visited = {}
+        return self.clone(node, visited)
+
+    # DFS
+    def clone(self, node: 'UndirectedGraphNode', visited: dict) -> 'UndirectedGraphNode':
+        # a copy already exists
+        if node in visited:
+            return visited[node]
+
+        new_node = UndirectedGraphNode(node.label)
+        visited[node] = new_node
+        for nbr in node.neighbors:
+            new_node.neighbors.append(self.clone(nbr, visited))
+        return new_node
 ```
 
 </TabItem>
@@ -191,6 +221,40 @@ public:
         return copied[node];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Clone Graph
+# BFS，时间复杂度O(n)，空间复杂度O(n)
+from collections import deque
+
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        if not node:
+            return None
+        # key is original node，value is copied node
+        visited = {}
+        # each node in queue is already copied itself
+        # but neighbors are not copied yet
+        q = deque()
+        q.append(node)
+        visited[node] = Node(node.val)
+        while q:
+            cur = q.popleft()
+            for nbr in cur.neighbors:
+                # a copy already exists
+                if nbr in visited:
+                    visited[cur].neighbors.append(visited[nbr])
+                else:
+                    new_node = Node(nbr.val)
+                    visited[nbr] = new_node
+                    visited[cur].neighbors.append(new_node)
+                    q.append(nbr)
+        return visited[node]
 ```
 
 </TabItem>

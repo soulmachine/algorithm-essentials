@@ -22,8 +22,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -86,6 +88,32 @@ private:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# First Missing Positive
+# 时间复杂度O(n)，空间复杂度O(1)
+def firstMissingPositive(nums: list[int]) -> int:
+    def bucket_sort(A):
+        n = len(A)
+        for i in range(n):
+            while A[i] != i + 1:
+                if A[i] < 1 or A[i] > n or A[i] == A[A[i] - 1]:
+                    break
+                # swap
+                tmp = A[i]
+                A[i] = A[tmp - 1]
+                A[tmp - 1] = tmp
+
+    bucket_sort(nums)
+    for i in range(len(nums)):
+        if nums[i] != (i + 1):
+            return i + 1
+    return len(nums) + 1
 ```
 
 </TabItem>

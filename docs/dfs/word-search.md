@@ -35,8 +35,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -122,6 +124,48 @@ private:
         return ret;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Word Search
+# 深搜，递归
+# 时间复杂度O(n^2*m^2)，空间复杂度O(n^2)
+class Solution:
+    def exist(self, board: list[list[str]], word: str) -> bool:
+        m = len(board)
+        n = len(board[0])
+        visited = [[False] * n for _ in range(m)]
+        for i in range(m):
+            for j in range(n):
+                if self.dfs(board, word, 0, i, j, visited):
+                    return True
+        return False
+
+    def dfs(self, board: list[list[str]], word: str,
+            index: int, x: int, y: int, visited: list[list[bool]]) -> bool:
+        if index == len(word):
+            return True  # 收敛条件
+
+        if x < 0 or y < 0 or x >= len(board) or y >= len(board[0]):
+            return False  # 越界，终止条件
+
+        if visited[x][y]:
+            return False  # 已经访问过，剪枝
+
+        if board[x][y] != word[index]:
+            return False  # 不相等，剪枝
+
+        visited[x][y] = True
+        ret = (self.dfs(board, word, index + 1, x - 1, y, visited) or  # 上
+               self.dfs(board, word, index + 1, x + 1, y, visited) or  # 下
+               self.dfs(board, word, index + 1, x, y - 1, visited) or  # 左
+               self.dfs(board, word, index + 1, x, y + 1, visited))    # 右
+        visited[x][y] = False
+        return ret
 ```
 
 </TabItem>

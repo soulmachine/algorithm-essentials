@@ -38,8 +38,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -105,6 +107,36 @@ private:
         cur.pop_back();
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Path Sum II
+# 时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def pathSum(self, root, sum):
+        result = []
+        cur = []  # 中间结果
+        self._pathSum(root, sum, cur, result)
+        return result
+
+    def _pathSum(self, root, gap, cur, result):
+        if not root:
+            return
+
+        cur.append(root.val)
+
+        if not root.left and not root.right:  # leaf
+            if gap == root.val:
+                result.append(cur[:])
+
+        self._pathSum(root.left, gap - root.val, cur, result)
+        self._pathSum(root.right, gap - root.val, cur, result)
+
+        cur.pop()
 ```
 
 </TabItem>

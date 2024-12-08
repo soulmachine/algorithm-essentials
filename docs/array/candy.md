@@ -23,8 +23,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -94,6 +96,42 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Candy
+# Time complexity O(n), space complexity O(n)
+class Solution:
+    def candy(self, ratings: list[int]) -> int:
+        n = len(ratings)
+        increment = [0] * n
+
+        # scan from left and right
+        inc = 1
+        for i in range(1, n):
+            if ratings[i] > ratings[i - 1]:
+                increment[i] = max(inc, increment[i])
+                inc += 1
+            else:
+                inc = 1
+
+        inc = 1
+        for i in range(n - 2, -1, -1):
+            if ratings[i] > ratings[i + 1]:
+                increment[i] = max(inc, increment[i])
+                inc += 1
+            else:
+                inc = 1
+
+        # initial sum is n because each child gets at least 1 candy
+        sum = n
+        for i in increment:
+            sum += i
+        return sum
+```
+
+</TabItem>
 </Tabs>
 
 ### 递归版
@@ -159,6 +197,29 @@ public:
         return f[i];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Candy
+# 备忘录法，时间复杂度O(n)，空间复杂度O(n)
+# java.lang.StackOverflowError
+class Solution:
+    def candy(self, ratings: list[int]) -> int:
+        f = [0] * len(ratings)
+        return sum(self.solve(ratings, f, i) for i in range(len(ratings)))
+
+    def solve(self, ratings: list[int], f: list[int], i: int) -> int:
+        if f[i] == 0:
+            f[i] = 1
+            if i > 0 and ratings[i] > ratings[i - 1]:
+                f[i] = max(f[i], self.solve(ratings, f, i - 1) + 1)
+            if i < len(ratings) - 1 and ratings[i] > ratings[i + 1]:
+                f[i] = max(f[i], self.solve(ratings, f, i + 1) + 1)
+        return f[i]
 ```
 
 </TabItem>

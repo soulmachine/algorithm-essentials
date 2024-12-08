@@ -42,8 +42,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -96,6 +98,30 @@ public:
         root->left = nullptr;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Flatten Binary Tree to Linked List
+# 递归版1，时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def flatten(self, root):
+        if not root: return  # 终止条件
+
+        self.flatten(root.left)
+        self.flatten(root.right)
+
+        if not root.left: return
+
+        # 三方合并，将左子树所形成的链表插入到root和root->right之间
+        p = root.left
+        while p.right: p = p.right  #寻找左链表最后一个节点
+        p.right = root.right
+        root.right = root.left
+        root.left = None
 ```
 
 </TabItem>
@@ -155,6 +181,29 @@ private:
         return root;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Flatten Binary Tree to Linked List
+# 递归版2
+# @author 王顺达(http://weibo.com/u/1234984145)
+# 时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def flatten(self, root):
+        self._flatten_helper(root, None)
+
+    # 把root所代表树变成链表后，tail跟在该链表后面
+    def _flatten_helper(self, root, tail):
+        if not root:
+            return tail
+
+        root.right = self._flatten_helper(root.left, self._flatten_helper(root.right, tail))
+        root.left = None
+        return root
 ```
 
 </TabItem>

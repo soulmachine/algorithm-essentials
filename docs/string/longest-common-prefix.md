@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -67,6 +69,26 @@ public:
         return strs[0];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Longest Common Prefix
+# 纵向扫描，从位置0开始，对每一个位置比较所有字符串，直到遇到一个不匹配
+# 时间复杂度O(n1+n2+...)
+class Solution:
+    def longestCommonPrefix(self, strs: list[str]) -> str:
+        if len(strs) == 0:
+            return ""
+
+        for j in range(len(strs[0])):  # 纵向扫描
+            for i in range(1, len(strs)):
+                if j == len(strs[i]) or strs[i][j] != strs[0][j]:
+                    return strs[0][:j]
+        return strs[0]
 ```
 
 </TabItem>
@@ -127,6 +149,30 @@ public:
         return strs[0].substr(0, right_most);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Longest Common Prefix
+# 横向扫描，每个字符串与第0个字符串，从左到右比较，直到遇到一个不匹配，
+# 然后继续下一个字符串
+# 时间复杂度O(n1+n2+...)
+class Solution:
+    def longestCommonPrefix(self, strs: list[str]) -> str:
+        if len(strs) == 0:
+            return ""
+
+        right_most = len(strs[0])
+        for i in range(1, len(strs)):
+            for j in range(right_most):
+                if j == len(strs[i]) or strs[i][j] != strs[0][j]:
+                    right_most = j
+                    break
+
+        return strs[0][:right_most]
 ```
 
 </TabItem>

@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -63,6 +65,41 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Construct Quad Tree
+# Time complexity: O(N^2)
+# Space complexity: O(N)
+class Solution:
+    def construct(self, grid: list[list[int]]) -> 'Node':
+        return None if len(grid) == 0 else self.helper(grid, 0, 0, len(grid))
+
+    def helper(self, grid: list[list[int]], x: int, y: int, length: int) -> 'Node':
+        new_node = Node(grid[x][y] != 0, True, None, None, None, None)
+        half = length // 2
+
+        if length == 1:
+            return new_node
+
+        top_left = self.helper(grid, x, y, half)
+        top_right = self.helper(grid, x, y + half, half)
+        bottom_left = self.helper(grid, x + half, y, half)
+        bottom_right = self.helper(grid, x + half, y + half, half)
+
+        if (not top_left.isLeaf or not top_right.isLeaf or not bottom_left.isLeaf or not bottom_right.isLeaf
+            or top_left.val != top_right.val or top_right.val != bottom_left.val
+            or bottom_left.val != bottom_right.val):
+            new_node.topLeft = top_left
+            new_node.topRight = top_right
+            new_node.bottomLeft = bottom_left
+            new_node.bottomRight = bottom_right
+            new_node.isLeaf = False
+        return new_node
 ```
 
 </TabItem>

@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -69,6 +71,44 @@ public class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+class Solution:
+    def compress(self, chars: list[str]) -> int:
+        letter = chars[0] # current letter
+        count = 0 # current count
+
+        index = 0 # current index
+        for i in range(len(chars)):
+            if chars[i] == letter: # meet duplicated char
+                count += 1
+            else: # meet new char
+                index = self.replace(chars, letter, index, count)
+                # reset
+                letter = chars[i]
+                count = 0
+                # decreased by 1, so that i points to the new letter
+                i -= 1
+
+        # last time replace
+        index = self.replace(chars, letter, index, count)
+        return index
+
+    # start from index, overwrite as letter+count
+    def replace(self, chars: list[str], letter: str, index: int, count: int) -> int:
+        chars[index] = letter
+        index += 1
+        if count > 1:
+            for digit in str(count):
+                chars[index] = digit
+                index += 1
+        # return the new index
+        return index
 ```
 
 </TabItem>

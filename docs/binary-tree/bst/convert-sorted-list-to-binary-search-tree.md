@@ -20,8 +20,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -107,6 +109,46 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Convert Sorted List to Binary Search Tree
+# 二分法，类似于 Convert Sorted Array to Binary Search Tree，
+# 自顶向下，时间复杂度O(nlogn)，空间复杂度O(logn)
+class Solution:
+    def sortedListToBST(self, head: ListNode) -> TreeNode:
+        if not head:
+            return None
+        if not head.next:
+            return TreeNode(head.val)
+
+        mid = self.cutAtMiddle(head)
+
+        root = TreeNode(mid.val)
+        root.left = self.sortedListToBST(head)
+        root.right = self.sortedListToBST(mid.next)
+
+        return root
+
+    def cutAtMiddle(self, head: ListNode) -> ListNode:
+        if not head:
+            return None
+
+        fast = head
+        slow = head
+        prev_slow = head
+
+        while fast and fast.next:
+            prev_slow = slow
+            slow = slow.next
+            fast = fast.next.next
+
+        prev_slow.next = None
+        return slow
+```
+
+</TabItem>
 </Tabs>
 
 ### 自底向上
@@ -184,6 +226,40 @@ private:
         return parent;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Convert Sorted List to Binary Search Tree
+# bottom-up，时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def sortedListToBST(self, head):
+        length = 0
+        p = head
+        while p:
+            length += 1
+            p = p.next
+        return self._sortedListToBST(Container(head), 0, length - 1)
+
+    def _sortedListToBST(self, container, start, end):
+        if start > end:
+            return None
+
+        mid = start + (end - start) // 2
+        left_child = self._sortedListToBST(container, start, mid - 1)
+        parent = TreeNode(container.p.val)
+        parent.left = left_child
+        container.p = container.p.next
+        parent.right = self._sortedListToBST(container, mid + 1, end)
+        return parent
+
+# 模拟二级指针
+class Container:
+    def __init__(self, p):
+        self.p = p
 ```
 
 </TabItem>

@@ -40,8 +40,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -117,6 +119,42 @@ private:
             return A[ai + k1 - 1];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Median of Two Sorted Arrays
+# Time Complexity: O(log(m+n))，Space Complexity: O(log(m+n))
+class Solution:
+    def findMedianSortedArrays(self, A: list[int], B: list[int]) -> float:
+        total = len(A) + len(B)
+        if total % 2 == 1:
+            return self.findKth(A, 0, B, 0, total // 2 + 1)
+        else:
+            return (self.findKth(A, 0, B, 0, total // 2)
+                    + self.findKth(A, 0, B, 0, total // 2 + 1)) / 2.0
+
+    def findKth(self, A: list[int], ai: int, B: list[int], bi: int, k: int) -> int:
+        #always assume that A is shorter than B
+        if len(A) - ai > len(B) - bi:
+            return self.findKth(B, bi, A, ai, k)
+        if len(A) - ai == 0:
+            return B[bi + k - 1]
+        if k == 1:
+            return min(A[ai], B[bi])
+
+        #divide k into two parts
+        k1 = min(k // 2, len(A) - ai)
+        k2 = k - k1
+        if A[ai + k1 - 1] < B[bi + k2 - 1]:
+            return self.findKth(A, ai + k1, B, bi, k - k1)
+        elif A[ai + k1 - 1] > B[bi + k2 - 1]:
+            return self.findKth(A, ai, B, bi + k2, k - k2)
+        else:
+            return A[ai + k1 - 1]
 ```
 
 </TabItem>

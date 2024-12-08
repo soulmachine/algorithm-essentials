@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -62,6 +64,49 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Flatten a Multilevel Doubly Linked List
+# Time complexity: O(n)
+# Space complexity: O(n)
+class Node:
+    def __init__(self, val=0, prev=None, next=None, child=None):
+        self.val = val
+        self.prev = prev
+        self.next = next
+        self.child = child
+
+class Solution:
+    def flatten(self, head: Node) -> Node:
+        if not head:
+            return head
+        dummy = Node(0, None, head, None)
+
+        self.flattenDFS(dummy, head)
+
+        # detach the dummy node from the real head
+        dummy.next.prev = None
+        return dummy.next
+
+    # return the tail of the flatten list
+    def flattenDFS(self, prev: Node, curr: Node) -> Node:
+        if not curr:
+            return prev
+        curr.prev = prev
+        prev.next = curr
+
+        # store curr.next before recursive call
+        tempNext = curr.next
+
+        tail = self.flattenDFS(curr, curr.child)
+        curr.child = None
+
+        return self.flattenDFS(tail, tempNext)
 ```
 
 </TabItem>

@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -49,6 +51,16 @@ public:
         return globalMax > 0 ? max(globalMax, total - globalMin) : globalMax;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# No code was provided to translate. Please provide the Java code you'd like to be translated to Python 3.
+def todo():
+    pass
 ```
 
 </TabItem>

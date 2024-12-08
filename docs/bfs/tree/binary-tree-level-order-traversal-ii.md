@@ -39,8 +39,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -117,6 +119,47 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+# Binary Tree Level Order Traversal II
+# 迭代版，时间复杂度O(n)，空间复杂度O(1)
+def levelOrderBottom(root):
+    result = []
+    current = []
+    next_queue = []
+
+    if not root:
+        return result
+    else:
+        current.append(root)
+
+    while current:
+        level = [] # elments in one level
+        while current:
+            node = current.pop(0)
+            level.append(node.val)
+            if node.left:
+                next_queue.append(node.left)
+            if node.right:
+                next_queue.append(node.right)
+        result.append(level)
+        # swap
+        current = next_queue
+        next_queue = []
+
+    return result[::-1]
+```
+
+</TabItem>
 </Tabs>
 
 #### 递归版
@@ -181,6 +224,32 @@ public:
         traverse(root->right, level+1, result);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Binary Tree Level Order Traversal II
+# 递归版，时间复杂度O(n)，空间复杂度O(n)
+class Solution:
+    def levelOrderBottom(self, root):
+        result = []
+        self.traverse(root, 1, result)
+        result.reverse()
+        return result
+
+    def traverse(self, root, level, result):
+        if not root:
+            return
+
+        if level > len(result):
+            result.append([])
+
+        result[level-1].append(root.val)
+        self.traverse(root.left, level+1, result)
+        self.traverse(root.right, level+1, result)
 ```
 
 </TabItem>

@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -67,6 +69,18 @@ public:
         return true;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Nothing to translate as the Java code consists of only a comment "// TODO"
+
+def main():
+    # TODO
+    pass
 ```
 
 </TabItem>

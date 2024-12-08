@@ -26,8 +26,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -101,6 +103,35 @@ public:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Set Matrix Zeroes
+# 时间复杂度O(m*n)，空间复杂度O(m+n)
+class Solution:
+    def setZeroes(self, matrix: list[list[int]]) -> None:
+        m = len(matrix)
+        n = len(matrix[0])
+        row = [False] * m  # 标记该行是否存在0
+        col = [False] * n  # 标记该列是否存在0
+
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == 0:
+                    row[i] = col[j] = True
+
+        for i in range(m):
+            if row[i]:
+                matrix[i] = [0] * n
+
+        for j in range(n):
+            if col[j]:
+                for i in range(m):
+                    matrix[i][j] = 0
 ```
 
 </TabItem>
@@ -203,6 +234,50 @@ public:
                 matrix[i][0] = 0;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Set Matrix Zeroes
+# 时间复杂度O(m*n)，空间复杂度O(1)
+class Solution:
+    def setZeroes(self, matrix: list[list[int]]) -> None:
+        m = len(matrix)
+        n = len(matrix[0])
+        row_has_zero = False  # 第一行是否存在 0
+        col_has_zero = False  # 第一列是否存在 0
+
+        for i in range(n):
+            if matrix[0][i] == 0:
+                row_has_zero = True
+                break
+
+        for i in range(m):
+            if matrix[i][0] == 0:
+                col_has_zero = True
+                break
+
+        for i in range(1, m):
+            for j in range(1, n):
+                if matrix[i][j] == 0:
+                    matrix[0][j] = 0
+                    matrix[i][0] = 0
+
+        for i in range(1, m):
+            for j in range(1, n):
+                if matrix[i][0] == 0 or matrix[0][j] == 0:
+                    matrix[i][j] = 0
+
+        if row_has_zero:
+            for i in range(n):
+                matrix[0][i] = 0
+
+        if col_has_zero:
+            for i in range(m):
+                matrix[i][0] = 0
 ```
 
 </TabItem>

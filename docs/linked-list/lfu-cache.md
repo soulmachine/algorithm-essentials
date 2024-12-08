@@ -56,8 +56,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -179,6 +181,104 @@ public class LFUCache {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# LFU Cache
+# Two HashMap + Doubly Linked List
+class LFUCache:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.size = 0
+        self.min = 0  # keep track of the minimum frequency
+        self.node_map = {}  # key -> Node
+        self.count_map = {}  # count -> DList
+
+    # Time Complexity: O(1)
+    def get(self, key):
+        if key not in self.node_map:
+            return -1
+        node = self.node_map[key]
+        self._update(node)
+        return node.value
+
+    # Time Complexity: O(1)
+    def put(self, key, value):
+        if self.capacity == 0:
+            return
+        if key in self.node_map:
+            node = self.node_map[key]
+            node.value = value
+            self._update(node)
+        else:
+            node = Node(key, value)
+            self.node_map[key] = node
+            if self.size == self.capacity:
+                last_list = self.count_map[self.min]
+                del self.node_map[last_list.poll_last().key]
+                self.size -= 1
+            self.size += 1
+            self.min = 1  # reset min to 1
+            new_list = self.count_map.get(node.count, DList())
+            new_list.offer_first(node)
+            self.count_map[node.count] = new_list
+
+    # Increase count in count_map
+    def _update(self, node):
+        old_list = self.count_map[node.count]
+        old_list.remove(node)
+        # Make min point to another list
+        if node.count == self.min and old_list.size == 0:
+            self.min += 1
+
+        node.count += 1
+        new_list = self.count_map.get(node.count, DList())
+        new_list.offer_first(node)
+        self.count_map[node.count] = new_list
+
+# Node of doubly linked list
+class Node:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+        self.count = 1
+        self.prev = None
+        self.next = None
+
+# Doubly linked list
+class DList:
+    def __init__(self):
+        # head and tail are two dummy nodes
+        self.head = Node(0, 0)
+        self.tail = Node(0, 0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        self.size = 0
+
+    def offer_first(self, node):
+        node.next = self.head.next
+        node.prev = self.head
+        self.head.next.prev = node
+        self.head.next = node
+        self.size += 1
+
+    # Remove a node in the middle
+    def remove(self, node):
+        if not node:
+            return
+        node.prev.next = node.next
+        node.next.prev = node.prev
+        self.size -= 1
+
+    # Remove the tail node
+    def poll_last(self):
+        last = self.tail.prev
+        self.remove(last)
+        return last
 ```
 
 </TabItem>

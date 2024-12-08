@@ -25,8 +25,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -87,6 +89,35 @@ public:
         return 0;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Jump Game II
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def jump(self, nums: list[int]) -> int:
+        step = 0  # 最小步数
+        left = 0
+        right = 0  # [left, right]是当前能覆盖的区间
+        if len(nums) == 1:
+            return 0
+
+        while left <= right:  # 尝试从每一层跳最远
+            step += 1
+            old_right = right
+            for i in range(left, old_right + 1):
+                new_right = i + nums[i]
+                if new_right >= len(nums) - 1:
+                    return step
+
+                if new_right > right:
+                    right = new_right
+            left = old_right + 1
+        return 0
 ```
 
 </TabItem>
@@ -151,6 +182,28 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Jump Game II
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def jump(self, nums: list[int]) -> int:
+        result = 0
+        # the maximum distance that has been reached
+        last = 0
+        # the maximum distance that can be reached by using "ret+1" steps
+        cur = 0
+        for i in range(len(nums)):
+            if i > last:
+                last = cur
+                result += 1
+            cur = max(cur, i + nums[i])
+        return result
 ```
 
 </TabItem>

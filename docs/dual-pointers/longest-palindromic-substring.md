@@ -22,8 +22,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -72,6 +74,39 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Longest Palindromic Substring
+# Center enumeration algorithm
+# Time complexity O(n^2), Space complexity O(1)
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        longest = ""
+        for i in range(len(s)):
+            # palindrome substring with odd length
+            odd_palindrome = self.get_palindrome(s, i, i)
+            if len(longest) < len(odd_palindrome):
+                longest = odd_palindrome
+
+            # palindrome substring with even length
+            even_palindrome = self.get_palindrome(s, i, i + 1)
+            if len(longest) < len(even_palindrome):
+                longest = even_palindrome
+
+        return longest
+
+    def get_palindrome(self, s: str, left: int, right: int) -> str:
+        while left >= 0 and right < len(s):
+            if s[left] != s[right]:
+                break
+            left -= 1
+            right += 1
+        return s[left + 1:right]
 ```
 
 </TabItem>
@@ -210,6 +245,66 @@ public:
         return s.substr((center_index - 1 - max_len) / 2, max_len);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Longest Palindromic Substring
+# Manacher's Algorithm
+# 时间复杂度O(n)，空间复杂度O(n)
+class Solution:
+    # Transform S into T.
+    # For example, S = "abba", T = "^#a#b#b#a#$".
+    # ^ and $ signs are sentinels appended to each end to avoid bounds checking
+    def preProcess(self, s: str) -> str:
+        n = len(s)
+        if n == 0:
+            return "^$"
+
+        ret = ["^"]
+        for i in range(n):
+            ret.append("#" + s[i])
+
+        ret.append("#$")
+        return "".join(ret)
+
+    def longestPalindrome(self, s: str) -> str:
+        T = self.preProcess(s)
+        n = len(T)
+        # 以T[i]为中心，向左/右扩张的长度，不包含T[i]自己，
+        # 因此 P[i]是源字符串中回文串的长度
+        P = [0] * n
+        C = 0
+        R = 0
+
+        for i in range(1, n - 1):
+            iMirror = 2 * C - i  # equals to i' = C - (i-C)
+
+            P[i] = min(R - i, P[iMirror]) if R > i else 0
+
+            # Attempt to expand palindrome centered at i
+            while T[i + 1 + P[i]] == T[i - 1 - P[i]]:
+                P[i] += 1
+
+            # If palindrome centered at i expand past R,
+            # adjust center based on expanded palindrome.
+            if i + P[i] > R:
+                C = i
+                R = i + P[i]
+
+        # Find the maximum element in P.
+        maxLen = 0
+        centerIndex = 0
+        for i in range(1, n - 1):
+            if P[i] > maxLen:
+                maxLen = P[i]
+                centerIndex = i
+
+        start = (centerIndex - 1 - maxLen) // 2
+        return s[start:start + maxLen]
 ```
 
 </TabItem>

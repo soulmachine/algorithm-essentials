@@ -26,8 +26,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -87,6 +89,30 @@ public:
         return std::accumulate(strs.begin(), strs.end(), std::string(""));
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Largest number
+# Time complexity: O(nlogn)
+# Time complexity: O(n)
+class Solution:
+    def largestNumber(self, nums: list[int]) -> str:
+        def compare(a: str, b: str) -> int:
+            order1 = a + b
+            order2 = b + a
+            return -1 if order1 < order2 else 1
+
+        strs = [str(num) for num in nums]
+        strs.sort(key=functools.cmp_to_key(compare))
+        if strs[0] == "0":
+            return "0"
+
+        # concat
+        return "".join(strs)
 ```
 
 </TabItem>

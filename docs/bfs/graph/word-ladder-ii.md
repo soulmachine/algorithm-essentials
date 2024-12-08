@@ -45,8 +45,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -286,6 +288,101 @@ private:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Word Ladder II
+# 时间复杂度O(n)，空间复杂度O(n)
+from collections import deque, defaultdict
+from typing import List, Set, Dict
+
+class Solution:
+    def findLadders(self, beginWord: str, endWord: str, wordList: Set[str]) -> List[List[str]]:
+        q = deque()
+        visited = {}  # 判重
+        father = defaultdict(list)  # DAG
+
+        def stateIsValid(s: str) -> bool:
+            return s in wordList or s == endWord
+
+        def stateIsTarget(s: str) -> bool:
+            return s == endWord
+
+        def stateExtend(s: str) -> set:
+            result = set()
+            array = list(s)
+            for i in range(len(array)):
+                old = array[i]
+                for c in range(ord('a'), ord('z') + 1):
+                    # 防止同字母替换
+                    if chr(c) == array[i]:
+                        continue
+
+                    array[i] = chr(c)
+                    newState = ''.join(array)
+                    newDepth = visited[s] + 1
+
+                    if stateIsValid(newState):
+                        if newState in visited:
+                            depth = visited[newState]
+                            if depth < newDepth:
+                                # do nothing
+                                pass
+                            elif depth == newDepth:
+                                result.add(newState)
+                            else:
+                                raise ValueError("not possible to get here")
+                        else:
+                            result.add(newState)
+                    array[i] = old  # 恢复该单词
+            return result
+
+        def genPath(father: Dict[str, List[str]], start: str, state: str, path: List[str], result: List[List[str]]):
+            path.append(state)
+            if state == start:
+                if result:
+                    if len(path) < len(result[0]):
+                        result.clear()
+                    elif len(path) == len(result[0]):
+                        # do nothing
+                        pass
+                    else:
+                        raise ValueError("not possible to get here")
+                tmp = path[::-1]
+                result.append(tmp)
+            else:
+                for f in father[state]:
+                    genPath(father, start, f, path, result)
+            path.pop()
+
+        result = []
+        q.append(beginWord)
+        visited[beginWord] = 0
+        while q:
+            state = q.popleft()
+
+            # 如果当前路径长度已经超过当前最短路径长度，
+            # 可以中止对该路径的处理，因为我们要找的是最短路径
+            if result and (visited[state] + 1) > len(result[0]):
+                break
+
+            if stateIsTarget(state):
+                genPath(father, beginWord, state, [], result)
+                continue
+
+            # 扩展节点
+            newStates = stateExtend(state)
+            for newState in newStates:
+                if newState not in visited:
+                    q.append(newState)
+                    visited[newState] = visited[state] + 1
+                father[newState].append(state)
+
+        return result
+```
+
+</TabItem>
 </Tabs>
 
 ### 双队列
@@ -514,6 +611,99 @@ private:
         path.pop_back();
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Word Ladder II
+# 时间复杂度O(n)，空间复杂度O(n)
+class Solution:
+    def findLadders(self, beginWord: str, endWord: str, wordList: set) -> list[list[str]]:
+        # 当前层，下一层，用unordered_set是为了去重，例如两个父节点指向
+        # 同一个子节点，如果用vector, 子节点就会在next里出现两次，其实此
+        # 时 father 已经记录了两个父节点，next里重复出现两次是没必要的
+        current = set()
+        next_level = set()
+        visited = set()  # 判重
+        father = {}  # DAG
+        level = -1  # 层次
+
+        def stateIsValid(s):
+            return s in wordList or s == endWord
+
+        def stateIsTarget(s):
+            return s == endWord
+
+        def stateExtend(s):
+            result = set()
+            array = list(s)
+            for i in range(len(array)):
+                old = array[i]
+                for c in range(ord('a'), ord('z') + 1):
+                    # 防止同字母替换
+                    if chr(c) == array[i]:
+                        continue
+
+                    array[i] = chr(c)
+                    new_state = ''.join(array)
+
+                    if stateIsValid(new_state) and new_state not in visited:
+                        result.add(new_state)
+                    array[i] = old  # 恢复该单词
+            return result
+
+        result = []
+        current.add(beginWord)
+        while current:
+            level += 1
+            # 如果当前路径长度已经超过当前最短路径长度，
+            # 可以中止对该路径的处理，因为我们要找的是最短路径
+            if result and level + 1 > len(result[0]):
+                break
+
+            # 1. 延迟加入visited, 这样才能允许两个父节点指向同一个子节点
+            # 2. 一股脑current 全部加入visited, 是防止本层前一个节点扩展
+            # 节点时，指向了本层后面尚未处理的节点，这条路径必然不是最短的
+            visited.update(current)
+
+            for state in current:
+                if stateIsTarget(state):
+                    path = []
+                    self.genPath(father, beginWord, state, path, result)
+                    continue
+                # 扩展节点
+                new_states = stateExtend(state)
+                for new_state in new_states:
+                    next_level.add(new_state)
+                    if new_state not in father:
+                        father[new_state] = []
+                    father[new_state].append(state)
+
+            current.clear()
+            # swap
+            current, next_level = next_level, current
+
+        return result
+
+    def genPath(self, father, start, state, path, result):
+        path.append(state)
+        if state == start:
+            if result:
+                if len(path) < len(result[0]):
+                    result.clear()
+                elif len(path) == len(result[0]):
+                    pass
+                else:
+                    raise ValueError("not possible to get here")
+            tmp = path[::-1]
+            result.append(tmp)
+        else:
+            for f in father[state]:
+                self.genPath(father, start, f, path, result)
+        path.pop()
 ```
 
 </TabItem>
@@ -809,6 +999,116 @@ private:
         return adjacency_list;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+from collections import defaultdict, deque
+
+# Word Ladder II
+# 时间复杂度O(n)，空间复杂度O(n)
+class Solution:
+    def findLadders(self, beginWord: str, endWord: str, wordList: set[str]) -> list[list[str]]:
+        q = deque()
+        visited = {}  # 判重
+        father = {}  # DAG
+        # only used by stateExtend()
+        g = self.buildGraph(wordList)
+
+        def stateIsValid(s):
+            return s in wordList or s == endWord
+
+        def stateIsTarget(s):
+            return s == endWord
+
+        def stateExtend(s):
+            result = []
+            newDepth = visited[s] + 1
+            if s not in g:
+                return result
+
+            for newState in g[s]:
+                if stateIsValid(newState):
+                    if newState in visited:
+                        depth = visited[newState]
+                        if depth < newDepth:
+                            # do nothing
+                            pass
+                        elif depth == newDepth:
+                            result.append(newState)
+                        else:
+                            raise ValueError("not possible to get here")
+                    else:
+                        result.append(newState)
+            return result
+
+        result = []
+        q.append(beginWord)
+        visited[beginWord] = 0
+        while q:
+            state = q.popleft()
+
+            # 如果当前路径长度已经超过当前最短路径长度，
+            # 可以中止对该路径的处理，因为我们要找的是最短路径
+            if result and (visited[state] + 1) > len(result[0]):
+                break
+
+            if stateIsTarget(state):
+                path = []
+                self.genPath(father, beginWord, state, path, result)
+                continue
+            # 必须挪到下面，比如同一层A和B两个节点均指向了目标节点，
+            # 那么目标节点就会在q中出现两次，输出路径就会翻倍
+            # visited.insert(state)
+
+            # 扩展节点
+            newStates = stateExtend(state)
+            for newState in newStates:
+                if newState not in visited:
+                    q.append(newState)
+                    visited[newState] = visited[state] + 1
+                if newState not in father:
+                    father[newState] = []
+                father[newState].append(state)
+        return result
+
+    def genPath(self, father, start, state, path, result):
+        path.append(state)
+        if state == start:
+            if result:
+                if len(path) < len(result[0]):
+                    result.clear()
+                elif len(path) == len(result[0]):
+                    # do nothing
+                    pass
+                else:
+                    raise ValueError("not possible to get here")
+            tmp = path[::-1]
+            result.append(tmp)
+        else:
+            for f in father[state]:
+                self.genPath(father, start, f, path, result)
+        path.pop()
+
+    def buildGraph(self, dict_words):
+        adjacency_list = defaultdict(set)
+        for word in dict_words:
+            array = list(word)
+            for i in range(len(array)):
+                old = array[i]
+                for c in range(ord('a'), ord('z') + 1):
+                    # 防止同字母替换
+                    if chr(c) == array[i]:
+                        continue
+                    array[i] = chr(c)
+                    newWord = "".join(array)
+                    if newWord in dict_words:
+                        adjacency_list[word].add(newWord)
+                    array[i] = old  # 恢复该单词
+        return adjacency_list
 ```
 
 </TabItem>

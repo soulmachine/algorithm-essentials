@@ -35,8 +35,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -77,6 +79,23 @@ public:
         return triangle [0][0];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Triangle
+# 时间复杂度O(n^2)，空间复杂度O(1)
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        for i in range(len(triangle) - 2, -1, -1):
+            for j in range(i + 1):
+                old = triangle[i][j]
+                triangle[i][j] = old + min(triangle[i + 1][j],
+                                         triangle[i + 1][j + 1])
+        return triangle[0][0]
 ```
 
 </TabItem>

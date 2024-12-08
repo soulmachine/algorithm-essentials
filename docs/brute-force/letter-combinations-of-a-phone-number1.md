@@ -27,8 +27,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -94,6 +96,32 @@ public:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Letter Combinations of a Phone Number
+# 时间复杂度O(3^n)，空间复杂度O(n)
+class Solution:
+    keyboard = [" ", "", "abc", "def",  # '0','1','2',...
+                "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+
+    def letterCombinations(self, digits: str) -> list[str]:
+        result = []
+        if not digits:
+            return result
+        self.dfs(digits, 0, "", result)
+        return result
+
+    def dfs(self, digits: str, cur: int, path: str, result: list[str]) -> None:
+        if cur == len(digits):
+            result.append(path)
+            return
+        for c in self.keyboard[int(digits[cur])]:
+            self.dfs(digits, cur + 1, path + c, result)
 ```
 
 </TabItem>
@@ -174,6 +202,36 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Letter Combinations of a Phone Number
+# 时间复杂度O(3^n)，空间复杂度O(1)
+class Solution:
+    keyboard = [" ", "", "abc", "def",  # '0','1','2',...
+                "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+
+    def letterCombinations(self, digits: str) -> list[str]:
+        if not digits:
+            return []
+        result = [""]
+        for d in digits:
+            n = len(result)
+            m = len(self.keyboard[int(d)])
+
+            # resize to n * m
+            for i in range(1, m):
+                for j in range(n):
+                    result.append(result[j])
+
+            for i in range(len(result)):
+                result[i] = result[i] + self.keyboard[int(d)][i//n]
+
+        return result
 ```
 
 </TabItem>

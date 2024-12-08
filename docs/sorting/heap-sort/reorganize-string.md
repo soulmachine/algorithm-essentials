@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -56,6 +58,19 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# No Java code was provided to translate.
+
+Use `pass` as a placeholder in Python when there's no code yet:
+
+def todo():
+    pass
 ```
 
 </TabItem>

@@ -20,8 +20,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -81,6 +83,30 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Group anagrams
+# 时间复杂度O(NKlogK)，空间复杂度O(NK)
+def groupAnagrams(strs):
+    group = {}
+    for s in strs:
+        tmp = list(s)
+        tmp.sort()
+        key = ''.join(tmp)
+        if key not in group:
+            group[key] = []
+        group[key].append(s)
+
+    result = []
+    for value in group.values():
+        value.sort()
+        result.append(value)
+    return result
 ```
 
 </TabItem>

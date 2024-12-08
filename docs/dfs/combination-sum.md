@@ -32,8 +32,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -101,6 +103,34 @@ private:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Combination Sum
+# 时间复杂度O(n!)，空间复杂度O(n)
+class Solution:
+    def combinationSum(self, nums: list[int], target: int) -> list[list[int]]:
+        nums.sort()
+        result = [] # 最终结果
+        path = [] # 中间结果
+        self.dfs(nums, path, result, target, 0)
+        return result
+
+    def dfs(self, nums: list[int], path: list[int],
+            result: list[list[int]], gap: int, start: int) -> None:
+        if gap == 0: # 找到一个合法解
+            result.append(path[:])
+            return
+        for i in range(start, len(nums)): # 扩展状态
+            if gap < nums[i]: return # 剪枝
+
+            path.append(nums[i]) # 执行扩展动作
+            self.dfs(nums, path, result, gap - nums[i], i)
+            path.pop() # 撤销动作
 ```
 
 </TabItem>

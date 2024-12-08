@@ -30,8 +30,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -173,6 +175,64 @@ private:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Permutations II
+# 深搜，时间复杂度O(n!)，空间复杂度O(n)
+class Solution:
+    def permuteUnique(self, nums):
+        nums.sort()  # 必须排序
+        result = []  # 最终结果
+        path = []    # 中间结果
+
+        # 记录每个元素的出现次数
+        counter_map = {}
+        for i in nums:
+            counter_map[i] = counter_map.get(i, 0) + 1
+
+        # 将HashMap里的pair拷贝到一个数组里
+        counters = []
+        for key, value in counter_map.items():
+            counters.append(Pair(key, value))
+        counters.sort()
+
+        # 每个元素选择了多少个
+        selected = {p.key: 0 for p in counters}
+
+        self.n = len(nums)
+        self.permute(counters, selected, path, result)
+        return result
+
+    def permute(self, counters, selected, path, result):
+        if self.n == len(path):  # 收敛条件
+            result.append(path[:])
+
+        # 扩展状态
+        for counter in counters:
+            if selected[counter.key] < counter.value:
+                path.append(counter.key)
+                selected[counter.key] += 1
+                self.permute(counters, selected, path, result)
+                path.pop()
+                selected[counter.key] -= 1
+
+class Pair:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+
+    def __lt__(self, other):
+        if self.key < other.key:
+            return True
+        elif self.key > other.key:
+            return False
+        else:
+            return self.value < other.value
 ```
 
 </TabItem>

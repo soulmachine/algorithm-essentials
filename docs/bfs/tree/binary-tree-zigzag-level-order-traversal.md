@@ -40,8 +40,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -126,6 +128,46 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Binary Tree Zigzag Level Order Traversal
+# 广度优先遍历，用一个bool记录是从左到右还是从右到左，每一层结束就翻转一下。
+# 迭代版，时间复杂度O(n)，空间复杂度O(n)
+from collections import deque
+
+def zigzagLevelOrder(root):
+    result = []
+    current = deque()
+    next = deque()
+    left_to_right = True
+
+    if not root:
+        return result
+    else:
+        current.append(root)
+
+    while current:
+        level = []  # elements in one level
+        while current:
+            node = current.popleft()
+            level.append(node.val)
+            if node.left:
+                next.append(node.left)
+            if node.right:
+                next.append(node.right)
+        if not left_to_right:
+            level.reverse()
+        result.append(level)
+        left_to_right = not left_to_right
+        # swap
+        current, next = next, current
+
+    return result
+```
+
+</TabItem>
 </Tabs>
 
 #### 递归版
@@ -197,6 +239,35 @@ public:
         traverse(root->right, level+1, result, !left_to_right);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Binary Tree Zigzag Level Order Traversal
+# 递归版，时间复杂度O(n)，空间复杂度O(n)
+class Solution:
+    def zigzagLevelOrder(self, root):
+        result = []
+        self.traverse(root, 1, result, True)
+        return result
+
+    def traverse(self, root, level, result, left_to_right):
+        if not root:
+            return
+
+        if level > len(result):
+            result.append([])
+
+        if left_to_right:
+            result[level-1].append(root.val)
+        else:
+            result[level-1].insert(0, root.val)
+
+        self.traverse(root.left, level+1, result, not left_to_right)
+        self.traverse(root.right, level+1, result, not left_to_right)
 ```
 
 </TabItem>

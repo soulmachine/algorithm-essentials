@@ -33,8 +33,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -67,6 +69,21 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Intersection of Two Arrays
+# Two HashSet
+# Time Complexity: O(m+n), Space Complexity: O(m+n)
+class Solution:
+    def intersection(self, nums1: list[int], nums2: list[int]) -> list[int]:
+        set1 = set(nums1)
+        set2 = set(nums2)
+        return list(set1.intersection(set2))
 ```
 
 </TabItem>

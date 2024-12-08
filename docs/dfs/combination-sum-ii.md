@@ -34,8 +34,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -121,6 +123,45 @@ private:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Combination Sum II
+# time complexity O(n!), space complexity O(n)
+class Solution:
+    def combinationSum2(self, nums: list[int], target: int) -> list[list[int]]:
+        nums.sort() # works with line 32,
+        # ensures each element is used at most once
+        result = []
+        path = []
+        self.dfs(nums, path, result, target, 0)
+        return result
+
+    # Use elements between nums[start, nums.size()) to find all possible solutions
+    def dfs(self, nums: list[int], path: list[int], result: list[list[int]], gap: int, start: int) -> None:
+        if gap == 0: # found a valid solution
+            result.append(path[:])
+            return
+
+        previous = -1
+        for i in range(start, len(nums)):
+            # if nums[i] was used in the previous round, we can't use nums[i] in this round,
+            # ensures nums[i] is used at most once
+            if previous == nums[i]:
+                continue
+
+            if gap < nums[i]:
+                return # pruning
+
+            previous = nums[i]
+
+            path.append(nums[i])
+            self.dfs(nums, path, result, gap - nums[i], i + 1)
+            path.pop() # restore environment
 ```
 
 </TabItem>

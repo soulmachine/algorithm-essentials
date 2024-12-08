@@ -10,8 +10,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -37,6 +39,18 @@ struct ListNode {
     ListNode *next;
     ListNode(int x) : val(x), next(nullptr) { }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# 单链表节点
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 ```
 
 </TabItem>

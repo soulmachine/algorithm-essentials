@@ -41,8 +41,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -170,6 +172,63 @@ private:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# N-Queens
+# 深搜+剪枝
+# 时间复杂度O(n!*n)，空间复杂度O(n)
+def solveNQueens(n: int) -> list[list[str]]:
+    result = []
+    C = [0] * n  # C[i]表示第i行皇后所在的列编号
+    dfs(C, 0, result)
+    return result
+
+def dfs(C: list[int], row: int, result: list[list[str]]) -> None:
+    N = len(C)
+    if row == N:  # 终止条件，也是收敛条件，意味着找到了一个可行解
+        solution = []
+        for i in range(N):
+            char_array = ['.'] * N
+            for j in range(N):
+                if j == C[i]:
+                    char_array[j] = 'Q'
+            solution.append(''.join(char_array))
+        result.append(solution)
+        return
+
+    for j in range(N):  # 扩展状态，一列一列的试
+        ok = isValid(C, row, j)
+        if not ok:
+            continue  # 剪枝，如果非法，继续尝试下一列
+        # 执行扩展动作
+        C[row] = j
+        dfs(C, row + 1, result)
+        # 撤销动作
+        # C[row] = -1
+
+def isValid(C: list[int], row: int, col: int) -> bool:
+    """
+    能否在 (row, col) 位置放一个皇后.
+    Args:
+        C: 棋局
+        row: 当前正在处理的行，前面的行都已经放了皇后了
+        col: 当前列
+    Returns:
+        能否放一个皇后
+    """
+    for i in range(row):
+        # 在同一列
+        if C[i] == col:
+            return False
+        # 在同一对角线上
+        if abs(i - row) == abs(C[i] - col):
+            return False
+    return True
+```
+
+</TabItem>
 </Tabs>
 
 ### 代码 2
@@ -291,6 +350,52 @@ private:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# N-Queens
+# 深搜+剪枝
+# 时间复杂度O(n!)，空间复杂度O(n)
+class Solution:
+    def solveNQueens(self, n: int) -> list[list[str]]:
+        self.columns = [False] * n
+        self.main_diag = [False] * (2 * n - 1)
+        self.anti_diag = [False] * (2 * n - 1)
+
+        result = []
+        C = [-1] * n  # C[i]表示第i行皇后所在的列编号
+        self.dfs(C, 0, result)
+        return result
+
+    def dfs(self, C: list[int], row: int, result: list[list[str]]) -> None:
+        N = len(C)
+        if row == N:  # 终止条件，也是收敛条件，意味着找到了一个可行解
+            solution = []
+            for i in range(N):
+                char_array = ['.'] * N
+                for j in range(N):
+                    if j == C[i]:
+                        char_array[j] = 'Q'
+                solution.append(''.join(char_array))
+            result.append(solution)
+            return
+
+        for j in range(N):  # 扩展状态，一列一列的试
+            ok = not self.columns[j] and not self.main_diag[row - j + N - 1] and \
+                 not self.anti_diag[row + j]
+            if not ok:
+                continue  # 剪枝，如果非法，继续尝试下一列
+            # 执行扩展动作
+            C[row] = j
+            self.columns[j] = self.main_diag[row - j + N - 1] = self.anti_diag[row + j] = True
+            self.dfs(C, row + 1, result)
+            # 撤销动作
+            # C[row] = -1
+            self.columns[j] = self.main_diag[row - j + N - 1] = self.anti_diag[row + j] = False
 ```
 
 </TabItem>

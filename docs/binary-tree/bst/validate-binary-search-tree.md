@@ -22,8 +22,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -68,6 +70,25 @@ public:
                 && isValidBST(root->right, root->val, upper);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Validate Binary Search Tree
+# 时间复杂度O(n)，空间复杂度O(\logn)
+class Solution:
+    def isValidBST(self, root):
+        return self.isValidBSTHelper(root, float('-inf'), float('inf'))
+
+    def isValidBSTHelper(self, root, lower, upper):
+        if not root:
+            return True
+        return (lower < root.val < upper and
+                self.isValidBSTHelper(root.left, lower, root.val) and
+                self.isValidBSTHelper(root.right, root.val, upper))
 ```
 
 </TabItem>

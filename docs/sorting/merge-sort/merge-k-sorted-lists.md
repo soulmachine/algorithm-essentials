@@ -20,8 +20,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -99,6 +101,40 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Merge k Sorted Lists
+# 时间复杂度O(N)，空间复杂度O(1)
+class Solution:
+    def mergeKLists(self, lists):
+        if len(lists) == 0:
+            return None
+
+        p = lists[0]
+        for i in range(1, len(lists)):
+            p = self.mergeTwoLists(p, lists[i])
+        return p
+
+    # Merge Two Sorted Lists
+    def mergeTwoLists(self, l1, l2):
+        head = ListNode(-1)
+        p = head
+        while l1 is not None or l2 is not None:
+            val1 = float('inf') if l1 is None else l1.val
+            val2 = float('inf') if l2 is None else l2.val
+            if val1 <= val2:
+                p.next = l1
+                l1 = l1.next
+            else:
+                p.next = l2
+                l2 = l2.next
+            p = p.next
+        return head.next
+```
+
+</TabItem>
 </Tabs>
 
 
@@ -164,6 +200,15 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Nothing to translate since the input is only a TODO comment
+# TODO
+```
+
+</TabItem>
 </Tabs>
 
 #### 解法3: 小根堆
@@ -223,6 +268,16 @@ public:
         return dummy->next;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# No code provided to translate. The input only contains a TODO comment.
+#
+# To translate Java code, please provide the actual Java source code.
 ```
 
 </TabItem>

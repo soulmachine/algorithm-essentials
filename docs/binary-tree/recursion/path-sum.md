@@ -35,8 +35,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -77,6 +79,25 @@ public:
                 || hasPathSum(root->right, sum - root->val);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Path Sum
+# 时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+        if not root:
+            return False
+
+        if not root.left and not root.right:  # leaf
+            return sum == root.val
+
+        return self.hasPathSum(root.left, sum - root.val) or \
+               self.hasPathSum(root.right, sum - root.val)
 ```
 
 </TabItem>

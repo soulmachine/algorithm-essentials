@@ -20,8 +20,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -60,6 +62,23 @@ public:
         return uniquePaths(m - 1, n) + uniquePaths(m, n - 1);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Unique Paths
+# 深搜，小集合可以过，大集合会超时
+# 时间复杂度O(n^4)，空间复杂度O(n)
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        if m < 1 or n < 1: return 0  # 终止条件
+
+        if m == 1 and n == 1: return 1  # 收敛条件
+
+        return self.uniquePaths(m - 1, n) + self.uniquePaths(m, n - 1)
 ```
 
 </TabItem>
@@ -138,6 +157,33 @@ private:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Unique Paths
+# 深搜 + 缓存，即备忘录法
+# 时间复杂度O(n^2)，空间复杂度O(n^2)
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        # f[x][y] 表示 从(0,0)到(x,y)的路径条数
+        self.f = [[0] * n for _ in range(m)]
+        self.f[0][0] = 1
+        return self.dfs(m - 1, n - 1)
+
+    def dfs(self, x: int, y: int) -> int:
+        if x < 0 or y < 0: return 0  # 数据非法，终止条件
+
+        if x == 0 and y == 0: return self.f[0][0]  # 回到起点，收敛条件
+
+        if self.f[x][y] > 0:
+            return self.f[x][y]
+        else:
+            self.f[x][y] = self.dfs(x - 1, y) + self.dfs(x, y - 1)
+            return self.f[x][y]
+```
+
+</TabItem>
 </Tabs>
 
 ### 动规
@@ -200,6 +246,25 @@ public:
         return f[n - 1];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# 动规，滚动数组
+# 时间复杂度O(n^2)，空间复杂度O(n)
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        f = [0] * n
+        f[0] = 1
+        for i in range(m):
+            for j in range(1, n):
+                # 左边的f[j]，表示更新后的f[j]，与公式中的f[i][j]对应
+                # 右边的f[j]，表示老的f[j]，与公式中的f[i-1][j]对应
+                f[j] = f[j] + f[j - 1]
+        return f[n - 1]
 ```
 
 </TabItem>
@@ -281,6 +346,37 @@ public:
         return combination(m+n-2, max(m-1, n-1));
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Unique Paths
+# 数学公式
+def unique_paths(m: int, n: int) -> int:
+    # max 可以防止n和k差距过大，从而防止combination()溢出
+    return int(combination(m + n - 2, max(m - 1, n - 1)))
+
+# 求阶乘, n!/(start-1)!，即 n*(n-1)...start，要求 n >= 1
+def factor(n: int, start: int = 1) -> int:
+    ret = 1
+    for i in range(start, n + 1):
+        ret *= i
+    return ret
+
+# 求组合数 C_n^k
+def combination(n: int, k: int) -> int:
+    # 常数优化
+    if k == 0:
+        return 1
+    if k == 1:
+        return n
+
+    ret = factor(n, k + 1)
+    ret //= factor(n - k)
+    return ret
 ```
 
 </TabItem>

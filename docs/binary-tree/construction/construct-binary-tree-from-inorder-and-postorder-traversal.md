@@ -19,8 +19,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -97,6 +99,46 @@ public:
         return root;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Construct Binary Tree from Inorder and Postorder Traversal
+# 递归，时间复杂度O(n)，空间复杂度O(\logn)
+class Solution:
+    def buildTree(self, inorder, postorder):
+        return self._buildTree(inorder, 0, len(inorder),
+                             postorder, 0, len(postorder))
+
+    def _buildTree(self, inorder, begin1, end1,
+                  postorder, begin2, end2):
+        if begin1 == end1:
+            return None
+        if begin2 == end2:
+            return None
+
+        val = postorder[end2 - 1]
+        root = TreeNode(val)
+
+        in_root_pos = self._find(inorder, begin1, end1, val)
+        left_size = in_root_pos - begin1
+        post_left_last = begin2 + left_size
+
+        root.left = self._buildTree(inorder, begin1, in_root_pos,
+                                  postorder, begin2, post_left_last)
+        root.right = self._buildTree(inorder, in_root_pos + 1, end1,
+                                   postorder, post_left_last, end2 - 1)
+
+        return root
+
+    def _find(self, array, begin, end, val):
+        for i in range(begin, end):
+            if array[i] == val:
+                return i
+        return -1
 ```
 
 </TabItem>

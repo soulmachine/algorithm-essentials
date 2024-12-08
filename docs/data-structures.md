@@ -117,6 +117,24 @@ l.pop_front();
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# deque allows O(1) operation at both head and tail. Only use appendleft/popleft to mimic singly-linked list
+from collections import deque
+
+# create a new singly linked list
+l = deque()
+# insert at head, time complexity O(1)
+l.appendleft(7)
+# access head, time complexity O(1)
+l[0] if len(l) > 0 else None
+# remove head, time complexity O(1)
+l.popleft() if len(l) > 0 else None
+```
+
+</TabItem>
 </Tabs>
 
 ### 栈

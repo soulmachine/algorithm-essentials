@@ -43,8 +43,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -101,6 +103,31 @@ public:
         connect(dummy.next);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Populating Next Right Pointers in Each Node II
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def connect(self, root):
+        if not root:
+            return
+
+        dummy = TreeLinkNode(-1)
+        curr, prev = root, dummy
+        while curr:
+            if curr.left:
+                prev.next = curr.left
+                prev = prev.next
+            if curr.right:
+                prev.next = curr.right
+                prev = prev.next
+            curr = curr.next
+        self.connect(dummy.next)
 ```
 
 </TabItem>
@@ -171,6 +198,32 @@ public:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Populating Next Right Pointers in Each Node II
+# 时间复杂度O(n)，空间复杂度O(1)
+def connect(root):
+    while root:
+        next = None  # the first node of next level
+        prev = None  # previous node on the same level
+        while root:
+            if not next:
+                next = root.left if root.left else root.right
+            if root.left:
+                if prev:
+                    prev.next = root.left
+                prev = root.left
+            if root.right:
+                if prev:
+                    prev.next = root.right
+                prev = root.right
+            root = root.next
+        root = next  # turn to next level
 ```
 
 </TabItem>

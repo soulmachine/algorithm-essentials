@@ -33,8 +33,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -80,6 +82,27 @@ private:
                 dfs(root->right, sum * 10 + root->val);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Sum root to leaf numbers
+# 时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def sumNumbers(self, root):
+        return self.dfs(root, 0)
+
+    def dfs(self, root, sum):
+        if not root:
+            return 0
+        if not root.left and not root.right:
+            return sum * 10 + root.val
+
+        return self.dfs(root.left, sum * 10 + root.val) + \
+               self.dfs(root.right, sum * 10 + root.val)
 ```
 
 </TabItem>

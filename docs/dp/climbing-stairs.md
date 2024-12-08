@@ -31,8 +31,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -81,6 +83,26 @@ public:
         return dp[n];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Climbing Stairs
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n == 1:
+            return 1
+        dp = [0] * (n + 1)
+        dp[1] = 1
+        dp[2] = 2
+        for i in range(3, n + 1):
+            dp[i] = dp[i - 1] + dp[i - 2]
+        return dp[n]
 ```
 
 </TabItem>
@@ -138,6 +160,23 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Climbing Stairs
+# 迭代，时间复杂度O(n)，空间复杂度O(1)
+def climbStairs(n: int) -> int:
+    prev = 0
+    cur = 1
+    for i in range(1, n + 1):
+        tmp = cur
+        cur += prev
+        prev = tmp
+    return cur
+```
+
+</TabItem>
 </Tabs>
 
 #### 3. 数学公式
@@ -179,6 +218,19 @@ class Solution {
             pow((1-s)/2, n+1))/s + 0.5);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Climbing Stairs
+# 数学公式，时间复杂度O(1)，空间复杂度O(1)
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        s = 5 ** 0.5
+        return int(((1+s)/2)**(n+1) + ((1-s)/2)**(n+1))/s + 0.5)
 ```
 
 </TabItem>

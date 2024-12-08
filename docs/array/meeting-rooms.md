@@ -24,8 +24,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -53,6 +55,21 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Meeting Rooms
+# Time Complexity: O(nlogn), Space Complexity: O(1)
+def canAttendMeetings(intervals):
+    intervals.sort(key=lambda x: x[0])
+    for i in range(len(intervals) - 1):
+        if intervals[i][1] > intervals[i + 1][0]:
+            return False
+    return True
 ```
 
 </TabItem>

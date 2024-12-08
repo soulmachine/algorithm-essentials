@@ -35,8 +35,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -188,6 +190,81 @@ class Solution {
     return 0;
   }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Word Ladder
+# 时间复杂度O(n*m)，空间复杂度O(n)
+from collections import deque
+from typing import List, Set
+
+class State:
+    def __init__(self, word: str, level: int):
+        self.word = word
+        self.level = level
+
+    def __hash__(self):
+        return hash(self.word)
+
+    def __eq__(self, other):
+        if self is other:
+            return True
+        if not isinstance(other, State):
+            return False
+        return self.word == other.word
+
+def ladderLength(beginWord: str, endWord: str, wordList: List[str]) -> int:
+    q = deque()
+    visited = set()
+    word_dict = set(wordList)
+
+    def state_is_valid(s: State) -> bool:
+        return s.word in word_dict
+
+    def state_is_target(s: State) -> bool:
+        return s.word == endWord
+
+    def state_extend(s: State) -> List[State]:
+        result = []
+        array = list(s.word)
+        for i in range(len(array)):
+            old = array[i]
+            for c in range(ord('a'), ord('z') + 1):
+                c = chr(c)
+                # 防止同字母替换
+                if c == array[i]:
+                    continue
+
+                array[i] = c
+                new_state = State(''.join(array), s.level + 1)
+
+                if state_is_valid(new_state):
+                    result.append(new_state)
+                array[i] = old  # 恢复该单词
+
+        return result
+
+    start_state = State(beginWord, 0)
+    visited.add(start_state)
+    q.append(start_state)
+
+    while q:
+        state = q.popleft()
+
+        if state_is_target(state):
+            return state.level + 1
+
+        new_states = state_extend(state)
+        for new_state in new_states:
+            if new_state not in visited:
+                visited.add(new_state)
+                q.append(new_state)
+
+    return 0
 ```
 
 </TabItem>

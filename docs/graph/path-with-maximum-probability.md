@@ -54,8 +54,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -129,6 +131,64 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Path with Maximum Probability
+# Dijkstra
+# Time Complexity: O(ElogN), Space Complexity: O(N + E)
+from collections import defaultdict
+import heapq
+import math
+
+class Solution:
+    def maxProbability(self, n: int, edges: list[list[int]], succProb: list[float], start: int, end: int) -> float:
+        # adjacency list, dict<vertex_id, dict<vertex_id, weight>>
+        graph = defaultdict(dict)
+        for i, edge in enumerate(edges):
+            w = -math.log(succProb[i])
+            # Undirected
+            graph[edge[0]][edge[1]] = w
+            graph[edge[1]][edge[0]] = w
+
+        dist = self.dijkstra(graph, start)
+        return math.exp(-dist[end]) if end in dist else 0
+
+    def dijkstra(self, graph, start):
+        """Standard Dijkstra algorithm.
+
+        Args:
+            graph: Adjacency list, dict<vertex_id, dict<vertex_id, weight>>.
+            start: The starting vertex ID.
+        Returns:
+            dist: dict<vertex_id, distance>.
+        """
+        # dict<vertex_id, distance>
+        dist = {}
+        # vertex_id -> father_vertex_id
+        father = {}
+
+        # tuple(distance, vertex_id), min heap, sorted by distance from start to vertex_id
+        pq = [(0.0, start)]
+        dist[start] = 0.0
+
+        while pq:
+            _, u = heapq.heappop(pq)
+            if u not in graph:  # leaf node
+                continue
+
+            for v, w in graph[u].items():
+                if v not in dist or dist[u] + w < dist[v]:
+                    shorter = dist[u] + w
+                    dist[v] = shorter
+                    father[v] = u
+                    heapq.heappush(pq, (shorter, v))
+
+        return dist
 ```
 
 </TabItem>

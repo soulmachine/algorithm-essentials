@@ -41,8 +41,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -101,6 +103,39 @@ private:
         else return false;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Wildcard Matching
+# 递归版，会超时，用于帮助理解题意
+# 时间复杂度O(n!*m!)，空间复杂度O(n)
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        return self._is_match(s, 0, p, 0)
+
+    def _is_match(self, s: str, i: int, p: str, j: int) -> bool:
+        if i == len(s) and j == len(p):
+            return True
+        if i == len(s) or j == len(p):
+            return False
+
+        if p[j] == '*':
+            while j < len(p) and p[j] == '*':
+                j += 1  #skip continuous '*'
+            if j == len(p):
+                return True
+            while i < len(s) and not self._is_match(s, i, p, j):
+                i += 1
+
+            return i < len(s)
+        elif p[j] == s[i] or p[j] == '?':
+            return self._is_match(s, i + 1, p, j + 1)
+        else:
+            return False
 ```
 
 </TabItem>
@@ -189,6 +224,41 @@ private:
         return (*ptr == '\0');
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Wildcard Matching
+# 迭代版，时间复杂度O(n*m)，空间复杂度O(1)
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        i = j = 0
+        ii = jj = -1
+        while i < len(s):
+            if j < len(p) and p[j] == '*':
+                # skip continuous '*'
+                while j < len(p) and p[j] == '*':
+                    j += 1
+                if j == len(p):
+                    return True
+                ii = i
+                jj = j
+            if j < len(p) and (p[j] == '?' or p[j] == s[i]):
+                i += 1
+                j += 1
+            else:
+                if ii == -1:
+                    return False
+                ii += 1
+                i = ii
+                j = jj
+        # skip continuous '*'
+        while j < len(p) and p[j] == '*':
+            j += 1
+        return i == len(s) and j == len(p)
 ```
 
 </TabItem>

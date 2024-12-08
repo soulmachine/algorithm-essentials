@@ -24,8 +24,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -73,6 +75,14 @@ public:
         return res;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# No code provided to translate. Please provide the Java code you want translated to Python.
 ```
 
 </TabItem>

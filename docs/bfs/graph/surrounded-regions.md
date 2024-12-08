@@ -36,8 +36,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -187,6 +189,69 @@ private:
         return 0 <= x && x < M && 0 <= y && y < N && board[x][y] == 'O';
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Surrounded Regions
+# BFS，时间复杂度O(n)，空间复杂度O(n)
+class Solution:
+    def solve(self, board):
+        if not board:
+            return
+
+        m = len(board)
+        n = len(board[0])
+        for i in range(n):
+            self.bfs(board, 0, i)
+            self.bfs(board, m - 1, i)
+        for j in range(1, m - 1):
+            self.bfs(board, j, 0)
+            self.bfs(board, j, n - 1)
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == 'O':
+                    board[i][j] = 'X'
+                elif board[i][j] == '+':
+                    board[i][j] = 'O'
+
+    def bfs(self, board, i, j):
+        from collections import deque
+        q = deque()
+        m = len(board)
+        n = len(board[0])
+
+        def state_is_valid(state):
+            x, y = state
+            if x < 0 or x >= m or y < 0 or y >= n or board[x][y] != 'O':
+                return False
+            return True
+
+        def state_extend(state):
+            result = []
+            x, y = state
+            # 上下左右
+            new_states = [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
+            for new_state in new_states:
+                if state_is_valid(new_state):
+                    result.append(new_state)
+            return result
+
+        start = (i, j)
+        if state_is_valid(start):
+            board[i][j] = '+'
+            q.append(start)
+
+        while q:
+            cur = q.popleft()
+            new_states = state_extend(cur)
+            for s in new_states:
+                # 既有标记功能又有去重功能
+                board[s[0]][s[1]] = '+'
+                q.append(s)
 ```
 
 </TabItem>

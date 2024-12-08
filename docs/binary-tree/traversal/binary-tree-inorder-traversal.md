@@ -32,8 +32,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -91,6 +93,31 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Binary Tree Inorder Traversal
+# 使用栈，时间复杂度O(n)，空间复杂度O(n)
+class Solution:
+    def inorderTraversal(self, root):
+        result = []
+        s = []
+        p = root
+
+        while s or p is not None:
+            if p is not None:
+                s.append(p)
+                p = p.left
+            else:
+                p = s.pop()
+                result.append(p.val)
+                p = p.right
+
+        return result
 ```
 
 </TabItem>

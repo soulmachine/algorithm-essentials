@@ -33,8 +33,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -75,6 +77,33 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Top K Frequent Elements
+# HashMap + Min Heap
+# Time Complexity: O(nlogk), Space Complexity: O(n+k)
+from collections import Counter
+import heapq
+
+def topKFrequent(nums, k):
+    m = Counter(nums)
+
+    # Min heap, sorted by frequency
+    pq = []
+    for x in m:
+        heapq.heappush(pq, (m[x], x))
+        if len(pq) > k:
+            heapq.heappop(pq)
+
+    top = []
+    for _ in range(k):
+        top.append(heapq.heappop(pq)[1])
+    return top[::-1]
 ```
 
 </TabItem>

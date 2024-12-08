@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -78,6 +80,32 @@ public:
         return max(left, right) + 1; // 三方合并
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Balanced Binary Tree
+# 时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def isBalanced(self, root):
+        return self.balancedHeight(root) >= 0
+
+    """
+    Returns the height of `root` if `root` is a balanced tree,
+    otherwise, returns `-1`.
+    """
+    def balancedHeight(self, root):
+        if root is None: return 0  # 终止条件
+
+        left = self.balancedHeight(root.left)
+        right = self.balancedHeight(root.right)
+
+        if left < 0 or right < 0 or abs(left - right) > 1: return -1  # 剪枝
+
+        return max(left, right) + 1  # 三方合并
 ```
 
 </TabItem>

@@ -34,8 +34,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -118,6 +120,43 @@ private:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Unique Paths II
+# DFS + caching, aka memoization
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
+        m = len(obstacleGrid)
+        n = len(obstacleGrid[0])
+        if obstacleGrid[0][0] != 0 or obstacleGrid[m-1][n-1] != 0:
+            return 0
+
+        self.f = [[0] * n for _ in range(m)]
+        self.f[0][0] = 0 if obstacleGrid[0][0] != 0 else 1
+        return self.dfs(obstacleGrid, m-1, n-1)
+
+    # @return total number of paths from (0,0) to (x,y)
+    def dfs(self, obstacleGrid: list[list[int]], x: int, y: int) -> int:
+        if x < 0 or y < 0:  # invalid data, termination condition
+            return 0
+
+        # (x,y) is obstacle
+        if obstacleGrid[x][y] != 0:
+            return 0
+
+        if x == 0 and y == 0:  # back to start point, convergence condition
+            return self.f[0][0]
+
+        if self.f[x][y] > 0:
+            return self.f[x][y]
+        else:
+            self.f[x][y] = self.dfs(obstacleGrid, x-1, y) + self.dfs(obstacleGrid, x, y-1)
+            return self.f[x][y]
+```
+
+</TabItem>
 </Tabs>
 
 ### 动规
@@ -185,6 +224,29 @@ public:
         return f[n - 1];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Unique Paths II
+# 动规，滚动数组
+# 时间复杂度 O(n^2)，空间复杂度 O(n)
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
+        m = len(obstacleGrid)
+        n = len(obstacleGrid[0])
+        if obstacleGrid[0][0] != 0 or obstacleGrid[m-1][n-1] != 0:
+            return 0
+        f = [0] * n
+        f[0] = 0 if obstacleGrid[0][0] != 0 else 1
+        for i in range(m):
+            f[0] = 0 if f[0] == 0 else (0 if obstacleGrid[i][0] != 0 else 1)
+            for j in range(1, n):
+                f[j] = 0 if obstacleGrid[i][j] != 0 else (f[j] + f[j - 1])
+        return f[n - 1]
 ```
 
 </TabItem>

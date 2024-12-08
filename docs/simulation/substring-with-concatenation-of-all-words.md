@@ -25,8 +25,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -106,6 +108,45 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Substring with Concatenation of All Words
+# 时间复杂度O(n*m)，空间复杂度O(m)
+def findSubstring(s: str, words: list[str]) -> list[int]:
+    word_length = len(words[0])
+    cat_length = word_length * len(words)
+    result = []
+
+    if len(s) < cat_length:
+        return result
+
+    word_count = {}
+    for word in words:
+        word_count[word] = word_count.get(word, 0) + 1
+
+    for i in range(len(s) - cat_length + 1):
+        unused = word_count.copy()
+
+        for j in range(i, i + cat_length, word_length):
+            key = s[j:j + word_length]
+            pos = unused.get(key, -1)
+
+            if pos == -1 or pos == 0:
+                break
+
+            unused[key] = pos - 1
+            if pos - 1 == 0:
+                del unused[key]
+
+        if len(unused) == 0:
+            result.append(i)
+
+    return result
 ```
 
 </TabItem>

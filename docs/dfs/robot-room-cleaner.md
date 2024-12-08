@@ -71,8 +71,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -126,6 +128,48 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Robot Room Cleaner
+# Time Complexity: O(n-m), Space Complexity: O(n-m)
+class Solution:
+    def __init__(self):
+        # going clockwise : 0: 'up', 1: 'right', 2: 'down', 3: 'left'
+        self.directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+        self.visited = set()
+        self.robot = None
+
+    def cleanRoom(self, robot):
+        self.robot = robot
+        self.dfs(0, 0, 0)
+
+    def goBack(self):
+        self.robot.turnRight()
+        self.robot.turnRight()
+        self.robot.move()
+        self.robot.turnRight()
+        self.robot.turnRight()
+
+    def dfs(self, x, y, d):
+        # clean current cell
+        self.visited.add((x, y))
+        self.robot.clean()
+
+        # clean four directions, clockwise
+        for i in range(4):
+            newD = (d + i) % 4
+            newRow = x + self.directions[newD][0]
+            newCol = y + self.directions[newD][1]
+
+            if (newRow, newCol) not in self.visited and self.robot.move():
+                self.dfs(newRow, newCol, newD)
+                self.goBack()
+            self.robot.turnRight()
 ```
 
 </TabItem>

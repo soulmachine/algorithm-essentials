@@ -148,6 +148,25 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Remove Duplicates from Sorted Array II
+# Time Complexity: O(n), Space Complexity: O(1)
+class Solution:
+    def removeDuplicates(self, nums: list[int]) -> int:
+        n = len(nums)
+        index = 0
+        for i in range(n):
+            if i > 0 and i < n - 1 and nums[i] == nums[i - 1] and nums[i] == nums[i + 1]:
+                continue
+            nums[index] = nums[i]
+            index += 1
+        return index
+```
+
+</TabItem>
 </Tabs>
 
 ### 相关题目

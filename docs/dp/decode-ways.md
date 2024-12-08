@@ -30,8 +30,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -92,6 +94,36 @@ public:
         return cur;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Decode Ways
+# Dynamic programming, time complexity O(n), space complexity O(1)
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        if not s or s[0] == '0':
+            return 0
+
+        prev = 0
+        cur = 1
+        # For a string of length n, there are n+1 steps
+        for i in range(1, len(s) + 1):
+            if s[i-1] == '0':
+                cur = 0
+
+            if i < 2 or not (s[i-2] == '1' or
+                    (s[i-2] == '2' and s[i-1] <= '6')):
+                prev = 0
+
+            tmp = cur
+            cur = prev + cur
+            prev = tmp
+
+        return cur
 ```
 
 </TabItem>

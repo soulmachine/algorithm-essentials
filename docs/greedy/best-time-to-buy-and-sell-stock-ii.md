@@ -20,8 +20,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -60,6 +62,23 @@ public:
         return sum;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Best Time to Buy and Sell Stock II
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def maxProfit(self, prices: list[int]) -> int:
+        sum = 0
+        for i in range(1, len(prices)):
+            diff = prices[i] - prices[i - 1]
+            if diff > 0:
+                sum += diff
+        return sum
 ```
 
 </TabItem>

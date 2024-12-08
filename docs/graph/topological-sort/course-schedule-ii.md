@@ -18,8 +18,10 @@ import TabItem from "@theme/TabItem";
 #### BFS
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -64,6 +66,14 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# TODO
 ```
 
 </TabItem>
@@ -115,6 +125,15 @@ public:
         return true;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Empty input (only a comment) results in empty output
+# TODO
 ```
 
 </TabItem>

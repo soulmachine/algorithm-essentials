@@ -22,8 +22,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -100,6 +102,45 @@ private:
     TreeNode *p2 = nullptr;
     TreeNode *prev = nullptr;
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Recover Binary Search Tree
+# 中序遍历,递归
+# 时间复杂度O(n)，空间复杂度O(logn)
+# 本代码仅仅是为了帮助理解题目
+class Solution:
+    def __init__(self):
+        self.p1 = None
+        self.p2 = None
+        self.prev = None
+
+    def recoverTree(self, root):
+        self.inOrder(root)
+        # swap
+        tmp = self.p1.val
+        self.p1.val = self.p2.val
+        self.p2.val = tmp
+
+    def inOrder(self, root):
+        if root is None:
+            return
+        if root.left is not None:
+            self.inOrder(root.left)
+
+        if self.prev is not None and root.val < self.prev.val:
+            if self.p1 is None:
+                self.p1 = self.prev
+                self.p2 = root
+            else:
+                self.p2 = root
+        self.prev = root
+        if root.right is not None:
+            self.inOrder(root.right)
 ```
 
 </TabItem>
@@ -218,6 +259,54 @@ public:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Recover Binary Search Tree
+# Morris中序遍历，时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def recoverTree(self, root):
+        broken = [None, None]
+        prev = None
+        cur = root
+
+        while cur:
+            if cur.left is None:
+                self.detect(broken, prev, cur)
+                prev = cur
+                cur = cur.right
+            else:
+                node = cur.left
+
+                while node.right and node.right != cur:
+                    node = node.right
+
+                if node.right is None:
+                    node.right = cur
+                    #prev = cur  # 不能有这句！因为cur还没有被访问
+                    cur = cur.left
+                else:
+                    self.detect(broken, prev, cur)
+                    node.right = None
+                    prev = cur
+                    cur = cur.right
+
+        # swap
+        tmp = broken[0].val
+        broken[0].val = broken[1].val
+        broken[1].val = tmp
+
+    def detect(self, broken, prev, current):
+        if prev and prev.val > current.val:
+            if broken[0] is None:
+                broken[0] = prev
+            #不能用else，例如 {0,1}，会导致最后 swap时second为nullptr，
+            #会 Runtime Error
+            broken[1] = current
 ```
 
 </TabItem>

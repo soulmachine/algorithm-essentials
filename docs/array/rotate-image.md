@@ -27,8 +27,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -79,6 +81,31 @@ public:
                 swap(matrix[i][j], matrix[n - 1 - i][j]);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Rotate Image
+# 思路 1，时间复杂度O(n^2)，空间复杂度O(1)
+class Solution:
+    def rotate(self, matrix: list[list[int]]) -> None:
+        n = len(matrix)
+
+        # 沿着副对角线反转
+        for i in range(n):
+            for j in range(n - i):
+                self.swap(matrix, i, j, n - 1 - j, n - 1 - i)
+
+        # 沿着水平中线反转
+        for i in range(n // 2):
+            for j in range(n):
+                self.swap(matrix, i, j, n - 1 - i, j)
+
+    def swap(self, matrix: list[list[int]], i: int, j: int, p: int, q: int) -> None:
+        matrix[i][j], matrix[p][q] = matrix[p][q], matrix[i][j]
 ```
 
 </TabItem>
@@ -139,6 +166,31 @@ public:
                 swap(matrix[i][j], matrix[j][i]);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Rotate Image
+# 思路 2，时间复杂度O(n^2)，空间复杂度O(1)
+class Solution:
+    def rotate(self, matrix: list[list[int]]) -> None:
+        n = len(matrix)
+
+        # 沿着水平中线反转
+        for i in range(n // 2):
+            for j in range(n):
+                self.swap(matrix, i, j, n - 1 - i, j)
+
+        # 沿着主对角线反转
+        for i in range(n):
+            for j in range(i + 1, n):
+                self.swap(matrix, i, j, j, i)
+
+    def swap(self, matrix: list[list[int]], i: int, j: int, p: int, q: int) -> None:
+        matrix[i][j], matrix[p][q] = matrix[p][q], matrix[i][j]
 ```
 
 </TabItem>

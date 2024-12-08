@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -54,6 +56,16 @@ private:
     vector<int> rows, cols;
     int diag, rev_diag, N;
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# No translation needed - the input consists of only a Java comment "// TODO"
+# The equivalent Python comment would be:
+# TODO
 ```
 
 </TabItem>

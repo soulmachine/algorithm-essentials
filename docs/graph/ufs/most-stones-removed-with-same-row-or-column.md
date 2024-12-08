@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -58,6 +60,17 @@ private:
         return a[0] == b[0] || a[1] == b[1];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Empty file - nothing to translate since only comment is "TODO"
+
+# Note: Python uses '#' for comments instead of '//'
+# TODO
 ```
 
 </TabItem>

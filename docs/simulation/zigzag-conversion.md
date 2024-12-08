@@ -53,8 +53,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -105,6 +107,34 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# ZigZag Conversion
+# Time complexity O(n), Space complexity O(1)
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows <= 1 or len(s) <= 1:
+            return s
+        result = []
+        for i in range(numRows):
+            j = 0
+            index = i
+            while index < len(s):
+                result.append(s[index])  # vertical elements
+                if i == 0 or i == numRows - 1:  # diagonal elements
+                    j += 1
+                    index = (2 * numRows - 2) * j + i
+                    continue
+                if index + (numRows - i - 1) * 2 < len(s):
+                    result.append(s[index + (numRows - i - 1) * 2])
+                j += 1
+                index = (2 * numRows - 2) * j + i
+        return ''.join(result)
 ```
 
 </TabItem>

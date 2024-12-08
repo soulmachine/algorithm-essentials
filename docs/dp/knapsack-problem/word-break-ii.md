@@ -26,8 +26,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -128,6 +130,46 @@ private:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Word Break II
+# 动规，时间复杂度O(n^2)，空间复杂度O(n^2)
+class Solution:
+    def wordBreak(self, s: str, wordDict: set[str]) -> list[str]:
+        # 长度为n的字符串有n+1个隔板
+        f = [False] * (len(s) + 1)
+        # prev[i][j]为true，表示s[j, i)是一个合法单词，可以从j处切开
+        # 第一行未用
+        prev = [[False] * len(s) for _ in range(len(s) + 1)]
+        f[0] = True
+        for i in range(1, len(s) + 1):
+            for j in range(i - 1, -1, -1):
+                if f[j] and s[j:i] in wordDict:
+                    f[i] = True
+                    prev[i][j] = True
+
+        result = []
+        path = []
+        self.gen_path(s, prev, len(s), path, result)
+        return result
+
+    # DFS遍历树，生成路径
+    def gen_path(self, s: str, prev: list[list[bool]], cur: int,
+                path: list[str], result: list[str]) -> None:
+        if cur == 0:
+            result.append(' '.join(reversed(path)))
+            return
+
+        for i in range(len(s)):
+            if prev[cur][i]:
+                path.append(s[i:cur])
+                self.gen_path(s, prev, i, path, result)
+                path.pop()
 ```
 
 </TabItem>

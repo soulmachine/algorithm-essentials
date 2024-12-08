@@ -45,8 +45,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -177,6 +179,65 @@ public:
         s.append(spaces, ' ');
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Text Justification
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def fullJustify(self, words, maxWidth):
+        result = []
+        n = len(words)
+        begin = 0
+        length = 0  # 当前行的起点，当前长度
+        for i in range(n):
+            if length + len(words[i]) + (i - begin) > maxWidth:
+                result.append(self.connect(words, begin, i - 1, length, maxWidth, False))
+                begin = i
+                length = 0
+            length += len(words[i])
+        # 最后一行不足 maxWidth
+        result.append(self.connect(words, begin, n - 1, length, maxWidth, True))
+        return result
+
+    def connect(self, words, begin, end, length, L, is_last):
+        """
+        将 words[begin, end] 连成一行
+        :param words: 单词列表
+        :param begin: 开始
+        :param end: 结束
+        :param length: words[begin, end]所有单词加起来的长度
+        :param L: 题目规定的一行长度
+        :param is_last: 是否是最后一行
+        :return: 对齐后的当前行
+        """
+        sb = []
+        n = end - begin + 1
+        for i in range(n):
+            sb.append(words[begin + i])
+            self.addSpaces(sb, i, n - 1, L - length, is_last)
+
+        result = ''.join(sb)
+        return result + ' ' * (L - len(result))
+
+    def addSpaces(self, sb, i, n, L, is_last):
+        """
+        添加空格
+        :param sb: 一行
+        :param i: 当前空隙的序号
+        :param n: 空隙总数
+        :param L: 总共需要添加的空额数
+        :param is_last: 是否是最后一行
+        :return: 无
+        """
+        if n < 1 or i > n - 1:
+            return
+        spaces = 1 if is_last else (L // n + (1 if i < (L % n) else 0))
+        sb.append(' ' * spaces)
 ```
 
 </TabItem>

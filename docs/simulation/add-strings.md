@@ -23,8 +23,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -72,6 +74,28 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Add Strings
+# Time Complexity: O(max(m,n)), Space Complexity: O(max(m,n))
+class Solution:
+    def addStrings(self, num1: str, num2: str) -> str:
+        result = []
+        i, j = len(num1) - 1, len(num2) - 1
+        carry = 0
+        while i >= 0 or j >= 0 or carry > 0:
+            x = 0 if i < 0 else ord(num1[i]) - ord('0')
+            y = 0 if j < 0 else ord(num2[j]) - ord('0')
+            sum = x + y + carry
+            result.append(str(sum % 10))
+            carry = sum // 10
+            i, j = i - 1, j - 1
+        return ''.join(result[::-1])
 ```
 
 </TabItem>

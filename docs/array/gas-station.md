@@ -25,8 +25,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -75,6 +77,27 @@ public:
         return total >= 0 ? j + 1 : -1;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Gas Station
+# Time complexity O(n), space complexity O(1)
+class Solution:
+    def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:
+        total = 0
+        j = -1
+        sum = 0
+        for i in range(len(gas)):
+            sum += gas[i] - cost[i]
+            total += gas[i] - cost[i]
+            if sum < 0:
+                j = i
+                sum = 0
+        return j + 1 if total >= 0 else -1
 ```
 
 </TabItem>

@@ -179,6 +179,30 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Longest Valid Parenthese
+# 时间复杂度O(n)，空间复杂度O(n)
+# @author 一只杰森(http://weibo.com/wjson)
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        f = [0] * len(s)
+        result = 0
+        for i in range(len(s) - 2, -1, -1):
+            match = i + f[i + 1] + 1
+            # case: "((...))"
+            if i < len(s) and match < len(s) and s[i] == '(' and s[match] == ')':
+                f[i] = f[i + 1] + 2
+                # if a valid sequence exist afterwards "((...))()"
+                if match + 1 < len(s):
+                    f[i] += f[match + 1]
+            result = max(result, f[i])
+        return result
+```
+
+</TabItem>
 </Tabs>
 
 ### 两遍扫描
@@ -276,6 +300,45 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Longest Valid Parenthese
+# 两遍扫描，时间复杂度O(n)，空间复杂度O(1)
+# @author 曹鹏(http://weibo.com/cpcs)
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        result = 0
+        depth = 0
+        start = -1
+        for i in range(len(s)):
+            if s[i] == '(':
+                depth += 1
+            else:
+                depth -= 1
+                if depth < 0:
+                    start = i
+                    depth = 0
+                elif depth == 0:
+                    result = max(result, i - start)
+
+        depth = 0
+        start = len(s)
+        for i in range(len(s) - 1, -1, -1):
+            if s[i] == ')':
+                depth += 1
+            else:
+                depth -= 1
+                if depth < 0:
+                    start = i
+                    depth = 0
+                elif depth == 0:
+                    result = max(result, start - i)
+        return result
 ```
 
 </TabItem>

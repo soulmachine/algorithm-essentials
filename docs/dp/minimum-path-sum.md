@@ -24,8 +24,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -94,6 +96,40 @@ private:
         else return f[x][y] = dfs(grid, x, y);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Minimum Path Sum
+# 备忘录法
+class Solution:
+    def minPathSum(self, grid: list[list[int]]) -> int:
+        m = len(grid)
+        n = len(grid[0])
+        self.f = [[-1] * n for _ in range(m)]
+        return self.dfs(grid, m-1, n-1)
+
+    def dfs(self, grid: list[list[int]], x: int, y: int) -> int:
+        if x < 0 or y < 0:
+            return float('inf')  # 越界，终止条件，注意，不是0
+
+        if x == 0 and y == 0:
+            return grid[0][0]  # 回到起点，收敛条件
+
+        return min(self.getOrUpdate(grid, x - 1, y),
+                  self.getOrUpdate(grid, x, y - 1)) + grid[x][y]
+
+    def getOrUpdate(self, grid: list[list[int]], x: int, y: int) -> int:
+        if x < 0 or y < 0:
+            return float('inf')  # 越界，注意，不是0
+        if self.f[x][y] >= 0:
+            return self.f[x][y]
+        else:
+            self.f[x][y] = self.dfs(grid, x, y)
+            return self.f[x][y]
 ```
 
 </TabItem>
@@ -171,6 +207,35 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Minimum Path Sum
+# 二维动规
+def minPathSum(grid):
+    if not grid:
+        return 0
+    m = len(grid)
+    n = len(grid[0])
+
+    f = [[0] * n for _ in range(m)]
+    f[0][0] = grid[0][0]
+
+    for i in range(1, m):
+        f[i][0] = f[i - 1][0] + grid[i][0]
+
+    for i in range(1, n):
+        f[0][i] = f[0][i - 1] + grid[0][i]
+
+    for i in range(1, m):
+        for j in range(1, n):
+            f[i][j] = min(f[i - 1][j], f[i][j - 1]) + grid[i][j]
+
+    return f[m - 1][n - 1]
+```
+
+</TabItem>
 </Tabs>
 
 ### 动规+滚动数组
@@ -236,6 +301,30 @@ public:
         return f[n - 1];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Minimum Path Sum
+# 二维动规+滚动数组
+def minPathSum(grid):
+    m = len(grid)
+    n = len(grid[0])
+
+    f = [float('inf')] * n  # 初始值是 INT_MAX，因为后面用了min函数。
+    f[0] = 0
+
+    for i in range(m):
+        f[0] += grid[i][0]
+        for j in range(1, n):
+            # 左边的f[j]，表示更新后的f[j]，与公式中的f[i[[j]对应
+            # 右边的f[j]，表示老的f[j]，与公式中的f[i-1][j]对应
+            f[j] = min(f[j-1], f[j]) + grid[i][j]
+
+    return f[n-1]
 ```
 
 </TabItem>

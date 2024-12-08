@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -78,6 +80,34 @@ private:
         if (c > 0) digits.insert(digits.begin(), 1);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Plus One
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def plusOne(self, digits):
+        return self.add(digits, 1)
+
+    def add(self, digits, digit):
+        c = digit  # carry, 进位
+
+        for i in range(len(digits) - 1, -1, -1):
+            digits[i] += c
+            c = digits[i] // 10
+            digits[i] %= 10
+
+        if c > 0:  # assert (c == 1)
+            tmp = [0] * (len(digits) + 1)
+            tmp[1:] = digits[:]
+            tmp[0] = c
+            return tmp
+        else:
+            return digits
 ```
 
 </TabItem>

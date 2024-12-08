@@ -24,8 +24,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -58,6 +60,30 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Meeting Rooms II
+# Time Complexity: O(nlogn), Space Complexity: O(n)
+def minMeetingRooms(intervals):
+    if not intervals:
+        return 0
+    intervals.sort(key=lambda x: x[0])
+
+    import heapq
+    pq = []
+    heapq.heappush(pq, intervals[0][1])
+
+    for i in range(1, len(intervals)):
+        if intervals[i][0] >= pq[0]:
+            heapq.heappop(pq)
+        heapq.heappush(pq, intervals[i][1])
+
+    return len(pq)
 ```
 
 </TabItem>

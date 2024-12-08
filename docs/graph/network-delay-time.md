@@ -34,8 +34,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -104,6 +106,62 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Network Delay Time
+# Dijkstra
+# Time Complexity: O(ElogN), Space Complexity: O(N + E)
+class Solution:
+    def networkDelayTime(self, times: list[list[int]], N: int, K: int) -> int:
+        # adjacency list, map<vertex_id, map<vertex_id, weight>>
+        graph = {}
+        for u, v, w in times:
+            if u not in graph:
+                graph[u] = {}
+            graph[u][v] = w
+
+        dist = self.dijkstra(graph, K)
+
+        return max(dist.values()) if len(dist) == N else -1
+
+    def dijkstra(self, graph: dict, start: int) -> dict:
+        """Standard Dijkstra algorithm.
+
+        Args:
+            graph: Adjacency list, map<vertex_id, map<vertex_id, weight>>.
+            start: The starting vertex ID.
+        Returns:
+            dist: map<vertex_id, distance>.
+        """
+        # map<vertex_id, distance>
+        dist = {}
+        # vertex_id -> father_vertex_id
+        father = {}
+
+        # pair<distance, vertex_id>, min heap, sorted by distance from start to vertex_id
+        pq = [(0, start)]
+        dist[start] = 0
+
+        while pq:
+            d, u = heapq.heappop(pq)
+            if d > dist[u]:
+                continue
+            if u not in graph:  # leaf node
+                continue
+
+            for v, w in graph[u].items():
+                if v not in dist or dist[u] + w < dist[v]:
+                    shorter = dist[u] + w
+                    dist[v] = shorter
+                    father[v] = u
+                    heapq.heappush(pq, (shorter, v))
+
+        return dist
 ```
 
 </TabItem>

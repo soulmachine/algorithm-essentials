@@ -39,8 +39,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -113,6 +115,46 @@ private:
 };
 
 
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Regular Expression Matching
+# Time complexity: O(n)
+# Space complexity: O(1)
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        return self._isMatch(s, 0, p, 0)
+
+    def _matchFirst(self, s: str, i: int, p: str, j: int) -> bool:
+        if j == len(p):
+            return i == len(s)
+        if i == len(s):
+            return j == len(p)
+        return p[j] == '.' or s[i] == p[j]
+
+    def _isMatch(self, s: str, i: int, p: str, j: int) -> bool:
+        if j == len(p):
+            return i == len(s)
+
+        # next char is not '*', then must match current character
+        b = p[j]
+        if j == len(p) - 1 or p[j + 1] != '*':
+            if self._matchFirst(s, i, p, j):
+                return self._isMatch(s, i + 1, p, j + 1)
+            else:
+                return False
+        else:  # next char is '*'
+            if self._isMatch(s, i, p, j + 2):
+                return True  # try the length of 0
+            while self._matchFirst(s, i, p, j):  # try all possible lengths
+                i += 1
+                if self._isMatch(s, i, p, j + 2):
+                    return True
+            return False
 ```
 
 </TabItem>

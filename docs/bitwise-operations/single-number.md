@@ -19,8 +19,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -57,6 +59,21 @@ public:
         return x;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Single Number
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        x = 0
+        for i in nums:
+            x ^= i
+        return x
 ```
 
 </TabItem>

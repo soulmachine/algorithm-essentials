@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -109,6 +111,48 @@ public:
         return ret;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Maximal Rectangle
+# 时间复杂度O(n^2)，空间复杂度O(n)
+class Solution:
+    def maximalRectangle(self, matrix: list[list[str]]) -> int:
+        if not matrix:
+            return 0
+
+        m = len(matrix)
+        n = len(matrix[0])
+        H = [0] * n
+        L = [0] * n
+        R = [n] * n
+
+        ret = 0
+        for i in range(m):
+            left, right = 0, n
+            # calculate L(i, j) from left to right
+            for j in range(n):
+                if matrix[i][j] == '1':
+                    H[j] += 1
+                    L[j] = max(L[j], left)
+                else:
+                    left = j + 1
+                    H[j] = L[j] = 0
+                    R[j] = n
+
+            # calculate R(i, j) from right to left
+            for j in range(n-1, -1, -1):
+                if matrix[i][j] == '1':
+                    R[j] = min(R[j], right)
+                    ret = max(ret, H[j] * (R[j] - L[j]))
+                else:
+                    right = j
+
+        return ret
 ```
 
 </TabItem>

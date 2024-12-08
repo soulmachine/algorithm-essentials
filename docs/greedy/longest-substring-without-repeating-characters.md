@@ -20,8 +20,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -78,6 +80,29 @@ public:
         return max((int)s.size() - start, max_len);  // 别忘了最后一次，例如"abcd"
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Longest Substring Without Repeating Characters
+# 时间复杂度O(n)，空间复杂度O(1)
+# 考虑非字母的情况
+def length_of_longest_substring(s: str) -> int:
+    ASCII_MAX = 255
+    last = [-1] * ASCII_MAX  # 记录字符上次出现过的位置
+    start = 0  # 记录当前子串的起始位置
+
+    max_len = 0
+    for i in range(len(s)):
+        if last[ord(s[i])] >= start:
+            max_len = max(i - start, max_len)
+            start = last[ord(s[i])] + 1
+        last[ord(s[i])] = i
+
+    return max(len(s) - start, max_len)  # 别忘了最后一次，例如"abcd"
 ```
 
 </TabItem>

@@ -36,8 +36,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -103,6 +105,32 @@ private:
         path.pop_back();
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Subsets
+# Incremental construction method, DFS, time complexity O(2^n), space complexity O(n)
+def subsets(nums):
+    nums.sort()  # output needs to be ordered
+    result = []
+    path = []
+    _subsets(nums, path, 0, result)
+    return result
+
+def _subsets(nums, path, step, result):
+    if step == len(nums):
+        result.append(path[:])
+        return
+    # don't select nums[step]
+    _subsets(nums, path, step + 1, result)
+    # select nums[step]
+    path.append(nums[step])
+    _subsets(nums, path, step + 1, result)
+    path.pop()
 ```
 
 </TabItem>
@@ -193,6 +221,37 @@ private:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Subsets
+# 位向量法，深搜，时间复杂度O(2^n)，空间复杂度O(n)
+class Solution:
+    def subsets(self, nums: list[int]) -> list[list[int]]:
+        nums.sort()  # 输出要求有序
+        result = []
+        selected = [False] * len(nums)
+        self._subsets(nums, selected, 0, result)
+        return result
+
+    def _subsets(self, nums: list[int], selected: list[bool], step: int, result: list[list[int]]) -> None:
+        if step == len(nums):
+            subset = []
+            for i in range(len(nums)):
+                if selected[i]:
+                    subset.append(nums[i])
+            result.append(subset)
+            return
+        # 不选S[step]
+        selected[step] = False
+        self._subsets(nums, selected, step + 1, result)
+        # 选S[step]
+        selected[step] = True
+        self._subsets(nums, selected, step + 1, result)
+```
+
+</TabItem>
 </Tabs>
 
 ### 迭代
@@ -252,6 +311,25 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Subsets
+# Iterative version, time complexity O(2^n), space complexity O(1)
+def subsets(nums):
+    nums.sort() # output requires ordering
+    result = [[]] # empty subset
+    for elem in nums:
+        n = len(result)
+        for i in range(n): # copy itself
+            result.append(result[i][:])
+        for i in range(n, len(result)):
+            result[i].append(elem)
+    return result
 ```
 
 </TabItem>
@@ -320,6 +398,29 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Subsets
+# Binary method, time complexity O(2^n), space complexity O(1)
+class Solution:
+    def subsets(self, nums: list[int]) -> list[list[int]]:
+        nums.sort()  # output needs to be ordered
+        result = []
+        n = len(nums)
+        v = []
+
+        for i in range(1 << n):
+            for j in range(n):
+                if (i & (1 << j)) > 0:
+                    v.append(nums[j])
+            result.append(v[:])
+            v.clear()
+        return result
 ```
 
 </TabItem>

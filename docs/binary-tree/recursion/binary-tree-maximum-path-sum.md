@@ -32,8 +32,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -89,6 +91,33 @@ private:
         return max(r, l) > 0 ? max(r, l) + root->val : root->val;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Binary Tree Maximum Path Sum
+# 时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def maxPathSum(self, root):
+        self.max_sum = float('-inf')
+        self.dfs(root)
+        return self.max_sum
+
+    def dfs(self, root):
+        if not root:
+            return 0
+        l = self.dfs(root.left)
+        r = self.dfs(root.right)
+        sum = root.val
+        if l > 0:
+            sum += l
+        if r > 0:
+            sum += r
+        self.max_sum = max(self.max_sum, sum)
+        return (max(r, l) + root.val) if max(r, l) > 0 else root.val
 ```
 
 </TabItem>

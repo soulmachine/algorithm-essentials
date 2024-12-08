@@ -26,8 +26,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -89,6 +91,31 @@ private:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Combinations
+# 深搜，递归
+# 时间复杂度O(n!)，空间复杂度O(n)
+class Solution:
+    def combine(self, n: int, k: int) -> list[list[int]]:
+        result = []
+        path = []
+        self.dfs(n, k, 1, 0, path, result)
+        return result
+
+    # start，开始的数, cur，已经选择的数目
+    def dfs(self, n: int, k: int, start: int, cur: int, path: list[int], result: list[list[int]]) -> None:
+        if cur == k:
+            result.append(path[:])
+        for i in range(start, n + 1):
+            path.append(i)
+            self.dfs(n, k, i + 1, cur + 1, path, result)
+            path.pop()
 ```
 
 </TabItem>

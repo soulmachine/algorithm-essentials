@@ -21,8 +21,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -71,6 +73,27 @@ public:
         return global;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# maximum-product-subarray
+# 时间复杂度O(n)，空间复杂度O(1)
+def maxProduct(nums):
+    maxLocal = nums[0]
+    minLocal = nums[0]
+    global_max = nums[0]
+
+    for i in range(1, len(nums)):
+        temp = maxLocal
+        maxLocal = max(max(nums[i] * maxLocal, nums[i]), nums[i] * minLocal)
+        minLocal = min(min(nums[i] * temp, nums[i]), nums[i] * minLocal)
+        global_max = max(global_max, maxLocal)
+
+    return global_max
 ```
 
 </TabItem>

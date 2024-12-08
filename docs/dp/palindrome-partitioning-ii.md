@@ -42,8 +42,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -102,6 +104,29 @@ public:
         return f[0];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Palindrome Partitioning II
+# 时间复杂度O(n^2)，空间复杂度O(n^2)
+class Solution:
+    def minCut(self, s: str) -> int:
+        n = len(s)
+        f = [0] * (n + 1)
+        p = [[False] * n for _ in range(n)]
+        # the worst case is cutting by each char
+        for i in range(n + 1):
+            f[i] = n - 1 - i  # 最后一个f[n]=-1
+        for i in range(n - 1, -1, -1):
+            for j in range(i, n):
+                if s[i] == s[j] and (j - i < 2 or p[i + 1][j - 1]):
+                    p[i][j] = True
+                    f[i] = min(f[i], f[j + 1] + 1)
+        return f[0]
 ```
 
 </TabItem>

@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -74,6 +76,15 @@ private:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Empty stub since input only contains a comment
+# TODO
+```
+
+</TabItem>
 </Tabs>
 
 #### 并查集
@@ -115,6 +126,15 @@ public:
         return components;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Since the input is just a single line TODO comment, here's the translation
+# TODO
 ```
 
 </TabItem>

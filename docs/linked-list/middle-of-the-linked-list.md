@@ -18,7 +18,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },

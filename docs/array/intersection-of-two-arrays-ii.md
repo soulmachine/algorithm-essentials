@@ -35,8 +35,10 @@ import TabItem from "@theme/TabItem";
 #### 排序
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -74,6 +76,34 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Intersection of Two Arrays II
+# Sort
+# Time Complexity: O(mlogm+nlogn)
+# Space Complexity:  from O(logm+logn) to O(n+m), depending
+# on the implementation of the sorting algorithm.
+class Solution:
+    def intersect(self, nums1: list[int], nums2: list[int]) -> list[int]:
+        nums1.sort()
+        nums2.sort()
+        i = j = k = 0
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] < nums2[j]:
+                i += 1
+            elif nums1[i] > nums2[j]:
+                j += 1
+            else:
+                nums1[k] = nums1[i]
+                k += 1
+                i += 1
+                j += 1
+        return nums1[:k]
 ```
 
 </TabItem>
@@ -121,6 +151,32 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Intersection of Two Arrays II
+# HashMap
+# Time Complexity: O(m + n), Space Complexity:  O(min(m + n))
+from collections import Counter
+
+def intersect(nums1, nums2):
+    if len(nums1) > len(nums2):
+        return intersect(nums2, nums1)
+
+    count = Counter(nums1)
+    k = 0
+
+    for x in nums2:
+        if count[x] > 0:
+            nums1[k] = x
+            k += 1
+            count[x] -= 1
+
+    return nums1[:k]
 ```
 
 </TabItem>

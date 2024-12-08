@@ -22,8 +22,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -69,6 +71,15 @@ private:
     vector<int> nums;
     unordered_map<int, int> m; // num -> index
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# empty line, just a TODO comment
+# TODO
 ```
 
 </TabItem>

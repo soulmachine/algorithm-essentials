@@ -53,8 +53,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -89,6 +91,32 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Task Scheduler
+# Time Complexity: O(n), Space Complexity: O(1)
+def leastInterval(tasks: list[str], n: int) -> int:
+    # frequencies of the tasks
+    m = [0] * 26
+    for t in tasks:
+        m[ord(t) - ord('A')] += 1
+    m.sort()
+
+    f_max = m[25]
+    idle_time = (f_max - 1) * n
+
+    for i in range(24, -1, -1):
+        if idle_time <= 0:
+            break
+        idle_time -= min(f_max - 1, m[i])
+    idle_time = max(0, idle_time)
+
+    return idle_time + len(tasks)
 ```
 
 </TabItem>

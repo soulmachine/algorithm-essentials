@@ -50,8 +50,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -109,6 +111,49 @@ public class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Android Unlock Patterns
+# Time Complexity O(n!), Space Complexity: O(n)
+
+def numberOfPatterns(m: int, n: int) -> int:
+    def build_jump_table():
+        jumps = [[0] * 10 for _ in range(10)]  # jump table, 0 means adjacent
+        jumps[1][3] = jumps[3][1] = 2  # The edge 1->3 jumps over 2
+        jumps[1][7] = jumps[7][1] = 4
+        jumps[3][9] = jumps[9][3] = 6
+        jumps[7][9] = jumps[9][7] = 8
+        jumps[2][8] = jumps[8][2] = jumps[4][6] = jumps[6][4] = 5
+        jumps[1][9] = jumps[9][1] = jumps[3][7] = jumps[7][3] = 5
+        return jumps
+
+    def dfs(visited, jumps, num, remain):
+        if remain == 0:
+            return 1
+
+        count = 0
+        visited[num] = True
+        for i in range(1, 10):
+            mid = jumps[num][i]  # Edge num->i jumps over mid
+            if not visited[i] and (mid == 0 or visited[mid]):
+                count += dfs(visited, jumps, i, remain - 1)
+        visited[num] = False
+        return count
+
+    jumps = build_jump_table()
+    visited = [False] * 10
+
+    count = 0
+    for i in range(m, n + 1):
+        count += dfs(visited, jumps, 1, i - 1) * 4  # 1, 3, 7, 9 are symmetric
+        count += dfs(visited, jumps, 2, i - 1) * 4  # 2, 4, 6, 8 are symmetric
+        count += dfs(visited, jumps, 5, i - 1)      # 5
+    return count
 ```
 
 </TabItem>

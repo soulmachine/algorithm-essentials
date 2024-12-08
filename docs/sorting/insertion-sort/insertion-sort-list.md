@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -82,6 +84,36 @@ public:
         return pre;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Insertion Sort List
+# Time complexity O(n^2), Space complexity O(1)
+class Solution:
+    def insertionSortList(self, head: ListNode) -> ListNode:
+        dummy = ListNode(float('-inf'))
+        #dummy.next = head
+        
+        cur = head
+        while cur:
+            pos = self.findInsertPos(dummy, cur.val)
+            tmp = cur.next
+            cur.next = pos.next
+            pos.next = cur
+            cur = tmp
+        return dummy.next
+
+    def findInsertPos(self, head: ListNode, x: int) -> ListNode:
+        pre = None
+        cur = head
+        while cur and cur.val <= x:
+            pre = cur
+            cur = cur.next
+        return pre
 ```
 
 </TabItem>

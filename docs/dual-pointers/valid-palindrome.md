@@ -26,8 +26,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -73,6 +75,30 @@ public:
         return true;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Valid Palindrome
+# 时间复杂度O(n)，空间复杂度O(1)
+def isPalindrome(s: str) -> bool:
+    s = s.lower()
+    left = 0
+    right = len(s) - 1
+    while left < right:
+        if not s[left].isalnum():
+            left += 1
+        elif not s[right].isalnum():
+            right -= 1
+        elif s[left] != s[right]:
+            return False
+        else:
+            left += 1
+            right -= 1
+    return True
 ```
 
 </TabItem>

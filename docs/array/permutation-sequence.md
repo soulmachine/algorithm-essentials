@@ -51,8 +51,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -143,6 +145,43 @@ private:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Permutation Sequence
+# 康托编码
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def getPermutation(self, n: int, k: int) -> str:
+        s = ''.join(str(i) for i in range(1, n + 1))
+        return self.kth_permutation(s, k)
+
+    def factorial(self, n: int) -> int:
+        result = 1
+        for i in range(1, n + 1):
+            result *= i
+        return result
+
+    # s 已排好序，是第一个排列
+    def kth_permutation(self, s: str, k: int) -> str:
+        n = len(s)
+        result = []
+        s = list(s)
+        base = self.factorial(n - 1)
+        k -= 1  # 康托编码从0开始
+
+        for i in range(n - 1, 0, -1):
+            idx = k // base
+            result.append(s.pop(idx))
+            k %= base
+            base //= i
+
+        result.append(s[0])  # 最后一个
+        return ''.join(result)
 ```
 
 </TabItem>

@@ -20,8 +20,10 @@ import TabItem from "@theme/TabItem";
 #### 模拟乘法
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -60,6 +62,32 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Multiply Strings
+# Time Complexity: O(n*m), Space Complexity: O(n+m)
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        m, n = len(num1), len(num2)
+        z = [0] * (m + n)
+
+        for i in range(m-1, -1, -1):
+            for j in range(n-1, -1, -1):
+                mul = (ord(num1[i]) - ord('0')) * (ord(num2[j]) - ord('0'))
+                curr_sum = mul + z[i+j+1]
+                z[i+j+1] = curr_sum % 10
+                z[i+j] += curr_sum // 10  # carry
+
+        result = []
+        for x in z:
+            if not (len(result) == 0 and x == 0):  # skip prefix zeros
+                result.append(str(x))
+        return ''.join(result) if result else "0"
 ```
 
 </TabItem>
@@ -186,6 +214,61 @@ public:
         return to_string(make_bigint(num1) * make_bigint(num2));
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Multiply Strings
+# 一个字符对应一个int
+# 时间复杂度O(n*m)，空间复杂度O(n+m)
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        bigInt1 = BigInt(num1)
+        bigInt2 = BigInt(num2)
+        result = BigInt.multiply(bigInt1, bigInt2)
+        return str(result)
+
+    # 一个字符对应一个int
+class BigInt:
+    def __init__(self, s):
+        if isinstance(s, str):
+            self.d = self.fromString(s)
+        else:
+            self.d = s
+
+    @staticmethod
+    def fromString(s):
+        d = [0] * len(s)
+        j = 0
+        for i in range(len(s) - 1, -1, -1):
+            d[j] = int(s[i])
+            j += 1
+        return d
+
+    def __str__(self):
+        return ''.join(str(self.d[i]) for i in range(len(self.d) - 1, -1, -1))
+
+    @staticmethod
+    def multiply(x, y):
+        z = [0] * (len(x.d) + len(y.d))
+        for i in range(len(x.d)):
+            for j in range(len(y.d)):
+                z[i + j] += x.d[i] * y.d[j]
+                z[i + j + 1] += z[i + j] // 10
+                z[i + j] %= 10
+
+        # find the first 0 from right to left
+        i = len(z) - 1
+        while i > 0 and z[i] == 0:
+            i -= 1
+
+        if i == len(z) - 1:
+            return BigInt(z)
+        else:  # make a copy
+            return BigInt(z[:i + 1])
 ```
 
 </TabItem>
@@ -377,6 +460,71 @@ public:
         return BigInt::multiply(x, y).toString();
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Multiply Strings
+# 9个字符对应一个 long
+# 时间复杂度O(n*m)，空间复杂度O(n+m)
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        bigint1 = BigInt.from_string(num1)
+        bigint2 = BigInt.from_string(num2)
+        result = BigInt.multiply(bigint1, bigint2)
+        return str(result)
+
+# 9个字符对应一个 long
+class BigInt:
+    """ 一个数组元素对应9个十进制位，即数组是亿进制的
+    因为 1000000000 * 1000000000 没有超过 2^63-1
+    """
+    BIGINT_RADIX = 1000000000
+    RADIX_LEN = 9
+
+    def __init__(self, digits):
+        """ 万进制整数. """
+        self.digits = digits
+
+    @staticmethod
+    def from_string(s):
+        digits = []
+        length = len(s)
+        for i in range(length, 0, -BigInt.RADIX_LEN):
+            tmp = 0
+            start = max(0, i - BigInt.RADIX_LEN)
+            for j in range(start, i):
+                tmp = tmp * 10 + int(s[j])
+            digits.append(tmp)
+        return BigInt(digits)
+
+    def __str__(self):
+        sb = [str(self.digits[-1])]
+        for i in range(len(self.digits) - 2, -1, -1):
+            sb.append(f"{self.digits[i]:0{BigInt.RADIX_LEN}d}")
+        return "".join(sb)
+
+    @staticmethod
+    def multiply(x, y):
+        z = [0] * (len(x.digits) + len(y.digits))
+        for i in range(len(x.digits)):
+            for j in range(len(y.digits)):
+                z[i + j] += x.digits[i] * y.digits[j]
+                z[i + j + 1] += z[i + j] // BigInt.BIGINT_RADIX
+                z[i + j] %= BigInt.BIGINT_RADIX
+
+        # find the first 0 from right to left
+        i = len(z) - 1
+        while i > 0 and z[i] == 0:
+            i -= 1
+
+        if i == len(z) - 1:
+            return BigInt(z)
+        else:  # make a copy
+            return BigInt(z[:i + 1])
 ```
 
 </TabItem>

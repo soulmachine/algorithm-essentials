@@ -23,8 +23,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -81,6 +83,27 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Single Number II
+# 方法1，时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def singleNumber(self, nums: list[int]) -> int:
+        W = 32  # 一个整数的bit数，即整数字长
+        count = [0] * W  # count[i]表示在在i位出现的1的次数
+        for num in nums:
+            for j in range(W):
+                count[j] += (num >> j) & 1
+                count[j] %= 3
+        result = 0
+        for i in range(W):
+            result += (count[i] << i)
+        return result
+```
+
+</TabItem>
 </Tabs>
 
 ### 代码 2
@@ -134,6 +157,25 @@ public:
         return one;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Single Number II
+# 方法2，时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def singleNumber(self, nums: list[int]) -> int:
+        one, two, three = 0, 0, 0
+        for i in nums:
+            two |= (one & i)
+            one ^= i
+            three = ~(one & two)
+            one &= three
+            two &= three
+        return one
 ```
 
 </TabItem>

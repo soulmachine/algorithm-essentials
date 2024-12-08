@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -212,6 +214,79 @@ private:
     unordered_set<int> visited;
     unordered_map<int, DLinkedNode*> m;
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# First Unique Number
+class DLinkedNode:
+    def __init__(self, value):
+        self.value = value
+        self.prev = None
+        self.next = None
+
+class DLinkedList:
+    def __init__(self):
+        # head and tail are two dummy nodes
+        self.head = DLinkedNode(0)
+        self.tail = DLinkedNode(0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        self.size = 0
+
+    # Add a new node before tail
+    def offerTail(self, node):
+        node.next = self.tail
+        node.prev = self.tail.prev
+        self.tail.prev.next = node
+        self.tail.prev = node
+        self.size += 1
+
+    # Remove a node in the middle
+    def remove(self, node):
+        if node is None:
+            return
+        node.prev.next = node.next
+        node.next.prev = node.prev
+        self.size -= 1
+
+    def isEmpty(self):
+        return self.size == 0
+
+    def peekHead(self):
+        return None if self.isEmpty() else self.head.next
+
+class FirstUnique:
+    def __init__(self, nums):
+        self.list = DLinkedList()
+        self.visited = set()
+        self.m = {}
+        # O(n)
+        for num in nums:
+            self.add(num)
+
+    # O(1)
+    def showFirstUnique(self):
+        head = self.list.peekHead()
+        if head:
+            return head.value
+        else:
+            return -1
+
+    # O(1)
+    def add(self, value):
+        if value not in self.visited:
+            self.visited.add(value)
+            node = DLinkedNode(value)
+            self.list.offerTail(node)
+            self.m[value] = node
+        else:
+            node = self.m.get(value)
+            self.list.remove(node)
+            self.m.pop(value, None)
 ```
 
 </TabItem>

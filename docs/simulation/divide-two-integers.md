@@ -20,8 +20,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -112,6 +114,49 @@ public:
         return ((dividend^divisor) >> 31) ? (-result) : (result);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Divide Two Integers
+# 时间复杂度O(logn)，空间复杂度O(1)
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        if dividend == 0:
+            return 0
+        if divisor == 0:
+            return 2**31 - 1
+
+        # 当 dividend = INT_MIN，divisor = -1时，结果会溢出
+        if dividend == -2**31:
+            if divisor == -1:
+                return 2**31 - 1
+            elif divisor < 0:
+                return 1 + self.divide(dividend - divisor, divisor)
+            else:
+                return -1 + self.divide(dividend + divisor, divisor)
+
+        if divisor == -2**31:
+            return 1 if dividend == divisor else 0
+
+        a = dividend if dividend > 0 else -dividend
+        b = divisor if divisor > 0 else -divisor
+
+        result = 0
+        while a >= b:
+            c = b
+            i = 0
+            while a >= c:
+                a -= c
+                result += 1 << i
+                if c < (2**31 - 1) // 2:  # prevent overflow
+                    i += 1
+                    c <<= 1
+
+        return -result if ((dividend ^ divisor) >> 31) != 0 else result
 ```
 
 </TabItem>

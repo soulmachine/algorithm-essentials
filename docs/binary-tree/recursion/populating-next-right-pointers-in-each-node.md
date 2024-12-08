@@ -53,8 +53,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -104,6 +106,30 @@ private:
             connect(root->right, nullptr);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Populating Next Right Pointers in Each Node
+# Time Complexity O(n), Space Complexity O(logn)
+class Solution:
+    def connect(self, root):
+        self._connect(root, None)
+
+    def _connect(self, root, sibling):
+        if not root:
+            return
+        else:
+            root.next = sibling
+
+        self._connect(root.left, root.right)
+        if sibling:
+            self._connect(root.right, sibling.left)
+        else:
+            self._connect(root.right, None)
 ```
 
 </TabItem>

@@ -30,8 +30,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -151,6 +153,64 @@ public:
 
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Valid Number
+# finite automata，时间复杂度O(n)，空间复杂度O(n)
+from enum import Enum
+
+class InputType(Enum):
+    INVALID = 0
+    SPACE = 1
+    SIGN = 2
+    DIGIT = 3
+    DOT = 4
+    EXPONENT = 5
+    NUM_INPUTS = 6
+
+def isNumber(s: str) -> bool:
+    transition_table = [
+        [-1, 0, 3, 1, 2, -1], # next states for state 0
+        [-1, 8, -1, 1, 4, 5], # next states for state 1
+        [-1, -1, -1, 4, -1, -1], # next states for state 2
+        [-1, -1, -1, 1, 2, -1], # next states for state 3
+        [-1, 8, -1, 4, -1, 5], # next states for state 4
+        [-1, -1, 6, 7, -1, -1], # next states for state 5
+        [-1, -1, -1, 7, -1, -1], # next states for state 6
+        [-1, 8, -1, 7, -1, -1], # next states for state 7
+        [-1, 8, -1, -1, -1, -1] # next states for state 8
+    ]
+
+    state = 0
+    for ch in s:
+        input_type = InputType.INVALID
+
+        if ch.isspace():
+            input_type = InputType.SPACE
+        elif ch in ['+', '-']:
+            input_type = InputType.SIGN
+        elif ch.isdigit():
+            input_type = InputType.DIGIT
+        elif ch == '.':
+            input_type = InputType.DOT
+        elif ch in ['e', 'E']:
+            input_type = InputType.EXPONENT
+
+        # Get next state from current state and input symbol
+        state = transition_table[state][input_type.value]
+
+        # Invalid input
+        if state == -1:
+            return False
+
+    # If the current state belongs to one of the accepting (final) states,
+    # then the number is valid
+    return state in [1, 4, 7, 8]
 ```
 
 </TabItem>

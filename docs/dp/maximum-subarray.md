@@ -44,8 +44,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -86,6 +88,23 @@ public:
         return global;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Maximum Subarray
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        maxLocal = nums[0]
+        global_max = nums[0]
+        for i in range(1, len(nums)):
+            maxLocal = max(nums[i], nums[i] + maxLocal)
+            global_max = max(global_max, maxLocal)
+        return global_max
 ```
 
 </TabItem>
@@ -161,6 +180,34 @@ private:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Maximum Subarray
+# 时间复杂度O(n)，空间复杂度O(n)
+class Solution:
+    def maxSubArray(self, nums: list[int]) -> int:
+        return self.mcss(nums, 0, len(nums))
+
+    # 思路5，求最大连续子序列和
+    def mcss(self, nums: list[int], begin: int, end: int) -> int:
+        n = end - begin
+        sum = [0] * (n + 1)  # 前n项和
+
+        result = float('-inf')
+        cur_min = sum[0]
+        for i in range(1, n + 1):
+            sum[i] = sum[i - 1] + nums[begin + i - 1]
+
+        for i in range(1, n + 1):
+            result = max(result, sum[i] - cur_min)
+            cur_min = min(cur_min, sum[i])
+
+        return result
 ```
 
 </TabItem>

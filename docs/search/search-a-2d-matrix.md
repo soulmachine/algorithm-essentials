@@ -31,8 +31,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -99,6 +101,36 @@ public:
         return false;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Search a 2D Matrix
+# 时间复杂度O(logn)，空间复杂度O(1)
+def searchMatrix(matrix, target):
+    if not matrix:
+        return False
+    m = len(matrix)
+    n = len(matrix[0])
+
+    first = 0
+    last = m * n
+
+    while first < last:
+        mid = first + (last - first) // 2
+        value = matrix[mid // n][mid % n]
+
+        if value == target:
+            return True
+        elif value < target:
+            first = mid + 1
+        else:
+            last = mid
+
+    return False
 ```
 
 </TabItem>

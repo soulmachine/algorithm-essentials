@@ -17,8 +17,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -69,6 +71,29 @@ public:
 private:
     vector<int>::const_iterator i, j, i_end, j_end;
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Zigzag Iterator
+class ZigzagIterator:
+    def __init__(self, v1, v2):
+        self.j = iter(v1)
+        self.i = iter(v2)
+        self.tmp = None
+
+    def next(self):
+        if self.j.__length_hint__() > 0:
+            self.tmp = self.j
+            self.j = self.i
+            self.i = self.tmp
+        return next(self.i)
+
+    def has_next(self):
+        return self.i.__length_hint__() > 0 or self.j.__length_hint__() > 0
 ```
 
 </TabItem>

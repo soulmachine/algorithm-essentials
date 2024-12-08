@@ -73,8 +73,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -121,6 +123,24 @@ public:
         return f[n];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Unique Binary Search Trees
+# 时间复杂度O(n^2)，空间复杂度O(n)
+class Solution:
+    def numTrees(self, n: int) -> int:
+        f = [0] * (n + 1)
+        f[0] = 1
+        f[1] = 1
+        for i in range(2, n + 1):
+            for k in range(1, i + 1):
+                f[i] += f[k-1] * f[i - k]
+        return f[n]
 ```
 
 </TabItem>

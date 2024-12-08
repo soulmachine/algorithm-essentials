@@ -51,8 +51,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -99,6 +101,26 @@ private:
         return n ^ (n >> 1);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Gray Code
+# 数学公式，时间复杂度O(2^n)，空间复杂度O(1)
+class Solution:
+    def grayCode(self, n: int) -> list[int]:
+        size = 1 << n  # 2^n
+        result = []
+
+        for i in range(size):
+            result.append(self.binary_to_gray(i))
+        return result
+
+    def binary_to_gray(self, n: int) -> int:
+        return n ^ (n >> 1)
 ```
 
 </TabItem>
@@ -158,6 +180,25 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Gray Code
+# reflect-and-prefix method
+# 时间复杂度O(2^n)，空间复杂度O(1)
+def grayCode(n):
+    size = 1 << n
+    result = [0]
+
+    for i in range(n):
+        highest_bit = 1 << i
+        for j in range(len(result) - 1, -1, -1): # 要反着遍历，才能对称
+            result.append(highest_bit | result[j])
+    return result
 ```
 
 </TabItem>

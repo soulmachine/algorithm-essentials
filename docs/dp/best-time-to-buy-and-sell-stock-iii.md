@@ -24,8 +24,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -94,6 +96,38 @@ public:
         return max_profit;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Best Time to Buy and Sell Stock III
+# 时间复杂度O(n)，空间复杂度O(n)
+def maxProfit(prices):
+    if len(prices) < 2:
+        return 0
+
+    n = len(prices)
+    f = [0] * n
+    g = [0] * n
+
+    valley = prices[0]
+    for i in range(1, n):
+        valley = min(valley, prices[i])
+        f[i] = max(f[i - 1], prices[i] - valley)
+
+    peak = prices[n - 1]
+    for i in range(n - 2, -1, -1):
+        peak = max(peak, prices[i])
+        g[i] = max(g[i], peak - prices[i])
+
+    max_profit = 0
+    for i in range(n):
+        max_profit = max(max_profit, f[i] + g[i])
+
+    return max_profit
 ```
 
 </TabItem>

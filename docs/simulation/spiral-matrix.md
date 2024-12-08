@@ -29,8 +29,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -96,6 +98,47 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Spiral Matrix
+# 时间复杂度O(n^2)，空间复杂度O(1)
+def spiral_order(matrix):
+    result = []
+    if not matrix:
+        return result
+    begin_x, end_x = 0, len(matrix[0]) - 1
+    begin_y, end_y = 0, len(matrix) - 1
+    while True:
+        # From left to right
+        for j in range(begin_x, end_x + 1):
+            result.append(matrix[begin_y][j])
+        begin_y += 1
+        if begin_y > end_y:
+            break
+        # From top to bottom
+        for i in range(begin_y, end_y + 1):
+            result.append(matrix[i][end_x])
+        end_x -= 1
+        if begin_x > end_x:
+            break
+        # From right to left
+        for j in range(end_x, begin_x - 1, -1):
+            result.append(matrix[end_y][j])
+        end_y -= 1
+        if begin_y > end_y:
+            break
+        # From bottom to top
+        for i in range(end_y, begin_y - 1, -1):
+            result.append(matrix[i][begin_x])
+        begin_x += 1
+        if begin_x > end_x:
+            break
+    return result
 ```
 
 </TabItem>

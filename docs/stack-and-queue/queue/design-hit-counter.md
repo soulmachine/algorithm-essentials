@@ -20,8 +20,10 @@ import TabItem from "@theme/TabItem";
 每来一个timestamp就入队列，查询的时候，把5分钟之前的时间戳全部删掉，队列的大小就是最近5分钟的点击数。
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -79,6 +81,30 @@ public:
 private:
     queue<int> q;
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Design Hit Counter
+from collections import deque
+
+class HitCounter:
+    def __init__(self):
+        self.queue = deque()
+
+    # O(1)
+    def hit(self, timestamp: int) -> None:
+        self.queue.append(timestamp)
+
+    # O(n)
+    def getHits(self, timestamp: int) -> int:
+        while self.queue and self.queue[0] <= timestamp - 300:
+            self.queue.popleft()
+
+        return len(self.queue)
 ```
 
 </TabItem>
@@ -168,6 +194,37 @@ private:
     vector<int> ts = vector<int>(N);
     vector<int> hits = vector<int>(N);
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Design Hit Counter
+class HitCounter:
+    _N = 300  # time window
+
+    def __init__(self):
+        self.ts = [0] * self._N
+        self.hits = [0] * self._N
+
+    # O(1)
+    def hit(self, timestamp: int) -> None:
+        idx = timestamp % self._N
+        if self.ts[idx] != timestamp:
+            self.ts[idx] = timestamp
+            self.hits[idx] = 1
+        else:
+            self.hits[idx] += 1
+
+    # O(1)
+    def getHits(self, timestamp: int) -> int:
+        count = 0
+        for i in range(self._N):
+            if timestamp - self.ts[i] < self._N:
+                count += self.hits[i]
+        return count
 ```
 
 </TabItem>

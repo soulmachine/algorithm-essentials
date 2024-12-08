@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -123,6 +125,53 @@ private:
 private:
     unordered_map<char, int> priority = {{'(', 1}, {'+', 2}, {'-', 2},{'*', 3}, {'/', 3}};
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Basic Calculator III
+priority = {
+    '(': 1,
+    '+': 2,
+    '-': 2,
+    '*': 3,
+    '/': 3
+}
+
+def expTree(self, s: str) -> 'Node':
+    N = len(s)
+    nums = []
+    ops = []
+    for i in range(N):
+        c = s[i]
+        if c.isdigit():
+            nums.append(Node(c))
+        elif c == '(':
+            ops.append(c)
+        elif c == ')':
+            while ops[-1] != '(':
+                self.combine(ops, nums)
+            ops.pop()  # pop '('
+        elif c in '+-*/':
+            while ops and priority[ops[-1]] >= priority[c]:
+                self.combine(ops, nums)
+            ops.append(c)
+        else:
+            # c == ' ', do nothing
+            pass
+
+    while ops:
+        self.combine(ops, nums)
+    return nums.pop()
+
+def combine(self, ops, nums):
+    root = Node(ops.pop())
+    root.right = nums.pop()
+    root.left = nums.pop()
+    nums.append(root)
 ```
 
 </TabItem>

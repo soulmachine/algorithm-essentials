@@ -26,8 +26,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -89,6 +91,35 @@ public:
         return intervals;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Insert Interval
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def insert(self, intervals: list[list[int]], newInterval: list[int]) -> list[list[int]]:
+        list_intervals = intervals[:]
+        self._insert(list_intervals, newInterval)
+        return list_intervals
+
+    def _insert(self, intervals: list[list[int]], newInterval: list[int]) -> None:
+        i = 0
+        while i < len(intervals):
+            cur = intervals[i]
+            if newInterval[1] < cur[0]:  # insert before cur
+                intervals.insert(i, newInterval)
+                return
+            elif newInterval[0] > cur[1]:
+                i += 1
+            else:  # overlap
+                newInterval[0] = min(newInterval[0], cur[0])
+                newInterval[1] = max(newInterval[1], cur[1])
+                intervals.pop(i)
+        intervals.append(newInterval)
 ```
 
 </TabItem>

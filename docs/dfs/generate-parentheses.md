@@ -24,8 +24,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -101,6 +103,37 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Generate Parentheses
+# 时间复杂度O(TODO)，空间复杂度O(n)
+class Solution:
+    def generateParenthesis(self, n: int) -> list[str]:
+        result = []
+        path = []
+        if n > 0:
+            self.generate(n, path, result, 0, 0)
+        return result
+
+    # l 表示 ( 出现的次数, r 表示 ) 出现的次数
+    def generate(self, n: int, path: list, result: list[str], l: int, r: int) -> None:
+        if l == n:
+            result.append(''.join(path + [')' * (n - r)]))
+            return
+
+        path.append('(')
+        self.generate(n, path, result, l + 1, r)
+        path.pop()
+
+        if l > r:
+            path.append(')')
+            self.generate(n, path, result, l, r + 1)
+            path.pop()
+```
+
+</TabItem>
 </Tabs>
 
 ### 代码 2
@@ -156,6 +189,28 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Generate Parentheses
+# @author 连城 (http://weibo.com/lianchengzju)
+def generate_parenthesis(n):
+    if n == 0:
+        return [""]
+    if n == 1:
+        return ["()"]
+    result = []
+
+    for i in range(n):
+        for inner in generate_parenthesis(i):
+            for outer in generate_parenthesis(n - 1 - i):
+                result.append("(" + inner + ")" + outer)
+
+    return result
 ```
 
 </TabItem>

@@ -18,8 +18,10 @@ import TabItem from "@theme/TabItem";
 #### 递归
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -98,6 +100,35 @@ private:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Permutations
+# Recursive
+# Time Complexity: O(n!), Space Complexity: O(n)
+class Solution:
+    def permute(self, nums: list[int]) -> list[list[int]]:
+        nums.sort()
+        result = []
+        self.dfs(nums, 0, result)
+        return result
+
+    def dfs(self, nums: list[int], start: int, result: list[list[int]]) -> None:
+        if start == len(nums):
+            result.append(nums[:])
+            return
+
+        for i in range(start, len(nums)):
+            self.swap(nums, start, i)
+            self.dfs(nums, start + 1, result)
+            self.swap(nums, start, i)  # restore
+
+    def swap(self, nums: list[int], i: int, j: int) -> None:
+        nums[i], nums[j] = nums[j], nums[i]
 ```
 
 </TabItem>
@@ -232,6 +263,53 @@ private:
         return true;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Permutations
+# 重新实现 next_permutation()
+# 时间复杂度O(n!)，空间复杂度O(1)
+def permute(nums):
+    result = []
+    nums.sort()
+
+    def next_permutation(nums, begin, end):
+        # From right to left, find the first digit(partitionNumber)
+        # which violates the increase trend
+        p = end - 2
+        while p > -1 and nums[p] >= nums[p + 1]:
+            p -= 1
+
+        # If not found, which means current sequence is already the largest
+        # permutation, then rearrange to the first permutation and return false
+        if p == -1:
+            nums[begin:end] = nums[begin:end][::-1]
+            return False
+
+        # From right to left, find the first digit which is greater
+        # than the partition number, call it changeNumber
+        c = end - 1
+        while c > 0 and nums[c] <= nums[p]:
+            c -= 1
+
+        # Swap the partitionNumber and changeNumber
+        nums[p], nums[c] = nums[c], nums[p]
+        # Reverse all the digits on the right of partitionNumber
+        nums[p+1:end] = nums[p+1:end][::-1]
+        return True
+
+    while True:
+        result.append(nums[:])
+        # 调用的是 2.1.12 节的 next_permutation()
+        # 而不是 std::next_permutation()
+        if not next_permutation(nums, 0, len(nums)):
+            break
+
+    return result
 ```
 
 </TabItem>

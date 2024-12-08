@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -70,6 +72,30 @@ public:
         return dummy.next;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Merge Two Sorted Lists
+# Time complexity O(min(m,n)), Space complexity O(1)
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        dummy = ListNode(-1)
+        p = dummy
+        while l1 or l2:
+            val1 = float('inf') if not l1 else l1.val
+            val2 = float('inf') if not l2 else l2.val
+            if val1 <= val2:
+                p.next = l1
+                l1 = l1.next
+            else:
+                p.next = l2
+                l2 = l2.next
+            p = p.next
+        return dummy.next
 ```
 
 </TabItem>

@@ -71,8 +71,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -136,6 +138,35 @@ private:
         return false;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Scramble String
+# 递归，会超时，仅用来帮助理解
+# 时间复杂度O(n^6)，空间复杂度O(1)
+class Solution:
+    def isScramble(self, s1: str, s2: str) -> bool:
+        return self._isScramble(s1, 0, len(s1), s2, 0)
+
+    def _isScramble(self, s1: str, begin1: int, end1: int, s2: str, begin2: int) -> bool:
+        length = end1 - begin1
+        end2 = begin2 + length
+
+        if length == 1:
+            return s1[begin1] == s2[begin2]
+
+        for i in range(1, length):
+            if ((self._isScramble(s1, begin1, begin1 + i, s2, begin2)
+                    and self._isScramble(s1, begin1 + i, end1, s2, begin2 + i))
+                    or (self._isScramble(s1, begin1, begin1 + i, s2, end2 - i)
+                    and self._isScramble(s1, begin1 + i, end1, s2, begin2))):
+                return True
+
+        return False
 ```
 
 </TabItem>
@@ -226,6 +257,39 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Scramble String
+# 动规，时间复杂度O(n^3)，空间复杂度O(n^3)
+class Solution:
+    def isScramble(self, s1: str, s2: str) -> bool:
+        N = len(s1)
+        if N != len(s2):
+            return False
+
+        # f[n][i][j]，表示长度为n，起点为s1[i]和
+        # 起点为s2[j]两个字符串是否互为scramble
+        f = [[[False] * N for _ in range(N)] for _ in range(N + 1)]
+
+        for i in range(N):
+            for j in range(N):
+                f[1][i][j] = s1[i] == s2[j]
+
+        for n in range(1, N + 1):
+            for i in range(N - n + 1):
+                for j in range(N - n + 1):
+                    for k in range(1, n):
+                        if ((f[k][i][j] and f[n - k][i + k][j + k]) or
+                                (f[k][i][j + n - k] and f[n - k][i + k][j])):
+                            f[n][i][j] = True
+                            break
+
+        return f[N][0][0]
+```
+
+</TabItem>
 </Tabs>
 
 ### 递归+剪枝
@@ -307,6 +371,44 @@ private:
         return false;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Scramble String
+# 递归+剪枝
+# 时间复杂度O(n^6)，空间复杂度O(1)
+class Solution:
+    def isScramble(self, s1: str, s2: str) -> bool:
+        return self.is_scramble_helper(s1, 0, len(s1), s2, 0)
+
+    def is_scramble_helper(self, s1, begin1, end1, s2, begin2):
+        length = end1 - begin1
+        end2 = begin2 + length
+        if length == 1:
+            return s1[begin1] == s2[begin2]
+
+        # 剪枝，提前返回
+        A = [0] * 26  # 每个字符的计数器
+        for i in range(length):
+            A[ord(s1[begin1 + i]) - ord('a')] += 1
+        for i in range(length):
+            A[ord(s2[begin2 + i]) - ord('a')] -= 1
+        for i in range(26):
+            if A[i] != 0:
+                return False
+
+        for i in range(1, length):
+            if ((self.is_scramble_helper(s1, begin1, begin1 + i, s2, begin2)
+                 and self.is_scramble_helper(s1, begin1 + i, end1, s2, begin2 + i))
+                or (self.is_scramble_helper(s1, begin1, begin1 + i, s2, end2 - i)
+                    and self.is_scramble_helper(s1, begin1 + i, end1, s2, begin2))):
+                return True
+
+        return False
 ```
 
 </TabItem>
@@ -451,6 +553,48 @@ public:
                 pos->second : (cache[key] = isScramble(first1, last1, first2));
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Scramble String
+# 递归+map做cache
+# 时间复杂度O(n^3)，空间复杂度O(n^3), TLE
+class Solution:
+    def __init__(self):
+        self.cache = {}
+
+    def isScramble(self, s1: str, s2: str) -> bool:
+        self.cache.clear()
+        return self._isScramble(s1, 0, len(s1), s2, 0)
+
+    def _isScramble(self, s1: str, begin1: int, end1: int, s2: str, begin2: int) -> bool:
+        length = end1 - begin1
+        end2 = begin2 + length
+
+        if length == 1:
+            return s1[begin1] == s2[begin2]
+
+        for i in range(1, length):
+            if ((self.getOrUpdate(s1, begin1, begin1 + i, s2, begin2)
+                    and self.getOrUpdate(s1, begin1 + i, end1, s2, begin2 + i))
+                    or (self.getOrUpdate(s1, begin1, begin1 + i, s2, end2 - i)
+                    and self.getOrUpdate(s1, begin1 + i, end1, s2, begin2))):
+                return True
+
+        return False
+
+    def getOrUpdate(self, s1: str, begin1: int, end1: int, s2: str, begin2: int) -> bool:
+        key = (begin1, end1, begin2)
+        if key not in self.cache:
+            result = self._isScramble(s1, begin1, end1, s2, begin2)
+            self.cache[key] = result
+            return result
+        else:
+            return self.cache[key]
 ```
 
 </TabItem>

@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -56,6 +58,22 @@ public:
                 && isSameTree(p->right, q->right);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Same Tree
+# 递归版，时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        if p is None and q is None: return True   # 终止条件
+        if p is None or q is None: return False   # 剪枝
+        return p.val == q.val \    # 三方合并
+                and self.isSameTree(p.left, q.left) \
+                and self.isSameTree(p.right, q.right)
 ```
 
 </TabItem>
@@ -130,6 +148,38 @@ public:
         return true;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Same Tree
+# 迭代版，时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        s = []
+        s.append(p)
+        s.append(q)
+
+        while s:
+            q = s.pop()
+            p = s.pop()
+
+            if p is None and q is None:
+                continue
+            if p is None or q is None:
+                return False
+            if p.val != q.val:
+                return False
+
+            s.append(p.left)
+            s.append(q.left)
+
+            s.append(p.right)
+            s.append(q.right)
+        return True
 ```
 
 </TabItem>

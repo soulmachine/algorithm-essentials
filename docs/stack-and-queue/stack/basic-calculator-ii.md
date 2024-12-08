@@ -18,8 +18,10 @@ import TabItem from "@theme/TabItem";
 #### 栈
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -116,6 +118,46 @@ private:
         return ch == '+' || ch == '-' || ch == '*' || ch == '/';
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Basic Calculator II
+# Time complexity: O(n)
+# Space complexity: O(n)
+class Solution:
+    def calculate(self, s: str) -> int:
+        N = len(s)
+        stk = []
+        n = 0  # current number
+        op = '+'  # current operation
+        for i in range(N):
+            ch = s[i]  # current char
+            if ch.isdigit():
+                n = (n * 10) + (ord(ch) - ord('0'))
+            if self.isOp(ch) or i == N - 1:
+                if op == '-':
+                    stk.append(-n)
+                elif op == '+':
+                    stk.append(n)
+                elif op == '*':
+                    top = stk.pop()
+                    stk.append(top * n)
+                elif op == '/':
+                    top = stk.pop()
+                    stk.append(int(top / n))
+                op = ch
+                n = 0
+        result = 0
+        while stk:
+            result += stk.pop()
+        return result
+
+    def isOp(self, ch: str) -> bool:
+        return ch in {'+', '-', '*', '/'}
 ```
 
 </TabItem>
@@ -216,6 +258,41 @@ private:
         return ch == '+' || ch == '-' || ch == '*' || ch == '/';
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Time complexity: O(n)
+# Space complexity: O(1)
+class Solution:
+    def calculate(self, s: str) -> int:
+        N = len(s)
+        n = 0  # current number
+        last = 0  # last number
+        result = 0
+        op = '+'  # current operation
+        for i in range(N):
+            ch = s[i]  # current char
+            if ch.isdigit():
+                n = (n * 10) + (ord(ch) - ord('0'))
+            elif self.isOp(ch) or i == N - 1:
+                if op == '+' or op == '-':
+                    result += last
+                    last = n if op == '+' else -n
+                elif op == '*':
+                    last *= n
+                elif op == '/':
+                    last //= n
+                op = ch
+                n = 0
+        result += last
+        return result
+
+    def isOp(self, ch: str) -> bool:
+        return ch in {'+', '-', '*', '/'}
 ```
 
 </TabItem>

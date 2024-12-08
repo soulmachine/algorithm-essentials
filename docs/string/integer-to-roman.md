@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -70,6 +72,30 @@ public:
         return roman;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Integer to Roman
+# 时间复杂度O(num)，空间复杂度O(1)
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        radix = [1000, 900, 500, 400, 100, 90,
+                50, 40, 10, 9, 5, 4, 1]
+        symbol = ["M", "CM", "D", "CD", "C", "XC",
+                "L", "XL", "X", "IX", "V", "IV", "I"]
+
+        roman = []
+        i = 0
+        while num > 0:
+            count = num // radix[i]
+            num %= radix[i]
+            roman.extend([symbol[i]] * count)
+            i += 1
+        return "".join(roman)
 ```
 
 </TabItem>

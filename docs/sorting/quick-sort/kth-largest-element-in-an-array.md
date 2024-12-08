@@ -43,8 +43,10 @@ import TabItem from "@theme/TabItem";
 #### 小根堆
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -88,6 +90,24 @@ public:
         return q.top();
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Kth Largest Element in an Array
+# Time complexity: O(nlogk), Space complexity: O(k)
+from heapq import heappush, heappop, heappushpop
+def findKthLargest(nums: list[int], k: int) -> int:
+    q = []
+    for x in nums:
+        if len(q) < k:
+            heappush(q, x)
+        else:
+            heappushpop(q, x)
+    return q[0]
 ```
 
 </TabItem>
@@ -176,6 +196,42 @@ private:
         return i;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Kth Largest Element in an Array
+# Time complexity: O(n), Space complexity: O(1)
+class Solution:
+    def findKthLargest(self, nums: list[int], k: int) -> int:
+        return self.quickSelect(nums, 0, len(nums) - 1, len(nums) - k)
+
+    def quickSelect(self, nums: list[int], low: int, high: int, k: int) -> int:
+        if low == high:
+            return nums[low]
+        pos = self.partition(nums, low, high)
+
+        if pos == k:
+            return nums[pos]
+        elif pos < k:
+            return self.quickSelect(nums, pos+1, high, k)
+        else:
+            return self.quickSelect(nums, low, pos-1, k)
+
+    def partition(self, nums: list[int], i: int, j: int) -> int:
+        pivot = nums[i]
+        while i < j:
+            while i < j and nums[j] >= pivot:
+                j -= 1
+            nums[i] = nums[j]
+            while i < j and nums[i] <= pivot:
+                i += 1
+            nums[j] = nums[i]
+        nums[i] = pivot
+        return i
 ```
 
 </TabItem>

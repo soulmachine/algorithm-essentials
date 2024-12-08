@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -59,6 +61,28 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Two City Scheduling
+# Time complexity: O(nlogn)
+# Space complexity: O(logn)
+class Solution:
+    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
+        # sorted by d in ascending order
+        costs.sort(key=lambda x: x[1] - x[0])
+
+        sum = 0
+        for cost in costs:
+            sum += cost[0]
+
+        for i in range(len(costs)//2):
+            sum += costs[i][1] - costs[i][0]
+        return sum
 ```
 
 </TabItem>

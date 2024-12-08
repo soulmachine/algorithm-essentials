@@ -31,8 +31,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -84,6 +86,32 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Binary Tree Preorder Traversal
+# Using stack, time complexity O(n), space complexity O(n)
+class Solution:
+    def preorderTraversal(self, root):
+        result = []
+        s = []
+        if root:
+            s.append(root)
+
+        while s:
+            p = s.pop()
+            result.append(p.val)
+
+            if p.right:
+                s.append(p.right)
+            if p.left:
+                s.append(p.left)
+
+        return result
 ```
 
 </TabItem>

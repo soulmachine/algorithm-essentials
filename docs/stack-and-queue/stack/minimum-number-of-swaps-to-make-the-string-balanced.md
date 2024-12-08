@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -52,6 +54,26 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Minimum Number of Swaps to Make the String Balanced
+# Time complexity: O(n)
+# Space complexity: O(1)
+class Solution:
+    def minSwaps(self, s: str) -> int:
+        count = 0
+        for c in s:
+            if c == '[':
+                count += 1
+            elif count > 0:
+                count -= 1
+
+        return (count + 1) // 2
 ```
 
 </TabItem>

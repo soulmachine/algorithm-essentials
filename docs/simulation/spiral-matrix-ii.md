@@ -29,8 +29,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -89,6 +91,33 @@ public:
         return matrix;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Spiral Matrix II
+# 时间复杂度O(n^2)，空间复杂度O(n^2)
+def generateMatrix(n):
+    matrix = [[0] * n for _ in range(n)]
+    begin = 0
+    end = n - 1
+    num = 1
+
+    while begin < end:
+        for j in range(begin, end): matrix[begin][j] = num; num += 1
+        for i in range(begin, end): matrix[i][end] = num; num += 1
+        for j in range(end, begin, -1): matrix[end][j] = num; num += 1
+        for i in range(end, begin, -1): matrix[i][begin] = num; num += 1
+        begin += 1
+        end -= 1
+
+    if begin == end:
+        matrix[begin][begin] = num
+
+    return matrix
 ```
 
 </TabItem>

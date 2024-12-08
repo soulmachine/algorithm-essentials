@@ -48,8 +48,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -112,6 +114,34 @@ public:
         return -1;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Search in Rotated Sorted Array
+# Time Complexity: O(log n)，Space Complexity: O(1)
+class Solution:
+    def search(self, nums: list[int], target: int) -> int:
+        first = 0
+        last = len(nums)
+        while first != last:
+            mid = first + (last - first) // 2
+            if nums[mid] == target:
+                return mid
+            if nums[first] <= nums[mid]:
+                if nums[first] <= target < nums[mid]:
+                    last = mid
+                else:
+                    first = mid + 1
+            else:
+                if nums[mid] < target <= nums[last-1]:
+                    first = mid + 1
+                else:
+                    last = mid
+        return -1
 ```
 
 </TabItem>

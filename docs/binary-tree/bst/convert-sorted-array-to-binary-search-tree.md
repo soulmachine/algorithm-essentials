@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -75,6 +77,30 @@ public:
         return root;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Convert Sorted Array to Binary Search Tree
+# Binary method, time complexity O(n), space complexity O(logn)
+class Solution:
+    def sortedArrayToBST(self, nums: list[int]) -> 'TreeNode':
+        return self._sortedArrayToBST(nums, 0, len(nums))
+
+    def _sortedArrayToBST(self, nums: list[int], begin: int, end: int) -> 'TreeNode':
+        length = end - begin
+        if length < 1: return None  # termination condition
+
+        # three-way merge
+        mid = begin + length // 2
+        root = TreeNode(nums[mid])
+        root.left = self._sortedArrayToBST(nums, begin, mid)
+        root.right = self._sortedArrayToBST(nums, mid + 1, end)
+
+        return root
 ```
 
 </TabItem>

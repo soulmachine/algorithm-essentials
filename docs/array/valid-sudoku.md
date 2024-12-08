@@ -20,8 +20,10 @@ import TabItem from "@theme/TabItem";
 ### 代码
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -118,6 +120,54 @@ public:
         return used[ch - '1'] = true;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Valid Sudoku
+# Time complexity O(n^2), Space complexity O(1)
+class Solution:
+    def isValidSudoku(self, board: list[list[str]]) -> bool:
+        used = [False] * 9
+
+        for i in range(9):
+            used = [False] * 9
+
+            for j in range(9):  # check rows
+                if not self.check(board[i][j], used):
+                    return False
+
+            used = [False] * 9
+
+            for j in range(9):  # check columns
+                if not self.check(board[j][i], used):
+                    return False
+
+        for r in range(3):  # check 9 sub-boxes
+            for c in range(3):
+                used = [False] * 9
+
+                for i in range(r * 3, r * 3 + 3):
+                    for j in range(c * 3, c * 3 + 3):
+                        if not self.check(board[i][j], used):
+                            return False
+
+        return True
+
+    @staticmethod
+    def check(ch: str, used: list[bool]) -> bool:
+        if ch == '.':
+            return True
+
+        idx = ord(ch) - ord('1')
+        if used[idx]:
+            return False
+
+        used[idx] = True
+        return True
 ```
 
 </TabItem>

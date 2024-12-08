@@ -35,8 +35,10 @@ import TabItem from "@theme/TabItem";
 #### 双指针
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -90,6 +92,30 @@ public:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Sort Colors
+# 双指针，时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def sortColors(self, A: list[int]) -> None:
+        # 一个是red的index，一个是blue的index，两边往中间走
+        red, blue = 0, len(A) - 1
+        i = 0
+        while i <= blue:
+            if A[i] == 0:
+                A[i], A[red] = A[red], A[i]  # swap A[i] to the left side
+                i += 1
+                red += 1
+            elif A[i] == 2:
+                A[i], A[blue] = A[blue], A[i]  # swap A[i] to the right side
+                blue -= 1
+            else:
+                i += 1
 ```
 
 </TabItem>
@@ -171,6 +197,36 @@ private:
         return i;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Sort Colors
+# 时间复杂度O(NlogK)，空间复杂度O(logK)
+class Solution:
+    def sortColors(self, nums: list[int]) -> None:
+        def partition(nums: list[int], i: int, j: int) -> int:
+            pivot = nums[i]
+            while i < j:
+                while i < j and nums[j] >= pivot:
+                    j -= 1
+                nums[i] = nums[j]
+                while i < j and nums[i] <= pivot:
+                    i += 1
+                nums[j] = nums[i]
+            nums[i] = pivot
+            return i
+
+        def quickSort(nums: list[int], left: int, right: int) -> None:
+            if left < right:
+                pos = partition(nums, left, right)
+                quickSort(nums, left, pos - 1)
+                quickSort(nums, pos + 1, right)
+
+        quickSort(nums, 0, len(nums) - 1)
 ```
 
 </TabItem>

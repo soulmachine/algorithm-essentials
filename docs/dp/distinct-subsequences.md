@@ -23,8 +23,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -71,6 +73,24 @@ public:
         return f[T.size()];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Distinct Subsequences
+# 二维动规+滚动数组
+# 时间复杂度O(m*n)，空间复杂度O(n)
+class Solution:
+    def numDistinct(self, s: str, t: str) -> int:
+        f = [0] * (len(t) + 1)
+        f[0] = 1
+        for i in range(len(s)):
+            for j in range(len(t) - 1, -1, -1):
+                f[j + 1] += f[j] if s[i] == t[j] else 0
+        return f[len(t)]
 ```
 
 </TabItem>

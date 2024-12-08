@@ -21,8 +21,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -64,6 +66,15 @@ class Solution {
     return result;
   }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Python code snippet with just "# TODO"
+# TODO
 ```
 
 </TabItem>

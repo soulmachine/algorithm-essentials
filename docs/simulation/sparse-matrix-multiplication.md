@@ -43,8 +43,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -78,6 +80,26 @@ public class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Sparse Matrix Multiplication
+# Time Complexity: O(m*n*p), Space Complexity: O(1)
+def multiply(A: list[list[int]], B: list[list[int]]) -> list[list[int]]:
+    m, n, p = len(A), len(A[0]), len(B[0])
+    C = [[0] * p for _ in range(m)]
+
+    for i in range(m):
+        for k in range(n):
+            if A[i][k] != 0:
+                for j in range(p):
+                    if B[k][j] != 0:
+                        C[i][j] += A[i][k] * B[k][j]
+    return C
 ```
 
 </TabItem>

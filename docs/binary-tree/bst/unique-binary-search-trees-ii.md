@@ -27,8 +27,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -100,6 +102,42 @@ private:
         return subTree;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Unique Binary Search Trees II
+# 时间复杂度TODO，空间复杂度TODO
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def generateTrees(self, n: int) -> list[TreeNode]:
+        if n == 0:
+            return []
+        return self.generate(1, n)
+
+    def generate(self, start: int, end: int) -> list[TreeNode]:
+        subTree = []
+        if start > end:
+            subTree.append(None)
+            return subTree
+        for k in range(start, end + 1):
+            leftSubs = self.generate(start, k - 1)
+            rightSubs = self.generate(k + 1, end)
+            for i in leftSubs:
+                for j in rightSubs:
+                    node = TreeNode(k)
+                    node.left = i
+                    node.right = j
+                    subTree.append(node)
+        return subTree
 ```
 
 </TabItem>

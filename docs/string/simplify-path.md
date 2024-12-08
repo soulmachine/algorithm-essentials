@@ -31,8 +31,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -120,6 +122,36 @@ public:
         return out.str();
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Simplify Path
+# 时间复杂度O(n)，空间复杂度O(n)
+class Solution:
+    def simplifyPath(self, path: str) -> str:
+        dirs = []
+        i = 0
+        while i < len(path):
+            i += 1
+            j = path.find('/', i)
+            if j < 0:
+                j = len(path)
+            dir = path[i:j]
+            # 当有连续 '///'时，dir 为空
+            if dir and dir != '.':
+                if dir == '..':
+                    if dirs:
+                        dirs.pop()
+                else:
+                    dirs.append(dir)
+            i = j
+        if not dirs:
+            return '/'
+        return '/' + '/'.join(dirs)
 ```
 
 </TabItem>

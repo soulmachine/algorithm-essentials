@@ -20,8 +20,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -91,6 +93,37 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Roman to Integer
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        result = 0
+        for i in range(len(s)):
+            if i > 0 and self.map(s[i]) > self.map(s[i - 1]):
+                result += (self.map(s[i]) - 2 * self.map(s[i - 1]))
+            else:
+                result += self.map(s[i])
+        return result
+
+    @staticmethod
+    def map(c: str) -> int:
+        roman_map = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100,
+            'D': 500,
+            'M': 1000
+        }
+        return roman_map.get(c, 0)
 ```
 
 </TabItem>

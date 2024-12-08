@@ -36,8 +36,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -103,6 +105,32 @@ private:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Subsets II
+# 增量构造法，版本1，时间复杂度O(2^n)，空间复杂度O(n)
+def subsetsWithDup(nums: list[int]) -> list[list[int]]:
+    nums.sort()  # 必须排序
+
+    def dfs(start: int, path: list[int], result: list[list[int]]):
+        result.append(path[:])
+
+        for i in range(start, len(nums)):
+            if i != start and nums[i] == nums[i-1]:
+                continue
+            path.append(nums[i])
+            dfs(i + 1, path, result)
+            path.pop()
+
+    result = []
+    path = []
+    dfs(0, path, result)
+    return result
 ```
 
 </TabItem>
@@ -233,6 +261,59 @@ private:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Subsets II
+# 增量构造法，版本2，时间复杂度O(2^n)，空间复杂度O(n)
+class Solution:
+    def subsetsWithDup(self, nums):
+        nums.sort()  # 必须排序
+        result = []
+        path = []  # 中间结果
+
+        # 记录每个元素的出现次数
+        counter_map = {}
+        for i in nums:
+            counter_map[i] = counter_map.get(i, 0) + 1
+
+        # 将HashMap里的pair拷贝到一个数组里
+        counters = []
+        for key, value in counter_map.items():
+            counters.append(Pair(key, value))
+        counters.sort()
+
+        def dfs(counters, step, path, result):
+            if step == len(counters):
+                result.append(path[:])
+                return
+
+            for i in range(counters[step].value + 1):
+                for j in range(i):
+                    path.append(counters[step].key)
+                dfs(counters, step + 1, path, result)
+                for j in range(i):
+                    path.pop()
+
+        dfs(counters, 0, path, result)
+        return result
+
+class Pair:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+
+    def __lt__(self, other):
+        if self.key < other.key:
+            return True
+        elif self.key > other.key:
+            return False
+        else:
+            return self.value < other.value
 ```
 
 </TabItem>
@@ -376,6 +457,65 @@ private:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Subsets II
+# 位向量法，时间复杂度O(2^n)，空间复杂度O(n)
+from collections import defaultdict
+from dataclasses import dataclass
+from typing import List
+
+@dataclass
+class Pair:
+    key: int
+    value: int
+
+    def __lt__(self, other):
+        if self.key < other.key:
+            return True
+        elif self.key > other.key:
+            return False
+        else:
+            return self.value < other.value
+
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()  # 必须排序
+        result = []
+        # 记录每个元素的出现次数
+        counter_map = defaultdict(int)
+        for i in nums:
+            counter_map[i] += 1
+
+        # 将HashMap里的pair拷贝到一个数组里
+        counters = []
+        for key, value in counter_map.items():
+            counters.append(Pair(key, value))
+        counters.sort()
+
+        # 每个元素选择了多少个
+        selected = {p.key: 0 for p in counters}
+
+        def dfs(nums: List[int], counters: List[Pair], selected: dict,
+                step: int, result: List[List[int]]) -> None:
+            if step == len(counters):
+                subset = []
+                for p in counters:
+                    subset.extend([p.key] * selected[p.key])
+                result.append(subset)
+                return
+
+            for i in range(counters[step].value + 1):
+                selected[counters[step].key] = i
+                dfs(nums, counters, selected, step + 1, result)
+
+        dfs(nums, counters, selected, 0, result)
+        return result
+```
+
+</TabItem>
 </Tabs>
 
 ### 迭代
@@ -444,6 +584,30 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Subsets II
+# Incremental construction method
+# Time complexity O(2^n), Space complexity O(1)
+class Solution:
+    def subsetsWithDup(self, nums: list[int]) -> list[list[int]]:
+        nums.sort()  # must sort
+        result = [[]]
+
+        previous_size = 0
+        for i in range(len(nums)):
+            size = len(result)
+            for j in range(size):
+                if i == 0 or nums[i] != nums[i-1] or j >= previous_size:
+                    result.append(result[j][:])
+                    result[-1].append(nums[i])
+            previous_size = size
+        return result
 ```
 
 </TabItem>
@@ -516,6 +680,31 @@ public:
         return real_result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Subsets II
+# Binary method, time complexity O(2^n), space complexity O(1)
+class Solution:
+    def subsetsWithDup(self, nums: list[int]) -> list[list[int]]:
+        nums.sort()  # must sort
+        # use set for deduplication, can't use unordered_set as output requires ordering
+        result = set()
+        n = len(nums)
+        v = []
+
+        for i in range(1 << n):
+            for j in range(n):
+                if (i & 1 << j) > 0:
+                    v.append(nums[j])
+            result.add(tuple(v))
+            v.clear()
+
+        return [list(x) for x in result]
 ```
 
 </TabItem>

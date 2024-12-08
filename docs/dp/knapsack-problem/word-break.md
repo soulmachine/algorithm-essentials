@@ -26,8 +26,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -82,6 +84,32 @@ private:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Word Break
+# 深搜，超时
+# 时间复杂度O(2^n)，空间复杂度O(n)
+class Solution:
+    def wordBreak(self, s: str, dict: set[str]) -> bool:
+        return self.dfs(s, dict, 0, 1)
+
+    def dfs(self, s: str, dict: set[str], start: int, cur: int) -> bool:
+        if cur == len(s):
+            return s[start:cur] in dict
+
+        if self.dfs(s, dict, start, cur + 1):  # no cut
+            return True
+
+        if s[start:cur] in dict:  # cut here
+            if self.dfs(s, dict, cur, cur + 1):
+                return True
+
+        return False
+```
+
+</TabItem>
 </Tabs>
 
 #### BFS
@@ -130,6 +158,31 @@ public class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Word Break
+# BFS
+# Time Complexity: O(n^2), Space Complexity: O(n)
+def wordBreak(s: str, wordDict: list[str]) -> bool:
+    word_set = set(wordDict)
+    queue = [0]
+    visited = [False] * len(s)
+
+    while queue:
+        start = queue.pop(0)
+        if not visited[start]:
+            for end in range(start + 1, len(s) + 1):
+                if s[start:end] in word_set:
+                    queue.append(end)
+                    if end == len(s):
+                        return True
+            visited[start] = True
+    return False
 ```
 
 </TabItem>
@@ -189,6 +242,24 @@ public:
         return dp[s.size()];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Word Break
+# 动规，时间复杂度O(n^2)，空间复杂度O(n)
+class Solution:
+    def wordBreak(self, s: str, wordDict: list[str]) -> bool:
+        dict_set = set(wordDict)
+        dp = [False] * (len(s) + 1)
+        dp[0] = True  # base case, empty string
+        for i in range(1, len(s) + 1):
+            for j in range(i - 1, -1, -1):
+                dp[i] = dp[i] or (dp[j] and s[j:i] in dict_set)
+        return dp[len(s)]
 ```
 
 </TabItem>

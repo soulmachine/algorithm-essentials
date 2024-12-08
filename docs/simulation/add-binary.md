@@ -25,8 +25,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -74,6 +76,27 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Add Binary
+# Time Complexity: O(max(m,n)), Space Complexity: O(max(m,n))
+def addBinary(a: str, b: str) -> str:
+    result = []
+    i, j = len(a) - 1, len(b) - 1
+    carry = 0
+    while i >= 0 or j >= 0 or carry:
+        x = int(a[i]) if i >= 0 else 0
+        y = int(b[j]) if j >= 0 else 0
+        total = x + y + carry
+        result.append(str(total % 2))
+        carry = total // 2
+        i, j = i - 1, j - 1
+    return ''.join(result[::-1])
 ```
 
 </TabItem>

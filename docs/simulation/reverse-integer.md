@@ -30,8 +30,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -92,6 +94,32 @@ public:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Reverse Integer
+# 时间复杂度O(logn)，空间复杂度O(1)
+# 考虑 1.负数的情况 2. 溢出的情况(正溢出&&负溢出，比如 x = -2147483648(即-2^31) )
+class Solution:
+    def reverse(self, x: int) -> int:
+        r = 0
+        t = x
+        t = t if t > 0 else -t
+        while t > 0:
+            r = r * 10 + t % 10
+            t //= 10
+        sign = False if x > 0 else True
+        if r > 2147483647 or (sign and r > 2147483647):
+            return 0
+        else:
+            if sign:
+                return -int(r)
+            else:
+                return int(r)
 ```
 
 </TabItem>

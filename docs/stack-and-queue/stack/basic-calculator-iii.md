@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -160,6 +162,70 @@ private:
 private:
     unordered_map<char, int> priority = {{'(', 1}, {'+', 2}, {'-', 2},{'*', 3}, {'/', 3}};
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Basic Calculator III
+class Solution:
+    priority = {
+        '(': 1,
+        '+': 2,
+        '-': 2,
+        '*': 3,
+        '/': 3
+    }
+
+    def calculate(self, s: str) -> int:
+        N = len(s)
+        nums = []
+        ops = []
+        i = 0
+        while i < N:
+            c = s[i]
+            if c.isdigit():
+                num = 0
+                while i < N and s[i].isdigit():
+                    num = num * 10 + int(s[i])
+                    i += 1
+                nums.append(num)
+                i -= 1
+            elif c == '(':
+                ops.append(c)
+            elif c == ')':
+                while ops[-1] != '(':
+                    self.calc(nums, ops)
+                ops.pop()  # pop '('
+            elif c in '+-*/':
+                while ops and self.priority.get(ops[-1]) >= self.priority.get(c):
+                    self.calc(nums, ops)
+                ops.append(c)
+            else:
+                # c == ' ', do nothing
+                pass
+            i += 1
+
+        while ops:
+            self.calc(nums, ops)
+        return nums.pop()
+
+    @staticmethod
+    def calc(nums, ops):
+        b = nums.pop()
+        a = nums.pop()
+        op = ops.pop()
+        if op == '+':
+            result = a + b
+        elif op == '-':
+            result = a - b
+        elif op == '*':
+            result = a * b
+        else:  # op == '/'
+            result = a // b
+        nums.append(result)
 ```
 
 </TabItem>

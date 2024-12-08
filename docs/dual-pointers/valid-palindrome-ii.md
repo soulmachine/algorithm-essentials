@@ -16,8 +16,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -64,6 +66,38 @@ class Solution {
 
 ```cpp
 // TODO
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Valid Palindrome II
+# Time complexity: O(n)
+# Space complexity: O(1)
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        i = 0
+        j = len(s) - 1
+
+        while i < j:
+            # Found a mismatched pair, try both deletions
+            if s[i] != s[j]:
+                return self.checkPalindrome(s, i, j - 1) or self.checkPalindrome(s, i + 1, j)
+
+            i += 1
+            j -= 1
+
+        return True
+
+    def checkPalindrome(self, s: str, i: int, j: int) -> bool:
+        while i < j:
+            if s[i] != s[j]:
+                return False
+            i += 1
+            j -= 1
+        return True
 ```
 
 </TabItem>

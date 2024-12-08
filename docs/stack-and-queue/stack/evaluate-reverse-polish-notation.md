@@ -27,8 +27,10 @@ import TabItem from "@theme/TabItem";
 #### 递归版
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -90,6 +92,33 @@ public:
         }
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Evaluate Reverse Polish Notation
+# Recursive
+# Time Complexity: O(n)，Space Complexity: O(n)
+class Solution:
+    def evalRPN(self, tokens: list[str]) -> int:
+        self.top = len(tokens) - 1
+        return self.dfs(tokens)
+
+    def dfs(self, tokens: list[str]) -> int:
+        token = tokens[self.top]
+        self.top -= 1
+        if token not in "+-*/":
+            return int(token)
+        else:
+            y = self.dfs(tokens)
+            x = self.dfs(tokens)
+            if token == "+": return x + y
+            elif token == "-": return x - y
+            elif token == "*": return x * y
+            else: return int(x / y)
 ```
 
 </TabItem>
@@ -162,6 +191,34 @@ public:
         return (int)s.top();
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Evaluate Reverse Polish Notation
+# UsingStack
+# Time Complexity: O(n)，Space Complexity: O(n)
+def evalRPN(tokens):
+    s = []
+    for token in tokens:
+        if token not in '+-*/':
+            s.append(int(token))
+        else:
+            y = s.pop()
+            x = s.pop()
+            if token == '+':
+                x += y
+            elif token == '-':
+                x -= y
+            elif token == '*':
+                x *= y
+            else:
+                x = int(x / y)
+            s.append(x)
+    return s[-1]
 ```
 
 </TabItem>

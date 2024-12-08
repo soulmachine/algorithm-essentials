@@ -36,8 +36,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -72,6 +74,23 @@ public:
         return reach >= nums.size();
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Jump Game
+# 思路1，时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def canJump(self, nums: list[int]) -> bool:
+        reach = 1  # 最右能跳到哪里
+        i = 0
+        while i < reach and reach < len(nums):
+            reach = max(reach, i + 1 + nums[i])
+            i += 1
+        return reach >= len(nums)
 ```
 
 </TabItem>
@@ -129,6 +148,26 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Jump Game
+# 思路2，时间复杂度O(n)，空间复杂度O(1)
+def can_jump(nums):
+    if len(nums) == 0:
+        return True
+    # 逆向下楼梯，最左能下降到第几层
+    left_most = len(nums) - 1
+
+    for i in range(len(nums) - 2, -1, -1):
+        if i + nums[i] >= left_most:
+            left_most = i
+
+    return left_most == 0
+```
+
+</TabItem>
 </Tabs>
 
 ### 代码 3
@@ -175,6 +214,22 @@ public:
         return f[nums.size() - 1] >= 0;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Jump Game
+# 思路三，动规，时间复杂度O(n)，空间复杂度O(n)
+def canJump(nums):
+    f = [0] * len(nums)
+    for i in range(1, len(nums)):
+        f[i] = max(f[i - 1], nums[i - 1]) - 1
+        if f[i] < 0:
+            return False
+    return f[len(nums) - 1] >= 0
 ```
 
 </TabItem>

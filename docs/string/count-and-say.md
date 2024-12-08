@@ -30,8 +30,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -106,6 +108,45 @@ public:
         return ss.str();
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Count and Say
+# @author 连城 (http://weibo.com/lianchengzju)
+# 时间复杂度O(n^2)，空间复杂度O(n)
+class Solution:
+    def countAndSay(self, n: int) -> str:
+        s = "1"
+        n -= 1
+        while n > 0:
+            s = self.getNext(s)
+            n -= 1
+        return s
+
+    def getNext(self, s: str) -> str:
+        result = []
+        i = 0
+        while i < len(s):
+            j = self.notEqual(s, i)
+            result.append(str(j - i))
+            result.append(s[i])
+            i = j
+        return "".join(result)
+
+    # find the first char that not equal to fromIndex
+    @staticmethod
+    def notEqual(s: str, fromIndex: int) -> int:
+        target = s[fromIndex]
+        i = fromIndex
+        while i < len(s):
+            if s[i] != target:
+                break
+            i += 1
+        return i
 ```
 
 </TabItem>

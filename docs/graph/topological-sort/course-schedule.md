@@ -18,8 +18,10 @@ import TabItem from "@theme/TabItem";
 #### BFS
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -63,6 +65,14 @@ public:
         return true;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Empty line - nothing to translate since input only contains a comment saying "TODO"
 ```
 
 </TabItem>
@@ -114,6 +124,14 @@ public:
         return true;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Empty comment, nothing to translate since only "// TODO" was provided
 ```
 
 </TabItem>

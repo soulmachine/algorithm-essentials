@@ -30,8 +30,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -129,6 +131,44 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Palindrome Partitioning
+# 时间复杂度O(2^n)，空间复杂度O(n)
+class Solution:
+    def partition(self, s: str) -> list[list[str]]:
+        result = []
+        path = []  # 一个partition方案
+        self.dfs(s, path, result, 0, 1)
+        return result
+
+    # prev 表示前一个隔板, start 表示当前隔板
+    def dfs(self, s: str, path: list[str], result: list[list[str]], prev: int, start: int) -> None:
+        if start == len(s):  # 最后一个隔板
+            if self.isPalindrome(s, prev, start - 1):  # 必须使用
+                path.append(s[prev:start])
+                result.append(path[:])
+                path.pop()
+            return
+        # 不断开
+        self.dfs(s, path, result, prev, start + 1)
+        # 如果[prev, start-1] 是回文，则可以断开，也可以不断开（上一行已经做了）
+        if self.isPalindrome(s, prev, start - 1):
+            # 断开
+            path.append(s[prev:start])
+            self.dfs(s, path, result, start, start + 1)
+            path.pop()
+
+    def isPalindrome(self, s: str, start: int, end: int) -> bool:
+        while start < end and s[start] == s[end]:
+            start += 1
+            end -= 1
+        return start >= end
+```
+
+</TabItem>
 </Tabs>
 
 ### 深搜 2
@@ -219,6 +259,37 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Palindrome Partitioning
+# 时间复杂度O(2^n)，空间复杂度O(n)
+def partition(s):
+    result = []
+    path = []  # 一个partition方案
+    dfs(s, path, result, 0)
+    return result
+
+# 搜索必须以s[start]开头的partition方案
+def dfs(s, path, result, start):
+    if start == len(s):
+        result.append(path[:])
+        return
+    for i in range(start, len(s)):
+        if is_palindrome(s, start, i): # 从i位置砍一刀
+            path.append(s[start:i+1])
+            dfs(s, path, result, i + 1)  # 继续往下砍
+            path.pop()  # 撤销上上行
+
+def is_palindrome(s, start, end):
+    while start < end and s[start] == s[end]:
+        start += 1
+        end -= 1
+    return start >= end
+```
+
+</TabItem>
 </Tabs>
 
 ### 动规
@@ -302,6 +373,34 @@ public:
         return sub_palins[0];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Palindrome Partitioning
+# 动规，时间复杂度O(n^2)，空间复杂度O(1)
+def partition(s):
+    n = len(s)
+    p = [[False] * n for _ in range(n)]  # whether s[i,j] is palindrome
+    for i in range(n-1, -1, -1):
+        for j in range(i, n):
+            p[i][j] = s[i] == s[j] and (j - i < 2 or p[i + 1][j - 1])
+
+    subPalins = [[] for _ in range(n)]  # sub palindromes of s[0,i]
+    for i in range(n-1, -1, -1):
+        for j in range(i, n):
+            if p[i][j]:
+                palindrome = s[i:j+1]
+                if j + 1 < n:
+                    for v in subPalins[j + 1]:
+                        tmp = [palindrome] + v.copy()
+                        subPalins[i].append(tmp)
+                else:
+                    subPalins[i].append([palindrome])
+    return subPalins[0]
 ```
 
 </TabItem>

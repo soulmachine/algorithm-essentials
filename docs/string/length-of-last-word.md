@@ -24,8 +24,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -83,6 +85,33 @@ public:
         return distance(first, last);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Length of Last Word
+# 偷懒，用 STL
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        def isAlphabet(ch: str) -> bool:
+            return ch.isalpha()
+
+        def isNotAlphabet(ch: str) -> bool:
+            return not ch.isalpha()
+
+        def findIf(s: str, fromIndex: int, p) -> int:
+            for i in range(fromIndex, -1, -1):
+                if p(s[i]):
+                    return i
+            return -1
+
+        j = findIf(s, len(s) - 1, isAlphabet)
+        i = findIf(s, j, isNotAlphabet)
+        return j - i
 ```
 
 </TabItem>

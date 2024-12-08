@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -72,6 +74,28 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Container With Most Water
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def maxArea(self, height: list[int]) -> int:
+        start = 0
+        end = len(height) - 1
+        result = float('-inf')
+        while start < end:
+            area = min(height[end], height[start]) * (end - start)
+            result = max(result, area)
+            if height[start] <= height[end]:
+                start += 1
+            else:
+                end -= 1
+        return result
 ```
 
 </TabItem>

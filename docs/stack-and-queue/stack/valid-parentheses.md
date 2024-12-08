@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -78,6 +80,30 @@ public:
         return stk.empty();
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Valid Parentheses
+# Time complexity O(n), Space complexity O(n)
+class Solution:
+    def isValid(self, s: str) -> bool:
+        left = "([{"
+        right = ")]}"
+        stk = []
+
+        for c in s:
+            if c in left:
+                stk.append(c)
+            else:
+                if stk and stk[-1] == left[right.index(c)]:
+                    stk.pop()
+                else:
+                    return False
+        return len(stk) == 0
 ```
 
 </TabItem>

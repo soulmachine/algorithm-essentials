@@ -39,8 +39,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -85,6 +87,29 @@ public:
                 && isSymmetric(p->right, q->left);
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Symmetric Tree
+# Recursive solution, time complexity O(n), space complexity O(logn)
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if not root:
+            return True
+        return self.isSymmetricHelper(root.left, root.right)
+
+    def isSymmetricHelper(self, p: TreeNode, q: TreeNode) -> bool:
+        if not p and not q:  # Termination condition
+            return True
+        if not p or not q:  # Termination condition
+            return False
+        return p.val == q.val and \  # Three-way combination
+               self.isSymmetricHelper(p.left, q.right) and \
+               self.isSymmetricHelper(p.right, q.left)
 ```
 
 </TabItem>
@@ -165,6 +190,42 @@ public:
         return true;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Symmetric Tree
+# Iterative version, time complexity O(n), space complexity O(logn)
+class Solution:
+    def isSymmetric(self, root):
+        if not root:
+            return True
+
+        s = []
+        s.append(root.left)
+        s.append(root.right)
+
+        while s:
+            p = s.pop()
+            q = s.pop()
+
+            if not p and not q:
+                continue
+            if not p or not q:
+                return False
+            if p.val != q.val:
+                return False
+
+            s.append(p.left)
+            s.append(q.right)
+
+            s.append(p.right)
+            s.append(q.left)
+
+        return True
 ```
 
 </TabItem>

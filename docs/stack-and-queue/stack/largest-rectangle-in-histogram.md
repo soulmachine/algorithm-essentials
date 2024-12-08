@@ -26,8 +26,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -81,6 +83,30 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Largest Rectangle in Histogram
+# 时间复杂度O(n)，空间复杂度O(n)
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        s = []
+        result = 0
+        i = 0
+        while i <= len(heights):
+            value = heights[i] if i < len(heights) else 0
+            if not s or value > heights[s[-1]]:
+                s.append(i)
+                i += 1
+            else:
+                tmp = s.pop()
+                result = max(result,
+                        heights[tmp] * (i if not s else i - s[-1] - 1))
+        return result
 ```
 
 </TabItem>

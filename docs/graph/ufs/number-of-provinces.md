@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="cpp"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -92,6 +94,34 @@ private:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Number of Provinces
+# Time complexity: O(N^2)
+# Space complexity: O(N)
+class Solution:
+    def findCircleNum(self, isConnected: list[list[int]]) -> int:
+        N = len(isConnected)
+        visited = [False] * N
+        count = 0
+        for i in range(N):
+            if not visited[i]:
+                visited[i] = True
+                self.dfs(isConnected, visited, i)
+                count += 1
+        return count
+
+    # visited the ith node
+    def dfs(self, isConnected: list[list[int]], visited: list[bool], i: int) -> None:
+        for j in range(len(isConnected)):
+            if isConnected[i][j] == 1 and not visited[j]:
+                visited[j] = True
+                self.dfs(isConnected, visited, j)
+```
+
+</TabItem>
 </Tabs>
 
 #### 并查集
@@ -136,6 +166,15 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# This is a comment indicating there is nothing to do yet
+pass
 ```
 
 </TabItem>

@@ -46,8 +46,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -97,6 +99,26 @@ public:
         return *std::max_element(dp.begin(), dp.end());
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Longest Increasing Subsequence
+# 时间复杂度O(n^2)，空间复杂度O(n)
+def lengthOfLIS(nums):
+    if not nums:
+        return 0
+    dp = [1] * len(nums)  # base case
+    global_max = 1
+    for j in range(1, len(nums)):
+        for i in range(j):
+            if nums[i] < nums[j]:
+                dp[j] = max(dp[j], dp[i] + 1)
+        global_max = max(global_max, dp[j])
+    return global_max
 ```
 
 </TabItem>
@@ -178,6 +200,34 @@ public:
         return first;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Longest Increasing Subsequence
+# 时间复杂度O(nlogn)，空间复杂度O(n)
+class Solution:
+    def lengthOfLIS(self, nums: list[int]) -> int:
+        lis = []
+        for x in nums:
+            insert_pos = self.lower_bound(lis, 0, len(lis), x)
+            if insert_pos >= len(lis):
+                lis.append(x)
+            else:
+                lis[insert_pos] = x
+        return len(lis)
+
+    def lower_bound(self, A: list[int], first: int, last: int, target: int) -> int:
+        while first != last:
+            mid = first + (last - first) // 2
+            if target > A[mid]:
+                first = mid + 1
+            else:
+                last = mid
+        return first
 ```
 
 </TabItem>

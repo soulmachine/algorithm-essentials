@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -61,6 +63,25 @@ private:
                 minDepth(root->right, root->left != NULL));
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Minimum Depth of Binary Tree
+# 递归版，时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def minDepth(self, root):
+        return self._minDepth(root, False)
+
+    def _minDepth(self, root, hasbrother):
+        if not root:
+            return float('inf') if hasbrother else 0
+
+        return 1 + min(self._minDepth(root.left, root.right is not None),
+                      self._minDepth(root.right, root.left is not None))
 ```
 
 </TabItem>
@@ -152,6 +173,37 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Minimum Depth of Binary Tree
+# 迭代版，时间复杂度O(n)，空间复杂度O(logn)
+class Solution:
+    def minDepth(self, root):
+        if not root:
+            return 0
+
+        result = float('inf')
+        stack = []
+        stack.append((root, 1))
+
+        while stack:
+            node, depth = stack.pop()
+
+            if not node.left and not node.right:
+                result = min(result, depth)
+
+            if node.left and result > depth:  # 深度控制，剪枝
+                stack.append((node.left, depth + 1))
+
+            if node.right and result > depth:  # 深度控制，剪枝
+                stack.append((node.right, depth + 1))
+
+        return result
 ```
 
 </TabItem>
