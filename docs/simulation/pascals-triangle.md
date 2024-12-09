@@ -154,4 +154,4 @@ public:
 
 ### 相关题目
 
-- [Pascal's Triangle II](pascal-s-triangle-ii.md)
+- [Pascal's Triangle II](pascals-triangle-ii.md)

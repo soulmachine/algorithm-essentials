@@ -73,4 +73,4 @@ public:
 
 ### 相关题目
 
-- [Pascal's Triangle](pascal-s-triangle.md)
+- [Pascal's Triangle](pascals-triangle.md)
