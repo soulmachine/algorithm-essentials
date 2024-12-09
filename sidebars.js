@@ -285,7 +285,7 @@ module.exports = {
           label: "队列",
           items: [
             "stack-and-queue/queue/implement-queue-using-stacks",
-            "stack-and-queue/queue/moving-average-of-data-stream",
+            "stack-and-queue/queue/moving-average-from-data-stream",
             "stack-and-queue/queue/sliding-window-maximum",
             "stack-and-queue/queue/design-bounded-blocking-queue",
             "stack-and-queue/queue/design-circular-queue",
