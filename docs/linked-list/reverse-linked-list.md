@@ -12,7 +12,17 @@ Reverse a singly linked list.
 
 ### 代码
 
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
 #### 迭代
+
+<Tabs
+defaultValue="java"
+values={[
+  { label: 'Java', value: 'java', },
+]}>
+<TabItem value="java">
 
 ```java
 // Reverse Linked List
@@ -32,7 +42,17 @@ class Solution {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 #### 递归
+
+<Tabs
+defaultValue="java"
+values={[
+  { label: 'Java', value: 'java', },
+]}>
+<TabItem value="java">
 
 ```java
 // Reverse Linked List
@@ -47,3 +67,6 @@ public class Solution {
     }
 }
 ```
+
+</TabItem>
+</Tabs>

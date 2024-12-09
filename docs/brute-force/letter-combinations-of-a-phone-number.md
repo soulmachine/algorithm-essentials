@@ -29,11 +29,10 @@ import TabItem from "@theme/TabItem";
 <Tabs
 defaultValue="python"
 values={[
-{ label: 'Python', value: 'python', },
-{ label: 'Java', value: 'java', },
-{ label: 'C++', value: 'cpp', },
-]
-}>
+  { label: 'Python', value: 'python', },
+  { label: 'Java', value: 'java', },
+  { label: 'C++', value: 'cpp', },
+]}>
 <TabItem value="java">
 
 ```java

@@ -28,7 +28,6 @@ import TabItem from "@theme/TabItem";
 defaultValue="python"
 values={[
 { label: 'Python', value: 'python', },
-
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
