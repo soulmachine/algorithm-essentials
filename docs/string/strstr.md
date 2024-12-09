@@ -18,8 +18,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -73,6 +75,30 @@ public:
         return -1;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Implement strStr()
+# Brute force solution, time complexity O(N*M), space complexity O(1)
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        if not needle:
+            return 0
+
+        N = len(haystack) - len(needle) + 1
+        for i in range(N):
+            j = i
+            k = 0
+            while j < len(haystack) and k < len(needle) and haystack[j] == needle[k]:
+                j += 1
+                k += 1
+            if k == len(needle):
+                return i
+        return -1
 ```
 
 </TabItem>
@@ -214,6 +240,70 @@ private:
         return -1;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Implement strStr()
+# KMP，时间复杂度O(N+M)，空间复杂度O(M)
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        return self.kmp(haystack, needle)
+
+    '''
+    计算部分匹配表，即next数组.
+
+    Args:
+        pattern (str): 模式串
+        next next数组
+    '''
+    @staticmethod
+    def compute_prefix(pattern: str, next: list) -> None:
+        j = -1
+        next[0] = j
+
+        for i in range(1, len(pattern)):
+            while j > -1 and pattern[j + 1] != pattern[i]:
+                j = next[j]
+
+            if pattern[i] == pattern[j + 1]:
+                j += 1
+            next[i] = j
+
+    '''
+    KMP算法.
+
+    Args:
+        text (str): 文本
+        pattern (str): 模式串
+    Returns: 成功则返回第一次匹配的位置，失败则返回-1
+    '''
+    @staticmethod
+    def kmp(text: str, pattern: str) -> int:
+        j = -1
+        n = len(text)
+        m = len(pattern)
+        if n == 0 and m == 0:
+            return 0  # "",""
+        if m == 0:
+            return 0  # "a",""
+        next = [0] * m
+
+        Solution.compute_prefix(pattern, next)
+
+        for i in range(n):
+            while j > -1 and pattern[j + 1] != text[i]:
+                j = next[j]
+
+            if text[i] == pattern[j + 1]:
+                j += 1
+            if j == m - 1:
+                return i - j
+
+        return -1
 ```
 
 </TabItem>

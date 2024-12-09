@@ -34,8 +34,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -114,6 +116,42 @@ public:
         return num * sign;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# String to Integer (atoi)
+# Time complexity O(n), Space complexity O(1)
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        num = 0
+        sign = 1
+        n = len(s)
+        if n == 0:
+            return 0
+        i = 0
+        while i < n and s[i] == ' ':
+            i += 1
+        if i == n:
+            return 0
+        if s[i] == '+':
+            i += 1
+        elif s[i] == '-':
+            sign = -1
+            i += 1
+        max_int = 2**31 - 1
+        min_int = -2**31
+        while i < n:
+            if not s[i].isdigit():
+                break
+            if num > max_int // 10 or (num == max_int // 10 and int(s[i]) > max_int % 10):
+                return max_int if sign == 1 else min_int
+            num = num * 10 + int(s[i])
+            i += 1
+        return num * sign
 ```
 
 </TabItem>

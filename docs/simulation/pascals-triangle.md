@@ -32,8 +32,10 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-defaultValue="java"
+defaultValue="python"
 values={[
+{ label: 'Python', value: 'python', },
+
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
 ]
@@ -94,6 +96,31 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="python">
+
+```python
+# Pascal's Triangle
+# 时间复杂度O(n^2)，空间复杂度O(n)
+def generate(numRows):
+    result = []
+    if numRows == 0:
+        return result
+
+    result.append([1]) #first row
+
+    for i in range(2, numRows + 1):
+        current = [1] * i  # 本行
+        prev = result[i - 2]  # 上一行
+
+        for j in range(1, i - 1):
+            current[j] = prev[j-1] + prev[j]  # 左上角和右上角之和
+        result.append(current)
+
+    return result
+```
+
+</TabItem>
 </Tabs>
 
 ### 从右到左
@@ -147,6 +174,24 @@ public:
         return result;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+# Pascal's Triangle
+# Time Complexity O(n^2), Space Complexity O(n)
+def generate(numRows):
+    result = []
+    array = []
+    for i in range(1, numRows + 1):
+        for j in range(i - 2, 0, -1):
+            array[j] = array[j - 1] + array[j]
+        array.append(1)
+        result.append(array[:])
+    return result
 ```
 
 </TabItem>
