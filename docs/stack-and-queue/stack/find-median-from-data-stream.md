@@ -1,5 +1,5 @@
 ---
-title: Median of Data Stream
+title: Find Median from Data Stream
 ---
 
 ### 描述

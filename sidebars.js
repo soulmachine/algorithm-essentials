@@ -261,7 +261,7 @@ module.exports = {
             "stack-and-queue/stack/basic-calculator-iii",
             "stack-and-queue/stack/build-binary-expression-tree-from-infix-expression",
             "stack-and-queue/stack/implement-stack-using-queues",
-            "stack-and-queue/stack/median-of-data-stream",
+            "stack-and-queue/stack/find-median-from-data-stream",
             "stack-and-queue/stack/minimum-number-of-swaps-to-make-the-string-balanced",
             "stack-and-queue/stack/minimum-add-to-make-parentheses-valid",
             "stack-and-queue/stack/minimum-remove-to-make-valid-parentheses",

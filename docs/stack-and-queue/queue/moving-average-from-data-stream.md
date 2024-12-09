@@ -206,4 +206,4 @@ private:
 
 ### 相关题目
 
-- [Median of Data Stream](../stack/median-of-data-stream)
+- [Median of Data Stream](../stack/find-median-from-data-stream)
