@@ -1,5 +1,5 @@
 ---
-title: Moving Average of Data Stream
+title: Moving Average from Data Stream
 ---
 
 ### 描述
