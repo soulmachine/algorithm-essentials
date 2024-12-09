@@ -374,7 +374,7 @@ module.exports = {
       type: 'category',
       label: '二分查找',
       items: [
-        "search/search-for-a-range",
+        "search/find-first-and-last-position-of-element-in-sorted-array",
         "search/search-insert-position",
         "search/search-in-rotated-sorted-array",
         "search/search-in-rotated-sorted-array-ii",

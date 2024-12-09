@@ -113,4 +113,4 @@ class Solution:
 
 ### 相关题目
 
-- [Search for a Range](search-for-a-range.md)
+- [Search for a Range](find-first-and-last-position-of-element-in-sorted-array.md)
