@@ -38,6 +38,7 @@ defaultValue="java"
 values={[
 { label: 'Java', value: 'java', },
 { label: 'C++', value: 'cpp', },
+{ label: 'Python', value: 'python', },
 ]
 }>
 <TabItem value="java">
@@ -114,6 +115,39 @@ public:
         return num * sign;
     }
 };
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+# String to Integer (atoi)
+# 时间复杂度O(n)，空间复杂度O(1)
+class Solution:
+    def myAtoi(self, str):
+        num = 0
+        sign = 1
+        n = len(str)
+        if n == 0: return 0
+
+        i = 0
+        while i < n and str[i] == ' ':
+            i += 1
+
+        if i < n and str[i] == '+':
+            i += 1
+        elif i < n and str[i] == '-':
+            sign = -1
+            i += 1
+
+        while i < n and str[i].isdigit():
+            if num > (2**31 - 1) // 10 or \
+                    (num == (2**31 - 1) // 10 and \
+                        int(str[i])> (2**31 - 1) % 10):
+                return -2**31 if sign == -1 else (2**31 - 1)
+            num = num * 10 + int(str[i])
+            i += 1
+        return num * sign
 ```
 
 </TabItem>
